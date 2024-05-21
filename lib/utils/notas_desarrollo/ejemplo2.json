@@ -1,0 +1,30 @@
+{
+  "formulario":
+  [
+    {
+      "pregunta": "Probabilidad de volver a comprar",
+      "tipoOpcion":
+      {
+        "opcion1": "Muy probable",
+        "opcion2": "Probable",
+        "opcion3": "Poco probable",
+        "opcion4": "Nada probable"
+      },
+      "tipoRepuesta": "Seleccionar único",
+      "id": 1,
+      "idformato": 2
+    },
+    {
+      "pregunta": "Sexo",
+      "tipoOpcion":
+      {
+        "opcion1": "Masculino",
+        "opcion1": "Femenino"
+      },
+      "tipoRepuesta": "Seleccionar único",
+      "id": 1,
+      "idformato": 2
+    }
+
+  ]
+}

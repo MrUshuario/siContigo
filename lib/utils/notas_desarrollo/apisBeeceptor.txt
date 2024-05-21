@@ -1,0 +1,7 @@
+
+flutter pub add permission_handler
+///////////
+flutter packages pub run build_runner build
+//////////////////////////////////////////////
+https://dev-sicontigo.contigo.gob.pe:9104/mcs-sicontigo-consultas/swagger-ui/
+
