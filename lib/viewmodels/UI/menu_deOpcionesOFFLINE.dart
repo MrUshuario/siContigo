@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:sicontigo/infraestructure/dao/apis/apiprovider_formulario.dart';
 import 'package:sicontigo/infraestructure/dao/database/database.dart';
@@ -22,6 +23,7 @@ import '../../utils/helpersviewAlertProgressCircle.dart';
 import '../../utils/helpersviewBlancoIcon.dart';
 import '../../utils/helpersviewBlancoSelect.dart';
 import '../../utils/helpersviewLetrasRojas.dart';
+import '../../utils/helpersviewLetrasSubs.dart';
 import '../../utils/helperviewCabecera.dart';
 
 
@@ -130,8 +132,8 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
   bool isSatelliteGreen=false;
 
-  bool Fase1 = true;
-  bool Fase2 = false;
+  bool Fase1 = false;
+  bool Fase2 = true;
   bool Fase3 = false;
   bool Fase4 = false;
 
@@ -333,16 +335,16 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
 
 
-                if ( (widget.formDNICtrl == "" ||widget.formDNICtrl!.text.isEmpty) ||
-                    (widget.formGestorSocialCtrl == "" ||widget.formGestorSocialCtrl!.text.isEmpty) ||
-                    (widget.formNombresApeCtrl == "" ||widget.formNombresApeCtrl!.text.isEmpty) ||
-                    (widget.formPadronCtrl == "" ||widget.formPadronCtrl!.text.isEmpty) ||
-                    (widget.formTiempoCtrl == "" ||widget.formTiempoCtrl!.text.isEmpty) ||
-                    (widget.formPensionTiempoCtrl == "" ||widget.formPensionTiempoCtrl!.text.isEmpty) ||
-                    (widget.formNecesidadesCtrl == "" ||widget.formNecesidadesCtrl!.text.isEmpty) ||
-                    (widget.formEstablecimientoSaludCtrl == "" ||widget.formEstablecimientoSaludCtrl!.text.isEmpty) ||
-                    (widget.formSeAtendioCtrl == "" ||widget.formSeAtendioCtrl!.text.isEmpty) ||
-                    (widget.formServicioAtencionCtrl == "" ||widget.formServicioAtencionCtrl!.text.isEmpty)
+                if ( (widget.formDNICtrl!.text == "" ||widget.formDNICtrl!.text.isEmpty) ||
+                   // (widget.formGestorSocialCtrl.text == "" ||widget.formGestorSocialCtrl!.text.isEmpty) ||
+                    (widget.formNombresApeCtrl.text == "" ||widget.formNombresApeCtrl!.text.isEmpty) //||
+                    //(widget.formPadronCtrl!.text == "" ||widget.formPadronCtrl!.text.isEmpty) ||
+                    //(widget.formTiempoCtrl!.text == "" ||widget.formTiempoCtrl!.text.isEmpty) ||
+                    //(widget.formPensionTiempoCtrl!.text == "" ||widget.formPensionTiempoCtrl!.text.isEmpty) ||
+                    //(widget.formNecesidadesCtrl!.text == "" ||widget.formNecesidadesCtrl!.text.isEmpty) ||
+                    //(widget.formEstablecimientoSaludCtrl!.text == "" ||widget.formEstablecimientoSaludCtrl!.text.isEmpty) ||
+                    //(widget.formSeAtendioCtrl!.text == "" ||widget.formSeAtendioCtrl!.text.isEmpty) ||
+                    //(widget.formServicioAtencionCtrl!.text == "" ||widget.formServicioAtencionCtrl!.text.isEmpty)
 
                 ) {
 
@@ -352,6 +354,20 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   CargaDialog(); //INICIALIZA DIALOGO
 
                   String respuestas = "";
+
+                  respuestas = ''
+                      //'${widget.formGestorSocialCtrl!.text},'
+                      '${widget.formDNICtrl!.text},'
+                      '${widget.formNombresApeCtrl!.text},'
+                      'Latitud:${GPSlatitude},'
+                      'altitud:${GPSaltitude},'
+                      'longitud:${GPSlongitude},'
+                      'Nombre:${PREFname},'
+                      'Appaterno:${PREFapPaterno},'
+                      'MatMaterno:${PREFapMaterno},'
+                      'DNI:${PREFnroDoc},'
+                      'TipoUsuario:${PREFtypeUser},'
+                  ;
 
                   widget.formData?.idformato = 0;
                   widget.formData?.id_usuario = 0;
@@ -518,11 +534,15 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
     widget.formEstablecimientoSaludCtrl!.clear(); //8
     widget.formSeAtendioCtrl!.clear(); //9
     widget.formServicioAtencionCtrl!.clear(); //10
-
-
     widget.formData = Respuesta();
 
-    setState(() {});
+    setState(() {
+      Fase1 = false;
+      Fase2 = true;
+      Fase3 = false;
+      Fase4 = false;
+    });
+
   }
 
   Widget formUI() {
@@ -535,6 +555,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
       child: Column(
         children: [
 
+          Visibility(
+            visible: Fase1,
+            child:Column(
+              children: <Widget>[
 
           HelpersViewLetrasRojas.formItemsDesign( "Seleccione motivo de Visita Colectiva"),
           const SizedBox(height: 16.0),
@@ -574,10 +598,17 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
           GestureDetector(
               onTap: ()  {
-                setState(() {
-                  Fase1 = true;
-                  Fase2 = false;
-                });
+
+                if( widget.formGestorSocialCtrl.text == "" || widget.formGestorSocialCtrl!.text.isEmpty){
+                  //NOPASA
+                } else {
+                  print("widget.formGestorSocialCtrl.text");
+                  print(widget.formGestorSocialCtrl.text);
+                  setState(() {
+                    Fase1 = false;
+                    Fase2 = true;
+                  });
+                }
 
               },
               child: Container(
@@ -595,6 +626,150 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                         fontSize: 18,
                         fontWeight: FontWeight.w500)),
               )),
+
+
+              ],),
+          ),
+
+          Visibility(
+            visible: Fase2,
+            child:Column(
+              children: <Widget>[
+
+                HelpersViewLetrasRojas.formItemsDesign( "Datos Generales de la Persona Usuaria"),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "Ingrese el DNI:"),
+                HelpersViewBlancoIcon.formItemsDesign(
+                    Icons.person,
+                    TextFormField(
+                      controller: widget.formDNICtrl,
+                      decoration: const InputDecoration(
+                        labelText: 'Escriba su respuesta',
+                      ),
+                      /*validator: (value) {
+                        return HelpersViewBlancoIcon.validateField(
+                            value!, widget.ParamGrifoCtrl);
+                      }, */
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      maxLength: 8,
+                    ), context),
+
+                HelpersViewLetrasSubs.formItemsDesign( "Ingrese Nombres y Apellidos:"),
+                HelpersViewBlancoIcon.formItemsDesign(
+                    Icons.person,
+                    TextFormField(
+                      controller: widget.formNombresApeCtrl,
+                      decoration: const InputDecoration(
+                        labelText: 'Escriba su respuesta',
+                      ),
+                      /*
+                      validator: (value) {
+                        return HelpersViewBlancoIcon.validateField(
+                            value!, widget.ParamGrifoCtrl);
+                      }, */
+                      maxLength: 100,
+                    ), context),
+
+                GestureDetector(
+                    onTap: ()  {
+
+                      if(
+                      (widget.formDNICtrl.text == "" || widget.formDNICtrl!.text.isEmpty) ||
+                      (widget.formNombresApeCtrl.text == "" || widget.formNombresApeCtrl!.text.isEmpty)
+                      ){
+                        //NOPASA
+                        } else {
+                        setState(() {
+                          Fase2 = false;
+                          Fase3 = true;
+                        });
+                      }
+
+
+
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+                      alignment: Alignment.center,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        color: Color(0xFFD60000),
+                      ),
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: const Text("Continuar",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500)),
+                    )),
+
+
+              ],),
+          ),
+
+
+          Visibility(
+            visible: Fase3,
+            child:Column(
+              children: <Widget>[
+                HelpersViewLetrasRojas.formItemsDesign( "Haga click en el satelite si esta rojo, y luego en el diskete para enviar"),
+                /*
+                HelpersViewLetrasRojas.formItemsDesign( "* Obligatorio"),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "¿Usted ha realizado el cobro correspondiente al último padrón *"),
+                HelpersViewLetrasSubs.formItemsDesign( "Usualmente ¿Cada cuánto tiempo cobra la pensión? *"),
+
+                GestureDetector(
+                    onTap: ()  {
+                      print("SIGUIENTE FASE");
+                      setState(() {
+                        Fase3 = false;
+                        Fase4 = true;
+                      });
+
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+                      alignment: Alignment.center,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        color: Color(0xFFD60000),
+                      ),
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: const Text("Continuar",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500)),
+                    )),
+
+                */
+
+              ],),
+          ),
+
+
+          Visibility(
+            visible: Fase4,
+            child:Column(
+              children: <Widget>[
+
+                HelpersViewLetrasRojas.formItemsDesign( "VALORACION SOCIO FAMILIAR - OBSERVACION DEL GESTOR"),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "¿CON QUIÉN VIVE USTED? *"),
+                HelpersViewLetrasSubs.formItemsDesign( "¿USTED TIENE AMIGOS, FAMILIARES, VECINOS A LOS QUE SUELE VISITAR? *"),
+
+
+
+              ],),
+          ),
+
 
 
         ],),

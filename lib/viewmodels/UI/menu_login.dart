@@ -120,7 +120,7 @@ class _login extends State<login> {
           color: Color(0xFFD60000),
           child: Center(
             child: Text(
-              'U.T. ${UTCONCAT}',
+              '',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
@@ -306,9 +306,9 @@ class _login extends State<login> {
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.w500)),
-            )),
+            ))
 
-
+/*
         GestureDetector(
             onTap: () async {
 
@@ -336,7 +336,7 @@ class _login extends State<login> {
                       fontWeight: FontWeight.w500)),
             ))
 
-
+*/
       ],
     );
   }
