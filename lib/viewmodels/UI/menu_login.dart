@@ -4,6 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:sicontigo/infraestructure/dao/apis/apiprovider_menuOpciones.dart';
 import 'package:sicontigo/infraestructure/dao/database/database.dart';
 import 'package:sicontigo/model/responseinciofinactividad.dart';
+import 'package:sicontigo/model/t_respuesta.dart';
 import 'package:sicontigo/utils/constantes.dart';
 import 'package:sicontigo/utils/helpersviewAlertMensajeTitutlo.dart';
 import 'package:sicontigo/utils/helpersviewBlancoTexto.dart';
@@ -17,6 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:device_imei/device_imei.dart';
+import 'package:sicontigo/viewmodels/UI/menu_deOpcionesOFFLINE.dart';
 
 
 class login extends StatefulWidget {
@@ -269,6 +271,7 @@ class _login extends State<login> {
               print(resp.nroDoc);
               if(resp.nroDoc != null){
 
+
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 await prefs.setString('name', resp.name!);
                 await prefs.setString('apPaterno', resp.name!);
@@ -276,9 +279,11 @@ class _login extends State<login> {
                 await prefs.setString('nroDoc', resp.nroDoc!);
                 await prefs.setString('typeUser', resp.typeUser!);
 
+                Widget ContactoRefererencia = MenudeOpcionesOffline(Respuesta());
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) =>  MenudeOpciones()),
+                  //MaterialPageRoute(builder: (context) =>  MenudeOpciones()),
+                  MaterialPageRoute(builder: (context) =>  ContactoRefererencia),
                 );
 
               }else {
@@ -307,9 +312,11 @@ class _login extends State<login> {
         GestureDetector(
             onTap: () async {
 
+              Widget ContactoRefererencia = MenudeOpcionesOffline(Respuesta());
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) =>  MenudeOpciones()),
+                //MaterialPageRoute(builder: (context) =>  MenudeOpciones()),
+                MaterialPageRoute(builder: (context) =>  ContactoRefererencia),
               );
 
             },

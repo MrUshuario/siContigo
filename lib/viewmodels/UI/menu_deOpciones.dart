@@ -14,6 +14,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sicontigo/viewmodels/UI/menu_login.dart';
 import 'package:sicontigo/viewmodels/UI/viewmodels/form_viewsmodel_formulario.dart';
 
+import '../../utils/helpersviewBlancoIcon.dart';
+
 
 class MenudeOpciones extends StatefulWidget {
   final viewModel = FormDataModelViewModel();
@@ -28,7 +30,10 @@ class MenudeOpciones extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _MenudeOpciones();
   }
+
 }
+
+enum EstadoFallecido { Si, No } //SOLO SIRVE PARA MOSTRAR NO SE GUARDA
 
 class _MenudeOpciones extends State<MenudeOpciones> {
 
@@ -37,6 +42,7 @@ class _MenudeOpciones extends State<MenudeOpciones> {
   late String PREFapMaterno;
   late String PREFnroDoc;
   late String PREFtypeUser;
+  late String PREFtoken;
 
   Future<void> conseguirVersion() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -47,6 +53,7 @@ class _MenudeOpciones extends State<MenudeOpciones> {
       PREFapMaterno = prefs.getString('apMaterno') ?? "ERROR";
       PREFnroDoc = prefs.getString('nroDoc') ?? "ERROR";
       PREFtypeUser = prefs.getString('typeUser') ?? "ERROR";
+      PREFtoken = prefs.getString('token') ?? "ERROR";
 
     });
   }
@@ -62,6 +69,8 @@ class _MenudeOpciones extends State<MenudeOpciones> {
     super.initState();
   }
 
+  EstadoFallecido? _EstadoFallecido = null;
+
   @override
   void dispose() {
     widget.viewModel.dispose();
@@ -73,6 +82,24 @@ class _MenudeOpciones extends State<MenudeOpciones> {
     setState(() {
       widget.total = res;
     });
+  }
+
+  Future<void> listarVisitasRetro() async {
+    widget.viewModel
+      ..listen()
+      ..getPaginationList();
+    /*
+    var pages = widget.page!-1;
+    if(pages > 0) {
+      widget.page = pages;
+    }
+    var offset = (widget.page!*10)-10;
+    if(offset < 0) {
+      offset = 0;
+    }*/
+    //widget.listVisitas = await widget.formDataModelDaoFormulario.findFormDataModel(offset, 10);
+    //widget.totalPage = calcularTotalPaginas(widget.total!, 10);
+    setState(() {});
   }
 
   //POR SI BORRO
@@ -168,7 +195,23 @@ class _MenudeOpciones extends State<MenudeOpciones> {
           ),
         ],
       ),
-      body: formUI(),
+      body: Center (
+        child: SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minWidth: 440.0, // Set your minimum width here
+              maxWidth: double.infinity, // Set your maximum width here
+            ),
+            child: Container(
+              margin: const EdgeInsets.all(41.0),
+              child: Form(
+                //key: widget.keyForm,
+                child: formUI(),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -262,26 +305,35 @@ class _MenudeOpciones extends State<MenudeOpciones> {
       child: Column(
         children: [
 
-
           GestureDetector(
               onTap: () async {
-
-                List<Formulario> InsertarFormularioENTITY = await widget.apiForm.get_FormularioLista();
-                print(InsertarFormularioENTITY.length);
-                if(InsertarFormularioENTITY.length>0){
-                  //BORRAR TODA LA DATA EXISTENTE
-                  await widget.formDataModelDaoFormulario.BorrarTodo();
-                  for (int i = 0; i < InsertarFormularioENTITY.length; i++) {
-                    try {
-                      await widget.formDataModelDaoFormulario.insertFormDataModel(InsertarFormularioENTITY[i]);
-                      print("AGREGADO FORMULARIO ${i}");
-                    }  catch (error) { print("Error saving FORMULARIO: $error"); }
-                  }
-                  //TERMINO
-                  showDialogValidFields("Sincronización exitosa");
+                if(PREFtoken == "ERROR"){
+                  showDialogValidFields("El token no se ha recibido");
                 } else {
-                  print("ALGO SALIO MAL");
-                  showDialogValidFields("No se encontraron Padrones");
+
+                  List<Formulario> InsertarFormularioENTITY = await widget.apiForm.post_FormularioLista(PREFtoken);
+                  print(InsertarFormularioENTITY.length);
+                  if(InsertarFormularioENTITY.length>0){
+                    //BORRAR TODA LA DATA EXISTENTE
+                    await widget.formDataModelDaoFormulario.BorrarTodo();
+                    for (int i = 0; i < InsertarFormularioENTITY.length; i++) {
+                      try {
+                        await widget.formDataModelDaoFormulario.insertFormDataModel(InsertarFormularioENTITY[i]);
+                        print("AGREGADO FORMULARIO ${i}");
+                      }  catch (error) { print("Error saving FORMULARIO: $error"); }
+                    }
+                    //TERMINO
+                    showDialogValidFields("Sincronización exitosa");
+                    //
+                    widget.viewModel
+                      ..listen()
+                      ..getPaginationList();
+
+                  } else {
+                    print("ALGO SALIO MAL");
+                    showDialogValidFields("No se encontraron Padrones");
+                  }
+
                 }
 
               },
@@ -306,6 +358,7 @@ class _MenudeOpciones extends State<MenudeOpciones> {
               onTap: () async {
 
                 await loadTotalRegister();
+                await listarVisitasRetro();
               
               },
               child: Container(
@@ -334,7 +387,7 @@ class _MenudeOpciones extends State<MenudeOpciones> {
           ),
 
 
-          /*
+          /* // ESTE EXPANDED ES EL PAGINADO
           Expanded(
               child: widget.listForm.isNotEmpty
                   ? ListView.builder(itemCount: widget.listForm!.length,
@@ -384,60 +437,201 @@ class _MenudeOpciones extends State<MenudeOpciones> {
                   );
                 },)
                   : const Text('Aún no hay data para mostrar')
-          ), */
+          ), List<String> lista = [item.tipoOpcion];*/
 
-          Expanded(
+          //EXPANDED ANIMATION INFINITE SCOLLVIEW
+          SizedBox(
+            width: double.infinity, // Fills available space horizontally
+            height: 350, // Set your desired height
             child: AnimatedInfiniteScrollView<Formulario>(
               viewModel: widget.viewModel,
-              itemBuilder: (context, index, item) => Card(
-                child: InkWell(
-                  onTap: () {
-                    //ModificarBorrar(index, item);
-                  },
-                  child: ListTile(
-                    title: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.040,
-                      child: Text(
-                        "${index + 1}",
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15.0,
-                        ),
+              itemBuilder: (context, index, item) {
+
+                bool MostrarInput = false;
+                bool MostrarOpcion = false; //false opcion multiple //true checkbox
+
+
+                List<String>? tipoOpcionList;
+                if (item.id_tipo_respuesta == 4 ||
+                    item.id_tipo_respuesta == 5) {
+                  tipoOpcionList = item.tipoOpcion!.split(',');
+                } else {
+                  MostrarInput = true;
+                }
+
+                return Column(
+                  children: [
+
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.010,
+                    ),
+
+
+                    Text(
+                      "${index + 1}) ${item.pregunta}:  ${item.texto}", // Example,
+                      textAlign: TextAlign.left,
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Pregunta: ${item.pregunta}",
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          style: const TextStyle(
-                            fontSize: 15.0,
-                          ),
-                        ),
+
+                    Text(
+                      "${item.descripcion}", // Example,
+                      textAlign: TextAlign.left,
+                      style: const TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.black12,
+                      ),
+                    ),
+
+
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.010,
+                    ),
+
+                Visibility(
+                visible: MostrarInput,
+                child:
+                HelpersViewBlancoIcon.formItemsDesign(
+                  Icons.question_mark,
+                  TextFormField(
+                    // Access item data here
+                    decoration: InputDecoration(
+                      //labelText:"${item.tipoRepuesta}",
+                      labelText:"Ingresar respuesta única",
+                    ),
+                    // Other properties for the TextFormField
+                  ),
+                  context,
+                ),
+                ),
+
+
+
+                    //OPCIONES
+                    Visibility(
+                      visible: !MostrarInput,
+                        child:
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.040,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: tipoOpcionList?.length ?? 0,
+                            itemBuilder: (context, index) {
+
+                              return Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.red, // Change this to your desired color
+                                    width: 1.0, // Adjust border width here
+                                  ),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 5.0),
+                                      child: Text(
+                                        "Opción ${index+1}) ${tipoOpcionList?[index]}",
+                                        textAlign: TextAlign.left,
+                                        overflow: TextOverflow.fade,
+                                        maxLines: 2, // Set the number of lines here
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15.0),
+                                      ),
+                                    ),
+                                    //Icon(iconValue, color: Colors.red,),
+
+                                    const SizedBox(width: 01.0), // Add spacing between text and radio
+                                    Radio<EstadoFallecido>(
+                                      value: EstadoFallecido.Si,
+                                      groupValue: _EstadoFallecido,
+                                      onChanged: (EstadoFallecido? value) {
+                                        setState(() {
+                                          _EstadoFallecido = value;
+                                        });
+                                      },
+                                    ),
+
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.height * 0.005,
+                                    ),
+
+                                    /*
+                                Padding(
+                                  padding: EdgeInsets.only(left: 0.0),
+                                  child:
+
+                                  ),
+                                ),
+                                */
+
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
                         ),
-                        Text(
-                          "Tipo respuesta: ${item.tipoRepuesta}",
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
+                    ),
+
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.020,
+                    ),
+
+                  ],
+                );
+
+                /*
+                return Card(
+                  child: InkWell(
+                    onTap: () {
+                      //ModificarBorrar(index, item); // You can now use 'item'
+                    },
+                    child: ListTile(
+                      title: SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.040,
+                        child: Text(
+                          "${index + 1}",
                           style: const TextStyle(
+                            fontWeight: FontWeight.bold,
                             fontSize: 15.0,
                           ),
                         ),
-                      ],
+                      ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Pregunta: ${item.pregunta}",
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: const TextStyle(
+                              fontSize: 15.0,
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.040,
+                          ),
+                          Text(
+                            "Tipo respuesta: ${item.tipoRepuesta}",
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: const TextStyle(
+                              fontSize: 15.0,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ),
+                );
+                */
+
+
+              },
               refreshIndicator: true,
             ),
           ),
-
-
-
 
         ],),
     );

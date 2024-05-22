@@ -76,6 +76,8 @@ class _$AppDatabase extends AppDatabase {
 
   FormDataModelDaoFormulario? _formDataModelDaoFormularioInstance;
 
+  FormDataModelDaoRespuesta? _formDataModelDaoRespuestaInstance;
+
   Future<sqflite.Database> open(
     String path,
     List<Migration> migrations, [
@@ -100,7 +102,9 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Html` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `htmlcodigo` TEXT)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Formulario` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `pregunta` TEXT, `tipoOpcion` TEXT, `tipoRepuesta` TEXT, `id` INTEGER, `idformato` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `Formulario` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `pregunta` TEXT, `tipoOpcion` TEXT, `tipoRepuesta` INTEGER, `id` INTEGER, `idformato` INTEGER, `texto` TEXT, `titulo` TEXT, `idseccion` INTEGER, `descripcion` TEXT, `id_tipo_respuesta` INTEGER, `id_seccion` INTEGER)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `Respuesta` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -118,6 +122,12 @@ class _$AppDatabase extends AppDatabase {
   FormDataModelDaoFormulario get formDataModelDaoFormulario {
     return _formDataModelDaoFormularioInstance ??=
         _$FormDataModelDaoFormulario(database, changeListener);
+  }
+
+  @override
+  FormDataModelDaoRespuesta get formDataModelDaoRespuesta {
+    return _formDataModelDaoRespuestaInstance ??=
+        _$FormDataModelDaoRespuesta(database, changeListener);
   }
 }
 
@@ -201,7 +211,13 @@ class _$FormDataModelDaoFormulario extends FormDataModelDaoFormulario {
                   'tipoOpcion': item.tipoOpcion,
                   'tipoRepuesta': item.tipoRepuesta,
                   'id': item.id,
-                  'idformato': item.idformato
+                  'idformato': item.idformato,
+                  'texto': item.texto,
+                  'titulo': item.titulo,
+                  'idseccion': item.idseccion,
+                  'descripcion': item.descripcion,
+                  'id_tipo_respuesta': item.id_tipo_respuesta,
+                  'id_seccion': item.id_seccion
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -223,9 +239,15 @@ class _$FormDataModelDaoFormulario extends FormDataModelDaoFormulario {
             cod: row['cod'] as int?,
             pregunta: row['pregunta'] as String?,
             tipoOpcion: row['tipoOpcion'] as String?,
-            tipoRepuesta: row['tipoRepuesta'] as String?,
+            tipoRepuesta: row['tipoRepuesta'] as int?,
             id: row['id'] as int?,
-            idformato: row['idformato'] as int?),
+            idformato: row['idformato'] as int?,
+            texto: row['texto'] as String?,
+            titulo: row['titulo'] as String?,
+            idseccion: row['idseccion'] as int?,
+            descripcion: row['descripcion'] as String?,
+            id_tipo_respuesta: row['id_tipo_respuesta'] as int?,
+            id_seccion: row['id_seccion'] as int?),
         arguments: [offset, perPage]);
   }
 
@@ -236,9 +258,15 @@ class _$FormDataModelDaoFormulario extends FormDataModelDaoFormulario {
             cod: row['cod'] as int?,
             pregunta: row['pregunta'] as String?,
             tipoOpcion: row['tipoOpcion'] as String?,
-            tipoRepuesta: row['tipoRepuesta'] as String?,
+            tipoRepuesta: row['tipoRepuesta'] as int?,
             id: row['id'] as int?,
-            idformato: row['idformato'] as int?));
+            idformato: row['idformato'] as int?,
+            texto: row['texto'] as String?,
+            titulo: row['titulo'] as String?,
+            idseccion: row['idseccion'] as int?,
+            descripcion: row['descripcion'] as String?,
+            id_tipo_respuesta: row['id_tipo_respuesta'] as int?,
+            id_seccion: row['id_seccion'] as int?));
   }
 
   @override
@@ -270,6 +298,90 @@ class _$FormDataModelDaoFormulario extends FormDataModelDaoFormulario {
   @override
   Future<void> insertFormDataModel(Formulario formDataModel) async {
     await _formularioInsertionAdapter.insert(
+        formDataModel, OnConflictStrategy.replace);
+  }
+}
+
+class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
+  _$FormDataModelDaoRespuesta(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database),
+        _respuestaInsertionAdapter = InsertionAdapter(
+            database,
+            'Respuesta',
+            (Respuesta item) => <String, Object?>{
+                  'cod': item.cod,
+                  'idformato': item.idformato,
+                  'id_usuario': item.id_usuario,
+                  'fecha': item.fecha,
+                  'respuestas': item.respuestas
+                });
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<Respuesta> _respuestaInsertionAdapter;
+
+  @override
+  Future<List<Respuesta>> findFormDataModel(
+    int offset,
+    int perPage,
+  ) async {
+    return _queryAdapter.queryList('SELECT * FROM Respuesta LIMIT ?2 OFFSET ?1',
+        mapper: (Map<String, Object?> row) => Respuesta(
+            cod: row['cod'] as int?,
+            idformato: row['idformato'] as int?,
+            id_usuario: row['id_usuario'] as int?,
+            fecha: row['fecha'] as String?,
+            respuestas: row['respuestas'] as String?),
+        arguments: [offset, perPage]);
+  }
+
+  @override
+  Future<List<Respuesta>> findAllRespuesta() async {
+    return _queryAdapter.queryList('SELECT * FROM Respuesta',
+        mapper: (Map<String, Object?> row) => Respuesta(
+            cod: row['cod'] as int?,
+            idformato: row['idformato'] as int?,
+            id_usuario: row['id_usuario'] as int?,
+            fecha: row['fecha'] as String?,
+            respuestas: row['respuestas'] as String?));
+  }
+
+  @override
+  Future<String?> findAllRespuestaID(int cod) async {
+    return _queryAdapter.query(
+        'SELECT Respuestacodigo FROM Respuesta WHERE cod = ?1',
+        mapper: (Map<String, Object?> row) => row.values.first as String,
+        arguments: [cod]);
+  }
+
+  @override
+  Future<int?> totalFormDataModels() async {
+    return _queryAdapter.query('SELECT COUNT(*) FROM Respuesta',
+        mapper: (Map<String, Object?> row) => row.values.first as int);
+  }
+
+  @override
+  Future<int?> BorrarFormDataModels(int cod) async {
+    return _queryAdapter.query('DELETE FROM Respuesta WHERE cod = ?1',
+        mapper: (Map<String, Object?> row) => row.values.first as int,
+        arguments: [cod]);
+  }
+
+  @override
+  Future<int?> BorrarTodo() async {
+    return _queryAdapter.query('DELETE FROM Formulario',
+        mapper: (Map<String, Object?> row) => row.values.first as int);
+  }
+
+  @override
+  Future<void> insertFormDataModel(Respuesta formDataModel) async {
+    await _respuestaInsertionAdapter.insert(
         formDataModel, OnConflictStrategy.replace);
   }
 }

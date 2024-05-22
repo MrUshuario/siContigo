@@ -5,6 +5,9 @@ import 'package:sicontigo/model/t_formulario.dart';
 import 'dart:convert';
 import 'package:sicontigo/utils/resources_apis.dart';
 
+import '../../../model/t_insertarEncuestaRSPTA.dart';
+import '../../../model/t_respuesta.dart';
+
 class apiprovider_formulario {
 
 
@@ -12,8 +15,11 @@ class apiprovider_formulario {
 
   final api_get_LoginForm = apisResources.REST_FORMLIST;
 
+  final api_get_FormList = apisResources.REST_SICONTIGO_CONSULTA;
+  final api_get_FormAnswerd= apisResources.REST_SICONTIGO_INSERTAR;
 
   //EJEMPLO 1 CON LISTAS
+/*
   Future<List<Formulario>> get_FormularioLista() async {
     try {
       print("iniciando api_get_LoginForm...");
@@ -36,6 +42,63 @@ class apiprovider_formulario {
       return  ubi;
     }
   }
+*/
+
+  Future<List<Formulario>> post_FormularioLista(String token) async {
+    final Map<String, dynamic> bodyData = {'idFormato': 5};
+    try {
+      print("iniciando api_get_LoginForm...");
+      String url_login = api_get_FormList;
+      Uri uri = Uri.parse(url_login);
+      final response = await client.post(
+        uri,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        },
+        body: jsonEncode(bodyData),
+      );
+      print("response api_get_LoginForm...${response.body}");
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = jsonDecode(response.body);
+        return Formulario.listFromJson(data['formulario']);
+      } else {
+        List<Formulario> ubi = List.empty();
+        return  ubi;
+      }
+    } catch (e) {
+      List<Formulario> ubi = List.empty();
+      return  ubi;
+    }
+  }
+
+  Future<insertarEncuestaRSPTA> post_EnviarRspt(Respuesta resp, String token) async {
+    try {
+      print("iniciando api_get_FormAnswerd...");
+      String url_login = api_get_FormAnswerd;
+      Uri uri = Uri.parse(url_login);
+      String body = json.encode(resp.toMap());
+      final response = await client.post(
+        uri,
+        body: body,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        },
+      );
+      print("response api_get_FormAnswerd...${response.body}");
+      if (response.statusCode == 200) {
+        return insertarEncuestaRSPTA.fromJson(json.decode(response.body));
+      } else {
+        return insertarEncuestaRSPTA.fromJson(json.decode(response.body));
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+
+
 
 
 

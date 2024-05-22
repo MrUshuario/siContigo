@@ -1,6 +1,6 @@
 class Constants {
   static const String tituloPermisos = "Permisos";
-  static const String tituloMenudeOpciones = "Menú Opciones";
+  static const String tituloMenudeOpciones = "ENCUESTA 1ra VISITA";
   static const String tituloMenuLogin = "Autentificación";
 
 
