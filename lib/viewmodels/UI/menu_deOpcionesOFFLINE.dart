@@ -26,6 +26,7 @@ import '../../utils/helpersviewBlancoSelect.dart';
 import '../../utils/helpersviewLetrasRojas.dart';
 import '../../utils/helpersviewLetrasSubs.dart';
 import '../../utils/helperviewCabecera.dart';
+import 'menu_deOpcionesLISTADO.dart';
 
 
 class MenudeOpcionesOffline extends StatefulWidget {
@@ -34,9 +35,6 @@ class MenudeOpcionesOffline extends StatefulWidget {
   FormDataModelDaoRespuesta get formDataModelDao => _appDatabase.formDataModelDaoRespuesta;
 
   GlobalKey<FormState> keyForm = GlobalKey();
-  //SIGUIENTE
-  TextEditingController formDNICtrl = TextEditingController(); //INPUT 2
-  TextEditingController formNombresApeCtrl = TextEditingController(); //INPUT 3
   //SIGUIENTE
   //COOBROPENSION//CIRCLE 4
   //tiempomeses //CIRCLE 5
@@ -329,7 +327,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               Navigator.pop(context); // Cierra el diálogo
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => login()),
+                                MaterialPageRoute(builder: (context) => MenudeOpcionesListado()),
                               );
 
                             },
@@ -366,8 +364,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
 
 
-                if ( (widget.formDNICtrl!.text == "" ||widget.formDNICtrl!.text.isEmpty) ||
-                    (widget.formNombresApeCtrl.text == "" ||widget.formNombresApeCtrl!.text.isEmpty) ||
+                if (
                     (_CobroPension == null) ||
                     (_Tiempomeses == null) //||
                    /*
@@ -434,8 +431,6 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
 
                   respuestas = ''
-                      'DNI Ingresado:${widget.formDNICtrl!.text},'
-                      'Nombre y Apellidos Ingresado:${widget.formNombresApeCtrl!.text},'
                       'Cobro:${_CobroPension},'
                       'TiempoPension:${_Tiempomeses},'
                       'checks($rpstChecksTemp),'
@@ -455,7 +450,8 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   widget.formData?.fecha = formatDate("dd/MM/yyyy hh:mm:ss", DateTime.now());
                   widget.formData?.respuestas = respuestas;
 
-                  insertarEncuestaRSPTA rpta = await widget.apiForm.post_EnviarRspt(widget.formData!, PREFtoken);
+                  //YA NO ENVIA AHORA GUARDA
+                  //insertarEncuestaRSPTA rpta = await widget.apiForm.post_EnviarRspt(widget.formData!, PREFtoken);
 
                   //await GuardarFormulario();
 
@@ -605,8 +601,6 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   }
 
   void cleanForm() {
-    widget.formDNICtrl!.clear(); //2
-    widget.formNombresApeCtrl!.clear(); //3
     _CobroPension = null;
     _Tiempomeses = null;
     widget.formPensionTiempoCtrl!.clear(); //6
@@ -621,6 +615,33 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
       Fase2 = false;
       Fase3 = false;
       Fase4 = false;
+      //
+      _CobroPension = null;
+      _Tiempomeses = null;
+      //OCULTAR PREGUNTAS
+      PregCada3meses = false;
+      PregCada2meses = false;
+      //CHECKS
+      isCheckedAlimentacion = false;
+      isCheckedSalud = false;
+      isCheckedLimpieza = false;
+      isCheckedRehabilitacion = false;
+      isCheckedEducacion = false;
+      isCheckedPagoServicio = false;
+      isCheckedPagoComunicacion = false;
+      isCheckedTransporte = false;
+      isCheckedVestimenta = false;
+      isCheckedRecreacion = false;
+      isCheckedAhorro = false;
+      isCheckedAhorroSalud = false;
+      isCheckedOtroGasto = false;
+      isCheckedDistancia = false;
+      isCheckedAcumular = false;
+      isCheckedNoacompaniado = false;
+      isCheckedAhorrando = false;
+      isCheckedDificultarTrasladar = false;
+      isCheckedOtroEspecificar = false;
+
     });
 
   }
@@ -673,86 +694,6 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
           Visibility(
             visible: Fase1,
-            child:Column(
-              children: <Widget>[
-
-                HelpersViewLetrasRojas.formItemsDesign( "Datos Generales de la Persona Usuaria"),
-                const SizedBox(height: 16.0),
-
-                HelpersViewLetrasSubs.formItemsDesign( "Ingrese el DNI:"),
-                HelpersViewBlancoIcon.formItemsDesign(
-                    Icons.person,
-                    TextFormField(
-                      controller: widget.formDNICtrl,
-                      decoration: const InputDecoration(
-                        labelText: 'Escriba su respuesta',
-                      ),
-                      /*validator: (value) {
-                        return HelpersViewBlancoIcon.validateField(
-                            value!, widget.ParamGrifoCtrl);
-                      }, */
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      maxLength: 8,
-                    ), context),
-
-                HelpersViewLetrasSubs.formItemsDesign( "Ingrese Nombres y Apellidos:"),
-                HelpersViewBlancoIcon.formItemsDesign(
-                    Icons.person,
-                    TextFormField(
-                      controller: widget.formNombresApeCtrl,
-                      decoration: const InputDecoration(
-                        labelText: 'Escriba su respuesta',
-                      ),
-                      /*
-                      validator: (value) {
-                        return HelpersViewBlancoIcon.validateField(
-                            value!, widget.ParamGrifoCtrl);
-                      }, */
-                      maxLength: 100,
-                    ), context),
-
-                GestureDetector(
-                    onTap: ()  {
-
-                      if(
-                      (widget.formDNICtrl.text == "" || widget.formDNICtrl!.text.isEmpty) ||
-                      (widget.formNombresApeCtrl.text == "" || widget.formNombresApeCtrl!.text.isEmpty)
-                      ){
-                        //NOPASA
-                        } else {
-                        setState(() {
-                          Fase1 = false;
-                          Fase2 = true;
-                        });
-                      }
-
-
-
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-                      alignment: Alignment.center,
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        color: Color(0xFFD60000),
-                      ),
-                      padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: const Text("Continuar",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500)),
-                    )),
-
-
-              ],),
-          ),
-
-
-          Visibility(
-            visible: Fase2,
             child:Column(
               children: <Widget>[
 
@@ -837,235 +778,409 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 ////
 
                 Visibility(
-                visible: PregCada2meses,
-                child:Column(
-                children: <Widget>[
-                  HelpersViewLetrasSubs.formItemsDesign( "Normalmente, de los 300 soles de la pensión que recibe ¿Cómo gasta el dinero? *"),
+                  visible: PregCada2meses,
+                  child:Column(
+                    children: <Widget>[
+                      HelpersViewLetrasSubs.formItemsDesign( "Normalmente, de los 300 soles de la pensión que recibe ¿Cómo gasta el dinero? *"),
 
-                  //MEDICINA
                   Row(
                     children: [
-                      const Text('Alimentación\n(arroz, leche, papas, verduras,frutas,etc.).', style: TextStyle(
-                        fontSize: 12.0,
-                        //color: Colors.white,
-                      ),),
+                      const Expanded(
+                        flex: 5,
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            'Alimentación (arroz, leche, papas, verduras,frutas,etc.).',
+                            style: TextStyle(
+                              fontSize: 12.0,
+                              //color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
                       const Spacer(),
-                      Checkbox(
-                        value: isCheckedAlimentacion,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedAlimentacion = value!;
-                          });},
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Checkbox(
+                          value: isCheckedAlimentacion,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              isCheckedAlimentacion = value!;
+                            });
+                          },
+                        ),
                       ),
                     ],
                   ),
 
-                  Row(
-                    children: [
-                      const Text('Salud\n(pastillas, exámenes, inyecciones,jarabe,etc).', style: TextStyle(
-                        fontSize: 12.0,
-                        //color: Colors.white,
-                      ),),
-                      const Spacer(),
-                      Checkbox(
-                        value: isCheckedSalud,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedSalud = value!;
-                          });},
-                      ),
-                    ],
-                  ),
 
-                  Row(
-                    children: [
-                      const Text('Limpieza y Aseo\n(insumos de aseo personal y limpieza en el hogar).', style: TextStyle(
-                        fontSize: 12.0,
-                        //color: Colors.white,
-                      ),),
-                      const Spacer(),
-                      Checkbox(
-                        value: isCheckedRehabilitacion,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedRehabilitacion = value!;
-                          });},
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Salud (pastillas, exámenes, inyecciones,jarabe,etc).',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedSalud,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedSalud = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
 
-                  Row(
-                    children: [
-                      const Text('Rehabilitación.', style: TextStyle(
-                        fontSize: 12.0,
-                        //color: Colors.white,
-                      ),),
-                      const Spacer(),
-                      Checkbox(
-                        value: isCheckedLimpieza,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedLimpieza = value!;
-                          });},
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Limpieza y Aseo (insumos de aseo personal y limpieza en el hogar).',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedSalud,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedSalud = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
 
-                  Row(
-                    children: [
-                      const Text('Educación\n(Pictogramas, cuadernos, regletas, pinturas, etc).', style: TextStyle(
-                        fontSize: 12.0,
-                        //color: Colors.white,
-                      ),),
-                      const Spacer(),
-                      Checkbox(
-                        value: isCheckedEducacion,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedEducacion = value!;
-                          });},
+
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Rehabilitación.',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedLimpieza,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedLimpieza = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
 
-                  Row(
-                    children: [
-                      const Text('Pago de servicios de agua y luz.', style: TextStyle(
-                        fontSize: 12.0,
-                        //color: Colors.white,
-                      ),),
-                      const Spacer(),
-                      Checkbox(
-                        value: isCheckedPagoServicio,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedPagoServicio = value!;
-                          });},
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Educación (Pictogramas, cuadernos, regletas, pinturas, etc).',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedEducacion,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedEducacion = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
 
-                  Row(
-                    children: [
-                      const Text('Pago de servicios para acceso en comunicación\n(internet, celular, teléfono). ', style: TextStyle(
-                        fontSize: 12.0,
-                        //color: Colors.white,
-                      ),),
-                      const Spacer(),
-                      Checkbox(
-                        value: isCheckedPagoComunicacion,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedPagoComunicacion = value!;
-                          });},
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Pago de servicios de agua y luz.',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedPagoServicio,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedPagoServicio = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
 
-                  Row(
-                    children: [
-                      const Text('Transporte\n(para desplazarte al centro de salud, rehabilitación,\ncentro de estudios,\nactividades de recreación o productivas etc). ', style: TextStyle(
-                        fontSize: 12.0,
-                        //color: Colors.white,
-                      ),),
-                      const Spacer(),
-                      Checkbox(
-                        value: isCheckedTransporte,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedTransporte = value!;
-                          });},
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Pago de servicios para acceso en comunicación (internet, celular, teléfono). ',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedPagoComunicacion,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedPagoComunicacion = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
 
-                  Row(
-                    children: [
-                      const Text('Vestimenta.', style: TextStyle(
-                        fontSize: 12.0,
-                        //color: Colors.white,
-                      ),),
-                      const Spacer(),
-                      Checkbox(
-                        value: isCheckedVestimenta,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedVestimenta = value!;
-                          });},
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Transporte (para desplazarte al centro de salud, rehabilitación, centro de estudios, actividades de recreación o productivas etc). ',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedTransporte,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedTransporte = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
 
-                  Row(
-                    children: [
-                      const Text('Recreación\n(Juegos, deporte, participación\nen espacios de la comunidad, etc).', style: TextStyle(
-                        fontSize: 12.0,
-                        //color: Colors.white,
-                      ),),
-                      const Spacer(),
-                      Checkbox(
-                        value: isCheckedRecreacion,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedRecreacion = value!;
-                          });},
+
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Vestimenta.',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedVestimenta,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedVestimenta = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
 
-                  Row(
-                    children: [
-                      const Text('Ahorro para poder comprar\nequipos y acondicionamiento en el hogar.', style: TextStyle(
-                        fontSize: 12.0,
-                        //color: Colors.white,
-                      ),),
-                      const Spacer(),
-                      Checkbox(
-                        value: isCheckedAhorro,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedAhorro = value!;
-                          });},
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Recreación (Juegos, deporte, participación en espacios de la comunidad, etc).',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedRecreacion,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedRecreacion = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
 
-                  Row(
-                    children: [
-                      const Text('Ahorro para salud\n(operación, exámenes, etc).', style: TextStyle(
-                        fontSize: 12.0,
-                        //color: Colors.white,
-                      ),),
-                      const Spacer(),
-                      Checkbox(
-                        value: isCheckedAhorroSalud,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedAhorroSalud = value!;
-                          });},
+
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Ahorro para poder comprar equipos y acondicionamiento en el hogar.',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedAhorro,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedAhorro = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
 
-                  Row(
-                    children: [
-                      const Text('Otros Gastos.', style: TextStyle(
-                        fontSize: 12.0,
-                        //color: Colors.white,
-                      ),),
-                      const Spacer(),
-                      Checkbox(
-                        value: isCheckedOtroGasto,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedOtroGasto = value!;
-                          });},
+
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Ahorro para salud (operación, exámenes, etc).',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedAhorroSalud,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedAhorroSalud = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
 
-                  const SizedBox(height: 16.0),
-                ],),
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Otros Gastos.',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedOtroGasto,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedOtroGasto = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+
+
+                      const SizedBox(height: 16.0),
+                    ],),
                 ),
 
                 Visibility(
@@ -1073,107 +1188,188 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   child:Column(
                     children: <Widget>[
                       HelpersViewLetrasSubs.formItemsDesign( "¿Por qué no cobra la pensión, cada dos meses? *"),
+
                       Row(
                         children: [
-                          const Text('Por la distancia y/o tiempo de traslado\nal punto de cobro.', style: TextStyle(
-                            fontSize: 12.0,
-                            //color: Colors.white,
-                          ),),
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Por la distancia y/o tiempo de traslado al punto de cobro.',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
                           const Spacer(),
-                          Checkbox(
-                            value: isCheckedDistancia,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                isCheckedDistancia = value!;
-                              });},
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedDistancia,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedDistancia = value!;
+                                });
+                              },
+                            ),
                           ),
                         ],
                       ),
 
                       Row(
                         children: [
-                          const Text('Deja que se acumule las pensiones\npor el elevado costo de transporte.', style: TextStyle(
-                            fontSize: 12.0,
-                            //color: Colors.white,
-                          ),),
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Deja que se acumule las pensiones por el elevado costo de transporte.',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
                           const Spacer(),
-                          Checkbox(
-                            value: isCheckedAcumular,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                isCheckedAcumular = value!;
-                              });},
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedAcumular,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedAcumular = value!;
+                                });
+                              },
+                            ),
                           ),
                         ],
                       ),
 
                       Row(
                         children: [
-                          const Text('No tiene con quien ir o quien le acompañe\na cobrar la pensión al banco, cajero o agente.', style: TextStyle(
-                            fontSize: 12.0,
-                            //color: Colors.white,
-                          ),),
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'No tiene con quien ir o quien le acompañe a cobrar la pensión al banco, cajero o agente.',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
                           const Spacer(),
-                          Checkbox(
-                            value: isCheckedAhorrando,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                isCheckedAhorrando = value!;
-                              });},
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedAhorrando,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedAhorrando = value!;
+                                });
+                              },
+                            ),
                           ),
                         ],
                       ),
 
                       Row(
                         children: [
-                          const Text('Porque está ahorrando.\n(Para salud, estudios, compra de equipos,\nacondicionamiento en su hogar, etc).', style: TextStyle(
-                            fontSize: 12.0,
-                            //color: Colors.white,
-                          ),),
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Porque está ahorrando. (Para salud, estudios, compra de equipos, acondicionamiento en su hogar, etc).',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
                           const Spacer(),
-                          Checkbox(
-                            value: isCheckedNoacompaniado,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                isCheckedNoacompaniado = value!;
-                              });},
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedNoacompaniado,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedNoacompaniado = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+
+
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Es muy dificultoso trasladarse para el cobro de la pensión por su estado físico o de salud.',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedDificultarTrasladar,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedDificultarTrasladar = value!;
+                                });
+                              },
+                            ),
                           ),
                         ],
                       ),
 
                       Row(
                         children: [
-                          const Text('Es muy dificultoso trasladarse para el cobro de la\npensión por su estado físico o de salud.', style: TextStyle(
-                            fontSize: 12.0,
-                            //color: Colors.white,
-                          ),),
+                          const Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Otro (especificar).',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  //color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
                           const Spacer(),
-                          Checkbox(
-                            value: isCheckedDificultarTrasladar,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                isCheckedDificultarTrasladar = value!;
-                              });},
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Checkbox(
+                              value: isCheckedOtroEspecificar,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isCheckedOtroEspecificar = value!;
+                                });
+                              },
+                            ),
                           ),
                         ],
                       ),
 
-                      Row(
-                        children: [
-                          const Text('Otro (especificar).', style: TextStyle(
-                            fontSize: 12.0,
-                            //color: Colors.white,
-                          ),),
-                          const Spacer(),
-                          Checkbox(
-                            value: isCheckedOtroEspecificar,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                isCheckedOtroEspecificar = value!;
-                              });},
-                          ),
-                        ],
-                      ),
 
                       const SizedBox(height: 16.0),
                     ],),
@@ -1202,8 +1398,8 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       if(
                       (_CobroPension == null) ||
-                      (_Tiempomeses == null) //||
-                          /*
+                          (_Tiempomeses == null) //||
+                      /*
                       (//CADA 2 meses lamenos uno marcado
                           !isCheckedAlimentacion ||
                           !isCheckedSalud ||
@@ -1231,8 +1427,8 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                         print("nopasa");
                       } else {
                         setState(() {
-                          Fase2 = false;
-                          Fase3 = true;
+                          Fase1 = false;
+                          Fase2 = true;
                         });
                       }
 
@@ -1260,7 +1456,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
 
           Visibility(
-            visible: Fase3,
+            visible: Fase2,
             child:Column(
               children: <Widget>[
 
@@ -1277,6 +1473,23 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                  */
 
+              ],),
+          ),
+
+
+          Visibility(
+            visible: Fase3,
+            child:Column(
+              children: <Widget>[
+
+
+                HelpersViewLetrasRojas.formItemsDesign( "VALORACION SOCIO FAMILIAR - OBSERVACION DEL GESTOR"),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "¿CON QUIÉN VIVE USTED? *"),
+                HelpersViewLetrasSubs.formItemsDesign( "¿USTED TIENE AMIGOS, FAMILIARES, VECINOS A LOS QUE SUELE VISITAR? *"),
+
+
 
               ],),
           ),
@@ -1285,12 +1498,6 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
             visible: Fase4,
             child:Column(
               children: <Widget>[
-
-                HelpersViewLetrasRojas.formItemsDesign( "VALORACION SOCIO FAMILIAR - OBSERVACION DEL GESTOR"),
-                const SizedBox(height: 16.0),
-
-                HelpersViewLetrasSubs.formItemsDesign( "¿CON QUIÉN VIVE USTED? *"),
-                HelpersViewLetrasSubs.formItemsDesign( "¿USTED TIENE AMIGOS, FAMILIARES, VECINOS A LOS QUE SUELE VISITAR? *"),
 
 
 

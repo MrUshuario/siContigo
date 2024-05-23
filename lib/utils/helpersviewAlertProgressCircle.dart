@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sicontigo/utils/resources.dart';
 import 'package:sicontigo/viewmodels/UI/menu_deOpciones.dart';
 
+import '../viewmodels/UI/menu_deOpcionesLISTADO.dart';
+
 class HelpersViewAlertProgressCircle extends StatelessWidget {
 
     const HelpersViewAlertProgressCircle({super.key,
@@ -78,7 +80,7 @@ class HelpersViewAlertProgressCircle extends StatelessWidget {
                     child: const Row(
                       children: [
                         Expanded(
-                            child: Text ("Se ha enviado la rpta", style: TextStyle(fontSize: 16),)
+                            child: Text ("Se guardaron las respuestas", style: TextStyle(fontSize: 16),)
                         ),
                         Icon(Icons.save, color: Colors.red,)
                       ],
@@ -95,7 +97,7 @@ class HelpersViewAlertProgressCircle extends StatelessWidget {
                       onTap: () async {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => MenudeOpciones()),
+                          MaterialPageRoute(builder: (context) => MenudeOpcionesListado()),
                         );
                       },
                       child: Container(

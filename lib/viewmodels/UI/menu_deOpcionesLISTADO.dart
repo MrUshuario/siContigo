@@ -6,6 +6,7 @@ import 'package:sicontigo/infraestructure/dao/formdatamodeldao_formulario.dart';
 import 'package:sicontigo/infraestructure/dao/formdatamodeldao_respuesta.dart';
 import 'package:sicontigo/model/t_formulario.dart';
 import 'package:sicontigo/model/t_respuesta.dart';
+import 'package:sicontigo/model/utils/respuestaMapper.dart';
 import 'package:sicontigo/utils/constantes.dart';
 import 'package:sicontigo/utils/helpersviewAlertMensajeTitutlo.dart';
 import 'package:sicontigo/utils/resources.dart';
@@ -17,18 +18,26 @@ import 'package:sicontigo/viewmodels/UI/menu_login.dart';
 import 'package:sicontigo/viewmodels/UI/viewmodels/form_viewsmodel_respuesta.dart';
 
 
+import '../../main.dart';
+import '../../utils/helpersviewAlertMensajeFOTO.dart';
+import '../../utils/helpersviewAlertProgressSinc.dart';
 import '../../utils/helpersviewBlancoIcon.dart';
+import 'menu_deOpcionesOFFLINE.dart';
 
 
 class MenudeOpcionesListado extends StatefulWidget {
   final viewModel = FormDataModelViewModel();
   final _appDatabase = GetIt.I.get<AppDatabase>();
-  apiprovider_formulario apiForm = apiprovider_formulario();
+  //apiprovider_formulario apiForm = apiprovider_formulario();
   FormDataModelDaoRespuesta get formDataModelDaoRespuesta => _appDatabase.formDataModelDaoRespuesta;
   List<Formulario> listForm = List.empty(growable: true);
   MenudeOpcionesListado({Key? key});
-  int? total = 0;
 
+  int? total = 0;
+  int? page = 1;
+  int? totalPage = 0;
+  List<Respuesta> listRespuesta = List.empty(growable: true);
+  
   @override
   State<StatefulWidget> createState() {
     return _MenudeOpcionesListado();
@@ -36,7 +45,6 @@ class MenudeOpcionesListado extends StatefulWidget {
 
 }
 
-enum EstadoFallecido { Si, No } //SOLO SIRVE PARA MOSTRAR NO SE GUARDA
 
 class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
 
@@ -46,6 +54,18 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
   late String PREFnroDoc;
   late String PREFtypeUser;
   late String PREFtoken;
+
+  Future<void> listarVisitasAvanzar() async {
+    if(widget.totalPage! != widget.page!) {
+      widget.page = widget.page!+1;
+    }
+    var offset = (widget.page!*10)-10;
+    if(offset < 0) {
+      offset = 0;
+    }
+    widget.listRespuesta = await widget.formDataModelDaoRespuesta.findFormDataModel(offset, 10);
+    setState(() {});
+  }
 
   Future<void> conseguirVersion() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -72,11 +92,24 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
     ..listen()
     ..getPaginationList();
     loadTotalRegister();
+    listarVisitasRetro();
     // TODO: implement initState
     super.initState();
   }
 
-  EstadoFallecido? _EstadoFallecido = null;
+  int calcularTotalPaginas(int totalRegistros, int registrosPorPagina) {
+    // Calcula el total de páginas
+    int totalPaginas = totalRegistros ~/ registrosPorPagina;
+
+    // Si hay registros adicionales que no llenan una página completa,
+    // agrega una página adicional
+    if (totalRegistros % registrosPorPagina > 0) {
+      totalPaginas++;
+    }
+
+    return totalPaginas;
+  }
+
 
   @override
   void dispose() {
@@ -95,7 +128,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
     widget.viewModel
       ..listen()
       ..getPaginationList();
-    /*
+
     var pages = widget.page!-1;
     if(pages > 0) {
       widget.page = pages;
@@ -103,9 +136,9 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
     var offset = (widget.page!*10)-10;
     if(offset < 0) {
       offset = 0;
-    }*/
-    //widget.listVisitas = await widget.formDataModelDaoFormulario.findFormDataModel(offset, 10);
-    //widget.totalPage = calcularTotalPaginas(widget.total!, 10);
+    }
+    widget.listRespuesta = await widget.formDataModelDaoRespuesta.findFormDataModel(offset, 10);
+    widget.totalPage = calcularTotalPaginas(widget.total!, 10);
     setState(() {});
   }
 
@@ -222,6 +255,221 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
     );
   }
 
+  //ALERT DE SINCRONIZAR
+  void SincronizarDialog(){
+    String MensajeSinc = "Se sincronizara todo el listado";
+    String MensajeSubSinc = "¿Desea sincronizar los registros?";
+    bool mostrar = false;
+    bool mostrarBoton = true;
+
+    double progresso = 0.0;
+    int progressoInicio = 0;
+    int? progressoFin = widget.total;
+    double sumando = 4.44;
+
+    if (widget.total != 0) {
+      sumando = (100/widget.total!)/100;
+    }
+
+    showDialog(
+        context: context,
+        builder: (context){
+          //AGREGAR ESTO POR SI QUIERO QUE EL DIALOG SE REFRESQUE
+          return StatefulBuilder(
+              builder: (context, setState)
+              {
+                return AlertDialog(
+                    contentPadding: EdgeInsets.all(0),
+                    content: SingleChildScrollView(
+                        child: Column(
+                          children: [
+
+                            //BARRA DE PROGRESO CON SU TITULO
+                            HelpersViewAlertProgressSinc(
+                                Mensaje: MensajeSinc,
+                                subtexto: MensajeSubSinc,
+                                progress: progresso,
+                                mostrar: mostrar,
+                                mostrarBoton: mostrarBoton,
+                                contadorInicio: progressoInicio,
+                                contadorFin: progressoFin
+                            ),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              // Align row to the end
+                              children: [
+                                Spacer(), // Push remaining space to the left
+
+                                InkWell(
+                                  onTap: () async {
+
+                                    //INICIALIZA CARGA
+                                    setState(() {
+                                      mostrar = true;
+                                      mostrarBoton = false;
+                                      //progresso = 0.0;
+                                      //progresso += (sumando);
+                                      MensajeSinc = "Sincronizando Data";
+                                      MensajeSubSinc = "$progressoInicio/$progressoFin";
+                                    });
+
+
+                                    var api = await getIt.getAsync<apiprovider_formulario>();
+                                    var iniciFinActividades = await widget._appDatabase.formDataModelDaoRespuesta.findAllRespuesta();
+                                    if (iniciFinActividades.isEmpty) {
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                          const SnackBar(
+                                              content: Text(
+                                                  "No hay data para sincronizar")));
+                                    } else {
+                                      var listRespuestaApi = RespuestaMapper.instance.listRespuestaToRespuestaENVIO(iniciFinActividades);
+                                      for (var element in listRespuestaApi) {
+                                        var response = await api.post_EnviarRspt(element,PREFtoken);
+                                        print("response: $response");
+
+                                        //BORRA LA SENTENCIA
+                                        // if(response.codigo == "0105"){
+                                        if(response.codigo != "0000"){
+                                          print("ENVIO BIEN SUPONGO");
+                                          //NO BORRA PORQUE NO TENGO UN CODIGO!
+                                          //widget._appDatabase.formDataModelDaoRespuesta.BorrarFormDataModels(element.cod!);
+                                        }
+
+                                        //AUMENTA
+                                        setState(() {
+                                          //mostrar = true;
+                                          //progresso = 0.0;
+                                          progresso += (sumando);
+                                          progressoInicio++;
+                                          MensajeSubSinc = "$progressoInicio/$progressoFin";
+                                        });
+
+                                      }
+
+                                      Navigator.pop(
+                                          context); //Close your current dialog
+                                      showDialogValidFields(
+                                          "Sincronización exitosa");
+
+                                      listarVisitasRetro();
+                                      //Navigator.of(context).pop();
+
+                                    }
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                        top: 20, right: 20, bottom: 20),
+                                    child: const Text(
+                                      "Sincronizar",
+                                      style: const TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                ),
+
+                                InkWell(
+                                  onTap: () {
+
+                                    Navigator.of(context).pop();
+
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                        top: 20, right: 20, bottom: 20),
+                                    child: const Text(
+                                      "Cancelar",
+                                      style: const TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ],
+                        )
+                    )
+                );
+              }
+          );
+        }
+    );
+
+  }
+
+  //ALERT DE BORRAR - MODIFICAR!
+  void ModificarBorrar(int index, Respuesta obj) {
+    String titulo = "Encuesta dirigida a la persona Usuaria";
+    showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+              contentPadding: EdgeInsets.all(0),
+              content: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      HelpersViewAlertMensajeFOTO.formItemsDesign("${index + 1})  ${obj.fecha} \n$titulo \n${obj.id_usuario}","¿Que acción desea realizar?"),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end, // Align row to the end
+                        children: [
+                          Spacer(), // Push remaining space to the left
+
+                          InkWell(
+                            onTap: () {
+                                  Widget ContactoRefererencia = MenudeOpcionesOffline(obj); //CARGO DATA
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
+                                  );
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.only(top: 20, right: 20, bottom: 20),
+                              child: const Text(
+                                "Modificar",
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ),
+
+                          InkWell(
+                            onTap: ()   async {
+                              widget.formDataModelDaoRespuesta.BorrarFormDataModels(obj.cod!);
+                              widget.viewModel.deleteItem(index);
+                              Navigator.of(context).pop();
+                              var nuevoTotal = widget.total;
+                              actualizarTotalConTemporizador(nuevoTotal! - 1);
+                              await listarVisitasRetro();
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.only(top: 20, right: 20, bottom: 20),
+                              child: const Text(
+                                "Borrar",
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ),
+
+                          InkWell(
+                            onTap: ()   {
+                              Navigator.of(context).pop();
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.only(top: 20, right: 20, bottom: 20),
+                              child: const Text(
+                                "Cancelar",
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ],
+                  )
+              )
+          );
+        }
+    );
+  }
 
 
 
@@ -313,9 +561,12 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
         children: [
 
           GestureDetector(
-              onTap: () async {
-
-                // NUEVO FORM
+              onTap: () {
+                Widget ContactoRefererencia = MenudeOpcionesOffline(Respuesta()); //CARGO DATA
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
+                );
               },
               child: Container(
                 margin: const EdgeInsets.all(10.0),
@@ -343,8 +594,93 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
             ),
           ),
 
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              // Center horizontally
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    await listarVisitasRetro();
+                  },
+                  child: Image.asset(Resources.inconflechaD, width: 48, height: 48),
+                ),
+
+
+                Text(
+                  "${widget.page}/${widget.totalPage}", //DEBO PONER EL TOTAL ENTRE 1
+                  style: TextStyle(fontSize: 16.0, color: Colors.black),
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    await listarVisitasAvanzar();
+                  },
+                  child: Image.asset(Resources.inconflechaI, width: 48, height: 48),
+                )
+
+                // Add Textfield with appropriate margin
+              ],
+            ),
+          ),
+
+
+          SizedBox(
+              //width: double.maxFinite,
+              width: 400.0,
+              height: 300.0,
+              child: widget.listRespuesta.isNotEmpty
+                  ? ListView.builder(itemCount: widget.listRespuesta!.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: InkWell(
+                      onTap: () {
+                        ModificarBorrar(index, widget.listRespuesta![index]);
+                      },
+                      child: ListTile(
+                        title: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.040,
+                          child: Text(
+                            "${index + 1})",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0,
+                            ),
+                          ),
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "DNI: ${widget.listRespuesta![index].id_usuario}",
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: const TextStyle(
+                                fontSize: 15.0,
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.040,
+                            ),
+                            Text(
+                              "Fecha: ${widget.listRespuesta![index].fecha}",
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: const TextStyle(
+                                fontSize: 15.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },)
+                  : const Text('Aún no hay data para mostrar')
+          ),
+
 
           //EXPANDED ANIMATION INFINITE SCOLLVIEW
+          /*
           SizedBox(
             width: double.infinity, // Fills available space horizontally
             height: 350, // Set your desired height
@@ -361,7 +697,9 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
               },
               refreshIndicator: true,
             ),
-          ),
+          ), */
+
+
 
         ],),
     );

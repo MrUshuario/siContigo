@@ -3,10 +3,10 @@
 import 'package:sicontigo/model/t_respuesta.dart';
 import 'package:sicontigo/model/t_respuestaBACKUP.dart';
 
-class VisitasMapper {
+class RespuestaMapper {
 
-  VisitasMapper._();
-  static VisitasMapper get instance => VisitasMapper._();
+  RespuestaMapper._();
+  static RespuestaMapper get instance => RespuestaMapper._();
 
   int? idformato;
   int? id_usuario;

@@ -104,7 +104,9 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Formulario` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `pregunta` TEXT, `tipoOpcion` TEXT, `tipoRepuesta` INTEGER, `id` INTEGER, `idformato` INTEGER, `texto` TEXT, `titulo` TEXT, `idseccion` INTEGER, `descripcion` TEXT, `id_tipo_respuesta` INTEGER, `id_seccion` INTEGER)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Respuesta` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `Respuesta` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `longitud` TEXT, `latitud` TEXT)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `RespuestaENVIO` (`idformato` INTEGER PRIMARY KEY AUTOINCREMENT, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `longitud` TEXT, `latitud` TEXT)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -315,7 +317,9 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
                   'idformato': item.idformato,
                   'id_usuario': item.id_usuario,
                   'fecha': item.fecha,
-                  'respuestas': item.respuestas
+                  'respuestas': item.respuestas,
+                  'longitud': item.longitud,
+                  'latitud': item.latitud
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -337,7 +341,9 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
             idformato: row['idformato'] as int?,
             id_usuario: row['id_usuario'] as int?,
             fecha: row['fecha'] as String?,
-            respuestas: row['respuestas'] as String?),
+            respuestas: row['respuestas'] as String?,
+            longitud: row['longitud'] as String?,
+            latitud: row['latitud'] as String?),
         arguments: [offset, perPage]);
   }
 
@@ -349,7 +355,9 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
             idformato: row['idformato'] as int?,
             id_usuario: row['id_usuario'] as int?,
             fecha: row['fecha'] as String?,
-            respuestas: row['respuestas'] as String?));
+            respuestas: row['respuestas'] as String?,
+            longitud: row['longitud'] as String?,
+            latitud: row['latitud'] as String?));
   }
 
   @override
@@ -375,7 +383,7 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
 
   @override
   Future<int?> BorrarTodo() async {
-    return _queryAdapter.query('DELETE FROM Formulario',
+    return _queryAdapter.query('DELETE FROM Respuesta',
         mapper: (Map<String, Object?> row) => row.values.first as int);
   }
 

@@ -2,6 +2,7 @@ import 'package:sicontigo/model/responseinciofinactividad.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:sicontigo/model/t_formulario.dart';
+import 'package:sicontigo/model/t_respuestaBACKUP.dart';
 import 'dart:convert';
 import 'package:sicontigo/utils/resources_apis.dart';
 
@@ -73,7 +74,8 @@ class apiprovider_formulario {
     }
   }
 
-  Future<insertarEncuestaRSPTA> post_EnviarRspt(Respuesta resp, String token) async {
+  //ENVIAR RPTA
+  Future<insertarEncuestaRSPTA> post_EnviarRspt(RespuestaENVIO resp, String token) async {
     try {
       print("iniciando api_get_FormAnswerd...");
       String url_login = api_get_FormAnswerd;
