@@ -63,7 +63,7 @@ class apiprovider_menuOpciones {
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(bodyData),
       );
-      print("response login2...${response.body}");
+      print("response login2...${response.body} AND \n ${bodyData}");
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);
 
