@@ -434,9 +434,6 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       'Cobro:${_CobroPension},'
                       'TiempoPension:${_Tiempomeses},'
                       'checks($rpstChecksTemp),'
-                      'Latitud:${GPSlatitude},'
-                      'altitud:${GPSaltitude},'
-                      'longitud:${GPSlongitude},'
                       'Nombre:${PREFname},'
                       'Appaterno:${PREFapPaterno},'
                       'MatMaterno:${PREFapMaterno},'
@@ -449,6 +446,9 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   widget.formData?.id_usuario = int.parse(PREFnroDoc);
                   widget.formData?.fecha = formatDate("dd/MM/yyyy hh:mm:ss", DateTime.now());
                   widget.formData?.respuestas = respuestas;
+                  widget.formData?.longitud = GPSlongitude;
+                  widget.formData?.latitud = GPSlatitude;
+                  //GPSlatitude
 
                   //YA NO ENVIA AHORA GUARDA
                   //insertarEncuestaRSPTA rpta = await widget.apiForm.post_EnviarRspt(widget.formData!, PREFtoken);
@@ -863,10 +863,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedSalud,
+                              value: isCheckedLimpieza,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedSalud = value!;
+                                  isCheckedLimpieza = value!;
                                 });
                               },
                             ),
@@ -894,10 +894,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedLimpieza,
+                              value: isCheckedRehabilitacion,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedLimpieza = value!;
+                                  isCheckedRehabilitacion = value!;
                                 });
                               },
                             ),

@@ -19,6 +19,7 @@ class RespuestaMapper {
     var rptaApi = RespuestaENVIO();
     rptaApi.idformato = rpta.idformato;
     rptaApi.id_usuario = rpta.id_usuario;
+    rptaApi.fecha = rpta.fecha;
     rptaApi.respuestas = rpta.respuestas;
     rptaApi.longitud = rpta.longitud;
     rptaApi.latitud = rpta.latitud;

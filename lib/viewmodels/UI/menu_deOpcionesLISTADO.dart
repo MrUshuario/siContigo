@@ -28,7 +28,7 @@ import 'menu_deOpcionesOFFLINE.dart';
 class MenudeOpcionesListado extends StatefulWidget {
   final viewModel = FormDataModelViewModel();
   final _appDatabase = GetIt.I.get<AppDatabase>();
-  //apiprovider_formulario apiForm = apiprovider_formulario();
+  apiprovider_formulario apiForm = apiprovider_formulario();
   FormDataModelDaoRespuesta get formDataModelDaoRespuesta => _appDatabase.formDataModelDaoRespuesta;
   List<Formulario> listForm = List.empty(growable: true);
   MenudeOpcionesListado({Key? key});
@@ -230,7 +230,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
             icon: Image.asset(Resources.iconSincronizar),
             color: Colors.white,
             onPressed: () async {
-
+              SincronizarDialog();
             },
           ),
         ],
@@ -314,8 +314,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                                       MensajeSubSinc = "$progressoInicio/$progressoFin";
                                     });
 
-
-                                    var api = await getIt.getAsync<apiprovider_formulario>();
+                                    //apiprovider_formulario apiForm = apiprovider_formulario();
                                     var iniciFinActividades = await widget._appDatabase.formDataModelDaoRespuesta.findAllRespuesta();
                                     if (iniciFinActividades.isEmpty) {
                                       ScaffoldMessenger.of(context).showSnackBar(
@@ -325,7 +324,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                                     } else {
                                       var listRespuestaApi = RespuestaMapper.instance.listRespuestaToRespuestaENVIO(iniciFinActividades);
                                       for (var element in listRespuestaApi) {
-                                        var response = await api.post_EnviarRspt(element,PREFtoken);
+                                        var response = await widget.apiForm.post_EnviarRspt(element,PREFtoken);
                                         print("response: $response");
 
                                         //BORRA LA SENTENCIA
