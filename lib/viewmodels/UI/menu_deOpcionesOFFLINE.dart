@@ -15,6 +15,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sicontigo/utils/resources_apis.dart';
 import 'package:sicontigo/viewmodels/UI/menu_login.dart';
 import 'package:sicontigo/viewmodels/UI/viewmodels/form_viewsmodel_formulario.dart';
 import '../../model/t_insertarEncuestaRSPTA.dart';
@@ -448,8 +449,9 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       'TipoUsuario:${PREFtypeUser},'
                   ;
 
-                  widget.formData?.idformato = 0;
-                  widget.formData?.id_usuario = 0;
+                  //RELLENANDO
+                  widget.formData?.idformato = apisResources.api_idFormato;
+                  widget.formData?.id_usuario = int.parse(PREFnroDoc);
                   widget.formData?.fecha = formatDate("dd/MM/yyyy hh:mm:ss", DateTime.now());
                   widget.formData?.respuestas = respuestas;
 

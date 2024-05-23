@@ -44,8 +44,9 @@ class apiprovider_formulario {
   }
 */
 
+  //AUTOGENERADO YA NO SE USA
   Future<List<Formulario>> post_FormularioLista(String token) async {
-    final Map<String, dynamic> bodyData = {'idFormato': 5};
+    final Map<String, dynamic> bodyData = {'idFormato': apisResources.api_idFormato};
     try {
       print("iniciando api_get_LoginForm...");
       String url_login = api_get_FormList;

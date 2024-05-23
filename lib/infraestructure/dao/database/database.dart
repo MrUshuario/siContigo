@@ -4,6 +4,7 @@ import 'package:sicontigo/infraestructure/dao/formdatamodeldao_html.dart';
 import 'package:sicontigo/infraestructure/dao/formdatamodeldao_visita.dart';
 import 'package:sicontigo/model/t_html.dart';
 import 'package:sicontigo/model/t_respuesta.dart';
+import 'package:sicontigo/model/t_respuestaBACKUP.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
 import 'package:floor/floor.dart';
 import '../../../model/t_formulario.dart';
@@ -12,7 +13,7 @@ part 'database.g.dart';
 
 
 @Database(version: 1, entities:
-[ Html, Formulario, Respuesta ])
+[ Html, Formulario, Respuesta, RespuestaENVIO ])
 
 abstract class AppDatabase extends FloorDatabase {
   //FormDataModelDaoVISITA get formDataModelDaoVisita;

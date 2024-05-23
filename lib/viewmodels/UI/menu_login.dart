@@ -20,6 +20,8 @@ import 'package:flutter/services.dart';
 import 'package:device_imei/device_imei.dart';
 import 'package:sicontigo/viewmodels/UI/menu_deOpcionesOFFLINE.dart';
 
+import 'menu_deOpcionesLISTADO.dart';
+
 
 class login extends StatefulWidget {
 
@@ -78,7 +80,8 @@ class _login extends State<login> {
           ),
           backgroundColor: Color(0xFFD60000),
           //leading: Icon(Icons.menu),
-          actions: [
+          actions: const [
+            /*
             IconButton(
               icon: Image.asset(Resources.iconInfo),
               color: Colors.white,
@@ -99,7 +102,7 @@ class _login extends State<login> {
               onPressed: () {
 
                 },
-            ),
+            ), */
           ],
         ),
         //drawer: const MenuLateral(),
@@ -283,7 +286,8 @@ class _login extends State<login> {
                 Navigator.push(
                   context,
                   //MaterialPageRoute(builder: (context) =>  MenudeOpciones()),
-                  MaterialPageRoute(builder: (context) =>  ContactoRefererencia),
+                  //MaterialPageRoute(builder: (context) =>  ContactoRefererencia),
+                    MaterialPageRoute(builder: (context) =>  MenudeOpcionesListado()),
                 );
 
               }else {
@@ -308,7 +312,7 @@ class _login extends State<login> {
                       fontWeight: FontWeight.w500)),
             ))
 
-/*
+        ,
         GestureDetector(
             onTap: () async {
 
@@ -316,7 +320,8 @@ class _login extends State<login> {
               Navigator.push(
                 context,
                 //MaterialPageRoute(builder: (context) =>  MenudeOpciones()),
-                MaterialPageRoute(builder: (context) =>  ContactoRefererencia),
+                //MaterialPageRoute(builder: (context) =>  ContactoRefererencia),
+                MaterialPageRoute(builder: (context) =>  MenudeOpcionesListado()),
               );
 
             },
@@ -336,7 +341,7 @@ class _login extends State<login> {
                       fontWeight: FontWeight.w500)),
             ))
 
-*/
+
       ],
     );
   }
