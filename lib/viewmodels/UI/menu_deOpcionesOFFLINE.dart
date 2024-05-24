@@ -37,13 +37,25 @@ class MenudeOpcionesOffline extends StatefulWidget {
 
   GlobalKey<FormState> keyForm = GlobalKey();
   //SIGUIENTE
-  //COOBROPENSION//CIRCLE 4
-  //tiempomeses //CIRCLE 5
+
+  //P03
+  TextEditingController formP03EspecificarCtrl = TextEditingController();
+  final ParamP03EspecificarCtrl = List.filled(3, "", growable: false);
+
+  TextEditingController formP08EspecificarCtrl = TextEditingController();
+  final ParamP08EspecificarCtrl = List.filled(3, "", growable: false);
+
+  TextEditingController formP09EspecificarCtrl = TextEditingController();
+  final ParamP09EspecificarCtrl = List.filled(3, "", growable: false);
+
   TextEditingController formPensionTiempoCtrl = TextEditingController(); //CHECK 6 CAMBIA
   TextEditingController formNecesidadesCtrl = TextEditingController(); //CIRCLE 7
   TextEditingController formEstablecimientoSaludCtrl = TextEditingController(); //CIRCLE 8
   TextEditingController formSeAtendioCtrl = TextEditingController(); //CIRCLE 9
   TextEditingController formServicioAtencionCtrl = TextEditingController(); //CHECK 10 CAMBIA
+
+
+
   //SIGUIENTE
 
   final ParamGestor = List.filled(3, "", growable: false);
@@ -79,20 +91,20 @@ enum SeAtendio { Si, No }
 
 class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
-  late String PREFname;
-  late String PREFapPaterno;
-  late String PREFapMaterno;
-  late String PREFnroDoc;
-  late String PREFtypeUser;
-  late String PREFtoken;
+  //ANTES TENIAN LATE
+  String? PREFname;
+  String? PREFapPaterno;
+  String? PREFapMaterno;
+  String? PREFnroDoc;
+  String? PREFtypeUser;
+  String? PREFtoken;
 
-  late String GPSlatitude = "";
-  late String GPSlongitude = "";
-  late String GPSaltitude = "";
+  String? GPSlatitude = "";
+  String? GPSlongitude = "";
+  String? GPSaltitude = "";
 
   Future<void> conseguirVersion() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     setState(() {
       PREFname = prefs.getString('name') ?? "ERROR";
       PREFapPaterno = prefs.getString('apPaterno') ?? "ERROR";
@@ -150,32 +162,49 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   bool Fase3 = false;
   bool Fase4 = false;
   bool Fase5 = false;
+  bool Fase6 = false;
 
   //OCULTAR PREGUNTAS
   bool PregCada3meses = false;
   bool PregCada2meses = false;
 
   //2 meses oculto
-  bool isCheckedAlimentacion = false;
-  bool isCheckedSalud = false;
-  bool isCheckedLimpieza = false;
-  bool isCheckedRehabilitacion = false;
-  bool isCheckedEducacion = false;
-  bool isCheckedPagoServicio = false;
-  bool isCheckedPagoComunicacion = false;
-  bool isCheckedTransporte = false;
-  bool isCheckedVestimenta = false;
-  bool isCheckedRecreacion = false;
-  bool isCheckedAhorro = false;
-  bool isCheckedAhorroSalud = false;
-  bool isCheckedOtroGasto = false;
+  bool isCheckedP04Alimentacion = false;
+  bool isCheckedP04Salud = false;
+  bool isCheckedP04Limpieza = false;
+  bool isCheckedP04Rehabilitacion = false;
+  bool isCheckedP04Educacion = false;
+  bool isCheckedP04PagoServicio = false;
+  bool isCheckedP04PagoComunicacion = false;
+  bool isCheckedP04Transporte = false;
+  bool isCheckedP04Vestimenta = false;
+  bool isCheckedP04Recreacion = false;
+  bool isCheckedP04Ahorro = false;
+  bool isCheckedP04AhorroSalud = false;
+  bool isCheckedP04OtroGasto = false;
   //3 meses oculto
-  bool isCheckedDistancia = false;
-  bool isCheckedAcumular = false;
-  bool isCheckedNoacompaniado = false;
-  bool isCheckedAhorrando = false;
-  bool isCheckedDificultarTrasladar = false;
-  bool isCheckedOtroEspecificar = false;
+  bool isCheckedP03Distancia = false;
+  bool isCheckedP03Acumular = false;
+  bool isCheckedP03Noacompaniado = false;
+  bool isCheckedP03Ahorrando = false;
+  bool isCheckedP03DificultarTrasladar = false;
+  bool isCheckedP03OtroEspecificar = false;
+  //P08 si P07 es no
+  bool isCheckedP08NoCentro = false;
+  bool isCheckedP08NoNecesito= false;
+  bool isCheckedP08MetodoTradicional = false;
+  bool isCheckedP08NoBuenTrato= false;
+  bool isCheckedP08NoDoctores = false;
+  bool isCheckedP08NoMedicina = false;
+  bool isCheckedP08Otros = false;
+  //P09 si P07 es SI
+  bool isCheckedP09MedicinaGeneral = false;
+  bool isCheckedP09Rehabilitacion= false;
+  bool isCheckedP09Psicologia = false;
+  bool isCheckedP09Odontologia= false;
+  bool isCheckedP09Oftalmologia = false;
+  bool isCheckedP09Ginecologia = false;
+  bool isCheckedP09Otros = false;
 
   Future<void> capturarCoordenadas() async{
     HelpersViewCabecera.CoordenadasGPS(context).then((value) async {
@@ -365,45 +394,40 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
             },
           ),
 
+          //GUARDAR FORMULARIO BOTON DISKETE
           IconButton(
             icon: Image.asset(Resources.guardar),
             color: Colors.white,
             onPressed: () async {
-
-
               if ( GPSlongitude != "") {
-
-
-
                 if (
                     (_CobroPension == null) ||
                     (_Tiempomeses == null) ||
-                    (_PensionRecibe == null) ||
-                    (_TipoEstablecimientoSalud == null) ||
                     (_SeAtendio == null) ||
-
                     (//CADA 2 meses lamenos uno marcado
-                        !isCheckedAlimentacion &&
-                            !isCheckedSalud &&
-                            !isCheckedLimpieza &&
-                            !isCheckedRehabilitacion &&
-                            !isCheckedEducacion &&
-                            !isCheckedPagoServicio &&
-                            !isCheckedPagoComunicacion &&
-                            !isCheckedTransporte &&
-                            !isCheckedVestimenta &&
-                            !isCheckedRecreacion &&
-                            !isCheckedAhorro &&
-                            !isCheckedAhorroSalud &&
-                            !isCheckedOtroGasto &&
+                        !isCheckedP04Alimentacion &&
+                            !isCheckedP04Salud &&
+                            !isCheckedP04Limpieza &&
+                            !isCheckedP04Rehabilitacion &&
+                            !isCheckedP04Educacion &&
+                            !isCheckedP04PagoServicio &&
+                            !isCheckedP04PagoComunicacion &&
+                            !isCheckedP04Transporte &&
+                            !isCheckedP04Vestimenta &&
+                            !isCheckedP04Recreacion &&
+                            !isCheckedP04Ahorro &&
+                            !isCheckedP04AhorroSalud &&
+                            !isCheckedP04OtroGasto &&
                             //CADA 3 meses lamenos uno marcado
-                            !isCheckedDistancia  &&
-                            !isCheckedAcumular  &&
-                            !isCheckedNoacompaniado  &&
-                            !isCheckedAhorrando  &&
-                            !isCheckedDificultarTrasladar  &&
-                            !isCheckedOtroEspecificar
-                    )
+                            !isCheckedP03Distancia  &&
+                            !isCheckedP03Acumular  &&
+                            !isCheckedP03Noacompaniado  &&
+                            !isCheckedP03Ahorrando  &&
+                            !isCheckedP03DificultarTrasladar  &&
+                            (widget.formP03EspecificarCtrl == null || widget.formP03EspecificarCtrl!.text.isEmpty)
+                    )  ||
+                        (_PensionRecibe == null) ||
+                        (_TipoEstablecimientoSalud == null) //||
 
                 //(widget.formPensionTiempoCtrl!.text == "" ||widget.formPensionTiempoCtrl!.text.isEmpty) ||
                     //(widget.formNecesidadesCtrl!.text == "" ||widget.formNecesidadesCtrl!.text.isEmpty) ||
@@ -422,26 +446,26 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                   String rpstChecksTemp = "";
 
-                  if(isCheckedAlimentacion){rpstChecksTemp = "${rpstChecksTemp}Alimentacion,";}
-                  if(isCheckedSalud){rpstChecksTemp = "${rpstChecksTemp}Salud,";}
-                  if(isCheckedLimpieza){rpstChecksTemp = "${rpstChecksTemp}Limpieza,";}
-                  if(isCheckedRehabilitacion){rpstChecksTemp = "${rpstChecksTemp}Rehabilitacion,";}
-                  if(isCheckedEducacion){rpstChecksTemp = "${rpstChecksTemp}Educacion,";}
-                  if(isCheckedPagoServicio){rpstChecksTemp = "${rpstChecksTemp}PagoServicios,";}
-                  if(isCheckedPagoComunicacion){rpstChecksTemp = "${rpstChecksTemp}PagoComunicacion,";}
-                  if(isCheckedTransporte){rpstChecksTemp = "${rpstChecksTemp}Transporte,";}
-                  if(isCheckedVestimenta){rpstChecksTemp = "${rpstChecksTemp}Vestimenta,";}
-                  if(isCheckedRecreacion){rpstChecksTemp = "${rpstChecksTemp}Recreacion,";}
-                  if(isCheckedAhorro){rpstChecksTemp = "${rpstChecksTemp}Ahorro,";}
-                  if(isCheckedAhorroSalud){rpstChecksTemp = "${rpstChecksTemp}AhorroSalud,";}
-                  if(isCheckedOtroGasto){rpstChecksTemp = "${rpstChecksTemp}OtroGasto,";}
+                  if(isCheckedP04Alimentacion){rpstChecksTemp = "${rpstChecksTemp}Alimentacion,";}
+                  if(isCheckedP04Salud){rpstChecksTemp = "${rpstChecksTemp}Salud,";}
+                  if(isCheckedP04Limpieza){rpstChecksTemp = "${rpstChecksTemp}Limpieza,";}
+                  if(isCheckedP04Rehabilitacion){rpstChecksTemp = "${rpstChecksTemp}Rehabilitacion,";}
+                  if(isCheckedP04Educacion){rpstChecksTemp = "${rpstChecksTemp}Educacion,";}
+                  if(isCheckedP04PagoServicio){rpstChecksTemp = "${rpstChecksTemp}PagoServicios,";}
+                  if(isCheckedP04PagoComunicacion){rpstChecksTemp = "${rpstChecksTemp}PagoComunicacion,";}
+                  if(isCheckedP04Transporte){rpstChecksTemp = "${rpstChecksTemp}Transporte,";}
+                  if(isCheckedP04Vestimenta){rpstChecksTemp = "${rpstChecksTemp}Vestimenta,";}
+                  if(isCheckedP04Recreacion){rpstChecksTemp = "${rpstChecksTemp}Recreacion,";}
+                  if(isCheckedP04Ahorro){rpstChecksTemp = "${rpstChecksTemp}Ahorro,";}
+                  if(isCheckedP04AhorroSalud){rpstChecksTemp = "${rpstChecksTemp}AhorroSalud,";}
+                  if(isCheckedP04OtroGasto){rpstChecksTemp = "${rpstChecksTemp}OtroGasto,";}
 
-                  if(isCheckedDistancia){rpstChecksTemp = "${rpstChecksTemp}Distancia,";}
-                  if(isCheckedAcumular){rpstChecksTemp = "${rpstChecksTemp}Acumula,";}
-                  if(isCheckedNoacompaniado){rpstChecksTemp = "${rpstChecksTemp}NoAcompaniado,";}
-                  if(isCheckedAhorrando){rpstChecksTemp = "${rpstChecksTemp}Ahorrando,";}
-                  if(isCheckedDificultarTrasladar){rpstChecksTemp = "${rpstChecksTemp}DificultadTraslado,";}
-                  if(isCheckedOtroEspecificar){rpstChecksTemp = "${rpstChecksTemp}Especificar,";}
+                  if(isCheckedP03Distancia){rpstChecksTemp = "${rpstChecksTemp}Distancia,";}
+                  if(isCheckedP03Acumular){rpstChecksTemp = "${rpstChecksTemp}Acumula,";}
+                  if(isCheckedP03Noacompaniado){rpstChecksTemp = "${rpstChecksTemp}NoAcompaniado,";}
+                  if(isCheckedP03Ahorrando){rpstChecksTemp = "${rpstChecksTemp}Ahorrando,";}
+                  if(isCheckedP03DificultarTrasladar){rpstChecksTemp = "${rpstChecksTemp}DificultadTraslado,";}
+                  if(isCheckedP03OtroEspecificar){rpstChecksTemp = "${rpstChecksTemp}Especificar:${widget.formP03EspecificarCtrl!.text},";}
 
 
                   respuestas = ''
@@ -459,7 +483,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                   //RELLENANDO
                   widget.formData?.idformato = apisResources.api_idFormato;
-                  widget.formData?.id_usuario = int.parse(PREFnroDoc);
+                  widget.formData?.id_usuario = int.parse(PREFnroDoc!);
                   widget.formData?.fecha = formatDate("dd/MM/yyyy hh:mm:ss", DateTime.now());
                   widget.formData?.respuestas = respuestas;
                   widget.formData?.longitud = GPSlongitude;
@@ -619,12 +643,15 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   void cleanForm() {
     _CobroPension = null;
     _Tiempomeses = null;
+    widget.formP03EspecificarCtrl!.clear();
+    widget.ParamP08EspecificarCtrl!.clear();
     widget.formPensionTiempoCtrl!.clear(); //6
     widget.formNecesidadesCtrl!.clear(); //7
     widget.formEstablecimientoSaludCtrl!.clear(); //8
     widget.formSeAtendioCtrl!.clear(); //9
     widget.formServicioAtencionCtrl!.clear(); //10
-    widget.formData = Respuesta();
+    widget.formData = Respuesta();//
+
 
     setState(() {
       Fase1 = true;
@@ -639,25 +666,25 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
       PregCada3meses = false;
       PregCada2meses = false;
       //CHECKS
-      isCheckedAlimentacion = false;
-      isCheckedSalud = false;
-      isCheckedLimpieza = false;
-      isCheckedRehabilitacion = false;
-      isCheckedEducacion = false;
-      isCheckedPagoServicio = false;
-      isCheckedPagoComunicacion = false;
-      isCheckedTransporte = false;
-      isCheckedVestimenta = false;
-      isCheckedRecreacion = false;
-      isCheckedAhorro = false;
-      isCheckedAhorroSalud = false;
-      isCheckedOtroGasto = false;
-      isCheckedDistancia = false;
-      isCheckedAcumular = false;
-      isCheckedNoacompaniado = false;
-      isCheckedAhorrando = false;
-      isCheckedDificultarTrasladar = false;
-      isCheckedOtroEspecificar = false;
+      isCheckedP04Alimentacion = false;
+      isCheckedP04Salud = false;
+      isCheckedP04Limpieza = false;
+      isCheckedP04Rehabilitacion = false;
+      isCheckedP04Educacion = false;
+      isCheckedP04PagoServicio = false;
+      isCheckedP04PagoComunicacion = false;
+      isCheckedP04Transporte = false;
+      isCheckedP04Vestimenta = false;
+      isCheckedP04Recreacion = false;
+      isCheckedP04Ahorro = false;
+      isCheckedP04AhorroSalud = false;
+      isCheckedP04OtroGasto = false;
+      isCheckedP03Distancia = false;
+      isCheckedP03Acumular = false;
+      isCheckedP03Noacompaniado = false;
+      isCheckedP03Ahorrando = false;
+      isCheckedP03DificultarTrasladar = false;
+      isCheckedP03OtroEspecificar = false;
 
     });
 
@@ -751,7 +778,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
             child:Column(
               children: <Widget>[
 
-                HelpersViewLetrasRojas.formItemsDesign( "Cobro de Pensión (* Obligatorio)"),
+                HelpersViewLetrasRojas.formItemsDesign( "Formulario (* Obligatorio)"),
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿Usted ha realizado el cobro correspondiente al último padrón *"),
@@ -810,14 +837,15 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           PregCada3meses = false;
                           PregCada2meses = true;
                           //DESACTIVA CHECKS DEL OTRO
-                          isCheckedDistancia = false;
-                          isCheckedAcumular = false;
-                          isCheckedNoacompaniado = false;
-                          isCheckedAhorrando = false;
-                          isCheckedDificultarTrasladar = false;
-                          isCheckedOtroEspecificar = false;
+                          isCheckedP03Distancia = false;
+                          isCheckedP03Acumular = false;
+                          isCheckedP03Noacompaniado = false;
+                          isCheckedP03Ahorrando = false;
+                          isCheckedP03DificultarTrasladar = false;
+                          isCheckedP03OtroEspecificar = false;
 
-
+                          //RESETEA EL INPUT
+                          widget.formP03EspecificarCtrl!.clear();
                         });
                       },
                     ),
@@ -836,19 +864,21 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           PregCada3meses = true;
                           PregCada2meses = false;
                           //DESACTIVA LOS CHECKS DEL OTRO
-                          isCheckedAlimentacion = false;
-                          isCheckedSalud = false;
-                          isCheckedLimpieza = false;
-                          isCheckedRehabilitacion = false;
-                          isCheckedEducacion = false;
-                          isCheckedPagoServicio = false;
-                          isCheckedPagoComunicacion = false;
-                          isCheckedTransporte = false;
-                          isCheckedVestimenta = false;
-                          isCheckedRecreacion = false;
-                          isCheckedAhorro = false;
-                          isCheckedAhorroSalud = false;
-                          isCheckedOtroGasto = false;
+                          isCheckedP04Alimentacion = false;
+                          isCheckedP04Salud = false;
+                          isCheckedP04Limpieza = false;
+                          isCheckedP04Rehabilitacion = false;
+                          isCheckedP04Educacion = false;
+                          isCheckedP04PagoServicio = false;
+                          isCheckedP04PagoComunicacion = false;
+                          isCheckedP04Transporte = false;
+                          isCheckedP04Vestimenta = false;
+                          isCheckedP04Recreacion = false;
+                          isCheckedP04Ahorro = false;
+                          isCheckedP04AhorroSalud = false;
+                          isCheckedP04OtroGasto = false;
+                          //RESETEA EL INPUT
+                          widget.formP03EspecificarCtrl!.clear();
                         });
                       },),],
                 ),
@@ -881,10 +911,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Checkbox(
-                          value: isCheckedAlimentacion,
+                          value: isCheckedP04Alimentacion,
                           onChanged: (bool? value) {
                             setState(() {
-                              isCheckedAlimentacion = value!;
+                              isCheckedP04Alimentacion = value!;
                             });
                           },
                         ),
@@ -912,10 +942,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedSalud,
+                              value: isCheckedP04Salud,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedSalud = value!;
+                                  isCheckedP04Salud = value!;
                                 });
                               },
                             ),
@@ -942,10 +972,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedLimpieza,
+                              value: isCheckedP04Limpieza,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedLimpieza = value!;
+                                  isCheckedP04Limpieza = value!;
                                 });
                               },
                             ),
@@ -973,10 +1003,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedRehabilitacion,
+                              value: isCheckedP04Rehabilitacion,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedRehabilitacion = value!;
+                                  isCheckedP04Rehabilitacion = value!;
                                 });
                               },
                             ),
@@ -1003,10 +1033,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedEducacion,
+                              value: isCheckedP04Educacion,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedEducacion = value!;
+                                  isCheckedP04Educacion = value!;
                                 });
                               },
                             ),
@@ -1033,10 +1063,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedPagoServicio,
+                              value: isCheckedP04PagoServicio,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedPagoServicio = value!;
+                                  isCheckedP04PagoServicio = value!;
                                 });
                               },
                             ),
@@ -1063,10 +1093,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedPagoComunicacion,
+                              value: isCheckedP04PagoComunicacion,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedPagoComunicacion = value!;
+                                  isCheckedP04PagoComunicacion = value!;
                                 });
                               },
                             ),
@@ -1093,10 +1123,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedTransporte,
+                              value: isCheckedP04Transporte,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedTransporte = value!;
+                                  isCheckedP04Transporte = value!;
                                 });
                               },
                             ),
@@ -1124,10 +1154,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedVestimenta,
+                              value: isCheckedP04Vestimenta,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedVestimenta = value!;
+                                  isCheckedP04Vestimenta = value!;
                                 });
                               },
                             ),
@@ -1154,10 +1184,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedRecreacion,
+                              value: isCheckedP04Recreacion,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedRecreacion = value!;
+                                  isCheckedP04Recreacion = value!;
                                 });
                               },
                             ),
@@ -1185,10 +1215,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedAhorro,
+                              value: isCheckedP04Ahorro,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedAhorro = value!;
+                                  isCheckedP04Ahorro = value!;
                                 });
                               },
                             ),
@@ -1216,10 +1246,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedAhorroSalud,
+                              value: isCheckedP04AhorroSalud,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedAhorroSalud = value!;
+                                  isCheckedP04AhorroSalud = value!;
                                 });
                               },
                             ),
@@ -1246,10 +1276,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedOtroGasto,
+                              value: isCheckedP04OtroGasto,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedOtroGasto = value!;
+                                  isCheckedP04OtroGasto = value!;
                                 });
                               },
                             ),
@@ -1287,10 +1317,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedDistancia,
+                              value: isCheckedP03Distancia,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedDistancia = value!;
+                                  isCheckedP03Distancia = value!;
                                 });
                               },
                             ),
@@ -1317,10 +1347,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedAcumular,
+                              value: isCheckedP03Acumular,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedAcumular = value!;
+                                  isCheckedP03Acumular = value!;
                                 });
                               },
                             ),
@@ -1347,10 +1377,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedAhorrando,
+                              value: isCheckedP03Ahorrando,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedAhorrando = value!;
+                                  isCheckedP03Ahorrando = value!;
                                 });
                               },
                             ),
@@ -1377,10 +1407,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedNoacompaniado,
+                              value: isCheckedP03Noacompaniado,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedNoacompaniado = value!;
+                                  isCheckedP03Noacompaniado = value!;
                                 });
                               },
                             ),
@@ -1408,10 +1438,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedDificultarTrasladar,
+                              value: isCheckedP03DificultarTrasladar,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedDificultarTrasladar = value!;
+                                  isCheckedP03DificultarTrasladar = value!;
                                 });
                               },
                             ),
@@ -1438,16 +1468,42 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Checkbox(
-                              value: isCheckedOtroEspecificar,
+                              value: isCheckedP03OtroEspecificar,
                               onChanged: (bool? value) {
                                 setState(() {
-                                  isCheckedOtroEspecificar = value!;
+                                  isCheckedP03OtroEspecificar = value!;
+                                  //RESETEA EL INPUT
+                                  widget.formP03EspecificarCtrl!.clear();
                                 });
                               },
                             ),
                           ),
                         ],
                       ),
+
+
+                      //SE MUESTRA SI SE MARCA OTROS ESPECIFICAR
+
+                      Visibility(
+                      visible: isCheckedP03OtroEspecificar,
+                      child:Column(
+                      children: <Widget>[
+                        HelpersViewBlancoIcon.formItemsDesign(
+                            Icons.pending_actions,
+                            TextFormField(
+                              controller: widget.formP03EspecificarCtrl,
+                              decoration: const InputDecoration(
+                                labelText: 'Especifique',
+                              ),
+                              validator: (value) {
+                                return HelpersViewBlancoIcon.validateField(
+                                    value!, widget.ParamP03EspecificarCtrl);
+                              },
+                              maxLength: 100,
+                            ), context),
+
+                      ]
+                      )),
 
 
                       const SizedBox(height: 16.0),
@@ -1490,8 +1546,80 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       },),],
                 ),
 
+                /////
+
                 const SizedBox(height: 16.0),
 
+                //BOTON PARA PRESEGUIR
+
+                GestureDetector(
+                    onTap: ()  {
+
+                      if(
+                      (_CobroPension == null) ||
+                      (_Tiempomeses == null) ||
+                      (_PensionRecibe == null) ||
+                      (//CADA 2 meses lamenos uno marcado
+                          !isCheckedP04Alimentacion &&
+                          !isCheckedP04Salud &&
+                          !isCheckedP04Limpieza &&
+                          !isCheckedP04Rehabilitacion &&
+                          !isCheckedP04Educacion &&
+                          !isCheckedP04PagoServicio &&
+                          !isCheckedP04PagoComunicacion &&
+                          !isCheckedP04Transporte &&
+                          !isCheckedP04Vestimenta &&
+                          !isCheckedP04Recreacion &&
+                          !isCheckedP04Ahorro &&
+                          !isCheckedP04AhorroSalud &&
+                          !isCheckedP04OtroGasto &&
+                        //CADA 3 meses lamenos uno marcado
+                          !isCheckedP03Distancia  &&
+                          !isCheckedP03Acumular  &&
+                          !isCheckedP03Noacompaniado  &&
+                          !isCheckedP03Ahorrando  &&
+                          !isCheckedP03DificultarTrasladar  &&
+                        (widget.formP03EspecificarCtrl == null || widget.formP03EspecificarCtrl!.text.isEmpty)
+                      )
+                      ){
+                        showDialogValidFields(Constants.faltanCampos);
+                      } else {
+                        setState(() {
+                          Fase2 = false;
+                          Fase3 = true;
+                        });
+                      }
+
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+                      alignment: Alignment.center,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        color: Color(0xFFD60000),
+                      ),
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: const Text("Continuar",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500)),
+                    )),
+
+
+
+              ],),
+          ),
+
+
+          Visibility(
+            visible: Fase3,
+            child:Column(
+              children: <Widget>[
+
+                HelpersViewLetrasRojas.formItemsDesign( "SALUD"),
+                const SizedBox(height: 16.0),
                 HelpersViewLetrasSubs.formItemsDesign( "Actualmente. ¿A qué tipo de establecimiento de Salud, acude con frecuencia? *"),
                 HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
 
@@ -1693,6 +1821,13 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       onChanged: (SeAtendio? value) {
                         setState(() {
                           _SeAtendio = value;
+                          isCheckedP08NoCentro = false;
+                          isCheckedP08NoNecesito= false;
+                          isCheckedP08MetodoTradicional = false;
+                          isCheckedP08NoBuenTrato= false;
+                          isCheckedP08NoDoctores = false;
+                          isCheckedP08NoMedicina = false;
+                          isCheckedP08Otros = false;
                         });
                       },
                     ),
@@ -1708,87 +1843,501 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       onChanged: (SeAtendio? value) {
                         setState(() {
                           _SeAtendio = value;
+                          isCheckedP08NoCentro = false;
+                          isCheckedP08NoNecesito= false;
+                          isCheckedP08MetodoTradicional = false;
+                          isCheckedP08NoBuenTrato= false;
+                          isCheckedP08NoDoctores = false;
+                          isCheckedP08NoMedicina = false;
+                          isCheckedP08Otros = false;
                         });
                       },),],
                 ),
 
+                Visibility(
+                    visible: (_SeAtendio == SeAtendio.No),
+                    child:Column(
+                        children: <Widget>[
+                          const SizedBox(height: 16.0),
+                          HelpersViewLetrasSubs.formItemsDesign( "¿Por qué no se atendió en algún centro de salud, puesto de salud/posta médica u hospital? *"),
+                          HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'No hay centro de salud, posta médica u hospital cercano.',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP08NoCentro ,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP08NoCentro  = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'No lo necesito/ se encontraba bien de salud.',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP08NoNecesito,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP08NoNecesito= value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Uso métodos tradicionales (hierbas,curanderos, hueseros, etc.) para curarse.',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP08MetodoTradicional ,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP08MetodoTradicional  = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'La última vez no lo/a trataron bien.',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP08NoBuenTrato,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP08NoBuenTrato = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'No hay doctores o especialistas que lo/la atiendan.',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP08NoDoctores,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP08NoDoctores = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'No le dieron medicinas adecuadas/ No hay medicinas.',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP08NoMedicina,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP08NoMedicina = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Otro (Especificar).',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP08Otros,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP08Otros = value!;
+                                      //RESETEA EL INPUT
+                                      widget.formP08EspecificarCtrl!.clear();
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Visibility(
+                              visible: isCheckedP08Otros,
+                              child:Column(
+                                  children: <Widget>[
+                                    HelpersViewBlancoIcon.formItemsDesign(
+                                        Icons.pending_actions,
+                                        TextFormField(
+                                          controller: widget.formP08EspecificarCtrl,
+                                          decoration: const InputDecoration(
+                                            labelText: 'Especifique',
+                                          ),
+                                          validator: (value) {
+                                            return HelpersViewBlancoIcon.validateField(
+                                                value!, widget.ParamP08EspecificarCtrl);
+                                          },
+                                          maxLength: 100,
+                                        ), context),
+                                  ]
+                              )),
+                        ])),
+
+                Visibility(
+                    visible: (_SeAtendio == SeAtendio.Si),
+                    child:Column(
+                        children: <Widget>[
+                          const SizedBox(height: 16.0),
+                          HelpersViewLetrasSubs.formItemsDesign( "¿Cuáles son los servicios a los que accede con mayor frecuencia, cuando se atiende en el centro de salud, puesto de salud/posta médica u hospital? *"),
+                          HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Medicina General.',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP09MedicinaGeneral ,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP09MedicinaGeneral  = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Rehabilitación.',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP09Rehabilitacion,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP09Rehabilitacion=  value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Psicología.',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP09Psicologia ,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP09Psicologia  = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Odontología.',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP09Odontologia,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP09Odontologia=  value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Oftalmología.',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP09Oftalmologia ,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP09Oftalmologia  = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Ginecología.',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP09Ginecologia ,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP09Ginecologia  = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Otro (especificar).',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      //color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Checkbox(
+                                  value: isCheckedP09Otros ,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCheckedP09Otros  = value!;
+                                      //RESETEA INPUT
+                                      widget.formP09EspecificarCtrl!.clear();
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Visibility(
+                              visible: isCheckedP08Otros,
+                              child:Column(
+                                  children: <Widget>[
+                                    HelpersViewBlancoIcon.formItemsDesign(
+                                        Icons.pending_actions,
+                                        TextFormField(
+                                          controller: widget.formP09EspecificarCtrl,
+                                          decoration: const InputDecoration(
+                                            labelText: 'Especifique',
+                                          ),
+                                          validator: (value) {
+                                            return HelpersViewBlancoIcon.validateField(
+                                                value!, widget.ParamP09EspecificarCtrl);
+                                          },
+                                          maxLength: 100,
+                                        ), context),
+                                  ]
+                              )),
+                        ])),
+
                 const SizedBox(height: 16.0),
 
-                //BOTON PARA PRESEGUIR
-
-                GestureDetector(
-                    onTap: ()  {
-
-                      if(
-                      (_CobroPension == null) ||
-                      (_Tiempomeses == null) ||
-                      (_PensionRecibe == null) ||
-                      (_TipoEstablecimientoSalud == null) ||
-                      (_SeAtendio == null) ||
-                      (//CADA 2 meses lamenos uno marcado
-                          !isCheckedAlimentacion &&
-                          !isCheckedSalud &&
-                          !isCheckedLimpieza &&
-                          !isCheckedRehabilitacion &&
-                          !isCheckedEducacion &&
-                          !isCheckedPagoServicio &&
-                          !isCheckedPagoComunicacion &&
-                          !isCheckedTransporte &&
-                          !isCheckedVestimenta &&
-                          !isCheckedRecreacion &&
-                          !isCheckedAhorro &&
-                          !isCheckedAhorroSalud &&
-                          !isCheckedOtroGasto &&
-                        //CADA 3 meses lamenos uno marcado
-                          !isCheckedDistancia  &&
-                          !isCheckedAcumular  &&
-                          !isCheckedNoacompaniado  &&
-                          !isCheckedAhorrando  &&
-                          !isCheckedDificultarTrasladar  &&
-                          !isCheckedOtroEspecificar
-                      )
-                      ){
-                        showDialogValidFields(Constants.faltanCampos);
-                      } else {
-                        setState(() {
-                          Fase2 = false;
-                          Fase3 = true;
-                        });
-                      }
-
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-                      alignment: Alignment.center,
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        color: Color(0xFFD60000),
-                      ),
-                      padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: const Text("Continuar",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500)),
-                    )),
-
-
-
-              ],),
-          ),
-
-
-          Visibility(
-            visible: Fase3,
-            child:Column(
-              children: <Widget>[
-
-
-
-
-                HelpersViewLetrasRojas.formItemsDesign( "VALORACION SOCIO FAMILIAR - OBSERVACION DEL GESTOR"),
-                const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿CON QUIÉN VIVE USTED? *"),
                 HelpersViewLetrasSubs.formItemsDesign( "¿USTED TIENE AMIGOS, FAMILIARES, VECINOS A LOS QUE SUELE VISITAR? *"),
@@ -1796,8 +2345,19 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 GestureDetector(
                     onTap: ()  {
                       if(
-                      (_CobroPension == null) ||
-                      (_Tiempomeses == null) //||
+                      (_TipoEstablecimientoSalud == null) ||
+                      (_SeAtendio == null) ||
+                      (//SI MARCO NO
+                      !isCheckedP08NoCentro  &&
+                      !isCheckedP08NoNecesito  &&
+                      !isCheckedP08MetodoTradicional  &&
+                      !isCheckedP08NoBuenTrato  &&
+                      !isCheckedP08NoDoctores  &&
+                      !isCheckedP08NoMedicina &&
+                      (widget.formP08EspecificarCtrl == null || widget.formP08EspecificarCtrl!.text.isEmpty)
+                      //SI MARCO SI
+                      )
+
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {
@@ -1827,8 +2387,8 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
 
 
-              ],),
-          ),
+                ],),
+            ),
 
 
           Visibility(
@@ -1846,8 +2406,9 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 GestureDetector(
                     onTap: ()  {
                       if(
-                      (_CobroPension == null) ||
-                          (_Tiempomeses == null) //||
+                      (_TipoEstablecimientoSalud == null) ||
+                      (_SeAtendio == null)
+
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {

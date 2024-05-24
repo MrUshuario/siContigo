@@ -30,12 +30,44 @@ class login extends StatefulWidget {
   TextEditingController formUsuarioCtrl = TextEditingController();
   TextEditingController formClaveCtrl = TextEditingController();
 
+
+  bool _isPasswordVisible = true;
+
   static Route<dynamic> route() =>
       MaterialPageRoute(builder: (context) => login());
 
   @override
   State<StatefulWidget> createState() => _login();
 }
+
+
+class PasswordVisibilityToggle extends StatefulWidget {
+  const PasswordVisibilityToggle({
+    Key? key,
+    required this.isPasswordVisible,
+    required this.onToggle,
+  }) : super(key: key);
+  final bool isPasswordVisible;
+  final VoidCallback onToggle;
+  @override
+  State<PasswordVisibilityToggle> createState() => _PasswordVisibilityToggleState();
+}
+
+class _PasswordVisibilityToggleState extends State<PasswordVisibilityToggle> {
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        widget.isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+      ),
+      onPressed: () {
+        widget.onToggle();
+      },
+    );
+  }
+}
+
+
 
 class _login extends State<login> {
   var _androidId = 'Unknown';
@@ -153,7 +185,7 @@ class _login extends State<login> {
                           InkWell(
                             onTap: () async {
 
-                                Navigator.pop(context);
+                              Navigator.pop(context);
 
                             },
                             child: Container(
@@ -244,22 +276,48 @@ class _login extends State<login> {
             )),
 
         HelpersViewBlancoTexto.formItemsDesign(
-          "N#Documento",
-          TextFormField(
-            controller: widget.formUsuarioCtrl,
-            //readOnly: true,
-            //inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            maxLength: 20,
+          "Usuario:", // Empty title (optional)
+          Center(
+            child: TextFormField(
+              controller: widget.formUsuarioCtrl,
+              //readOnly: true, // Optional: Set to true if the field is read-only
+              //inputFormatters: [FilteringTextInputFormatter.digitsOnly], // Optional: Restrict input to digits
+              maxLength: 20,
+              decoration: InputDecoration(
+                hintText: "Usuario", // Hint text for empty field
+                counterText: "", // Hides character counter (optional)
+              ),
+            ),
           ),
         ),
 
-        HelpersViewBlancoTexto.formItemsDesign(
-          "Clave",
-          TextFormField(
-            controller: widget.formClaveCtrl,
-            //readOnly: true,
-            //inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            maxLength: 20,
+        Card(
+          elevation: 0,
+          shape: const RoundedRectangleBorder(
+            side: BorderSide(color: Colors.red), // Red border
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0), // Optional padding
+            child: Center( // Center the text field content
+              child: TextFormField(
+                controller: widget.formClaveCtrl,
+                obscureText: widget._isPasswordVisible,
+                maxLength: 20,
+                decoration: InputDecoration(
+                  hintText: "Ingrese su contraseña",
+                  counterText: "",
+                  suffixIcon: PasswordVisibilityToggle(
+                    isPasswordVisible: widget._isPasswordVisible,
+                    onToggle: () {
+                      setState(() {
+                        widget._isPasswordVisible = !widget._isPasswordVisible;
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
 
@@ -311,7 +369,7 @@ class _login extends State<login> {
                       fontSize: 18,
                       fontWeight: FontWeight.w500)),
             ))
-
+/*
         ,
         GestureDetector(
             onTap: () async {
@@ -340,7 +398,7 @@ class _login extends State<login> {
                       fontSize: 18,
                       fontWeight: FontWeight.w500)),
             ))
-
+*/
 
       ],
     );
@@ -367,4 +425,3 @@ class _login extends State<login> {
     );
   }
 }
-
