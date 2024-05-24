@@ -576,7 +576,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                   color: Color(0xFFD60000),
                 ),
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
-                child: const Text("Crear nuevo formulario",
+                child: const Text("Cargar formulario en Línea",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
