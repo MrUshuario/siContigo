@@ -277,8 +277,8 @@ class _login extends State<login> {
 
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 await prefs.setString('name', resp.name!);
-                await prefs.setString('apPaterno', resp.name!);
-                await prefs.setString('apMaterno', resp.name!);
+                await prefs.setString('apPaterno', resp.apPaterno!);
+                await prefs.setString('apMaterno', resp.apMaterno!);
                 await prefs.setString('nroDoc', resp.nroDoc!);
                 await prefs.setString('typeUser', resp.typeUser!);
 
@@ -311,7 +311,7 @@ class _login extends State<login> {
                       fontSize: 18,
                       fontWeight: FontWeight.w500)),
             ))
-/*
+
         ,
         GestureDetector(
             onTap: () async {
@@ -340,7 +340,7 @@ class _login extends State<login> {
                       fontSize: 18,
                       fontWeight: FontWeight.w500)),
             ))
-*/
+
 
       ],
     );

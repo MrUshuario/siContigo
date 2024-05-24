@@ -10,6 +10,7 @@ import 'package:sicontigo/model/t_formulario.dart';
 import 'package:sicontigo/model/t_respuesta.dart';
 import 'package:sicontigo/utils/constantes.dart';
 import 'package:sicontigo/utils/helpersviewAlertMensajeTitutlo.dart';
+import 'package:sicontigo/utils/helpersviewLetrasSubsGris.dart';
 import 'package:sicontigo/utils/resources.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,13 @@ class MenudeOpcionesOffline extends StatefulWidget {
 }
 
 enum CobroPension { Si, No }
+enum PensionRecibe { Totalmente, Parcialmente}
 enum Tiempomeses {dos,tres}
+enum TipoEstablecimientoSalud {sis, essalud, policiales, privado, ninguno, nosabe}
+enum SeAtendio { Si, No }
+
+
+
 
 class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
@@ -111,7 +118,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   }
 
   CobroPension? _CobroPension;
+  PensionRecibe? _PensionRecibe;
   Tiempomeses? _Tiempomeses;
+  TipoEstablecimientoSalud? _TipoEstablecimientoSalud;
+  SeAtendio? _SeAtendio;
   //CobroPension? _CobroPension = CobroPension.Si;
 
   @override
@@ -139,6 +149,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   bool Fase2 = false;
   bool Fase3 = false;
   bool Fase4 = false;
+  bool Fase5 = false;
 
   //OCULTAR PREGUNTAS
   bool PregCada3meses = false;
@@ -366,30 +377,33 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 if (
                     (_CobroPension == null) ||
-                    (_Tiempomeses == null) //||
-                   /*
+                    (_Tiempomeses == null) ||
+                    (_PensionRecibe == null) ||
+                    (_TipoEstablecimientoSalud == null) ||
+                    (_SeAtendio == null) ||
+
                     (//CADA 2 meses lamenos uno marcado
-                        !isCheckedAlimentacion ||
-                            !isCheckedSalud ||
-                            !isCheckedLimpieza ||
-                            !isCheckedRehabilitacion ||
-                            !isCheckedEducacion ||
-                            !isCheckedPagoServicio ||
-                            !isCheckedPagoComunicacion ||
-                            !isCheckedTransporte ||
-                            !isCheckedVestimenta ||
-                            !isCheckedRecreacion ||
-                            !isCheckedAhorro ||
-                            !isCheckedAhorroSalud ||
-                            !isCheckedOtroGasto ||
+                        !isCheckedAlimentacion &&
+                            !isCheckedSalud &&
+                            !isCheckedLimpieza &&
+                            !isCheckedRehabilitacion &&
+                            !isCheckedEducacion &&
+                            !isCheckedPagoServicio &&
+                            !isCheckedPagoComunicacion &&
+                            !isCheckedTransporte &&
+                            !isCheckedVestimenta &&
+                            !isCheckedRecreacion &&
+                            !isCheckedAhorro &&
+                            !isCheckedAhorroSalud &&
+                            !isCheckedOtroGasto &&
                             //CADA 3 meses lamenos uno marcado
-                            !isCheckedDistancia  ||
-                            !isCheckedAcumular  ||
-                            !isCheckedNoacompaniado  ||
-                            !isCheckedAhorrando  ||
-                            !isCheckedDificultarTrasladar  ||
+                            !isCheckedDistancia  &&
+                            !isCheckedAcumular  &&
+                            !isCheckedNoacompaniado  &&
+                            !isCheckedAhorrando  &&
+                            !isCheckedDificultarTrasladar  &&
                             !isCheckedOtroEspecificar
-                    ) */
+                    )
 
                 //(widget.formPensionTiempoCtrl!.text == "" ||widget.formPensionTiempoCtrl!.text.isEmpty) ||
                     //(widget.formNecesidadesCtrl!.text == "" ||widget.formNecesidadesCtrl!.text.isEmpty) ||
@@ -431,14 +445,16 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
 
                   respuestas = ''
-                      'Cobro:${_CobroPension},'
-                      'TiempoPension:${_Tiempomeses},'
+                      'Cobro:$_CobroPension,'
+                      'TiempoPension:$_Tiempomeses,'
                       'checks($rpstChecksTemp),'
-                      'Nombre:${PREFname},'
-                      'Appaterno:${PREFapPaterno},'
-                      'MatMaterno:${PREFapMaterno},'
-                      'DNI:${PREFnroDoc},'
-                      'TipoUsuario:${PREFtypeUser},'
+                      'PensionRecibe:$_PensionRecibe,'
+                      'TipoEstablecimientoSalud:$_TipoEstablecimientoSalud ,'
+                      'Nombre:$PREFname,'
+                      'Appaterno:$PREFapPaterno,'
+                      'MatMaterno:$PREFapMaterno,'
+                      'DNI:$PREFnroDoc,'
+                      'TipoUsuario:$PREFtypeUser,'
                   ;
 
                   //RELLENANDO
@@ -615,6 +631,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
       Fase2 = false;
       Fase3 = false;
       Fase4 = false;
+      Fase5 = false;
       //
       _CobroPension = null;
       _Tiempomeses = null;
@@ -691,9 +708,46 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
           ),
            */
 
-
           Visibility(
             visible: Fase1,
+            child:Column(
+              children: <Widget>[
+
+                HelpersViewLetrasRojas.formItemsDesign( "Inicio del cuestionario"),
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesign( "Gestor social: ${PREFname} ${PREFapPaterno} ${PREFapMaterno}"),
+
+                GestureDetector(
+                    onTap: ()  {
+                        setState(() {
+                          Fase1 = false;
+                          Fase2 = true;
+                        });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+                      alignment: Alignment.center,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        color: Color(0xFFD60000),
+                      ),
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: const Text("Iniciar con el formulario",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500)),
+                    )),
+
+
+
+              ],),
+          ),
+
+
+          Visibility(
+            visible: Fase2,
             child:Column(
               children: <Widget>[
 
@@ -701,12 +755,13 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿Usted ha realizado el cobro correspondiente al último padrón *"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
                 Row(
                   children: [
                     const Text(
                       'Sí',
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 14.0,
                       ),
                     ),
                     Radio<CobroPension>(
@@ -721,7 +776,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                     const Text(
                       'No',
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 14.0,
                       ),
                     ),
                     Radio<CobroPension>(
@@ -737,12 +792,13 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "Usualmente ¿Cada cuánto tiempo cobra la pensión? *"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
                 Row(
                   children: [
                     const Text(
                       'Cada dos meses',
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 14.0,
                       ),
                     ),
                     Radio<Tiempomeses>(
@@ -753,13 +809,22 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           _Tiempomeses = value;
                           PregCada3meses = false;
                           PregCada2meses = true;
+                          //DESACTIVA CHECKS DEL OTRO
+                          isCheckedDistancia = false;
+                          isCheckedAcumular = false;
+                          isCheckedNoacompaniado = false;
+                          isCheckedAhorrando = false;
+                          isCheckedDificultarTrasladar = false;
+                          isCheckedOtroEspecificar = false;
+
+
                         });
                       },
                     ),
                     const Text(
                       'De 3 meses a más',
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 14.0,
                       ),
                     ),
                     Radio<Tiempomeses>(
@@ -770,6 +835,20 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           _Tiempomeses = value;
                           PregCada3meses = true;
                           PregCada2meses = false;
+                          //DESACTIVA LOS CHECKS DEL OTRO
+                          isCheckedAlimentacion = false;
+                          isCheckedSalud = false;
+                          isCheckedLimpieza = false;
+                          isCheckedRehabilitacion = false;
+                          isCheckedEducacion = false;
+                          isCheckedPagoServicio = false;
+                          isCheckedPagoComunicacion = false;
+                          isCheckedTransporte = false;
+                          isCheckedVestimenta = false;
+                          isCheckedRecreacion = false;
+                          isCheckedAhorro = false;
+                          isCheckedAhorroSalud = false;
+                          isCheckedOtroGasto = false;
                         });
                       },),],
                 ),
@@ -782,7 +861,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   child:Column(
                     children: <Widget>[
                       HelpersViewLetrasSubs.formItemsDesign( "Normalmente, de los 300 soles de la pensión que recibe ¿Cómo gasta el dinero? *"),
-
+                      HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
                   Row(
                     children: [
                       const Expanded(
@@ -792,7 +871,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           child: Text(
                             'Alimentación (arroz, leche, papas, verduras,frutas,etc.).',
                             style: TextStyle(
-                              fontSize: 12.0,
+                              fontSize: 14.0,
                               //color: Colors.white,
                             ),
                           ),
@@ -823,7 +902,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Salud (pastillas, exámenes, inyecciones,jarabe,etc).',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -853,7 +932,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Limpieza y Aseo (insumos de aseo personal y limpieza en el hogar).',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -884,7 +963,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Rehabilitación.',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -914,7 +993,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Educación (Pictogramas, cuadernos, regletas, pinturas, etc).',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -944,7 +1023,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Pago de servicios de agua y luz.',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -974,7 +1053,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Pago de servicios para acceso en comunicación (internet, celular, teléfono). ',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -1004,7 +1083,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Transporte (para desplazarte al centro de salud, rehabilitación, centro de estudios, actividades de recreación o productivas etc). ',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -1035,7 +1114,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Vestimenta.',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -1065,7 +1144,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Recreación (Juegos, deporte, participación en espacios de la comunidad, etc).',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -1096,7 +1175,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Ahorro para poder comprar equipos y acondicionamiento en el hogar.',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -1127,7 +1206,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Ahorro para salud (operación, exámenes, etc).',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -1157,7 +1236,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Otros Gastos.',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -1188,7 +1267,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   child:Column(
                     children: <Widget>[
                       HelpersViewLetrasSubs.formItemsDesign( "¿Por qué no cobra la pensión, cada dos meses? *"),
-
+                      HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
                       Row(
                         children: [
                           const Expanded(
@@ -1198,7 +1277,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Por la distancia y/o tiempo de traslado al punto de cobro.',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -1228,7 +1307,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Deja que se acumule las pensiones por el elevado costo de transporte.',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -1258,7 +1337,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'No tiene con quien ir o quien le acompañe a cobrar la pensión al banco, cajero o agente.',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -1288,7 +1367,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Porque está ahorrando. (Para salud, estudios, compra de equipos, acondicionamiento en su hogar, etc).',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -1319,7 +1398,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Es muy dificultoso trasladarse para el cobro de la pensión por su estado físico o de salud.',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -1349,7 +1428,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                               child: Text(
                                 'Otro (especificar).',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   //color: Colors.white,
                                 ),
                               ),
@@ -1375,60 +1454,305 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                     ],),
                 ),
 
-                ////
 
-                /*
                 HelpersViewLetrasSubs.formItemsDesign( "¿La pensión que recibe el usuario, está destinada a sus necesidades: *"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                Row(
+                  children: [
+                    const Text(
+                      'Totalmente',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<PensionRecibe>(
+                      value: PensionRecibe.Totalmente,
+                      groupValue: _PensionRecibe,
+                      onChanged: (PensionRecibe? value) {
+                        setState(() {
+                          _PensionRecibe = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'Parcialmente',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<PensionRecibe>(
+                      value: PensionRecibe.Parcialmente,
+                      groupValue: _PensionRecibe,
+                      onChanged: (PensionRecibe? value) {
+                        setState(() {
+                          _PensionRecibe = value;
+                        });
+                      },),],
+                ),
 
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "Actualmente. ¿A qué tipo de establecimiento de Salud, acude con frecuencia? *"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Expanded(
+                      flex: 5,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          '¿Seguro integral de salud (SIS)?',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            //color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<TipoEstablecimientoSalud>(
+                        value: TipoEstablecimientoSalud.sis,
+                        groupValue: _TipoEstablecimientoSalud,
+                        onChanged: (TipoEstablecimientoSalud? value) {
+                          setState(() {
+                            _TipoEstablecimientoSalud = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    const Expanded(
+                      flex: 5,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          '¿ESSALUD?',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            //color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<TipoEstablecimientoSalud>(
+                        value: TipoEstablecimientoSalud.essalud,
+                        groupValue: _TipoEstablecimientoSalud,
+                        onChanged: (TipoEstablecimientoSalud? value) {
+                          setState(() {
+                            _TipoEstablecimientoSalud = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    const Expanded(
+                      flex: 5,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          '¿Seguro de fuerzas armadas o policiales?',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            //color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<TipoEstablecimientoSalud>(
+                        value: TipoEstablecimientoSalud.policiales,
+                        groupValue: _TipoEstablecimientoSalud,
+                        onChanged: (TipoEstablecimientoSalud? value) {
+                          setState(() {
+                            _TipoEstablecimientoSalud = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    const Expanded(
+                      flex: 5,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          '¿Seguro privado de salud?',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            //color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<TipoEstablecimientoSalud>(
+                        value: TipoEstablecimientoSalud.privado,
+                        groupValue: _TipoEstablecimientoSalud,
+                        onChanged: (TipoEstablecimientoSalud? value) {
+                          setState(() {
+                            _TipoEstablecimientoSalud = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    const Expanded(
+                      flex: 5,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          'Ninguno.',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            //color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<TipoEstablecimientoSalud>(
+                        value: TipoEstablecimientoSalud.ninguno,
+                        groupValue: _TipoEstablecimientoSalud,
+                        onChanged: (TipoEstablecimientoSalud? value) {
+                          setState(() {
+                            _TipoEstablecimientoSalud = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    const Expanded(
+                      flex: 5,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          'No sabe.',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            //color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<TipoEstablecimientoSalud>(
+                        value: TipoEstablecimientoSalud.nosabe,
+                        groupValue: _TipoEstablecimientoSalud,
+                        onChanged: (TipoEstablecimientoSalud? value) {
+                          setState(() {
+                            _TipoEstablecimientoSalud = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
 
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿Se ha atendido en algún centro de salud/ puesto de salud/posta médica u hospital? *"),
-                */
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                Row(
+                  children: [
+                    const Text(
+                      'Sí',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<SeAtendio>(
+                      value: SeAtendio.Si,
+                      groupValue: _SeAtendio,
+                      onChanged: (SeAtendio? value) {
+                        setState(() {
+                          _SeAtendio = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'No',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<SeAtendio>(
+                      value: SeAtendio.No,
+                      groupValue: _SeAtendio,
+                      onChanged: (SeAtendio? value) {
+                        setState(() {
+                          _SeAtendio = value;
+                        });
+                      },),],
+                ),
+
                 const SizedBox(height: 16.0),
 
-                //SE ATENDIO NO SE ATENDIO
+                //BOTON PARA PRESEGUIR
 
                 GestureDetector(
                     onTap: ()  {
 
-
                       if(
                       (_CobroPension == null) ||
-                          (_Tiempomeses == null) //||
-                      /*
+                      (_Tiempomeses == null) ||
+                      (_PensionRecibe == null) ||
+                      (_TipoEstablecimientoSalud == null) ||
+                      (_SeAtendio == null) ||
                       (//CADA 2 meses lamenos uno marcado
-                          !isCheckedAlimentacion ||
-                          !isCheckedSalud ||
-                          !isCheckedLimpieza ||
-                          !isCheckedRehabilitacion ||
-                          !isCheckedEducacion ||
-                          !isCheckedPagoServicio ||
-                          !isCheckedPagoComunicacion ||
-                          !isCheckedTransporte ||
-                          !isCheckedVestimenta ||
-                          !isCheckedRecreacion ||
-                          !isCheckedAhorro ||
-                          !isCheckedAhorroSalud ||
-                          !isCheckedOtroGasto ||
+                          !isCheckedAlimentacion &&
+                          !isCheckedSalud &&
+                          !isCheckedLimpieza &&
+                          !isCheckedRehabilitacion &&
+                          !isCheckedEducacion &&
+                          !isCheckedPagoServicio &&
+                          !isCheckedPagoComunicacion &&
+                          !isCheckedTransporte &&
+                          !isCheckedVestimenta &&
+                          !isCheckedRecreacion &&
+                          !isCheckedAhorro &&
+                          !isCheckedAhorroSalud &&
+                          !isCheckedOtroGasto &&
                         //CADA 3 meses lamenos uno marcado
-                          !isCheckedDistancia  ||
-                          !isCheckedAcumular  ||
-                          !isCheckedNoacompaniado  ||
-                          !isCheckedAhorrando  ||
-                          !isCheckedDificultarTrasladar  ||
+                          !isCheckedDistancia  &&
+                          !isCheckedAcumular  &&
+                          !isCheckedNoacompaniado  &&
+                          !isCheckedAhorrando  &&
+                          !isCheckedDificultarTrasladar  &&
                           !isCheckedOtroEspecificar
-                      ) */
+                      )
                       ){
-                        //NOPASA
-                        print("nopasa");
+                        showDialogValidFields(Constants.faltanCampos);
                       } else {
                         setState(() {
-                          Fase1 = false;
-                          Fase2 = true;
+                          Fase2 = false;
+                          Fase3 = true;
                         });
                       }
 
@@ -1456,43 +1780,56 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
 
           Visibility(
-            visible: Fase2,
-            child:Column(
-              children: <Widget>[
-
-                HelpersViewLetrasRojas.formItemsDesign( "Presione el diskete y envie (sino funciona presione primero el satelite"),
-                const SizedBox(height: 16.0),
-                /*
-
-                HelpersViewLetrasRojas.formItemsDesign( "VALORACION SOCIO FAMILIAR - OBSERVACION DEL GESTOR"),
-                const SizedBox(height: 16.0),
-
-                HelpersViewLetrasSubs.formItemsDesign( "¿CON QUIÉN VIVE USTED? *"),
-                HelpersViewLetrasSubs.formItemsDesign( "¿USTED TIENE AMIGOS, FAMILIARES, VECINOS A LOS QUE SUELE VISITAR? *"),
-
-
-                 */
-
-              ],),
-          ),
-
-
-          Visibility(
             visible: Fase3,
             child:Column(
               children: <Widget>[
 
 
+
+
                 HelpersViewLetrasRojas.formItemsDesign( "VALORACION SOCIO FAMILIAR - OBSERVACION DEL GESTOR"),
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿CON QUIÉN VIVE USTED? *"),
                 HelpersViewLetrasSubs.formItemsDesign( "¿USTED TIENE AMIGOS, FAMILIARES, VECINOS A LOS QUE SUELE VISITAR? *"),
 
+                GestureDetector(
+                    onTap: ()  {
+                      if(
+                      (_CobroPension == null) ||
+                      (_Tiempomeses == null) //||
+                      ){
+                        showDialogValidFields(Constants.faltanCampos);
+                      } else {
+                        setState(() {
+                          Fase3 = false;
+                          Fase4 = true;
+                        });
+                      }
+
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+                      alignment: Alignment.center,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        color: Color(0xFFD60000),
+                      ),
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: const Text("Continuar",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500)),
+                    )),
+
+
 
 
               ],),
           ),
+
 
           Visibility(
             visible: Fase4,
@@ -1500,6 +1837,54 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
               children: <Widget>[
 
 
+                HelpersViewLetrasRojas.formItemsDesign( "VALORACION SOCIO FAMILIAR - OBSERVACION DEL GESTOR"),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "¿CON QUIÉN VIVE USTED? *"),
+                HelpersViewLetrasSubs.formItemsDesign( "¿USTED TIENE AMIGOS, FAMILIARES, VECINOS A LOS QUE SUELE VISITAR? *"),
+
+                GestureDetector(
+                    onTap: ()  {
+                      if(
+                      (_CobroPension == null) ||
+                          (_Tiempomeses == null) //||
+                      ){
+                        showDialogValidFields(Constants.faltanCampos);
+                      } else {
+                        setState(() {
+                          Fase4 = false;
+                          Fase5 = true;
+                        });
+                      }
+
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+                      alignment: Alignment.center,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        color: Color(0xFFD60000),
+                      ),
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: const Text("Continuar",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500)),
+                    )),
+
+
+              ],),
+          ),
+
+          Visibility(
+            visible: Fase5,
+            child:Column(
+              children: <Widget>[
+
+                HelpersViewLetrasRojas.formItemsDesign( "Presione el diskete y envie (sino funciona presione primero el satelite"),
+                const SizedBox(height: 16.0),
 
               ],),
           ),

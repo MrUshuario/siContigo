@@ -6,6 +6,11 @@ class Constants {
   static const String tituloMenudeOpcionesListado = "Vista de envios";
   static const String tituloMenuLogin = "Autentificación";
 
+  //MENSAJES
+  static const String faltanCampos = "Termine de seleccionar los campos obligatorios";
+  static const String circleAviso = "(Leer las alternativas) (marcar solo una alternativa)";
+  static const String checkAviso = "(Leer las alternativas) (puede escribir en más de una alternativa) ";
+
   //DEPEARTAMENTOS
   static const String departamento_amazonas = "AMAZONAS";
   static const int valor_departamento_amazonas = 01;
