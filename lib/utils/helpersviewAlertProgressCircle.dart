@@ -8,9 +8,11 @@ class HelpersViewAlertProgressCircle extends StatelessWidget {
 
     const HelpersViewAlertProgressCircle({super.key,
       required this.mostrar,
+      required this.puntaje,
     });
 
     final bool mostrar;
+    final int puntaje;
 
     final double width = 100.0;
     final double height = 100.0;
@@ -77,12 +79,12 @@ class HelpersViewAlertProgressCircle extends StatelessWidget {
                     padding: EdgeInsets.all(20),
                     decoration: const BoxDecoration(
                     ),
-                    child: const Row(
+                    child: Row(
                       children: [
                         Expanded(
-                            child: Text ("Se guardaron las respuestas", style: TextStyle(fontSize: 16),)
+                            child: Text ("Se guardaron las respuestas\nPuntaje: $puntaje", style: const TextStyle(fontSize: 16),)
                         ),
-                        Icon(Icons.save, color: Colors.red,)
+                        const Icon(Icons.save, color: Colors.red,)
                       ],
                     ),
                   ),

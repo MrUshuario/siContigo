@@ -406,7 +406,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
               content: SingleChildScrollView(
                   child: Column(
                     children: [
-                      HelpersViewAlertMensajeFOTO.formItemsDesign("${index + 1})  ${obj.fecha} \n$titulo \n${obj.id_usuario}","¿Que acción desea realizar?"),
+                      HelpersViewAlertMensajeFOTO.formItemsDesign("${index + 1})  ${obj.fecha}\n$titulo\n${obj.id_usuario}\n${obj.respuestas}","¿Que acción desea realizar?"),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end, // Align row to the end
                         children: [
@@ -658,7 +658,18 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                               ),
                             ),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.040,
+                              height: MediaQuery.of(context).size.height * 0.010,
+                            ),
+                            Text(
+                              "Puntaje: ${widget.listRespuesta![index].puntaje}",
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: const TextStyle(
+                                fontSize: 15.0,
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.010,
                             ),
                             Text(
                               "Fecha: ${widget.listRespuesta![index].fecha}",
@@ -668,6 +679,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                                 fontSize: 15.0,
                               ),
                             ),
+
                           ],
                         ),
                       ),

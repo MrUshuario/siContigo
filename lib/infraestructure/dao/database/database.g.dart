@@ -104,9 +104,9 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Formulario` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `pregunta` TEXT, `tipoOpcion` TEXT, `tipoRepuesta` INTEGER, `id` INTEGER, `idformato` INTEGER, `texto` TEXT, `titulo` TEXT, `idseccion` INTEGER, `descripcion` TEXT, `id_tipo_respuesta` INTEGER, `id_seccion` INTEGER)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Respuesta` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `longitud` TEXT, `latitud` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `Respuesta` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `RespuestaENVIO` (`idformato` INTEGER PRIMARY KEY AUTOINCREMENT, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `longitud` TEXT, `latitud` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `RespuestaENVIO` (`idformato` INTEGER PRIMARY KEY AUTOINCREMENT, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -318,6 +318,7 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
                   'id_usuario': item.id_usuario,
                   'fecha': item.fecha,
                   'respuestas': item.respuestas,
+                  'puntaje': item.puntaje,
                   'longitud': item.longitud,
                   'latitud': item.latitud
                 });
@@ -342,6 +343,7 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
             id_usuario: row['id_usuario'] as int?,
             fecha: row['fecha'] as String?,
             respuestas: row['respuestas'] as String?,
+            puntaje: row['puntaje'] as int?,
             longitud: row['longitud'] as String?,
             latitud: row['latitud'] as String?),
         arguments: [offset, perPage]);
@@ -356,6 +358,7 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
             id_usuario: row['id_usuario'] as int?,
             fecha: row['fecha'] as String?,
             respuestas: row['respuestas'] as String?,
+            puntaje: row['puntaje'] as int?,
             longitud: row['longitud'] as String?,
             latitud: row['latitud'] as String?));
   }

@@ -8,12 +8,13 @@ class Respuesta {
   int? id_usuario;
   String? fecha;
   String? respuestas;
+  int? puntaje;
   String? longitud;
   String? latitud;
 
   Respuesta({
     this.cod, this.idformato, this.id_usuario, this.fecha,
-    this.respuestas, this.longitud, this.latitud});
+    this.respuestas, this.puntaje, this.longitud, this.latitud});
 
   factory Respuesta.fromJson(dynamic json) {
     return Respuesta(
@@ -22,6 +23,7 @@ class Respuesta {
       id_usuario: json['id_usuario'] as int?,
       fecha: json['fecha'] as String?,
       respuestas: json['respuestas'] as String?,
+      puntaje: json['puntaje'] as int?,
       longitud: json['longitud'] as String?,
       latitud: json['latitud'] as String?,
     );
@@ -41,6 +43,7 @@ class Respuesta {
       "id_usuario": id_usuario,
       "fecha": fecha,
       "respuestas": respuestas,
+      "puntaje":puntaje,
       "longitud":longitud,
       "latitud":latitud
     };
