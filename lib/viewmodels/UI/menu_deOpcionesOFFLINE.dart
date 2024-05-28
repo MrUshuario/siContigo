@@ -158,12 +158,325 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
     if(widget.formData != null) {
 
-      /* NO PUEDO MODIFICAR A MENOS QUE CADA RESPUESTA ESTE EN UN CAMPO!
-      if (widget.formData!.observacion != null && widget.formData!.observacion!.isNotEmpty) {
+
+      if (widget.formData!.p01CobroPension != null) {
         setState(() {
-          widget.formIngresarObsCtrl!.text = widget.formData!.observacion!;
+          _CobroPension = widget.formData!.p01CobroPension == 0
+              ? CobroPension.Si
+              : CobroPension.No;
         });
-      } */
+      }
+
+      if (widget.formData!.p02TipoMeses != null) {
+        setState(() {
+          _Tiempomeses = widget.formData!.p02TipoMeses == 0
+              ? Tiempomeses.dos
+              : Tiempomeses.tres;
+        });
+      }
+
+      if (widget.formData!.p02TipoMeses != null) {
+        setState(() {
+          _Tiempomeses = widget.formData!.p02TipoMeses == 0
+              ? Tiempomeses.dos
+              : Tiempomeses.tres;
+        });
+      }
+
+      if (widget.formData!.p03Check != null  && widget.formData!.p03Check!.isNotEmpty) {
+        setState(() {
+          if( widget.formData!.p03Check!.contains('A')){isCheckedP03Distancia = true;}
+          if( widget.formData!.p03Check!.contains('B')){isCheckedP03Acumular = true;}
+          if( widget.formData!.p03Check!.contains('C')){isCheckedP03Noacompaniado = true;}
+          if( widget.formData!.p03Check!.contains('D')){isCheckedP03Ahorrando = true;}
+          if( widget.formData!.p03Check!.contains('E')){isCheckedP03DificultarTrasladar = true;}
+        });
+      }
+
+      if (widget.formData!.p03CheckEspecificar != null  && widget.formData!.p03CheckEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.formP03EspecificarCtrl!.text = widget.formData!.p03CheckEspecificar!;
+          isCheckedP03OtroEspecificar = true; //esto tengo que simplificarlo
+        });
+      }
+
+      if (widget.formData!.p04Check != null  && widget.formData!.p04Check!.isNotEmpty) {
+        setState(() {
+          if( widget.formData!.p04Check!.contains('A')){isCheckedP04Alimentacion = true;}
+          if( widget.formData!.p04Check!.contains('B')){isCheckedP04Salud = true;}
+          if( widget.formData!.p04Check!.contains('C')){isCheckedP04Limpieza = true;}
+          if( widget.formData!.p04Check!.contains('D')){isCheckedP04Rehabilitacion = true;}
+          if( widget.formData!.p04Check!.contains('E')){isCheckedP04Educacion = true;}
+          if( widget.formData!.p04Check!.contains('F')){isCheckedP04PagoServicio = true;}
+          if( widget.formData!.p04Check!.contains('G')){isCheckedP04PagoComunicacion = true;}
+          if( widget.formData!.p04Check!.contains('H')){isCheckedP04Transporte = true;}
+          if( widget.formData!.p04Check!.contains('I')){isCheckedP04Vestimenta = true;}
+          if( widget.formData!.p04Check!.contains('J')){isCheckedP04Recreacion = true;}
+          if( widget.formData!.p04Check!.contains('K')){isCheckedP04Ahorro = true;}
+          if( widget.formData!.p04Check!.contains('L')){isCheckedP04AhorroSalud = true;}
+          if( widget.formData!.p04Check!.contains('M')){isCheckedP04OtroGasto = true;}
+        });
+      }
+
+      if (widget.formData!.p05pension != null) {
+        setState(() {
+          _PensionRecibe = widget.formData!.p05pension == 0
+              ? PensionRecibe.Totalmente
+              : PensionRecibe.Parcialmente;
+        });
+      }
+
+      if (widget.formData!.p06Establecimiento != null) {
+        setState(() {
+          switch (widget.formData!.p06Establecimiento) {
+            case 0:
+              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.sis;
+            case 1:
+              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.essalud;
+            case 2:
+              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.policiales;
+            case 3:
+              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.privado;
+            case 4:
+              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.ninguno;
+            case 5:
+              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.nosabe;
+            case 6:
+              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.otro;
+          }
+        });
+      }
+
+      if (widget.formData!.p06EstablecimientoESPECIFICAR != null  && widget.formData!.p06EstablecimientoESPECIFICAR!.isNotEmpty) {
+        setState(() {
+          widget.formP06EspecificarCtrl!.text = widget.formData!.p06EstablecimientoESPECIFICAR!;
+        });
+      }
+
+      if (widget.formData!.p07Atendio != null) {
+        setState(() {
+          _SeAtendio = widget.formData!.p07Atendio == 0
+              ? SeAtendio.Si
+              : SeAtendio.No;
+        });
+      }
+
+      if (widget.formData!.p08Check != null  && widget.formData!.p08Check!.isNotEmpty) {
+        setState(() {
+          if( widget.formData!.p08Check!.contains('A')){isCheckedP08NoCentro = true;}
+          if( widget.formData!.p08Check!.contains('B')){isCheckedP08NoNecesito = true;}
+          if( widget.formData!.p08Check!.contains('C')){isCheckedP08MetodoTradicional = true;}
+          if( widget.formData!.p08Check!.contains('D')){isCheckedP08NoBuenTrato = true;}
+          if( widget.formData!.p08Check!.contains('E')){isCheckedP08NoDoctores = true;}
+          if( widget.formData!.p08Check!.contains('F')){isCheckedP08NoMedicina = true;}
+          if( widget.formData!.p08Check!.contains('G')){isCheckedP08Otros = true;}
+        });
+      }
+
+      if (widget.formData!.p08CheckEspecificar != null  && widget.formData!.p08CheckEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.formP08EspecificarCtrl!.text = widget.formData!.p08CheckEspecificar!;
+        });
+      }
+
+      if (widget.formData!.p09Check != null  && widget.formData!.p09Check!.isNotEmpty) {
+        setState(() {
+          if( widget.formData!.p09Check!.contains('A')){isCheckedP09MedicinaGeneral = true;}
+          if( widget.formData!.p09Check!.contains('B')){isCheckedP09Rehabilitacion = true;}
+          if( widget.formData!.p09Check!.contains('C')){isCheckedP09Psicologia = true;}
+          if( widget.formData!.p09Check!.contains('D')){isCheckedP09Odontologia = true;}
+          if( widget.formData!.p09Check!.contains('E')){isCheckedP09Oftalmologia = true;}
+          if( widget.formData!.p09Check!.contains('F')){isCheckedP09Ginecologia = true;}
+          if( widget.formData!.p09Check!.contains('G')){isCheckedP09Otros = true;}
+        });
+      }
+
+      if (widget.formData!.p09CheckEspecificar != null  && widget.formData!.p09CheckEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.formP09EspecificarCtrl!.text = widget.formData!.p09CheckEspecificar!;
+        });
+      }
+
+      if (widget.formData!.p10Frecuencia != null) {
+        setState(() {
+          switch (widget.formData!.p10Frecuencia) {
+            case 0:
+              _FrecuenciaAtiende == FrecuenciaAtiende.tiempoMes06;
+            case 1:
+              _FrecuenciaAtiende == FrecuenciaAtiende.tiempoAno;
+            case 2:
+              _FrecuenciaAtiende == FrecuenciaAtiende.tiempoMasdeUnAno;
+          }
+        });
+      }
+
+      if (widget.formData!.p11Vive != null) {
+        setState(() {
+          switch (widget.formData!.p11Vive) {
+            case 0:
+              _ViveUsted == ViveUsted.otrasConHijos;
+            case 1:
+              _ViveUsted == ViveUsted.otrasConHijosCuidado;
+            case 2:
+              _ViveUsted == ViveUsted.otrasEnPareja;
+            case 3:
+              _ViveUsted == ViveUsted.soloConHijos;
+            case 4:
+              _ViveUsted == ViveUsted.soloConFamiliares;
+          }
+        });
+      }
+
+      if (widget.formData!.p12Familia != null) {
+        setState(() {
+          _TieneFamilia = widget.formData!.p12Familia == 0
+              ? TieneFamilia.Si
+              : TieneFamilia.No;
+        });
+      }
+
+      if (widget.formData!.p12FamiliaB != null) {
+        setState(() {
+          switch (widget.formData!.p12FamiliaB) {
+            case 0:
+              _TieneFamiliaABCDE == TieneFamiliaABCDE.opcionA;
+            case 1:
+              _TieneFamiliaABCDE == TieneFamiliaABCDE.opcionB;
+            case 2:
+              _TieneFamiliaABCDE == TieneFamiliaABCDE.opcionC;
+            case 3:
+              _TieneFamiliaABCDE == TieneFamiliaABCDE.opcionD;
+            case 4:
+              _TieneFamiliaABCDE == TieneFamiliaABCDE.opcionE;
+          }
+        });
+      }
+
+      if (widget.formData!.p13Ayudas != null) {
+        setState(() {
+          _TieneAyudas = widget.formData!.p13Ayudas == 0
+              ? TieneAyudas.Si
+              : TieneAyudas.No;
+        });
+      }
+
+      if (widget.formData!.p13AyudasB != null) {
+        setState(() {
+          switch (widget.formData!.p13AyudasB) {
+            case 0:
+              _TieneAyudasABCD == TieneAyudasABCD.redInformalSUficiente;
+            case 1:
+              _TieneAyudasABCD == TieneAyudasABCD.cuidadoraExterna;
+            case 2:
+              _TieneAyudasABCD == TieneAyudasABCD.redInformalInsuficiente;
+            case 3:
+              _TieneAyudasABCD == TieneAyudasABCD.noTieneApoyo;
+          }
+        });
+      }
+
+      if (widget.formData!.p14Ingreso != null) {
+        setState(() {
+          switch (widget.formData!.p14Ingreso) {
+            case 0:
+              _IngresoEconomico == IngresoEconomico.recibenMas2050;
+            case 1:
+              _IngresoEconomico == IngresoEconomico.recibenMas1537;
+            case 2:
+              _IngresoEconomico == IngresoEconomico.recibenIgual1537;
+            case 3:
+              _IngresoEconomico == IngresoEconomico.reciben1025;
+            case 4:
+              _IngresoEconomico == IngresoEconomico.sinIngresosFijos;
+          }
+        });
+      }
+
+      if (widget.formData!.p15Tipovivienda != null) {
+        setState(() {
+          _TipoVivienda = widget.formData!.p15Tipovivienda == 0
+              ? TipoVivienda.Si
+              : TipoVivienda.No;
+        });
+      }
+
+      if (widget.formData!.p15TipoviviendaB != null) {
+        setState(() {
+          switch (widget.formData!.p15Tipovivienda) {
+            case 0:
+              _TipoViviendaABC == TipoViviendaABC.inadecuadaBarreras;
+            case 1:
+              _TipoViviendaABC == TipoViviendaABC.inadecuadaSuministros;
+            case 2:
+              _TipoViviendaABC == TipoViviendaABC.inadecuadaAusencia;
+          }
+        });
+      }
+
+      if (widget.formData!.p15Tipovivienda != null) {
+        setState(() {
+          _TipoVivienda = widget.formData!.p15Tipovivienda == 0
+              ? TipoVivienda.Si
+              : TipoVivienda.No;
+        });
+      }
+
+      if (widget.formData!.p15TipoviviendaB != null) {
+        setState(() {
+          switch (widget.formData!.p15Tipovivienda) {
+            case 0:
+              _TipoViviendaABC == TipoViviendaABC.inadecuadaBarreras;
+            case 1:
+              _TipoViviendaABC == TipoViviendaABC.inadecuadaSuministros;
+            case 2:
+              _TipoViviendaABC == TipoViviendaABC.inadecuadaAusencia;
+          }
+        });
+      }
+
+      if (widget.formData!.p16Riesgo != null) {
+        setState(() {
+          _SituacionRiesgo = widget.formData!.p16Riesgo == 0
+              ? SituacionRiesgo.Si
+              : SituacionRiesgo.No;
+        });
+      }
+
+      if (widget.formData!.p16RiesgoB != null) {
+        setState(() {
+          switch (widget.formData!.p16RiesgoB) {
+            case 0:
+              _SituacionRiesgoAB == SituacionRiesgoAB.relacionCobro;
+            case 1:
+              _SituacionRiesgoAB == SituacionRiesgoAB.relacionSocioEconomico;
+          }
+        });
+      }
+
+      if (widget.formData!.p17Check != null  && widget.formData!.p17Check!.isNotEmpty) {
+        setState(() {
+          if( widget.formData!.p17Check!.contains('A')){isCheckedP17Cuidados = true;}
+          if( widget.formData!.p17Check!.contains('B')){isCheckedP17ORehabilitacion = true;}
+          if( widget.formData!.p17Check!.contains('C')){isCheckedP17Alimentacion = true;}
+          if( widget.formData!.p17Check!.contains('D')){isCheckedP17Otros = true;}
+        });
+      }
+
+      if (widget.formData!.p17CheckEspecificar != null  && widget.formData!.p17CheckEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.formP17EspecificarCtrl!.text = widget.formData!.p17CheckEspecificar!;
+        });
+      }
+
+      if (widget.formData!.p18Emprendimiento != null) {
+        setState(() {
+          _TipoEmprendimiento = widget.formData!.p18Emprendimiento == 0
+              ? TipoEmprendimiento.Si
+              : TipoEmprendimiento.No;
+        });
+      }
+
+
     }
 
     // TODO: implement initState
@@ -454,22 +767,32 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   String rpstP18 = " P18 ";
                   int puntaje = 0;
 
+
                   if(_CobroPension == CobroPension.Si){rpstP01 = "${rpstP01}Sí-A";}
                   else {rpstP01 = "${rpstP01}No-B";}
                   rpstP01 = "${rpstP01};";
+
+                  widget.formData?.p01CobroPension = _CobroPension?.index;
 
                   if(_Tiempomeses == Tiempomeses.dos){rpstP02 = "${rpstP02}Dos-A";}
                   else {rpstP02 = "${rpstP02}Tres-B";}
                   rpstP02 = "${rpstP02};";
 
+                  widget.formData?.p02TipoMeses = _Tiempomeses?.index;
+
                   //3 meses oculto
-                  if(isCheckedP03Distancia){rpstP03 = "${rpstP03}A,";}
-                  if(isCheckedP03Acumular){rpstP03 = "${rpstP03}B,";}
-                  if(isCheckedP03Noacompaniado){rpstP03 = "${rpstP03}C,";}
-                  if(isCheckedP03Ahorrando){rpstP03 = "${rpstP03}D,,";}
-                  if(isCheckedP03DificultarTrasladar){rpstP03 = "${rpstP03}E,";}
-                  if(isCheckedP03OtroEspecificar){rpstP03 = "${rpstP03}F:${widget.formP03EspecificarCtrl!.text}";}
+                  String p03check = ""; //POR EL ESPECIFICA
+                  if(isCheckedP03Distancia){rpstP03 = "${rpstP03}A,"; p03check ="${p03check}A";}
+                  if(isCheckedP03Acumular){rpstP03 = "${rpstP03}B,"; p03check ="${p03check}B";}
+                  if(isCheckedP03Noacompaniado){rpstP03 = "${rpstP03}C,"; p03check ="${p03check}C";}
+                  if(isCheckedP03Ahorrando){rpstP03 = "${rpstP03}D,,"; p03check ="${p03check}D";}
+                  if(isCheckedP03DificultarTrasladar){rpstP03 = "${rpstP03}E,"; p03check ="${p03check}E";}
+                  if(isCheckedP03OtroEspecificar){rpstP03 = "${rpstP03}F:${widget.formP03EspecificarCtrl!.text}"; p03check ="${p03check}F";}
                   rpstP03 = "${rpstP03};";
+
+                  widget.formData?.p03Check = p03check;
+                  widget.formData?.p03CheckEspecificar =widget.formP03EspecificarCtrl!.text;
+
                   //2meses
                   if(isCheckedP04Alimentacion){rpstP04 = "${rpstP04}A,";}
                   if(isCheckedP04Salud){rpstP04 = "${rpstP04}B,";}
@@ -486,9 +809,13 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   if(isCheckedP04OtroGasto){rpstP04 = "${rpstP04}M,";}
                   rpstP04 = "${rpstP04};";
 
+                  widget.formData?.p04Check = rpstP04;
+
                   if(_PensionRecibe == PensionRecibe.Totalmente){rpstP05 = "${rpstP05}Totalmente-A";}
                   else {rpstP05 = "${rpstP05}Parcialmente-B";}
                   rpstP05 = "${rpstP05};";
+
+                  widget.formData?.p05pension = _PensionRecibe?.index;
 
                   if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.sis){rpstP06 = "${rpstP06}SIS-A";}
                   if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.essalud){rpstP06 = "${rpstP06}ESSALUD-B";}
@@ -499,35 +826,52 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.otro){rpstP06 = "${rpstP06}G:${widget.formP06EspecificarCtrl!.text}";}
                   rpstP06 = "${rpstP06};";
 
+                  widget.formData?.p06Establecimiento = _TipoEstablecimientoSalud?.index;
+                  widget.formData?.p06EstablecimientoESPECIFICAR = widget.formP06EspecificarCtrl!.text;
+
+                  //FALTA
+
                   if(_SeAtendio == SeAtendio.Si){rpstP07 = "${rpstP07}Sí-A";}
                   else {rpstP07 = "${rpstP07}No-B";}
                   rpstP07 = "${rpstP07};";
 
+                  widget.formData?.p07Atendio = _SeAtendio?.index;
+
                   //P08 si P07 es no
-                  if(isCheckedP08NoCentro){rpstP08 = "${rpstP08}A,";}
-                  if(isCheckedP08NoNecesito){rpstP08 = "${rpstP08}B,";}
-                  if(isCheckedP08MetodoTradicional){rpstP08 = "${rpstP08}C,";}
-                  if(isCheckedP08NoBuenTrato){rpstP08 = "${rpstP08}D,";}
-                  if(isCheckedP08NoDoctores){rpstP08 = "${rpstP08}E,";}
-                  if(isCheckedP08NoMedicina){rpstP08 = "${rpstP08}F,";}
-                  if(isCheckedP08Otros){rpstP08 = "${rpstP08}G:${widget.formP08EspecificarCtrl!.text}";}
+                  String p08check = ""; //POR EL ESPECIFICA
+                  if(isCheckedP08NoCentro){rpstP08 = "${rpstP08}A,"; p08check ="${p08check}A";}
+                  if(isCheckedP08NoNecesito){rpstP08 = "${rpstP08}B,"; p08check ="${p08check}B";}
+                  if(isCheckedP08MetodoTradicional){rpstP08 = "${rpstP08}C,"; p08check ="${p08check}C";}
+                  if(isCheckedP08NoBuenTrato){rpstP08 = "${rpstP08}D,"; p08check ="${p08check}D";}
+                  if(isCheckedP08NoDoctores){rpstP08 = "${rpstP08}E,"; p08check ="${p08check}E";}
+                  if(isCheckedP08NoMedicina){rpstP08 = "${rpstP08}F,"; p08check ="${p08check}F";}
+                  if(isCheckedP08Otros){rpstP08 = "${rpstP08}G:${widget.formP08EspecificarCtrl!.text}"; p08check ="${p08check}G";}
                   rpstP08 = "${rpstP08};";
 
+                  widget.formData?.p08Check = p08check;
+                  widget.formData?.p08CheckEspecificar = widget.formP08EspecificarCtrl!.text;
+
                   //P09 si P07 es SI
-                  if(isCheckedP09MedicinaGeneral){rpstP09 = "${rpstP09}A,";}
-                  if(isCheckedP09Rehabilitacion){rpstP09 = "${rpstP09}B,";}
-                  if(isCheckedP09Psicologia){rpstP09 = "${rpstP09}C,";}
-                  if(isCheckedP09Odontologia){rpstP09 = "${rpstP09}D,";}
-                  if(isCheckedP09Oftalmologia){rpstP09 = "${rpstP09}E,";}
-                  if(isCheckedP09Ginecologia){rpstP09 = "${rpstP09}F,";}
-                  if(isCheckedP09Otros){rpstP09 = "${rpstP09}G:${widget.formP09EspecificarCtrl!.text}";}
+                  String p09check = ""; //POR EL ESPECIFICA
+                  if(isCheckedP09MedicinaGeneral){rpstP09 = "${rpstP09}A,"; p09check ="${p09check}A";}
+                  if(isCheckedP09Rehabilitacion){rpstP09 = "${rpstP09}B,"; p09check ="${p09check}B";}
+                  if(isCheckedP09Psicologia){rpstP09 = "${rpstP09}C,"; p09check ="${p09check}C";}
+                  if(isCheckedP09Odontologia){rpstP09 = "${rpstP09}D,"; p09check ="${p09check}D";}
+                  if(isCheckedP09Oftalmologia){rpstP09 = "${rpstP09}E,"; p09check ="${p09check}E";}
+                  if(isCheckedP09Ginecologia){rpstP09 = "${rpstP09}F,"; p09check ="${p09check}F";}
+                  if(isCheckedP09Otros){rpstP09 = "${rpstP09}G:${widget.formP09EspecificarCtrl!.text}"; p09check ="${p09check}G";}
                   rpstP09 = "${rpstP09};";
+
+                  widget.formData?.p09Check = p09check;
+                  widget.formData?.p09CheckEspecificar = widget.formP09EspecificarCtrl!.text;
 
                   //P10
                   if(_FrecuenciaAtiende== FrecuenciaAtiende.tiempoMes06){rpstP10 = "${rpstP10}A";}
                   if(_FrecuenciaAtiende== FrecuenciaAtiende.tiempoAno){rpstP10 = "${rpstP10}B";}
                   if(_FrecuenciaAtiende== FrecuenciaAtiende.tiempoMasdeUnAno){rpstP10 = "${rpstP10}C";}
                   rpstP10 = "${rpstP10};";
+
+                  widget.formData?.p10Frecuencia = _FrecuenciaAtiende?.index;
 
                   //HAY PUNTAJE!
                   if(_ViveUsted== ViveUsted.otrasConHijos){rpstP11 = "${rpstP11}ConOtros-A"; puntaje=puntaje+1;}
@@ -537,9 +881,12 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   if(_ViveUsted== ViveUsted.soloConFamiliares){rpstP11 = "${rpstP11}Solo-E"; puntaje=puntaje+5;}
                   rpstP11 = "${rpstP11};";
 
+                  widget.formData?.p11Vive = _ViveUsted?.index;
 
                   if(_TieneFamilia == TieneFamilia.Si){rpstP12 = "${rpstP12}Sí-A";}
                   else {rpstP12 = "${rpstP12}No-B,";}
+
+                  widget.formData?.p12Familia = _TieneFamilia?.index;
 
                   if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionA){rpstP12 = "${rpstP12}A";puntaje=puntaje+1;}
                   if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionB){rpstP12 = "${rpstP12}B";puntaje=puntaje+2;}
@@ -548,15 +895,20 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionE){rpstP12 = "${rpstP12}E";puntaje=puntaje+5;}
                   rpstP12 = "${rpstP12};";
 
+                  widget.formData?.p12FamiliaB = _TieneFamiliaABCDE?.index;
 
-                  if(_TieneAyudas == TieneAyudas.No){rpstP12 = "${rpstP12}No-A";puntaje=puntaje+1;}
-                  else {rpstP12 = "${rpstP12}Sí-B,";}
+                  if(_TieneAyudas == TieneAyudas.No){rpstP13 = "${rpstP13}No-A";puntaje=puntaje+1;}
+                  else {rpstP13 = "${rpstP13}Sí-B,";}
+
+                  widget.formData?.p13Ayudas= _TieneAyudas?.index;
 
                   if(_TieneAyudasABCD== TieneAyudasABCD.redInformalSUficiente){rpstP13 = "${rpstP13}A";puntaje=puntaje+2;}
                   if(_TieneAyudasABCD== TieneAyudasABCD.cuidadoraExterna){rpstP13 = "${rpstP13}B";puntaje=puntaje+3;}
                   if(_TieneAyudasABCD== TieneAyudasABCD.redInformalInsuficiente){rpstP13 = "${rpstP13}C";puntaje=puntaje+4;}
                   if(_TieneAyudasABCD== TieneAyudasABCD.noTieneApoyo){rpstP13 = "${rpstP13}D";puntaje=puntaje+5;}
                   rpstP13 = "${rpstP13};";
+
+                  widget.formData?.p13AyudasB= _TieneAyudasABCD?.index;
 
                   if(_IngresoEconomico== IngresoEconomico.recibenMas2050){rpstP14 = "${rpstP14}Ingresos-A";puntaje=puntaje+1;}
                   if(_IngresoEconomico== IngresoEconomico.recibenMas1537){rpstP14 = "${rpstP14}Ingresos-B";puntaje=puntaje+2;}
@@ -565,41 +917,50 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   if(_IngresoEconomico== IngresoEconomico.sinIngresosFijos){rpstP14 = "${rpstP14}SinIngresos-E";puntaje=puntaje+5;}
                   rpstP14 = "${rpstP14};";
 
+                  widget.formData?.p14Ingreso = _IngresoEconomico?.index;
 
                   if(_TipoVivienda == TipoVivienda.Si){rpstP15 = "${rpstP15}Adecuada-A";puntaje=puntaje+1;}
                   else {rpstP15 = "${rpstP15}Inadecuada-B,";puntaje=puntaje+2;}
+
+                  widget.formData?.p15Tipovivienda = _TipoVivienda?.index;
 
                   if(_TipoViviendaABC== TipoViviendaABC.inadecuadaBarreras){rpstP15 = "${rpstP15}A";puntaje=puntaje+3;}
                   if(_TipoViviendaABC== TipoViviendaABC.inadecuadaSuministros){rpstP15 = "${rpstP15}B";puntaje=puntaje+4;}
                   if(_TipoViviendaABC== TipoViviendaABC.inadecuadaAusencia){rpstP15 = "${rpstP15}C";puntaje=puntaje+5;}
                   rpstP15 = "${rpstP15};";
 
+                  widget.formData?.p15TipoviviendaB = _TipoViviendaABC?.index;
+
                   //TERMINA EL PUNTAJE
 
                   if(_SituacionRiesgo == SituacionRiesgo.Si){rpstP12 = "${rpstP16}No-A";}
                   else {rpstP16 = "${rpstP16}Sí-B,";}
 
+                  widget.formData?.p16Riesgo = _SituacionRiesgo?.index;
+
                   if(_SituacionRiesgoAB== SituacionRiesgoAB.relacionCobro){rpstP16 = "${rpstP16}A";}
                   if(_SituacionRiesgoAB== SituacionRiesgoAB.relacionSocioEconomico){rpstP16 = "${rpstP16}B";}
                   rpstP16 = "${rpstP16};";
 
+                  widget.formData?.p16RiesgoB = _SituacionRiesgoAB?.index;
 
                   //P17
-                  if(isCheckedP17Cuidados){rpstP17 = "${rpstP17}A,";}
-                  if(isCheckedP17ORehabilitacion){rpstP17 = "${rpstP17}B,";}
-                  if(isCheckedP17Alimentacion){rpstP17 = "${rpstP17}C,";}
-                  if(isCheckedP17Otros){rpstP17 = "${rpstP17}D:${widget.formP17EspecificarCtrl!.text},";}
+                  String p17check = ""; //POR EL ESPECIFICA
+                  if(isCheckedP17Cuidados){rpstP17 = "${rpstP17}A,"; p17check ="${p17check}A";}
+                  if(isCheckedP17ORehabilitacion){rpstP17 = "${rpstP17}B,"; p17check ="${p17check}B";}
+                  if(isCheckedP17Alimentacion){rpstP17 = "${rpstP17}C,"; p17check ="${p17check}C";}
+                  if(isCheckedP17Otros){rpstP17 = "${rpstP17}D:${widget.formP17EspecificarCtrl!.text},"; p17check ="${p17check}D";}
                   rpstP17 = "${rpstP17};";
+
+                  widget.formData?.p17Check = p17check;
+                  widget.formData?.p17CheckEspecificar = widget.formP17EspecificarCtrl!.text;
+
 
                   if(_TipoEmprendimiento == TipoEmprendimiento.Si){rpstP18 = "${rpstP18}Sí-A";}
                   else {rpstP18 = "${rpstP18}No-B";}
                   rpstP18 = "${rpstP18};";
 
-                  //PREG 7 en ADELANTE
-                  //ESTANDAR
-                  // -puntaje en vez de puntaje, poner letras.
-                  //DEL API ESTA LISTANDO USUARIOS DEL PROGRAMA
-                  // P01 A, P02 B, P04,13, || P16 Si-A
+                  widget.formData?.p18Emprendimiento= _TipoEmprendimiento?.index;
 
                   String respuestas = "";
 

@@ -104,7 +104,7 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Formulario` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `pregunta` TEXT, `tipoOpcion` TEXT, `tipoRepuesta` INTEGER, `id` INTEGER, `idformato` INTEGER, `texto` TEXT, `titulo` TEXT, `idseccion` INTEGER, `descripcion` TEXT, `id_tipo_respuesta` INTEGER, `id_seccion` INTEGER)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Respuesta` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `Respuesta` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `RespuestaENVIO` (`idformato` INTEGER PRIMARY KEY AUTOINCREMENT, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT)');
 
@@ -320,7 +320,35 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
                   'respuestas': item.respuestas,
                   'puntaje': item.puntaje,
                   'longitud': item.longitud,
-                  'latitud': item.latitud
+                  'latitud': item.latitud,
+                  'p01CobroPension': item.p01CobroPension,
+                  'p02TipoMeses': item.p02TipoMeses,
+                  'p03Check': item.p03Check,
+                  'p03CheckEspecificar': item.p03CheckEspecificar,
+                  'p04Check': item.p04Check,
+                  'p05pension': item.p05pension,
+                  'p06Establecimiento': item.p06Establecimiento,
+                  'p06EstablecimientoESPECIFICAR':
+                      item.p06EstablecimientoESPECIFICAR,
+                  'p07Atendio': item.p07Atendio,
+                  'p08Check': item.p08Check,
+                  'p08CheckEspecificar': item.p08CheckEspecificar,
+                  'p09Check': item.p09Check,
+                  'p09CheckEspecificar': item.p09CheckEspecificar,
+                  'p10Frecuencia': item.p10Frecuencia,
+                  'p11Vive': item.p11Vive,
+                  'p12Familia': item.p12Familia,
+                  'p12FamiliaB': item.p12FamiliaB,
+                  'p13Ayudas': item.p13Ayudas,
+                  'p13AyudasB': item.p13AyudasB,
+                  'p14Ingreso': item.p14Ingreso,
+                  'p15Tipovivienda': item.p15Tipovivienda,
+                  'p15TipoviviendaB': item.p15TipoviviendaB,
+                  'p16Riesgo': item.p16Riesgo,
+                  'p16RiesgoB': item.p16RiesgoB,
+                  'p17Check': item.p17Check,
+                  'p17CheckEspecificar': item.p17CheckEspecificar,
+                  'p18Emprendimiento': item.p18Emprendimiento
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -345,7 +373,35 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
             respuestas: row['respuestas'] as String?,
             puntaje: row['puntaje'] as int?,
             longitud: row['longitud'] as String?,
-            latitud: row['latitud'] as String?),
+            latitud: row['latitud'] as String?,
+            p01CobroPension: row['p01CobroPension'] as int?,
+            p02TipoMeses: row['p02TipoMeses'] as int?,
+            p03Check: row['p03Check'] as String?,
+            p03CheckEspecificar: row['p03CheckEspecificar'] as String?,
+            p04Check: row['p04Check'] as String?,
+            p05pension: row['p05pension'] as int?,
+            p06Establecimiento: row['p06Establecimiento'] as int?,
+            p06EstablecimientoESPECIFICAR:
+                row['p06EstablecimientoESPECIFICAR'] as String?,
+            p07Atendio: row['p07Atendio'] as int?,
+            p08Check: row['p08Check'] as String?,
+            p08CheckEspecificar: row['p08CheckEspecificar'] as String?,
+            p09Check: row['p09Check'] as String?,
+            p09CheckEspecificar: row['p09CheckEspecificar'] as String?,
+            p10Frecuencia: row['p10Frecuencia'] as int?,
+            p11Vive: row['p11Vive'] as int?,
+            p12Familia: row['p12Familia'] as int?,
+            p12FamiliaB: row['p12FamiliaB'] as int?,
+            p13Ayudas: row['p13Ayudas'] as int?,
+            p13AyudasB: row['p13AyudasB'] as int?,
+            p14Ingreso: row['p14Ingreso'] as int?,
+            p15Tipovivienda: row['p15Tipovivienda'] as int?,
+            p15TipoviviendaB: row['p15TipoviviendaB'] as int?,
+            p16Riesgo: row['p16Riesgo'] as int?,
+            p16RiesgoB: row['p16RiesgoB'] as int?,
+            p17Check: row['p17Check'] as String?,
+            p17CheckEspecificar: row['p17CheckEspecificar'] as String?,
+            p18Emprendimiento: row['p18Emprendimiento'] as int?),
         arguments: [offset, perPage]);
   }
 
@@ -360,7 +416,35 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
             respuestas: row['respuestas'] as String?,
             puntaje: row['puntaje'] as int?,
             longitud: row['longitud'] as String?,
-            latitud: row['latitud'] as String?));
+            latitud: row['latitud'] as String?,
+            p01CobroPension: row['p01CobroPension'] as int?,
+            p02TipoMeses: row['p02TipoMeses'] as int?,
+            p03Check: row['p03Check'] as String?,
+            p03CheckEspecificar: row['p03CheckEspecificar'] as String?,
+            p04Check: row['p04Check'] as String?,
+            p05pension: row['p05pension'] as int?,
+            p06Establecimiento: row['p06Establecimiento'] as int?,
+            p06EstablecimientoESPECIFICAR:
+                row['p06EstablecimientoESPECIFICAR'] as String?,
+            p07Atendio: row['p07Atendio'] as int?,
+            p08Check: row['p08Check'] as String?,
+            p08CheckEspecificar: row['p08CheckEspecificar'] as String?,
+            p09Check: row['p09Check'] as String?,
+            p09CheckEspecificar: row['p09CheckEspecificar'] as String?,
+            p10Frecuencia: row['p10Frecuencia'] as int?,
+            p11Vive: row['p11Vive'] as int?,
+            p12Familia: row['p12Familia'] as int?,
+            p12FamiliaB: row['p12FamiliaB'] as int?,
+            p13Ayudas: row['p13Ayudas'] as int?,
+            p13AyudasB: row['p13AyudasB'] as int?,
+            p14Ingreso: row['p14Ingreso'] as int?,
+            p15Tipovivienda: row['p15Tipovivienda'] as int?,
+            p15TipoviviendaB: row['p15TipoviviendaB'] as int?,
+            p16Riesgo: row['p16Riesgo'] as int?,
+            p16RiesgoB: row['p16RiesgoB'] as int?,
+            p17Check: row['p17Check'] as String?,
+            p17CheckEspecificar: row['p17CheckEspecificar'] as String?,
+            p18Emprendimiento: row['p18Emprendimiento'] as int?));
   }
 
   @override
