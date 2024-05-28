@@ -11,6 +11,8 @@ class Respuesta {
   int? puntaje;
   String? longitud;
   String? latitud;
+  //ESTO SOLO ES PARA MODIFICAR Y DEMAS
+  //int?
 
   Respuesta({
     this.cod, this.idformato, this.id_usuario, this.fecha,

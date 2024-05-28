@@ -412,6 +412,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                         children: [
                           Spacer(), // Push remaining space to the left
 
+                          /*
                           InkWell(
                             onTap: () {
                                   Widget ContactoRefererencia = MenudeOpcionesOffline(obj); //CARGO DATA
@@ -427,7 +428,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                                 style: const TextStyle(fontSize: 16),
                               ),
                             ),
-                          ),
+                          ), */
 
                           InkWell(
                             onTap: ()   async {

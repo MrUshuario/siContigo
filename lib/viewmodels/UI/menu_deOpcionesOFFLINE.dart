@@ -156,16 +156,15 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   void initState() {
     conseguirVersion();
 
-    /* BACKUP PERO ME TOMARIA 3 HORAS HACERLO
     if(widget.formData != null) {
 
+      /* NO PUEDO MODIFICAR A MENOS QUE CADA RESPUESTA ESTE EN UN CAMPO!
       if (widget.formData!.observacion != null && widget.formData!.observacion!.isNotEmpty) {
         setState(() {
           widget.formIngresarObsCtrl!.text = widget.formData!.observacion!;
         });
-      }
-
-    } */
+      } */
+    }
 
     // TODO: implement initState
     super.initState();
@@ -559,11 +558,11 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   if(_TieneAyudasABCD== TieneAyudasABCD.noTieneApoyo){rpstP13 = "${rpstP13}D";puntaje=puntaje+5;}
                   rpstP13 = "${rpstP13};";
 
-                  if(_IngresoEconomico== IngresoEconomico.recibenMas2050){rpstP11 = "${rpstP11}Ingresos-A";puntaje=puntaje+1;}
-                  if(_IngresoEconomico== IngresoEconomico.recibenMas1537){rpstP11 = "${rpstP11}Ingresos-B";puntaje=puntaje+2;}
-                  if(_IngresoEconomico== IngresoEconomico.recibenIgual1537){rpstP11 = "${rpstP11}Ingresos-C";puntaje=puntaje+3;}
-                  if(_IngresoEconomico== IngresoEconomico.reciben1025){rpstP11 = "${rpstP11}Ingresos-D";puntaje=puntaje+4;}
-                  if(_IngresoEconomico== IngresoEconomico.sinIngresosFijos){rpstP11 = "${rpstP11}SinIngresos-E";puntaje=puntaje+5;}
+                  if(_IngresoEconomico== IngresoEconomico.recibenMas2050){rpstP14 = "${rpstP14}Ingresos-A";puntaje=puntaje+1;}
+                  if(_IngresoEconomico== IngresoEconomico.recibenMas1537){rpstP14 = "${rpstP14}Ingresos-B";puntaje=puntaje+2;}
+                  if(_IngresoEconomico== IngresoEconomico.recibenIgual1537){rpstP14 = "${rpstP14}Ingresos-C";puntaje=puntaje+3;}
+                  if(_IngresoEconomico== IngresoEconomico.reciben1025){rpstP14 = "${rpstP14}Ingresos-D";puntaje=puntaje+4;}
+                  if(_IngresoEconomico== IngresoEconomico.sinIngresosFijos){rpstP14 = "${rpstP14}SinIngresos-E";puntaje=puntaje+5;}
                   rpstP14 = "${rpstP14};";
 
 
@@ -3414,9 +3413,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 GestureDetector(
                     onTap: ()  {
                       if(
-                      (_TipoEstablecimientoSalud == null) ||
-                      (_SeAtendio == null)
-
+                      (_ViveUsted == null) || //P11
+                      (_TieneFamilia == null) || //P12
+                      (_TieneFamiliaABCDE == null) ||
+                      (_IngresoEconomico == null)
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {
@@ -3891,10 +3891,28 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 GestureDetector(
                     onTap: ()  {
-                      setState(() {
-                        Fase5 = false;
-                        Fase6 = true;
-                      });
+                      if(
+                      (_ViveUsted == null) ||
+                      (_TipoVivienda == null) ||
+                      (_TipoViviendaABC == null) ||
+                      (_SituacionRiesgo == null) ||
+                      (_SituacionRiesgoAB == null) ||
+                      (_TipoEmprendimiento == null) ||
+                      (
+                      !isCheckedP17Cuidados &&
+                      !isCheckedP17ORehabilitacion &&
+                      !isCheckedP17Alimentacion &&
+                      !isCheckedP17Otros
+                      )
+                      ){
+                        showDialogValidFields(Constants.faltanCampos);
+                      } else {
+                        setState(() {
+                          Fase5 = false;
+                          Fase6 = true;
+                        });
+                      }
+
                     },
                     child: Container(
                       margin: const EdgeInsets.only(left: 20.0, right: 20.0),
@@ -3905,7 +3923,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                         color: Color(0xFFD60000),
                       ),
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: const Text("Iniciar con el formulario",
+                      child: const Text("Finalizar el formulario",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
