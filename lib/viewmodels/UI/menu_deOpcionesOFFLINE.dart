@@ -230,19 +230,19 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
         setState(() {
           switch (widget.formData!.p06Establecimiento) {
             case 0:
-              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.sis;
+              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.sis;
             case 1:
-              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.essalud;
+              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.essalud;
             case 2:
-              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.policiales;
+              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.policiales;
             case 3:
-              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.privado;
+              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.privado;
             case 4:
-              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.ninguno;
+              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.ninguno;
             case 5:
-              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.nosabe;
+              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.nosabe;
             case 6:
-              _TipoEstablecimientoSalud == TipoEstablecimientoSalud.otro;
+              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.otro;
           }
         });
       }
@@ -301,11 +301,11 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
         setState(() {
           switch (widget.formData!.p10Frecuencia) {
             case 0:
-              _FrecuenciaAtiende == FrecuenciaAtiende.tiempoMes06;
+              _FrecuenciaAtiende = FrecuenciaAtiende.tiempoMes06;
             case 1:
-              _FrecuenciaAtiende == FrecuenciaAtiende.tiempoAno;
+              _FrecuenciaAtiende = FrecuenciaAtiende.tiempoAno;
             case 2:
-              _FrecuenciaAtiende == FrecuenciaAtiende.tiempoMasdeUnAno;
+              _FrecuenciaAtiende = FrecuenciaAtiende.tiempoMasdeUnAno;
           }
         });
       }
@@ -314,15 +314,15 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
         setState(() {
           switch (widget.formData!.p11Vive) {
             case 0:
-              _ViveUsted == ViveUsted.otrasConHijos;
+              _ViveUsted = ViveUsted.otrasConHijos;
             case 1:
-              _ViveUsted == ViveUsted.otrasConHijosCuidado;
+              _ViveUsted = ViveUsted.otrasConHijosCuidado;
             case 2:
-              _ViveUsted == ViveUsted.otrasEnPareja;
+              _ViveUsted = ViveUsted.otrasEnPareja;
             case 3:
-              _ViveUsted == ViveUsted.soloConHijos;
+              _ViveUsted = ViveUsted.soloConHijos;
             case 4:
-              _ViveUsted == ViveUsted.soloConFamiliares;
+              _ViveUsted = ViveUsted.soloConFamiliares;
           }
         });
       }
@@ -339,15 +339,15 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
         setState(() {
           switch (widget.formData!.p12FamiliaB) {
             case 0:
-              _TieneFamiliaABCDE == TieneFamiliaABCDE.opcionA;
+              _TieneFamiliaABCDE = TieneFamiliaABCDE.opcionA;
             case 1:
-              _TieneFamiliaABCDE == TieneFamiliaABCDE.opcionB;
+              _TieneFamiliaABCDE = TieneFamiliaABCDE.opcionB;
             case 2:
-              _TieneFamiliaABCDE == TieneFamiliaABCDE.opcionC;
+              _TieneFamiliaABCDE = TieneFamiliaABCDE.opcionC;
             case 3:
-              _TieneFamiliaABCDE == TieneFamiliaABCDE.opcionD;
+              _TieneFamiliaABCDE = TieneFamiliaABCDE.opcionD;
             case 4:
-              _TieneFamiliaABCDE == TieneFamiliaABCDE.opcionE;
+              _TieneFamiliaABCDE = TieneFamiliaABCDE.opcionE;
           }
         });
       }
@@ -364,13 +364,13 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
         setState(() {
           switch (widget.formData!.p13AyudasB) {
             case 0:
-              _TieneAyudasABCD == TieneAyudasABCD.redInformalSUficiente;
+              _TieneAyudasABCD = TieneAyudasABCD.redInformalSUficiente;
             case 1:
-              _TieneAyudasABCD == TieneAyudasABCD.cuidadoraExterna;
+              _TieneAyudasABCD = TieneAyudasABCD.cuidadoraExterna;
             case 2:
-              _TieneAyudasABCD == TieneAyudasABCD.redInformalInsuficiente;
+              _TieneAyudasABCD = TieneAyudasABCD.redInformalInsuficiente;
             case 3:
-              _TieneAyudasABCD == TieneAyudasABCD.noTieneApoyo;
+              _TieneAyudasABCD = TieneAyudasABCD.noTieneApoyo;
           }
         });
       }
@@ -379,15 +379,15 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
         setState(() {
           switch (widget.formData!.p14Ingreso) {
             case 0:
-              _IngresoEconomico == IngresoEconomico.recibenMas2050;
+              _IngresoEconomico = IngresoEconomico.recibenMas2050;
             case 1:
-              _IngresoEconomico == IngresoEconomico.recibenMas1537;
+              _IngresoEconomico = IngresoEconomico.recibenMas1537;
             case 2:
-              _IngresoEconomico == IngresoEconomico.recibenIgual1537;
+              _IngresoEconomico = IngresoEconomico.recibenIgual1537;
             case 3:
-              _IngresoEconomico == IngresoEconomico.reciben1025;
+              _IngresoEconomico = IngresoEconomico.reciben1025;
             case 4:
-              _IngresoEconomico == IngresoEconomico.sinIngresosFijos;
+              _IngresoEconomico = IngresoEconomico.sinIngresosFijos;
           }
         });
       }
@@ -404,11 +404,11 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
         setState(() {
           switch (widget.formData!.p15Tipovivienda) {
             case 0:
-              _TipoViviendaABC == TipoViviendaABC.inadecuadaBarreras;
+              _TipoViviendaABC = TipoViviendaABC.inadecuadaBarreras;
             case 1:
-              _TipoViviendaABC == TipoViviendaABC.inadecuadaSuministros;
+              _TipoViviendaABC = TipoViviendaABC.inadecuadaSuministros;
             case 2:
-              _TipoViviendaABC == TipoViviendaABC.inadecuadaAusencia;
+              _TipoViviendaABC = TipoViviendaABC.inadecuadaAusencia;
           }
         });
       }
@@ -425,11 +425,11 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
         setState(() {
           switch (widget.formData!.p15Tipovivienda) {
             case 0:
-              _TipoViviendaABC == TipoViviendaABC.inadecuadaBarreras;
+              _TipoViviendaABC = TipoViviendaABC.inadecuadaBarreras;
             case 1:
-              _TipoViviendaABC == TipoViviendaABC.inadecuadaSuministros;
+              _TipoViviendaABC = TipoViviendaABC.inadecuadaSuministros;
             case 2:
-              _TipoViviendaABC == TipoViviendaABC.inadecuadaAusencia;
+              _TipoViviendaABC = TipoViviendaABC.inadecuadaAusencia;
           }
         });
       }
@@ -446,9 +446,9 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
         setState(() {
           switch (widget.formData!.p16RiesgoB) {
             case 0:
-              _SituacionRiesgoAB == SituacionRiesgoAB.relacionCobro;
+              _SituacionRiesgoAB = SituacionRiesgoAB.relacionCobro;
             case 1:
-              _SituacionRiesgoAB == SituacionRiesgoAB.relacionSocioEconomico;
+              _SituacionRiesgoAB = SituacionRiesgoAB.relacionSocioEconomico;
           }
         });
       }
@@ -817,6 +817,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                   widget.formData?.p05pension = _PensionRecibe?.index;
 
+                  //REVISEMOS
                   if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.sis){rpstP06 = "${rpstP06}SIS-A";}
                   if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.essalud){rpstP06 = "${rpstP06}ESSALUD-B";}
                   if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.policiales){rpstP06 = "${rpstP06}Armado-C";}
@@ -1261,7 +1262,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                         color: Color(0xFFD60000),
                       ),
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: const Text("Finalizar formulario",
+                      child: const Text("Iniciar formulario",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
