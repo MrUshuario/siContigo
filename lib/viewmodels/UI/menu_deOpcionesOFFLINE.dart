@@ -112,6 +112,26 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   String? GPSlongitude = "";
   String? GPSaltitude = "";
 
+  String rpstP01 = "P01 ";
+  String rpstP02 = " P02 ";
+  String rpstP03 = " P03 ";
+  String rpstP04 = " P04 ";
+  String rpstP05 = " P05 ";
+  String rpstP06 = " P06 ";
+  String rpstP07 = " P07 ";
+  String rpstP08 = " P08 ";
+  String rpstP09 = " P09 ";
+  String rpstP10 = " P10 ";
+  String rpstP11 = " P11 ";
+  String rpstP12 = " P12 ";
+  String rpstP13 = " P13 ";
+  String rpstP14 = " P14 ";
+  String rpstP15 = " P15 ";
+  String rpstP16 = " P16 ";
+  String rpstP17 = " P17 ";
+  String rpstP18 = " P18 ";
+  int puntaje = 0;
+
   //BACKUP
   List <RespuestaBACKUP> listBackup = List.empty();
 
@@ -577,18 +597,251 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   }
 
   Future<void> guardadoFase2() async{
+    //P01 - P05
+
+    if(_CobroPension == CobroPension.Si){rpstP01 = "${rpstP01}Sí-A";}
+    else {rpstP01 = "${rpstP01}No-B";}
+    rpstP01 = "${rpstP01};";
+
+    widget.formData?.p01CobroPension = _CobroPension?.index;
+    widget.formDataBACKUP?.p01CobroPension = _CobroPension?.index;
+
+
+    if(_Tiempomeses == Tiempomeses.dos){rpstP02 = "${rpstP02}Dos-A";}
+    else {rpstP02 = "${rpstP02}Tres-B";}
+    rpstP02 = "${rpstP02};";
+
+    widget.formData?.p02TipoMeses = _Tiempomeses?.index;
+    widget.formDataBACKUP?.p02TipoMeses = _Tiempomeses?.index;
+
+    //3 meses oculto
+    String p03check = ""; //POR EL ESPECIFICA
+    if(isCheckedP03Distancia){rpstP03 = "${rpstP03}A,"; p03check ="${p03check}A";}
+    if(isCheckedP03Acumular){rpstP03 = "${rpstP03}B,"; p03check ="${p03check}B";}
+    if(isCheckedP03Noacompaniado){rpstP03 = "${rpstP03}C,"; p03check ="${p03check}C";}
+    if(isCheckedP03Ahorrando){rpstP03 = "${rpstP03}D,,"; p03check ="${p03check}D";}
+    if(isCheckedP03DificultarTrasladar){rpstP03 = "${rpstP03}E,"; p03check ="${p03check}E";}
+    if(isCheckedP03OtroEspecificar){rpstP03 = "${rpstP03}F:${widget.formP03EspecificarCtrl!.text}"; p03check ="${p03check}F";}
+    rpstP03 = "${rpstP03};";
+
+    widget.formData?.p03Check = p03check;
+    widget.formDataBACKUP?.p03Check = p03check;
+    widget.formData?.p03CheckEspecificar =widget.formP03EspecificarCtrl!.text;
+    widget.formDataBACKUP?.p03CheckEspecificar =widget.formP03EspecificarCtrl!.text;
+
+    //2meses
+    if(isCheckedP04Alimentacion){rpstP04 = "${rpstP04}A,";}
+    if(isCheckedP04Salud){rpstP04 = "${rpstP04}B,";}
+    if(isCheckedP04Limpieza){rpstP04 = "${rpstP04}C,";}
+    if(isCheckedP04Rehabilitacion){rpstP04 = "${rpstP04}D,";}
+    if(isCheckedP04Educacion){rpstP04 = "${rpstP04}E,";}
+    if(isCheckedP04PagoServicio){rpstP04 = "${rpstP04}F,";}
+    if(isCheckedP04PagoComunicacion){rpstP04 = "${rpstP04}G,";}
+    if(isCheckedP04Transporte){rpstP04 = "${rpstP04}H,";}
+    if(isCheckedP04Vestimenta){rpstP04 = "${rpstP04}I,";}
+    if(isCheckedP04Recreacion){rpstP04 = "${rpstP04}J,";}
+    if(isCheckedP04Ahorro){rpstP04 = "${rpstP04}K,";}
+    if(isCheckedP04AhorroSalud){rpstP04 = "${rpstP04}L,";}
+    if(isCheckedP04OtroGasto){rpstP04 = "${rpstP04}M,";}
+    rpstP04 = "${rpstP04};";
+
+    widget.formData?.p04Check = rpstP04;
+    widget.formDataBACKUP?.p04Check = rpstP04;
+
+    if(_PensionRecibe == PensionRecibe.Totalmente){rpstP05 = "${rpstP05}Totalmente-A";}
+    else {rpstP05 = "${rpstP05}Parcialmente-B";}
+    rpstP05 = "${rpstP05};";
+
+    widget.formData?.p05pension = _PensionRecibe?.index;
+    widget.formDataBACKUP?.p05pension = _PensionRecibe?.index;
+
     await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase3() async{
+    //P06 - P10
+
+    //REVISEMOS
+    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.sis){rpstP06 = "${rpstP06}SIS-A";}
+    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.essalud){rpstP06 = "${rpstP06}ESSALUD-B";}
+    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.policiales){rpstP06 = "${rpstP06}Armado-C";}
+    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.privado){rpstP06 = "${rpstP06}Privado-D";}
+    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.ninguno){rpstP06 = "${rpstP06}Ninguno-E";}
+    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.nosabe){rpstP06 = "${rpstP06}NoSabe-F";}
+    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.otro){rpstP06 = "${rpstP06}G:${widget.formP06EspecificarCtrl!.text}";}
+    rpstP06 = "${rpstP06};";
+
+    widget.formData?.p06Establecimiento = _TipoEstablecimientoSalud?.index;
+    widget.formDataBACKUP?.p06Establecimiento = _TipoEstablecimientoSalud?.index;
+    widget.formData?.p06EstablecimientoESPECIFICAR = widget.formP06EspecificarCtrl!.text;
+    widget.formDataBACKUP?.p06EstablecimientoESPECIFICAR = widget.formP06EspecificarCtrl!.text;
+
+    //FALTA
+
+    if(_SeAtendio == SeAtendio.Si){rpstP07 = "${rpstP07}Sí-A";}
+    else {rpstP07 = "${rpstP07}No-B";}
+    rpstP07 = "${rpstP07};";
+
+    widget.formData?.p07Atendio = _SeAtendio?.index;
+    widget.formDataBACKUP?.p07Atendio = _SeAtendio?.index;
+
+    //P08 si P07 es no
+    String p08check = ""; //POR EL ESPECIFICA
+    if(isCheckedP08NoCentro){rpstP08 = "${rpstP08}A,"; p08check ="${p08check}A";}
+    if(isCheckedP08NoNecesito){rpstP08 = "${rpstP08}B,"; p08check ="${p08check}B";}
+    if(isCheckedP08MetodoTradicional){rpstP08 = "${rpstP08}C,"; p08check ="${p08check}C";}
+    if(isCheckedP08NoBuenTrato){rpstP08 = "${rpstP08}D,"; p08check ="${p08check}D";}
+    if(isCheckedP08NoDoctores){rpstP08 = "${rpstP08}E,"; p08check ="${p08check}E";}
+    if(isCheckedP08NoMedicina){rpstP08 = "${rpstP08}F,"; p08check ="${p08check}F";}
+    if(isCheckedP08Otros){rpstP08 = "${rpstP08}G:${widget.formP08EspecificarCtrl!.text}"; p08check ="${p08check}G";}
+    rpstP08 = "${rpstP08};";
+
+    widget.formData?.p08Check = p08check;
+    widget.formDataBACKUP?.p08Check = p08check;
+    widget.formData?.p08CheckEspecificar = widget.formP08EspecificarCtrl!.text;
+    widget.formDataBACKUP?.p08CheckEspecificar = widget.formP08EspecificarCtrl!.text;
+
+    //P09 si P07 es SI
+    String p09check = ""; //POR EL ESPECIFICA
+    if(isCheckedP09MedicinaGeneral){rpstP09 = "${rpstP09}A,"; p09check ="${p09check}A";}
+    if(isCheckedP09Rehabilitacion){rpstP09 = "${rpstP09}B,"; p09check ="${p09check}B";}
+    if(isCheckedP09Psicologia){rpstP09 = "${rpstP09}C,"; p09check ="${p09check}C";}
+    if(isCheckedP09Odontologia){rpstP09 = "${rpstP09}D,"; p09check ="${p09check}D";}
+    if(isCheckedP09Oftalmologia){rpstP09 = "${rpstP09}E,"; p09check ="${p09check}E";}
+    if(isCheckedP09Ginecologia){rpstP09 = "${rpstP09}F,"; p09check ="${p09check}F";}
+    if(isCheckedP09Otros){rpstP09 = "${rpstP09}G:${widget.formP09EspecificarCtrl!.text}"; p09check ="${p09check}G";}
+    rpstP09 = "${rpstP09};";
+
+    widget.formData?.p09Check = p09check;
+    widget.formDataBACKUP?.p09Check = p09check;
+    widget.formData?.p09CheckEspecificar = widget.formP09EspecificarCtrl!.text;
+    widget.formDataBACKUP?.p09CheckEspecificar = widget.formP09EspecificarCtrl!.text;
+
+    //P10
+    if(_FrecuenciaAtiende== FrecuenciaAtiende.tiempoMes06){rpstP10 = "${rpstP10}A";}
+    if(_FrecuenciaAtiende== FrecuenciaAtiende.tiempoAno){rpstP10 = "${rpstP10}B";}
+    if(_FrecuenciaAtiende== FrecuenciaAtiende.tiempoMasdeUnAno){rpstP10 = "${rpstP10}C";}
+    rpstP10 = "${rpstP10};";
+
+    widget.formData?.p10Frecuencia = _FrecuenciaAtiende?.index;
+    widget.formDataBACKUP?.p10Frecuencia = _FrecuenciaAtiende?.index;
+
+
     await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase4() async{
+    //P11 - P14
+
+
+    //HAY PUNTAJE!
+    if(_ViveUsted== ViveUsted.otrasConHijos){rpstP11 = "${rpstP11}ConOtros-A"; puntaje=puntaje+1;}
+    if(_ViveUsted== ViveUsted.otrasConHijosCuidado){rpstP11 = "${rpstP11}ConOtros-B"; puntaje=puntaje+2;}
+    if(_ViveUsted== ViveUsted.otrasEnPareja){rpstP11 = "${rpstP11}ConOtros-C"; puntaje=puntaje+3;}
+    if(_ViveUsted== ViveUsted.soloConHijos){rpstP11 = "${rpstP11}Solo-D"; puntaje=puntaje+4;}
+    if(_ViveUsted== ViveUsted.soloConFamiliares){rpstP11 = "${rpstP11}Solo-E"; puntaje=puntaje+5;}
+    rpstP11 = "${rpstP11};";
+
+    widget.formData?.p11Vive = _ViveUsted?.index;
+    widget.formDataBACKUP?.p11Vive = _ViveUsted?.index;
+
+    if(_TieneFamilia == TieneFamilia.Si){rpstP12 = "${rpstP12}Sí-A";}
+    else {rpstP12 = "${rpstP12}No-B,";}
+
+    widget.formData?.p12Familia = _TieneFamilia?.index;
+    widget.formDataBACKUP?.p12Familia = _TieneFamilia?.index;
+
+    if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionA){rpstP12 = "${rpstP12}A";puntaje=puntaje+1;}
+    if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionB){rpstP12 = "${rpstP12}B";puntaje=puntaje+2;}
+    if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionC){rpstP12 = "${rpstP12}C";puntaje=puntaje+3;}
+    if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionD){rpstP12 = "${rpstP12}D";puntaje=puntaje+4;}
+    if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionE){rpstP12 = "${rpstP12}E";puntaje=puntaje+5;}
+    rpstP12 = "${rpstP12};";
+
+    widget.formData?.p12FamiliaB = _TieneFamiliaABCDE?.index;
+    widget.formDataBACKUP?.p12FamiliaB = _TieneFamiliaABCDE?.index;
+
+    if(_TieneAyudas == TieneAyudas.No){rpstP13 = "${rpstP13}No-A";puntaje=puntaje+1;}
+    else {rpstP13 = "${rpstP13}Sí-B,";}
+
+    widget.formData?.p13Ayudas= _TieneAyudas?.index;
+    widget.formDataBACKUP?.p13Ayudas= _TieneAyudas?.index;
+
+    if(_TieneAyudasABCD== TieneAyudasABCD.redInformalSUficiente){rpstP13 = "${rpstP13}A";puntaje=puntaje+2;}
+    if(_TieneAyudasABCD== TieneAyudasABCD.cuidadoraExterna){rpstP13 = "${rpstP13}B";puntaje=puntaje+3;}
+    if(_TieneAyudasABCD== TieneAyudasABCD.redInformalInsuficiente){rpstP13 = "${rpstP13}C";puntaje=puntaje+4;}
+    if(_TieneAyudasABCD== TieneAyudasABCD.noTieneApoyo){rpstP13 = "${rpstP13}D";puntaje=puntaje+5;}
+    rpstP13 = "${rpstP13};";
+
+    widget.formData?.p13AyudasB= _TieneAyudasABCD?.index;
+    widget.formDataBACKUP?.p13AyudasB= _TieneAyudasABCD?.index;
+
+    if(_IngresoEconomico== IngresoEconomico.recibenMas2050){rpstP14 = "${rpstP14}Ingresos-A";puntaje=puntaje+1;}
+    if(_IngresoEconomico== IngresoEconomico.recibenMas1537){rpstP14 = "${rpstP14}Ingresos-B";puntaje=puntaje+2;}
+    if(_IngresoEconomico== IngresoEconomico.recibenIgual1537){rpstP14 = "${rpstP14}Ingresos-C";puntaje=puntaje+3;}
+    if(_IngresoEconomico== IngresoEconomico.reciben1025){rpstP14 = "${rpstP14}Ingresos-D";puntaje=puntaje+4;}
+    if(_IngresoEconomico== IngresoEconomico.sinIngresosFijos){rpstP14 = "${rpstP14}SinIngresos-E";puntaje=puntaje+5;}
+    rpstP14 = "${rpstP14};";
+
+    widget.formData?.p14Ingreso = _IngresoEconomico?.index;
+    widget.formDataBACKUP?.p14Ingreso = _IngresoEconomico?.index;
+
     await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase5() async{
+    //P15 - P18
+
+    if(_TipoVivienda == TipoVivienda.Si){rpstP15 = "${rpstP15}Adecuada-A";puntaje=puntaje+1;}
+    else {rpstP15 = "${rpstP15}Inadecuada-B,";puntaje=puntaje+2;}
+
+    widget.formData?.p15Tipovivienda = _TipoVivienda?.index;
+    widget.formDataBACKUP?.p15Tipovivienda = _TipoVivienda?.index;
+
+    if(_TipoViviendaABC== TipoViviendaABC.inadecuadaBarreras){rpstP15 = "${rpstP15}A";puntaje=puntaje+3;}
+    if(_TipoViviendaABC== TipoViviendaABC.inadecuadaSuministros){rpstP15 = "${rpstP15}B";puntaje=puntaje+4;}
+    if(_TipoViviendaABC== TipoViviendaABC.inadecuadaAusencia){rpstP15 = "${rpstP15}C";puntaje=puntaje+5;}
+    rpstP15 = "${rpstP15};";
+
+    widget.formData?.p15TipoviviendaB = _TipoViviendaABC?.index;
+    widget.formDataBACKUP?.p15TipoviviendaB = _TipoViviendaABC?.index;
+
+    //TERMINA EL PUNTAJE
+
+    if(_SituacionRiesgo == SituacionRiesgo.Si){rpstP12 = "${rpstP16}No-A";}
+    else {rpstP16 = "${rpstP16}Sí-B,";}
+
+    widget.formData?.p16Riesgo = _SituacionRiesgo?.index;
+    widget.formDataBACKUP?.p16Riesgo = _SituacionRiesgo?.index;
+
+    if(_SituacionRiesgoAB== SituacionRiesgoAB.relacionCobro){rpstP16 = "${rpstP16}A";}
+    if(_SituacionRiesgoAB== SituacionRiesgoAB.relacionSocioEconomico){rpstP16 = "${rpstP16}B";}
+    rpstP16 = "${rpstP16};";
+
+    widget.formData?.p16RiesgoB = _SituacionRiesgoAB?.index;
+    widget.formDataBACKUP?.p16RiesgoB = _SituacionRiesgoAB?.index;
+
+    //P17
+    String p17check = ""; //POR EL ESPECIFICA
+    if(isCheckedP17Cuidados){rpstP17 = "${rpstP17}A,"; p17check ="${p17check}A";}
+    if(isCheckedP17ORehabilitacion){rpstP17 = "${rpstP17}B,"; p17check ="${p17check}B";}
+    if(isCheckedP17Alimentacion){rpstP17 = "${rpstP17}C,"; p17check ="${p17check}C";}
+    if(isCheckedP17Otros){rpstP17 = "${rpstP17}D:${widget.formP17EspecificarCtrl!.text},"; p17check ="${p17check}D";}
+    rpstP17 = "${rpstP17};";
+
+    widget.formData?.p17Check = p17check;
+    widget.formDataBACKUP?.p17Check = p17check;
+    widget.formData?.p17CheckEspecificar = widget.formP17EspecificarCtrl!.text;
+    widget.formDataBACKUP?.p17CheckEspecificar = widget.formP17EspecificarCtrl!.text;
+
+
+    if(_TipoEmprendimiento == TipoEmprendimiento.Si){rpstP18 = "${rpstP18}Sí-A";}
+    else {rpstP18 = "${rpstP18}No-B";}
+    rpstP18 = "${rpstP18};";
+
+    widget.formData?.p18Emprendimiento= _TipoEmprendimiento?.index;
+    widget.formDataBACKUP?.p18Emprendimiento= _TipoEmprendimiento?.index;
+
     await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
@@ -789,221 +1042,12 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 } else {
                   CargaDialog(); //INICIALIZA DIALOGO
 
-                  String rpstP01 = "P01 ";
-                  String rpstP02 = " P02 ";
-                  String rpstP03 = " P03 ";
-                  String rpstP04 = " P04 ";
-                  String rpstP05 = " P05 ";
-                  String rpstP06 = " P06 ";
-                  String rpstP07 = " P07 ";
-                  String rpstP08 = " P08 ";
-                  String rpstP09 = " P09 ";
-                  String rpstP10 = " P10 ";
-                  String rpstP11 = " P11 ";
-                  String rpstP12 = " P12 ";
-                  String rpstP13 = " P13 ";
-                  String rpstP14 = " P14 ";
-                  String rpstP15 = " P15 ";
-                  String rpstP16 = " P16 ";
-                  String rpstP17 = " P17 ";
-                  String rpstP18 = " P18 ";
-                  int puntaje = 0;
 
 
-                  if(_CobroPension == CobroPension.Si){rpstP01 = "${rpstP01}Sí-A";}
-                  else {rpstP01 = "${rpstP01}No-B";}
-                  rpstP01 = "${rpstP01};";
-
-                  widget.formData?.p01CobroPension = _CobroPension?.index;
-
-                  if(_Tiempomeses == Tiempomeses.dos){rpstP02 = "${rpstP02}Dos-A";}
-                  else {rpstP02 = "${rpstP02}Tres-B";}
-                  rpstP02 = "${rpstP02};";
-
-                  widget.formData?.p02TipoMeses = _Tiempomeses?.index;
-
-                  //3 meses oculto
-                  String p03check = ""; //POR EL ESPECIFICA
-                  if(isCheckedP03Distancia){rpstP03 = "${rpstP03}A,"; p03check ="${p03check}A";}
-                  if(isCheckedP03Acumular){rpstP03 = "${rpstP03}B,"; p03check ="${p03check}B";}
-                  if(isCheckedP03Noacompaniado){rpstP03 = "${rpstP03}C,"; p03check ="${p03check}C";}
-                  if(isCheckedP03Ahorrando){rpstP03 = "${rpstP03}D,,"; p03check ="${p03check}D";}
-                  if(isCheckedP03DificultarTrasladar){rpstP03 = "${rpstP03}E,"; p03check ="${p03check}E";}
-                  if(isCheckedP03OtroEspecificar){rpstP03 = "${rpstP03}F:${widget.formP03EspecificarCtrl!.text}"; p03check ="${p03check}F";}
-                  rpstP03 = "${rpstP03};";
-
-                  widget.formData?.p03Check = p03check;
-                  widget.formData?.p03CheckEspecificar =widget.formP03EspecificarCtrl!.text;
-
-                  //2meses
-                  if(isCheckedP04Alimentacion){rpstP04 = "${rpstP04}A,";}
-                  if(isCheckedP04Salud){rpstP04 = "${rpstP04}B,";}
-                  if(isCheckedP04Limpieza){rpstP04 = "${rpstP04}C,";}
-                  if(isCheckedP04Rehabilitacion){rpstP04 = "${rpstP04}D,";}
-                  if(isCheckedP04Educacion){rpstP04 = "${rpstP04}E,";}
-                  if(isCheckedP04PagoServicio){rpstP04 = "${rpstP04}F,";}
-                  if(isCheckedP04PagoComunicacion){rpstP04 = "${rpstP04}G,";}
-                  if(isCheckedP04Transporte){rpstP04 = "${rpstP04}H,";}
-                  if(isCheckedP04Vestimenta){rpstP04 = "${rpstP04}I,";}
-                  if(isCheckedP04Recreacion){rpstP04 = "${rpstP04}J,";}
-                  if(isCheckedP04Ahorro){rpstP04 = "${rpstP04}K,";}
-                  if(isCheckedP04AhorroSalud){rpstP04 = "${rpstP04}L,";}
-                  if(isCheckedP04OtroGasto){rpstP04 = "${rpstP04}M,";}
-                  rpstP04 = "${rpstP04};";
-
-                  widget.formData?.p04Check = rpstP04;
-
-                  if(_PensionRecibe == PensionRecibe.Totalmente){rpstP05 = "${rpstP05}Totalmente-A";}
-                  else {rpstP05 = "${rpstP05}Parcialmente-B";}
-                  rpstP05 = "${rpstP05};";
-
-                  widget.formData?.p05pension = _PensionRecibe?.index;
-
-                  //REVISEMOS
-                  if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.sis){rpstP06 = "${rpstP06}SIS-A";}
-                  if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.essalud){rpstP06 = "${rpstP06}ESSALUD-B";}
-                  if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.policiales){rpstP06 = "${rpstP06}Armado-C";}
-                  if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.privado){rpstP06 = "${rpstP06}Privado-D";}
-                  if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.ninguno){rpstP06 = "${rpstP06}Ninguno-E";}
-                  if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.nosabe){rpstP06 = "${rpstP06}NoSabe-F";}
-                  if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.otro){rpstP06 = "${rpstP06}G:${widget.formP06EspecificarCtrl!.text}";}
-                  rpstP06 = "${rpstP06};";
-
-                  widget.formData?.p06Establecimiento = _TipoEstablecimientoSalud?.index;
-                  widget.formData?.p06EstablecimientoESPECIFICAR = widget.formP06EspecificarCtrl!.text;
-
-                  //FALTA
-
-                  if(_SeAtendio == SeAtendio.Si){rpstP07 = "${rpstP07}Sí-A";}
-                  else {rpstP07 = "${rpstP07}No-B";}
-                  rpstP07 = "${rpstP07};";
-
-                  widget.formData?.p07Atendio = _SeAtendio?.index;
-
-                  //P08 si P07 es no
-                  String p08check = ""; //POR EL ESPECIFICA
-                  if(isCheckedP08NoCentro){rpstP08 = "${rpstP08}A,"; p08check ="${p08check}A";}
-                  if(isCheckedP08NoNecesito){rpstP08 = "${rpstP08}B,"; p08check ="${p08check}B";}
-                  if(isCheckedP08MetodoTradicional){rpstP08 = "${rpstP08}C,"; p08check ="${p08check}C";}
-                  if(isCheckedP08NoBuenTrato){rpstP08 = "${rpstP08}D,"; p08check ="${p08check}D";}
-                  if(isCheckedP08NoDoctores){rpstP08 = "${rpstP08}E,"; p08check ="${p08check}E";}
-                  if(isCheckedP08NoMedicina){rpstP08 = "${rpstP08}F,"; p08check ="${p08check}F";}
-                  if(isCheckedP08Otros){rpstP08 = "${rpstP08}G:${widget.formP08EspecificarCtrl!.text}"; p08check ="${p08check}G";}
-                  rpstP08 = "${rpstP08};";
-
-                  widget.formData?.p08Check = p08check;
-                  widget.formData?.p08CheckEspecificar = widget.formP08EspecificarCtrl!.text;
-
-                  //P09 si P07 es SI
-                  String p09check = ""; //POR EL ESPECIFICA
-                  if(isCheckedP09MedicinaGeneral){rpstP09 = "${rpstP09}A,"; p09check ="${p09check}A";}
-                  if(isCheckedP09Rehabilitacion){rpstP09 = "${rpstP09}B,"; p09check ="${p09check}B";}
-                  if(isCheckedP09Psicologia){rpstP09 = "${rpstP09}C,"; p09check ="${p09check}C";}
-                  if(isCheckedP09Odontologia){rpstP09 = "${rpstP09}D,"; p09check ="${p09check}D";}
-                  if(isCheckedP09Oftalmologia){rpstP09 = "${rpstP09}E,"; p09check ="${p09check}E";}
-                  if(isCheckedP09Ginecologia){rpstP09 = "${rpstP09}F,"; p09check ="${p09check}F";}
-                  if(isCheckedP09Otros){rpstP09 = "${rpstP09}G:${widget.formP09EspecificarCtrl!.text}"; p09check ="${p09check}G";}
-                  rpstP09 = "${rpstP09};";
-
-                  widget.formData?.p09Check = p09check;
-                  widget.formData?.p09CheckEspecificar = widget.formP09EspecificarCtrl!.text;
-
-                  //P10
-                  if(_FrecuenciaAtiende== FrecuenciaAtiende.tiempoMes06){rpstP10 = "${rpstP10}A";}
-                  if(_FrecuenciaAtiende== FrecuenciaAtiende.tiempoAno){rpstP10 = "${rpstP10}B";}
-                  if(_FrecuenciaAtiende== FrecuenciaAtiende.tiempoMasdeUnAno){rpstP10 = "${rpstP10}C";}
-                  rpstP10 = "${rpstP10};";
-
-                  widget.formData?.p10Frecuencia = _FrecuenciaAtiende?.index;
-
-                  //HAY PUNTAJE!
-                  if(_ViveUsted== ViveUsted.otrasConHijos){rpstP11 = "${rpstP11}ConOtros-A"; puntaje=puntaje+1;}
-                  if(_ViveUsted== ViveUsted.otrasConHijosCuidado){rpstP11 = "${rpstP11}ConOtros-B"; puntaje=puntaje+2;}
-                  if(_ViveUsted== ViveUsted.otrasEnPareja){rpstP11 = "${rpstP11}ConOtros-C"; puntaje=puntaje+3;}
-                  if(_ViveUsted== ViveUsted.soloConHijos){rpstP11 = "${rpstP11}Solo-D"; puntaje=puntaje+4;}
-                  if(_ViveUsted== ViveUsted.soloConFamiliares){rpstP11 = "${rpstP11}Solo-E"; puntaje=puntaje+5;}
-                  rpstP11 = "${rpstP11};";
-
-                  widget.formData?.p11Vive = _ViveUsted?.index;
-
-                  if(_TieneFamilia == TieneFamilia.Si){rpstP12 = "${rpstP12}Sí-A";}
-                  else {rpstP12 = "${rpstP12}No-B,";}
-
-                  widget.formData?.p12Familia = _TieneFamilia?.index;
-
-                  if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionA){rpstP12 = "${rpstP12}A";puntaje=puntaje+1;}
-                  if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionB){rpstP12 = "${rpstP12}B";puntaje=puntaje+2;}
-                  if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionC){rpstP12 = "${rpstP12}C";puntaje=puntaje+3;}
-                  if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionD){rpstP12 = "${rpstP12}D";puntaje=puntaje+4;}
-                  if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionE){rpstP12 = "${rpstP12}E";puntaje=puntaje+5;}
-                  rpstP12 = "${rpstP12};";
-
-                  widget.formData?.p12FamiliaB = _TieneFamiliaABCDE?.index;
-
-                  if(_TieneAyudas == TieneAyudas.No){rpstP13 = "${rpstP13}No-A";puntaje=puntaje+1;}
-                  else {rpstP13 = "${rpstP13}Sí-B,";}
-
-                  widget.formData?.p13Ayudas= _TieneAyudas?.index;
-
-                  if(_TieneAyudasABCD== TieneAyudasABCD.redInformalSUficiente){rpstP13 = "${rpstP13}A";puntaje=puntaje+2;}
-                  if(_TieneAyudasABCD== TieneAyudasABCD.cuidadoraExterna){rpstP13 = "${rpstP13}B";puntaje=puntaje+3;}
-                  if(_TieneAyudasABCD== TieneAyudasABCD.redInformalInsuficiente){rpstP13 = "${rpstP13}C";puntaje=puntaje+4;}
-                  if(_TieneAyudasABCD== TieneAyudasABCD.noTieneApoyo){rpstP13 = "${rpstP13}D";puntaje=puntaje+5;}
-                  rpstP13 = "${rpstP13};";
-
-                  widget.formData?.p13AyudasB= _TieneAyudasABCD?.index;
-
-                  if(_IngresoEconomico== IngresoEconomico.recibenMas2050){rpstP14 = "${rpstP14}Ingresos-A";puntaje=puntaje+1;}
-                  if(_IngresoEconomico== IngresoEconomico.recibenMas1537){rpstP14 = "${rpstP14}Ingresos-B";puntaje=puntaje+2;}
-                  if(_IngresoEconomico== IngresoEconomico.recibenIgual1537){rpstP14 = "${rpstP14}Ingresos-C";puntaje=puntaje+3;}
-                  if(_IngresoEconomico== IngresoEconomico.reciben1025){rpstP14 = "${rpstP14}Ingresos-D";puntaje=puntaje+4;}
-                  if(_IngresoEconomico== IngresoEconomico.sinIngresosFijos){rpstP14 = "${rpstP14}SinIngresos-E";puntaje=puntaje+5;}
-                  rpstP14 = "${rpstP14};";
-
-                  widget.formData?.p14Ingreso = _IngresoEconomico?.index;
-
-                  if(_TipoVivienda == TipoVivienda.Si){rpstP15 = "${rpstP15}Adecuada-A";puntaje=puntaje+1;}
-                  else {rpstP15 = "${rpstP15}Inadecuada-B,";puntaje=puntaje+2;}
-
-                  widget.formData?.p15Tipovivienda = _TipoVivienda?.index;
-
-                  if(_TipoViviendaABC== TipoViviendaABC.inadecuadaBarreras){rpstP15 = "${rpstP15}A";puntaje=puntaje+3;}
-                  if(_TipoViviendaABC== TipoViviendaABC.inadecuadaSuministros){rpstP15 = "${rpstP15}B";puntaje=puntaje+4;}
-                  if(_TipoViviendaABC== TipoViviendaABC.inadecuadaAusencia){rpstP15 = "${rpstP15}C";puntaje=puntaje+5;}
-                  rpstP15 = "${rpstP15};";
-
-                  widget.formData?.p15TipoviviendaB = _TipoViviendaABC?.index;
-
-                  //TERMINA EL PUNTAJE
-
-                  if(_SituacionRiesgo == SituacionRiesgo.Si){rpstP12 = "${rpstP16}No-A";}
-                  else {rpstP16 = "${rpstP16}Sí-B,";}
-
-                  widget.formData?.p16Riesgo = _SituacionRiesgo?.index;
-
-                  if(_SituacionRiesgoAB== SituacionRiesgoAB.relacionCobro){rpstP16 = "${rpstP16}A";}
-                  if(_SituacionRiesgoAB== SituacionRiesgoAB.relacionSocioEconomico){rpstP16 = "${rpstP16}B";}
-                  rpstP16 = "${rpstP16};";
-
-                  widget.formData?.p16RiesgoB = _SituacionRiesgoAB?.index;
-
-                  //P17
-                  String p17check = ""; //POR EL ESPECIFICA
-                  if(isCheckedP17Cuidados){rpstP17 = "${rpstP17}A,"; p17check ="${p17check}A";}
-                  if(isCheckedP17ORehabilitacion){rpstP17 = "${rpstP17}B,"; p17check ="${p17check}B";}
-                  if(isCheckedP17Alimentacion){rpstP17 = "${rpstP17}C,"; p17check ="${p17check}C";}
-                  if(isCheckedP17Otros){rpstP17 = "${rpstP17}D:${widget.formP17EspecificarCtrl!.text},"; p17check ="${p17check}D";}
-                  rpstP17 = "${rpstP17};";
-
-                  widget.formData?.p17Check = p17check;
-                  widget.formData?.p17CheckEspecificar = widget.formP17EspecificarCtrl!.text;
 
 
-                  if(_TipoEmprendimiento == TipoEmprendimiento.Si){rpstP18 = "${rpstP18}Sí-A";}
-                  else {rpstP18 = "${rpstP18}No-B";}
-                  rpstP18 = "${rpstP18};";
 
-                  widget.formData?.p18Emprendimiento= _TipoEmprendimiento?.index;
+
 
                   String respuestas = "";
 
