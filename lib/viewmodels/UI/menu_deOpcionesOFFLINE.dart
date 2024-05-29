@@ -6,7 +6,9 @@ import 'package:sicontigo/infraestructure/dao/apis/apiprovider_formulario.dart';
 import 'package:sicontigo/infraestructure/dao/database/database.dart';
 import 'package:sicontigo/infraestructure/dao/formdatamodeldao_formulario.dart';
 import 'package:sicontigo/infraestructure/dao/formdatamodeldao_respuesta.dart';
+import 'package:sicontigo/infraestructure/dao/formdatamodeldao_respuestaBACKUP.dart';
 import 'package:sicontigo/model/t_formulario.dart';
+import 'package:sicontigo/model/t_respBackup.dart';
 import 'package:sicontigo/model/t_respuesta.dart';
 import 'package:sicontigo/utils/constantes.dart';
 import 'package:sicontigo/utils/helpersviewAlertMensajeTitutlo.dart';
@@ -34,6 +36,7 @@ class MenudeOpcionesOffline extends StatefulWidget {
 
   final _appDatabase = GetIt.I.get<AppDatabase>();
   FormDataModelDaoRespuesta get formDataModelDao => _appDatabase.formDataModelDaoRespuesta;
+  FormDataModelDaoRespuestaBACKUP get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
 
   GlobalKey<FormState> keyForm = GlobalKey();
   //SIGUIENTE
@@ -45,7 +48,6 @@ class MenudeOpcionesOffline extends StatefulWidget {
   TextEditingController formP06EspecificarCtrl = TextEditingController();
   final ParamP06EspecificarCtrl = List.filled(3, "", growable: false);
 
-
   TextEditingController formP08EspecificarCtrl = TextEditingController();
   final ParamP08EspecificarCtrl = List.filled(3, "", growable: false);
 
@@ -55,6 +57,8 @@ class MenudeOpcionesOffline extends StatefulWidget {
   TextEditingController formP17EspecificarCtrl = TextEditingController();
   final ParamP17EspecificarCtrl = List.filled(3, "", growable: false);
 
+  //BACKUP
+  bool backup = false;
 
 
 
@@ -66,6 +70,7 @@ class MenudeOpcionesOffline extends StatefulWidget {
   //ENVIAR LA DATA
   apiprovider_formulario apiForm = apiprovider_formulario();
   Respuesta? formData;
+  RespuestaBACKUP? formDataBACKUP = RespuestaBACKUP();
   MenudeOpcionesOffline(this.formData, {super.key});
 
   @override
@@ -106,6 +111,9 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   String? GPSlatitude = "";
   String? GPSlongitude = "";
   String? GPSaltitude = "";
+
+  //BACKUP
+  List <RespuestaBACKUP> listBackup = List.empty();
 
   Future<void> conseguirVersion() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -155,9 +163,8 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   @override
   void initState() {
     conseguirVersion();
-
+    revisarBackup();
     if(widget.formData != null) {
-
 
       if (widget.formData!.p01CobroPension != null) {
         setState(() {
@@ -538,6 +545,23 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   bool isCheckedP17Alimentacion = false;
   bool isCheckedP17Otros = false;
 
+  Future<void> revisarBackup() async {
+
+    if (widget.formDataBACKUP != null) {
+      widget.formDataBACKUP!.cod = 0;
+    }
+
+
+    listBackup = await widget.formDataModelDaoBackup.findAllRespuesta();
+    setState(() {
+      if(listBackup.isNotEmpty){
+        widget.backup = true;
+        //objBackup = listBackup[0];
+      } else {
+        widget.backup = false;
+      }
+    });
+  }
 
   Future<void> capturarCoordenadas() async{
     HelpersViewCabecera.CoordenadasGPS(context).then((value) async {
@@ -550,6 +574,22 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
         GPSaltitude = prefs.getString('altitude') ?? "";
       });
     });
+  }
+
+  Future<void> guardadoFase2() async{
+    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+  }
+
+  Future<void> guardadoFase3() async{
+    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+  }
+
+  Future<void> guardadoFase4() async{
+    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+  }
+
+  Future<void> guardadoFase5() async{
+    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   void PedirPermiso(){
@@ -666,6 +706,8 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    final scrollController = ScrollController();
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -993,6 +1035,8 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                   //await GuardarFormulario();
 
+                    await widget.formDataModelDaoBackup.BorrarTodo();
+
                   await widget.formDataModelDao.insertFormDataModel(widget.formData!);
                   cleanForm();
                   _mostrarLoadingStreamController.add(true);
@@ -1036,6 +1080,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
       ),
       body: Center (
         child: SingleChildScrollView(
+          controller: scrollController,
           child: ConstrainedBox(
             constraints: const BoxConstraints(
               minWidth: 440.0, // Set your minimum width here
@@ -1045,7 +1090,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
               margin: const EdgeInsets.all(41.0),
               child: Form(
                 //key: widget.keyForm,
-                child: formUI(),
+                child: formUI(scrollController),
               ),
             ),
           ),
@@ -1068,12 +1113,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                     children: [
                       InkWell(
                         onTap: () {
-                          Widget ContactoRefererencia = MenudeOpcionesOffline(Respuesta());
-                          Navigator.push(
-                            context,
-                            //MaterialPageRoute(builder: (context) =>  MenudeOpciones()),
-                            MaterialPageRoute(builder: (context) =>  ContactoRefererencia),
-                          );
+                          Navigator.pop(context);
                         },
                         child: Container(
                           padding: EdgeInsets.all(20),
@@ -1155,6 +1195,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
       Fase3 = false;
       Fase4 = false;
       Fase5 = false;
+      Fase6 = false;
       //
 
       _CobroPension = null;
@@ -1227,7 +1268,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
   }
 
-  Widget formUI() {
+  Widget formUI(ScrollController scrollController) {
 
     return Container(
       decoration: BoxDecoration(
@@ -1248,6 +1289,12 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 GestureDetector(
                     onTap: ()  {
+                      scrollController.animateTo(
+                        0.0,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                      );
+
                         setState(() {
                           Fase1 = false;
                           Fase2 = true;
@@ -2055,7 +2102,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 //BOTON PARA PRESEGUIR
 
                 GestureDetector(
-                    onTap: ()  {
+                    onTap: ()  async {
 
                       if(
                       (_CobroPension == null) ||
@@ -2086,11 +2133,19 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {
+                        await guardadoFase2();
                         setState(() {
                           Fase2 = false;
                           Fase3 = true;
                         });
                       }
+
+                      scrollController.animateTo(
+                        0.0,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                      );
+
 
                     },
                     child: Container(
@@ -3006,7 +3061,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
 
                 GestureDetector(
-                    onTap: ()  {
+                    onTap: ()  async {
                       if(
                       (_TipoEstablecimientoSalud == null) ||
                       (_SeAtendio == null) ||
@@ -3032,11 +3087,18 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {
+                        await guardadoFase3();
                         setState(() {
                           Fase3 = false;
                           Fase4 = true;
                         });
                       }
+
+                      scrollController.animateTo(
+                        0.0,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                      );
 
                     },
                     child: Container(
@@ -3773,20 +3835,29 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 //BOTON DE SUBIR
                 GestureDetector(
-                    onTap: ()  {
+                    onTap: ()  async {
                       if(
                       (_ViveUsted == null) || //P11
                       (_TieneFamilia == null) || //P12
                       (_TieneFamiliaABCDE == null) ||
+                      (_TieneAyudas == null) ||
+                      (_TieneAyudas == TieneAyudas.Si && _TieneAyudasABCD == null) ||
                       (_IngresoEconomico == null)
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {
+                        await guardadoFase4();
                         setState(() {
                           Fase4 = false;
                           Fase5 = true;
                         });
                       }
+
+                      scrollController.animateTo(
+                        0.0,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                      );
 
                     },
                     child: Container(
@@ -4200,13 +4271,13 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                           HelpersViewBlancoIcon.formItemsDesign(
                               Icons.pending_actions,
                               TextFormField(
-                                controller: widget.formP09EspecificarCtrl,
+                                controller: widget.formP17EspecificarCtrl,
                                 decoration: const InputDecoration(
                                   labelText: 'Especifique',
                                 ),
                                 validator: (value) {
                                   return HelpersViewBlancoIcon.validateField(
-                                      value!, widget.ParamP09EspecificarCtrl);
+                                      value!, widget.ParamP17EspecificarCtrl);
                                 },
                                 maxLength: 100,
                               ), context),
@@ -4252,28 +4323,35 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 ),
 
                 GestureDetector(
-                    onTap: ()  {
+                    onTap: ()  async {
                       if(
                       (_ViveUsted == null) ||
                       (_TipoVivienda == null) ||
-                      (_TipoViviendaABC == null) ||
+                      ( _TipoVivienda == TipoVivienda.No && _TipoViviendaABC == null) ||
                       (_SituacionRiesgo == null) ||
-                      (_SituacionRiesgoAB == null) ||
+                      (_SituacionRiesgo == SituacionRiesgo.Si && _SituacionRiesgoAB == null) ||
                       (_TipoEmprendimiento == null) ||
-                      (
+                      ( //
                       !isCheckedP17Cuidados &&
                       !isCheckedP17ORehabilitacion &&
                       !isCheckedP17Alimentacion &&
-                      !isCheckedP17Otros
+                      (widget.formP17EspecificarCtrl == null || widget.formP17EspecificarCtrl!.text.isEmpty)
                       )
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {
-                        setState(() {
+                        await guardadoFase5();
+                        setState(()  {
                           Fase5 = false;
                           Fase6 = true;
                         });
                       }
+
+                      scrollController.animateTo(
+                        0.0,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                      );
 
                     },
                     child: Container(

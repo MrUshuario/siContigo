@@ -4,8 +4,10 @@ import 'package:sicontigo/infraestructure/dao/apis/apiprovider_formulario.dart';
 import 'package:sicontigo/infraestructure/dao/database/database.dart';
 import 'package:sicontigo/infraestructure/dao/formdatamodeldao_formulario.dart';
 import 'package:sicontigo/infraestructure/dao/formdatamodeldao_respuesta.dart';
+import 'package:sicontigo/infraestructure/dao/formdatamodeldao_respuestaBACKUP.dart';
 import 'package:sicontigo/model/t_formulario.dart';
 import 'package:sicontigo/model/t_respuesta.dart';
+import 'package:sicontigo/model/utils/bakcupMapper.dart';
 import 'package:sicontigo/model/utils/respuestaMapper.dart';
 import 'package:sicontigo/utils/constantes.dart';
 import 'package:sicontigo/utils/helpersviewAlertMensajeTitutlo.dart';
@@ -19,6 +21,7 @@ import 'package:sicontigo/viewmodels/UI/viewmodels/form_viewsmodel_respuesta.dar
 
 
 import '../../main.dart';
+import '../../model/t_respBackup.dart';
 import '../../utils/helpersviewAlertMensajeFOTO.dart';
 import '../../utils/helpersviewAlertProgressSinc.dart';
 import '../../utils/helpersviewBlancoIcon.dart';
@@ -30,6 +33,7 @@ class MenudeOpcionesListado extends StatefulWidget {
   final _appDatabase = GetIt.I.get<AppDatabase>();
   apiprovider_formulario apiForm = apiprovider_formulario();
   FormDataModelDaoRespuesta get formDataModelDaoRespuesta => _appDatabase.formDataModelDaoRespuesta;
+  FormDataModelDaoRespuestaBACKUP get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
   List<Formulario> listForm = List.empty(growable: true);
   MenudeOpcionesListado({Key? key});
 
@@ -37,7 +41,10 @@ class MenudeOpcionesListado extends StatefulWidget {
   int? page = 1;
   int? totalPage = 0;
   List<Respuesta> listRespuesta = List.empty(growable: true);
-  
+
+  //BACKUP
+  bool backup = false;
+
   @override
   State<StatefulWidget> createState() {
     return _MenudeOpcionesListado();
@@ -54,6 +61,10 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
   late String PREFnroDoc;
   late String PREFtypeUser;
   late String PREFtoken;
+
+  //BACKUP
+  List <RespuestaBACKUP> listBackup = List.empty();
+  late RespuestaBACKUP objBackup;
 
   Future<void> listarVisitasAvanzar() async {
     if(widget.totalPage! != widget.page!) {
@@ -82,11 +93,25 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
     if(PREFtoken == "ERROR"){
       showDialogValidFields("El token no se ha recibido");
     }
-
   }
+
+  Future<void> revisarBackup() async {
+    listBackup = await widget.formDataModelDaoBackup.findAllRespuesta();
+    setState(() {
+      if(listBackup.isNotEmpty){
+        widget.backup = true;
+        objBackup = listBackup[0];
+      } else {
+        widget.backup = false;
+      }
+    });
+  }
+
+
 
   @override
   void initState() {
+    revisarBackup();
     conseguirVersion();
     widget.viewModel
     ..listen()
@@ -560,8 +585,49 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
       child: Column(
         children: [
 
+          Visibility(
+            visible: widget.backup,
+            child:Column(
+              children: <Widget>[
+                GestureDetector(
+                    onTap: () {
+
+                      //Convierto el backup en el objeto respuesta
+                      Respuesta obj = BackupMapper.instance.backuptoResp(objBackup);
+                      //MODIFICAR PARA QUE CARGE un backup con ID null
+                      Widget ContactoRefererencia = MenudeOpcionesOffline(obj); //CARGO DATA
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
+                      );
+
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(10.0),
+                      alignment: Alignment.center,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0)),
+                        color: Color(0xFFD60000),
+                      ),
+                      padding: const EdgeInsets.only(top: 16, bottom: 16),
+                      child: const Text("Continuar Formulario incompleto",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500)),
+                    )),
+
+              ],),
+          ),
+
           GestureDetector(
-              onTap: () {
+              onTap: () async {
+
+                if(widget.backup){
+                  await widget.formDataModelDaoBackup.BorrarTodo();
+                }
+
                 Widget ContactoRefererencia = MenudeOpcionesOffline(Respuesta()); //CARGO DATA
                 Navigator.push(
                   context,
@@ -577,7 +643,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                   color: Color(0xFFD60000),
                 ),
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
-                child: const Text("Cargar formulario en Línea",
+                child: const Text("Completar formulario",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
