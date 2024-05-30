@@ -11,6 +11,7 @@ class RespuestaBACKUP {
   int? puntaje;
   String? longitud;
   String? latitud;
+  int? id_gestor;
   //ESTO SOLO ES PARA MODIFICAR Y DEMAS
   int? p01CobroPension;
   int? p02TipoMeses;
@@ -43,7 +44,7 @@ class RespuestaBACKUP {
 
   RespuestaBACKUP({
     this.cod, this.idformato, this.id_usuario, this.fecha,
-    this.respuestas, this.puntaje, this.longitud, this.latitud,
+    this.respuestas, this.puntaje, this.longitud, this.latitud,this.id_gestor,
     this.p01CobroPension, this.p02TipoMeses, this.p03Check, this.p03CheckEspecificar, this.p04Check, this.p05pension,
     this.p06Establecimiento, this.p06EstablecimientoESPECIFICAR, this.p07Atendio, this.p08Check, this.p08CheckEspecificar, this.p09Check, this.p09CheckEspecificar,
     this.p10Frecuencia, this.p11Vive, this.p12Familia, this.p12FamiliaB, this.p13Ayudas, this.p13AyudasB,
@@ -61,6 +62,7 @@ class RespuestaBACKUP {
       puntaje: json['puntaje'] as int?,
       longitud: json['longitud'] as String?,
       latitud: json['latitud'] as String?,
+      id_gestor: json['id_gestor'] as int?,
       p01CobroPension: json['p01CobroPension'] as int?,
       p02TipoMeses: json['p02TipoMeses'] as int?,
       p03Check: json['p03Check'] as String?,
@@ -108,6 +110,7 @@ class RespuestaBACKUP {
       "puntaje":puntaje,
       "longitud":longitud,
       "latitud":latitud,
+      "id_gestor": id_gestor,
       "p01CobroPension":p01CobroPension,
       "p02TipoMeses":p02TipoMeses,
       "p03Check":p03Check,

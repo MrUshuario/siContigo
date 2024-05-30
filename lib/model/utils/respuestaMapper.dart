@@ -1,7 +1,7 @@
 
 
-import 'package:sicontigo/model/t_respuesta.dart';
-import 'package:sicontigo/model/t_respuestaBACKUP.dart';
+import 'package:sicontigoVisita/model/t_respuesta.dart';
+import 'package:sicontigoVisita/model/t_respuestaBACKUP.dart';
 
 class RespuestaMapper {
 
@@ -14,6 +14,7 @@ class RespuestaMapper {
   String? respuestas;
   String? longitud;
   String? latitud;
+   int? id_gestor;
 
   RespuestaENVIO visitaToVisitaApi(Respuesta rpta) {
     var rptaApi = RespuestaENVIO();
@@ -23,6 +24,8 @@ class RespuestaMapper {
     rptaApi.respuestas = rpta.respuestas;
     rptaApi.longitud = rpta.longitud;
     rptaApi.latitud = rpta.latitud;
+    rptaApi.id_gestor= rpta.id_gestor;
+
     return rptaApi;
   }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sicontigo/utils/resources.dart';
+import 'package:sicontigoVisita/utils/resources.dart';
 
 class HelpersViewAlertMensajeTitulo {
 

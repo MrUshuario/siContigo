@@ -1,7 +1,7 @@
 
 
-import 'package:sicontigo/model/t_respBackup.dart';
-import 'package:sicontigo/model/t_respuesta.dart';
+import 'package:sicontigoVisita/model/t_respBackup.dart';
+import 'package:sicontigoVisita/model/t_respuesta.dart';
 
 class BackupMapper {
 

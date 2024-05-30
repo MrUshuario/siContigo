@@ -2,25 +2,25 @@ import 'dart:async';
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:sicontigo/infraestructure/dao/apis/apiprovider_formulario.dart';
-import 'package:sicontigo/infraestructure/dao/database/database.dart';
-import 'package:sicontigo/infraestructure/dao/formdatamodeldao_formulario.dart';
-import 'package:sicontigo/infraestructure/dao/formdatamodeldao_respuesta.dart';
-import 'package:sicontigo/infraestructure/dao/formdatamodeldao_respuestaBACKUP.dart';
-import 'package:sicontigo/model/t_formulario.dart';
-import 'package:sicontigo/model/t_respBackup.dart';
-import 'package:sicontigo/model/t_respuesta.dart';
-import 'package:sicontigo/utils/constantes.dart';
-import 'package:sicontigo/utils/helpersviewAlertMensajeTitutlo.dart';
-import 'package:sicontigo/utils/helpersviewLetrasSubsGris.dart';
-import 'package:sicontigo/utils/resources.dart';
+import 'package:sicontigoVisita/infraestructure/dao/apis/apiprovider_formulario.dart';
+import 'package:sicontigoVisita/infraestructure/dao/database/database.dart';
+import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_formulario.dart';
+import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_respuesta.dart';
+import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_respuestaBACKUP.dart';
+import 'package:sicontigoVisita/model/t_formulario.dart';
+import 'package:sicontigoVisita/model/t_respBackup.dart';
+import 'package:sicontigoVisita/model/t_respuesta.dart';
+import 'package:sicontigoVisita/utils/constantes.dart';
+import 'package:sicontigoVisita/utils/helpersviewAlertMensajeTitutlo.dart';
+import 'package:sicontigoVisita/utils/helpersviewLetrasSubsGris.dart';
+import 'package:sicontigoVisita/utils/resources.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sicontigo/utils/resources_apis.dart';
-import 'package:sicontigo/viewmodels/UI/menu_login.dart';
-import 'package:sicontigo/viewmodels/UI/viewmodels/form_viewsmodel_formulario.dart';
+import 'package:sicontigoVisita/utils/resources_apis.dart';
+import 'package:sicontigoVisita/viewmodels/UI/menu_login.dart';
+import 'package:sicontigoVisita/viewmodels/UI/viewmodels/form_viewsmodel_formulario.dart';
 import '../../model/t_insertarEncuestaRSPTA.dart';
 import '../../utils/helpersviewAlertFaltaMSG.dart';
 import '../../utils/helpersviewAlertProgressCircle.dart';
@@ -107,6 +107,8 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   String? PREFnroDoc;
   String? PREFtypeUser;
   String? PREFtoken;
+
+  int? Puntossumados = 0;
 
   String? GPSlatitude = "";
   String? GPSlongitude = "";
@@ -968,7 +970,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
           Constants.tituloMenudeOpciones,
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: const Color(0xFFD60000),
+        backgroundColor: const Color.fromARGB(255, 27, 65, 187),
         //leading: Icon(Icons.menu),
         actions: [
           IconButton(
@@ -1069,9 +1071,10 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   widget.formData?.id_usuario = int.parse(PREFnroDoc!);
                   widget.formData?.fecha = formatDate("dd/MM/yyyy hh:mm:ss", DateTime.now());
                   widget.formData?.respuestas = respuestas;
-                  widget.formData?.puntaje = puntaje;
+                  widget.formData?.puntaje =  puntaje;
                   widget.formData?.longitud = GPSlongitude;
                   widget.formData?.latitud = GPSlatitude;
+                    widget.formData?.id_gestor = int.parse(PREFnroDoc!);
                   //GPSlatitude
 
                   //FUNCION PARA SINCRONIZAR
@@ -1350,7 +1353,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)),
-                        color: Color(0xFFD60000),
+                        color: Color.fromARGB(255, 27, 65, 187),
                       ),
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: const Text("Iniciar formulario",
@@ -1416,7 +1419,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 Row(
                   children: [
                     const Text(
-                      'Cada dos meses',
+                      'Cada 2 meses',
                       style: TextStyle(
                         fontSize: 14.0,
                       ),
@@ -2198,7 +2201,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)),
-                        color: Color(0xFFD60000),
+                        color: Color.fromARGB(255, 27, 65, 187),
                       ),
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: const Text("Continuar",
@@ -3151,7 +3154,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)),
-                        color: Color(0xFFD60000),
+                        color: Color.fromARGB(255, 27, 65, 187),
                       ),
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: const Text("Continuar",
@@ -3910,7 +3913,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)),
-                        color: Color(0xFFD60000),
+                        color: Color.fromARGB(255, 27, 65, 187),
                       ),
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: const Text("Continuar",
@@ -4404,7 +4407,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)),
-                        color: Color(0xFFD60000),
+                        color: Color.fromARGB(255, 27, 65, 187),
                       ),
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: const Text("Finalizar el formulario",
@@ -4424,7 +4427,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
             child:Column(
               children: <Widget>[
 
-                HelpersViewLetrasSubs.formItemsDesign( "Realize click en el boton del satelite y luego en el diskete para guardar"),
+                HelpersViewLetrasSubs.formItemsDesign( "Para mejorar la precisión de la coordenada presioné icono del satélite, luego guarde su cuestionario presionando el icono diskette."),
 
               ],),
           ),

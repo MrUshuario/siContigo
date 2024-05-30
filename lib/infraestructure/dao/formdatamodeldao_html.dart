@@ -1,4 +1,4 @@
-import 'package:sicontigo/model/t_html.dart';
+import 'package:sicontigoVisita/model/t_html.dart';
 import 'package:floor/floor.dart';
 
 @dao

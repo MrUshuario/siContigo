@@ -3,12 +3,14 @@ import 'dart:async';
 
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sicontigo/infraestructure/dao/formdatamodeldao_respuesta.dart';
-import 'package:sicontigo/model/t_respuesta.dart';
+import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_respuesta.dart';
+import 'package:sicontigoVisita/model/t_respuesta.dart';
 import '../dao/database/database.dart';
 
 
 class FormDataRepository {
+
+    //StreamController<PaginationState<List<Respuesta>>> _controller23 = StreamController<PaginationState<List<Respuesta>>>.broadcast();
 
   final _controller = StreamController<PaginationState<List<Respuesta>>>();
   final _appDatabase = GetIt.I.get<AppDatabase>();
@@ -32,7 +34,11 @@ class FormDataRepository {
       /// emit error
       _controller.add(const PaginationError());
       return 0;
+    } finally{
+       print("DISPO");
+        _controller.close();
     }
+
   }
 
 }

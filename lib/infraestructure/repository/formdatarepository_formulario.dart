@@ -3,7 +3,7 @@ import 'dart:async';
 
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sicontigo/infraestructure/dao/formdatamodeldao_formulario.dart';
+import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_formulario.dart';
 import '../../model/t_formulario.dart';
 import '../dao/database/database.dart';
 import '../dao/formdatamodeldao_visita.dart';

@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'package:sicontigo/model/t_visita.dart';
+import 'package:sicontigoVisita/model/t_visita.dart';
 
 @dao
 abstract class FormDataModelDaoVISITA {

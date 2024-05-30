@@ -1,9 +1,9 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sicontigo/model/responseinciofinactividad.dart';
+import 'package:sicontigoVisita/model/responseinciofinactividad.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
-import 'package:sicontigo/utils/resources_apis.dart';
+import 'package:sicontigoVisita/utils/resources_apis.dart';
 
 class apiprovider_menuOpciones {
 

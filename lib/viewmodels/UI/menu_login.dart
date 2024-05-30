@@ -1,15 +1,15 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:sicontigo/infraestructure/dao/apis/apiprovider_menuOpciones.dart';
-import 'package:sicontigo/infraestructure/dao/database/database.dart';
-import 'package:sicontigo/model/responseinciofinactividad.dart';
-import 'package:sicontigo/model/t_respuesta.dart';
-import 'package:sicontigo/utils/constantes.dart';
-import 'package:sicontigo/utils/helpersviewAlertMensajeTitutlo.dart';
-import 'package:sicontigo/utils/helpersviewBlancoTexto.dart';
-import 'package:sicontigo/utils/resources.dart';
-import 'package:sicontigo/viewmodels/UI/menu_deOpciones.dart';
+import 'package:sicontigoVisita/infraestructure/dao/apis/apiprovider_menuOpciones.dart';
+import 'package:sicontigoVisita/infraestructure/dao/database/database.dart';
+import 'package:sicontigoVisita/model/responseinciofinactividad.dart';
+import 'package:sicontigoVisita/model/t_respuesta.dart';
+import 'package:sicontigoVisita/utils/constantes.dart';
+import 'package:sicontigoVisita/utils/helpersviewAlertMensajeTitutlo.dart';
+import 'package:sicontigoVisita/utils/helpersviewBlancoTexto.dart';
+import 'package:sicontigoVisita/utils/resources.dart';
+import 'package:sicontigoVisita/viewmodels/UI/menu_deOpciones.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:device_imei/device_imei.dart';
-import 'package:sicontigo/viewmodels/UI/menu_deOpcionesOFFLINE.dart';
+import 'package:sicontigoVisita/viewmodels/UI/menu_deOpcionesOFFLINE.dart';
 
 import 'menu_deOpcionesLISTADO.dart';
 
@@ -110,7 +110,7 @@ class _login extends State<login> {
         appBar: AppBar(
           title: const Text(Constants.tituloMenuLogin, style: TextStyle(color: Colors.white),
           ),
-          backgroundColor: Color(0xFFD60000),
+          backgroundColor: Color.fromRGBO(23, 50, 172, 1),
           //leading: Icon(Icons.menu),
           actions: const [
             /*
@@ -152,7 +152,7 @@ class _login extends State<login> {
         ),
         bottomNavigationBar: Container(
           height: 50, // Altura de la barra
-          color: Color(0xFFD60000),
+          color: Color.fromRGBO(23, 50, 172, 1),
           child: Center(
             child: Text(
               '',
@@ -294,7 +294,7 @@ class _login extends State<login> {
         Card(
           elevation: 0,
           shape: const RoundedRectangleBorder(
-            side: BorderSide(color: Colors.red), // Red border
+            side: BorderSide(color: Color.fromARGB(255, 45, 55, 207)), // Red border
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Padding(
@@ -360,7 +360,7 @@ class _login extends State<login> {
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0)),
-                color: Color(0xFFD60000),
+                color: Color.fromARGB(255, 27, 65, 187),
               ),
               padding: const EdgeInsets.only(top: 16, bottom: 16),
               child: const Text("Ingresar",

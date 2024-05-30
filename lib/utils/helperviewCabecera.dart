@@ -5,8 +5,8 @@ import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:location/location.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sicontigo/utils/resources.dart';
-import 'package:sicontigo/viewmodels/UI/menu_deOpciones.dart';
+import 'package:sicontigoVisita/utils/resources.dart';
+import 'package:sicontigoVisita/viewmodels/UI/menu_deOpciones.dart';
 
 import '../infraestructure/dao/formdatamodeldao_visita.dart';
 

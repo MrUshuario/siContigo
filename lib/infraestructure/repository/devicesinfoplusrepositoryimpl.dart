@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:device_imei/device_imei.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:sicontigo/infraestructure/repository/devicesinfoplusrepository.dart';
+import 'package:sicontigoVisita/infraestructure/repository/devicesinfoplusrepository.dart';
 
 class DevicesInfoPlusRepositoryImpl implements DevicesInfoPlusRepository {
 

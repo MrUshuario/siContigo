@@ -9,7 +9,7 @@ class HelpersViewBlancoTexto {
         elevation: 0,
         shape: const RoundedRectangleBorder(
           side: BorderSide(
-              color: Colors.red,
+              color: Color.fromARGB(255, 35, 62, 182),
             //color: Theme.of(context).colorScheme.outline,
           ),
           borderRadius: BorderRadius.all(Radius.circular(12)),

@@ -106,11 +106,11 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Formulario` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `pregunta` TEXT, `tipoOpcion` TEXT, `tipoRepuesta` INTEGER, `id` INTEGER, `idformato` INTEGER, `texto` TEXT, `titulo` TEXT, `idseccion` INTEGER, `descripcion` TEXT, `id_tipo_respuesta` INTEGER, `id_seccion` INTEGER)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Respuesta` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `Respuesta` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `RespuestaENVIO` (`idformato` INTEGER PRIMARY KEY AUTOINCREMENT, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `RespuestaENVIO` (`idformato` INTEGER PRIMARY KEY AUTOINCREMENT, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUP` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUP` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER ,`p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -331,6 +331,7 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
                   'puntaje': item.puntaje,
                   'longitud': item.longitud,
                   'latitud': item.latitud,
+                  'id_gestor': item.id_gestor,
                   'p01CobroPension': item.p01CobroPension,
                   'p02TipoMeses': item.p02TipoMeses,
                   'p03Check': item.p03Check,
@@ -384,6 +385,7 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
             puntaje: row['puntaje'] as int?,
             longitud: row['longitud'] as String?,
             latitud: row['latitud'] as String?,
+            id_gestor: row['id_gestor'] as int?,
             p01CobroPension: row['p01CobroPension'] as int?,
             p02TipoMeses: row['p02TipoMeses'] as int?,
             p03Check: row['p03Check'] as String?,
@@ -427,6 +429,7 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
             puntaje: row['puntaje'] as int?,
             longitud: row['longitud'] as String?,
             latitud: row['latitud'] as String?,
+            id_gestor: row['id_gestor'] as int?,
             p01CobroPension: row['p01CobroPension'] as int?,
             p02TipoMeses: row['p02TipoMeses'] as int?,
             p03Check: row['p03Check'] as String?,
@@ -509,6 +512,7 @@ class _$FormDataModelDaoRespuestaBACKUP
                   'puntaje': item.puntaje,
                   'longitud': item.longitud,
                   'latitud': item.latitud,
+                  'id_gestor': item.id_gestor,
                   'p01CobroPension': item.p01CobroPension,
                   'p02TipoMeses': item.p02TipoMeses,
                   'p03Check': item.p03Check,
@@ -559,6 +563,7 @@ class _$FormDataModelDaoRespuestaBACKUP
             puntaje: row['puntaje'] as int?,
             longitud: row['longitud'] as String?,
             latitud: row['latitud'] as String?,
+            id_gestor: row['id_gestor'] as int?,
             p01CobroPension: row['p01CobroPension'] as int?,
             p02TipoMeses: row['p02TipoMeses'] as int?,
             p03Check: row['p03Check'] as String?,

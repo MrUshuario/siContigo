@@ -1,23 +1,23 @@
 import 'dart:async';
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
-import 'package:sicontigo/infraestructure/dao/apis/apiprovider_formulario.dart';
-import 'package:sicontigo/infraestructure/dao/database/database.dart';
-import 'package:sicontigo/infraestructure/dao/formdatamodeldao_formulario.dart';
-import 'package:sicontigo/infraestructure/dao/formdatamodeldao_respuesta.dart';
-import 'package:sicontigo/infraestructure/dao/formdatamodeldao_respuestaBACKUP.dart';
-import 'package:sicontigo/model/t_formulario.dart';
-import 'package:sicontigo/model/t_respuesta.dart';
-import 'package:sicontigo/model/utils/bakcupMapper.dart';
-import 'package:sicontigo/model/utils/respuestaMapper.dart';
-import 'package:sicontigo/utils/constantes.dart';
-import 'package:sicontigo/utils/helpersviewAlertMensajeTitutlo.dart';
-import 'package:sicontigo/utils/resources.dart';
+import 'package:sicontigoVisita/infraestructure/dao/apis/apiprovider_formulario.dart';
+import 'package:sicontigoVisita/infraestructure/dao/database/database.dart';
+import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_formulario.dart';
+import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_respuesta.dart';
+import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_respuestaBACKUP.dart';
+import 'package:sicontigoVisita/model/t_formulario.dart';
+import 'package:sicontigoVisita/model/t_respuesta.dart';
+import 'package:sicontigoVisita/model/utils/bakcupMapper.dart';
+import 'package:sicontigoVisita/model/utils/respuestaMapper.dart';
+import 'package:sicontigoVisita/utils/constantes.dart';
+import 'package:sicontigoVisita/utils/helpersviewAlertMensajeTitutlo.dart';
+import 'package:sicontigoVisita/utils/resources.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sicontigo/viewmodels/UI/menu_login.dart';
-import 'package:sicontigo/viewmodels/UI/viewmodels/form_viewsmodel_respuesta.dart';
+import 'package:sicontigoVisita/viewmodels/UI/menu_login.dart';
+import 'package:sicontigoVisita/viewmodels/UI/viewmodels/form_viewsmodel_respuesta.dart';
 
 
 import '../../main.dart';
@@ -164,6 +164,8 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
     }
     widget.listRespuesta = await widget.formDataModelDaoRespuesta.findFormDataModel(offset, 10);
     widget.totalPage = calcularTotalPaginas(widget.total!, 10);
+    print("GEORGE3");
+        
     setState(() {});
   }
 
@@ -187,7 +189,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
           Constants.tituloMenudeOpcionesListado,
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: const Color(0xFFD60000),
+        backgroundColor: Color.fromARGB(255, 27, 65, 187),
         //leading: Icon(Icons.menu),
         actions: [
           IconButton(
@@ -341,6 +343,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
 
                                     //apiprovider_formulario apiForm = apiprovider_formulario();
                                     var iniciFinActividades = await widget._appDatabase.formDataModelDaoRespuesta.findAllRespuesta();
+                                
                                     if (iniciFinActividades.isEmpty) {
                                       ScaffoldMessenger.of(context).showSnackBar(
                                           const SnackBar(
@@ -350,6 +353,9 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                                       var listRespuestaApi = RespuestaMapper.instance.listRespuestaToRespuestaENVIO(iniciFinActividades);
                                       for (var element in listRespuestaApi) {
                                         var response = await widget.apiForm.post_EnviarRspt(element,PREFtoken);
+                                      
+                                         print("atento4333");
+                                         print(listRespuestaApi);
                                         print("response: $response");
 
                                         //BORRA LA SENTENCIA
@@ -527,7 +533,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                                   )),
                               const Icon(
                                 Icons.save,
-                                color: Colors.red,
+                                color: Color.fromARGB(255, 31, 55, 192),
                               )
                             ],
                           ),
@@ -608,7 +614,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30.0)),
-                        color: Color(0xFFD60000),
+                        color: Color.fromARGB(255, 27, 65, 187),
                       ),
                       padding: const EdgeInsets.only(top: 16, bottom: 16),
                       child: const Text("Continuar Formulario incompleto",
@@ -640,7 +646,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                 decoration: ShapeDecoration(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
-                  color: Color(0xFFD60000),
+                  color: Color.fromARGB(255, 27, 65, 187),
                 ),
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
                 child: const Text("Completar formulario",
@@ -717,7 +723,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "DNI: ${widget.listRespuesta![index].id_usuario}",
+                              "DNI GESTOR: ${widget.listRespuesta![index].id_usuario}",
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
                               style: const TextStyle(

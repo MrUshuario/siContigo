@@ -10,10 +10,11 @@ class RespuestaENVIO {
   int? puntaje;
   String? longitud;
   String? latitud;
+  int? id_gestor;
 
   RespuestaENVIO({
     this.idformato, this.id_usuario, this.fecha,
-    this.respuestas, this.puntaje, this.longitud, this.latitud});
+    this.respuestas, this.puntaje, this.longitud, this.latitud, this.id_gestor});
 
   factory RespuestaENVIO.fromJson(dynamic json) {
     return RespuestaENVIO(
@@ -24,6 +25,7 @@ class RespuestaENVIO {
       puntaje: json['puntaje'] as int?,
       longitud: json['longitud'] as String?,
       latitud: json['latitud'] as String?,
+      id_gestor: json['id_gestor'] as int?,
     );
   }
 
@@ -42,7 +44,8 @@ class RespuestaENVIO {
       "respuestas": respuestas,
       "puntaje":puntaje,
       "longitud":longitud,
-      "latitud":latitud
+      "latitud":latitud,
+      "id_gestor": id_gestor
     };
   }
 

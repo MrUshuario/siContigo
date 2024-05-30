@@ -1,4 +1,4 @@
-package gob.pe.sicontigo;
+package pe.gob.contigo.sicontigoVisita;
 
 import io.flutter.embedding.android.FlutterActivity;
 

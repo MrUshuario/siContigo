@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sicontigo/utils/resources.dart';
-import 'package:sicontigo/viewmodels/UI/menu_deOpciones.dart';
+import 'package:sicontigoVisita/utils/resources.dart';
+import 'package:sicontigoVisita/viewmodels/UI/menu_deOpciones.dart';
 
 import '../viewmodels/UI/menu_deOpcionesLISTADO.dart';
 
