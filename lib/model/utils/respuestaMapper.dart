@@ -8,19 +8,14 @@ class RespuestaMapper {
   RespuestaMapper._();
   static RespuestaMapper get instance => RespuestaMapper._();
 
-  int? idformato;
-  int? id_usuario;
-  String? fecha;
-  String? respuestas;
-  String? longitud;
-  String? latitud;
-   int? id_gestor;
+
 
   RespuestaENVIO visitaToVisitaApi(Respuesta rpta) {
     var rptaApi = RespuestaENVIO();
     rptaApi.idformato = rpta.idformato;
     rptaApi.id_usuario = rpta.id_usuario;
     rptaApi.fecha = rpta.fecha;
+    rptaApi.puntaje = rpta.puntaje;
     rptaApi.respuestas = rpta.respuestas;
     rptaApi.longitud = rpta.longitud;
     rptaApi.latitud = rpta.latitud;

@@ -37,6 +37,7 @@ class BackupMapper {
     rptabck.p17Check = rpta.p17Check;
     rptabck.p17CheckEspecificar = rpta.p17CheckEspecificar;
     rptabck.p18Emprendimiento = rpta.p18Emprendimiento;
+    rptabck.id_usuario = rpta.id_usuario;
     return rptabck;
   }
 

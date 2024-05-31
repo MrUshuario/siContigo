@@ -723,7 +723,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "DNI GESTOR: ${widget.listRespuesta![index].id_usuario}",
+                              "DNI GESTOR: ${widget.listRespuesta![index].id_gestor}",
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
                               style: const TextStyle(

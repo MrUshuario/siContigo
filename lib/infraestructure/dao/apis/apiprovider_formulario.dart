@@ -79,7 +79,7 @@ class apiprovider_formulario {
   Future<insertarEncuestaRSPTA> post_EnviarRspt(RespuestaENVIO resp, String token) async {
     try {
       print("iniciando api_get_FormAnswerd...");
-      print(resp);
+      print(resp.toString());
       String url_login = api_get_FormAnswerd;
       Uri uri = Uri.parse(url_login);
       String body = json.encode(resp.toMap());

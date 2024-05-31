@@ -40,6 +40,8 @@ class MenudeOpcionesOffline extends StatefulWidget {
 
   GlobalKey<FormState> keyForm = GlobalKey();
   //SIGUIENTE
+  TextEditingController formIdUsuario = TextEditingController();
+  TextEditingController formNombreUsuario = TextEditingController();
 
   //P03
   TextEditingController formP03EspecificarCtrl = TextEditingController();
@@ -187,6 +189,12 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
     conseguirVersion();
     revisarBackup();
     if(widget.formData != null) {
+
+      if (widget.formData!.id_gestor != null) {
+        setState(() {
+          widget.formIdUsuario!.text = widget.formData!.id_usuario!.toString();
+        });
+      }
 
       if (widget.formData!.p01CobroPension != null) {
         setState(() {
@@ -597,6 +605,12 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
       });
     });
   }
+
+  Future<void> guardadoFase1() async{
+
+    widget.formData?.id_usuario =  int.parse(widget.formIdUsuario!.text);
+  }
+
 
   Future<void> guardadoFase2() async{
     //P01 - P05
@@ -1068,13 +1082,13 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                   //RELLENANDO
                   widget.formData?.idformato = apisResources.api_idFormato;
-                  widget.formData?.id_usuario = int.parse(PREFnroDoc!);
+                  widget.formData?.id_gestor = int.parse(PREFnroDoc!);
                   widget.formData?.fecha = formatDate("dd/MM/yyyy hh:mm:ss", DateTime.now());
                   widget.formData?.respuestas = respuestas;
                   widget.formData?.puntaje =  puntaje;
                   widget.formData?.longitud = GPSlongitude;
                   widget.formData?.latitud = GPSlatitude;
-                    widget.formData?.id_gestor = int.parse(PREFnroDoc!);
+                  widget.formData?.id_usuario = int.parse(widget.formIdUsuario.text);
                   //GPSlatitude
 
                   //FUNCION PARA SINCRONIZAR
@@ -1233,6 +1247,9 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
     widget.formP08EspecificarCtrl!.clear();
     widget.formP09EspecificarCtrl!.clear();
     widget.formP17EspecificarCtrl!.clear();
+    widget.formIdUsuario!.clear();
+    widget.formNombreUsuario!.clear();
+    widget.formP17EspecificarCtrl!.clear();
     widget.formData = Respuesta();//
 
 
@@ -1334,18 +1351,62 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
                 HelpersViewLetrasSubs.formItemsDesign( "Gestor social: ${PREFname} ${PREFapPaterno} ${PREFapMaterno}"),
 
+                //PONER AQUI
+
+
+
+               HelpersViewBlancoIcon.formItemsDesign(
+                    Icons.person,
+                    TextFormField(
+                      controller: widget.formIdUsuario,
+                      decoration: const InputDecoration(
+                        labelText: 'DNI del entrevistado',
+                      ),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      /*
+                      validator: (value) {
+                        return HelpersViewBlancoIcon.validateField(
+                            value!, widget.formIdUsuario);
+                      }, */
+                      maxLength: 8,
+                    ), context),
+
+                HelpersViewBlancoIcon.formItemsDesign(
+                    Icons.person,
+                    TextFormField(
+                      controller: widget.formNombreUsuario,
+                      decoration: const InputDecoration(
+                        labelText: 'Nombre del entrevistado',
+                      ),
+                      /*
+                      validator: (value) {
+                        return HelpersViewBlancoIcon.validateField(
+                            value!, widget.formNombreUsuario);
+                      }, */
+                      maxLength: 30,
+                    ), context),
+
                 GestureDetector(
-                    onTap: ()  {
+                    onTap: ()  async {
+
                       scrollController.animateTo(
                         0.0,
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.easeInOut,
                       );
 
+                      if( widget.formIdUsuario.text != null && widget.formIdUsuario.text != "" ){
+                        await guardadoFase1();
                         setState(() {
                           Fase1 = false;
                           Fase2 = true;
                         });
+                      } else {
+                        showDialogValidFields(Constants.faltanCampos);
+                      }
+
+
                     },
                     child: Container(
                       margin: const EdgeInsets.only(left: 20.0, right: 20.0),

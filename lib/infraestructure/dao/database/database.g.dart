@@ -6,32 +6,21 @@ part of 'database.dart';
 // FloorGenerator
 // **************************************************************************
 
-abstract class $AppDatabaseBuilderContract {
-  /// Adds migrations to the builder.
-  $AppDatabaseBuilderContract addMigrations(List<Migration> migrations);
-
-  /// Adds a database [Callback] to the builder.
-  $AppDatabaseBuilderContract addCallback(Callback callback);
-
-  /// Creates the database and initializes it.
-  Future<AppDatabase> build();
-}
-
 // ignore: avoid_classes_with_only_static_members
 class $FloorAppDatabase {
   /// Creates a database builder for a persistent database.
   /// Once a database is built, you should keep a reference to it and re-use it.
-  static $AppDatabaseBuilderContract databaseBuilder(String name) =>
+  static _$AppDatabaseBuilder databaseBuilder(String name) =>
       _$AppDatabaseBuilder(name);
 
   /// Creates a database builder for an in memory database.
   /// Information stored in an in memory database disappears when the process is killed.
   /// Once a database is built, you should keep a reference to it and re-use it.
-  static $AppDatabaseBuilderContract inMemoryDatabaseBuilder() =>
+  static _$AppDatabaseBuilder inMemoryDatabaseBuilder() =>
       _$AppDatabaseBuilder(null);
 }
 
-class _$AppDatabaseBuilder implements $AppDatabaseBuilderContract {
+class _$AppDatabaseBuilder {
   _$AppDatabaseBuilder(this.name);
 
   final String? name;
@@ -40,19 +29,19 @@ class _$AppDatabaseBuilder implements $AppDatabaseBuilderContract {
 
   Callback? _callback;
 
-  @override
-  $AppDatabaseBuilderContract addMigrations(List<Migration> migrations) {
+  /// Adds migrations to the builder.
+  _$AppDatabaseBuilder addMigrations(List<Migration> migrations) {
     _migrations.addAll(migrations);
     return this;
   }
 
-  @override
-  $AppDatabaseBuilderContract addCallback(Callback callback) {
+  /// Adds a database [Callback] to the builder.
+  _$AppDatabaseBuilder addCallback(Callback callback) {
     _callback = callback;
     return this;
   }
 
-  @override
+  /// Creates the database and initializes it.
   Future<AppDatabase> build() async {
     final path = name != null
         ? await sqfliteDatabaseFactory.getDatabasePath(name!)
@@ -110,7 +99,7 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `RespuestaENVIO` (`idformato` INTEGER PRIMARY KEY AUTOINCREMENT, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUP` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER ,`p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUP` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
 
         await callback?.onCreate?.call(database, version);
       },
