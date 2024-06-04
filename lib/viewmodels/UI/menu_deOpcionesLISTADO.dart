@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
+import 'package:sicontigoVisita/infraestructure/dao/apis/apiprovider_menuOpciones.dart';
 import 'package:sicontigoVisita/infraestructure/dao/apis/apiprovider_formulario.dart';
 import 'package:sicontigoVisita/infraestructure/dao/database/database.dart';
 import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_formulario.dart';
@@ -7,6 +8,7 @@ import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_respuesta.d
 import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_respuestaBACKUP.dart';
 import 'package:sicontigoVisita/model/t_formulario.dart';
 import 'package:sicontigoVisita/model/t_respuesta.dart';
+import 'package:sicontigoVisita/model/t_padron.dart';
 import 'package:sicontigoVisita/model/utils/bakcupMapper.dart';
 import 'package:sicontigoVisita/model/utils/respuestaMapper.dart';
 import 'package:sicontigoVisita/utils/constantes.dart';
@@ -42,6 +44,7 @@ class MenudeOpcionesListado extends StatefulWidget {
   int? totalPage = 0;
   List<Respuesta> listRespuesta = List.empty(growable: true);
 
+  apiprovider_menuOpciones apiVersion = apiprovider_menuOpciones();
   //BACKUP
   bool backup = false;
 
@@ -61,6 +64,12 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
   late String PREFnroDoc;
   late String PREFtypeUser;
   late String PREFtoken;
+
+late final _appDatabase;
+
+  Future<void> initializeDatabase() async {
+    _appDatabase = await GetIt.I.get<AppDatabase>();
+  }
 
   //BACKUP
   List <RespuestaBACKUP> listBackup = List.empty();
@@ -544,6 +553,46 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
         });
   }
 
+
+  void PadronesNoEncontrado() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+              contentPadding: EdgeInsets.all(0),
+              content: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      HelpersViewAlertMensajeTitulo.formItemsDesign(
+                          "Error al descargar Padrones"),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Spacer(),
+                          InkWell(
+                            onTap: () async {
+
+                              Navigator.pop(context);
+
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                  top: 20, right: 20, bottom: 20),
+                              child: const Text(
+                                "Entiendo",
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )));
+        });
+  }
+
+
+
   void htmlAgregado(String htmlcode) {
     showDialog(
         context: context,
@@ -627,6 +676,92 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
               ],),
           ),
 
+  GestureDetector(
+              onTap: () async {
+
+                if(widget.backup){
+                  await widget.formDataModelDaoBackup.BorrarTodo();
+                }
+
+                Widget ContactoRefererencia = MenudeOpcionesOffline(Respuesta()); //CARGO DATA
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
+                );
+              },
+              child: Container(
+                margin: const EdgeInsets.all(10.0),
+                alignment: Alignment.center,
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                  color: Color.fromARGB(255, 27, 65, 187),
+                ),
+                padding: const EdgeInsets.only(top: 16, bottom: 16),
+                child: const Text("Modernización del pago",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500)),
+              )),
+
+
+
+
+
+  GestureDetector(
+              onTap: () async {
+
+                if(widget.backup){
+                  await widget.formDataModelDaoBackup.BorrarTodo();
+                }
+
+                      //DESCARGAR PADRONES
+                      List<Padron> PadronEntity  = List.empty();
+                      PadronEntity;//await apiVersion.post_DescargarUsuarios();
+
+                    if(PadronEntity.length>0){
+                      //BORRAR TODA LA DATA EXISTENTE
+                      await _appDatabase.formDataModelDaoPadron.BorrarTodo();
+                      for (int i = 0; i < PadronEntity.length; i++) {
+                        try { await _appDatabase.formDataModelDaoPadron.insertFormDataModel(PadronEntity[i]);
+                        } catch (error) { print("Error saving TIPO DISCAPACIDAD : $error"); }
+                      }
+                      print("TIPO DISCAPACIDAD");
+                    } else {
+                      print("ALGO SALIO MAL");
+                 //     _mostrarLoadingStreamController.add(true);
+                      PadronesNoEncontrado();
+                    }
+
+
+                Widget ContactoRefererencia = MenudeOpcionesOffline(Respuesta()); //CARGO DATA
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
+                );
+
+              },
+              child: Container(
+                margin: const EdgeInsets.all(10.0),
+                alignment: Alignment.center,
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                  color: Color.fromARGB(255, 27, 65, 187),
+                ),
+                padding: const EdgeInsets.only(top: 16, bottom: 16),
+                child: const Text("Cargar padrón de usuarios",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500)),
+              )),
+
+
+
+
+
           GestureDetector(
               onTap: () async {
 
@@ -649,7 +784,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
                   color: Color.fromARGB(255, 27, 65, 187),
                 ),
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
-                child: const Text("Completar formulario",
+                child: const Text("Formulario de encuesta",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,

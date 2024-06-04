@@ -208,43 +208,7 @@ class _login extends State<login> {
         });
   }
 
-  void PadronesNoEncontrado() {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-              contentPadding: EdgeInsets.all(0),
-              content: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      HelpersViewAlertMensajeTitulo.formItemsDesign(
-                          "Error al descargar Padrones"),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Spacer(),
-                          InkWell(
-                            onTap: () async {
-
-                              Navigator.pop(context);
-
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.only(
-                                  top: 20, right: 20, bottom: 20),
-                              child: const Text(
-                                "Entiendo",
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )));
-        });
-  }
-
+ 
 
   Future<void> initializeDatabase() async {
     _appDatabase = await GetIt.I.get<AppDatabase>();
@@ -423,23 +387,7 @@ class _login extends State<login> {
                 await prefs.setString('nroDoc', resp.nroDoc!);
                 await prefs.setString('typeUser', resp.typeUser!);
 
-                //DESCARGAR PADRONES
-                List<Padron> PadronEntity  = List.empty();
-                PadronEntity = await apiVersion.post_DescargarUsuarios();
-
-                    if(PadronEntity.length>0){
-                      //BORRAR TODA LA DATA EXISTENTE
-                      await _appDatabase.formDataModelDaoPadron.BorrarTodo();
-                      for (int i = 0; i < PadronEntity.length; i++) {
-                        try { await _appDatabase.formDataModelDaoPadron.insertFormDataModel(PadronEntity[i]);
-                        } catch (error) { print("Error saving TIPO DISCAPACIDAD : $error"); }
-                      }
-                      print("TIPO DISCAPACIDAD");
-                    } else {
-                      print("ALGO SALIO MAL");
-                      _mostrarLoadingStreamController.add(true);
-                      PadronesNoEncontrado();
-                    }
+           
 
                 Navigator.push(
                   context,

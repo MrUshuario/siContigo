@@ -16,8 +16,6 @@ class apiprovider_menuOpciones {
   final api_post_padron = apisResources.REST_SICONTIGO_PADRON;
 
 
-
-
   Future<ReponseInicioFinActividades> post_LoginUsuarios(String nrDoc, String password) async {
     try {
       print("iniciando post_LoginUsuarios...");
