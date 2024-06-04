@@ -12,6 +12,19 @@ CONTRASEÑA: contigoperu
 
 ////NUEVA LLAVE
 
-keytool -genkey -v -keystore C:\Users\Edgar\Downloads\keystore.jks  -storetype JKS -keyalg RSA -keysize 2048 -validity 10000  -alias gobsicontigo
+keytool -genkey -v -keystore C:\Users\Edgar\Downloads\keystoreDOS.jks  -storetype JKS -keyalg RSA -keysize 2048 -validity 10000  -alias gobsicontigo
 
-CONTRASEÑA: gobcontigoperu
+CONTRASEÑA: perusi
+
+https://youtu.be/AN6bExi_mco
+
+
+Visita Domiciliaria a los usuarios del programa contigo
+
+
+Visita Domiciliaria, puede gestionar y programar sus visitas domiciliarias remotamente. Esta aplicación le ofrece:
+
+Programación flexible: Elija el horario que mejor se adapte a su rutina y programe sus visitas con facilidad.
+Comunicación directa: Manténgase conectado con el gestor territorial social a través de la aplicación y reciba actualizaciones sobre sus citas y el programa Contigo.
+Información al alcance de su mano: Acceda a su historial de visitas, notas de seguimiento y recursos útiles en cualquier momento.
+Un enfoque personalizado: El Gestor social podrá planificar las visitas en función de sus necesidades específicas y brindarle un apoyo más efectivo.
