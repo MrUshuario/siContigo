@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sicontigoVisita/utils/resources.dart';
 
-class HelpersViewAlertMensajeTitulo {
+class HelpersViewAlertMensajeFOTO {
 
-  static Widget formItemsDesign(String text) {
+  static Widget formItemsDesign(String text, String textoI) {
     return Column(
       children: [
         // Align:
@@ -16,7 +16,7 @@ class HelpersViewAlertMensajeTitulo {
                 Image.asset(Resources.iconInfo),
                 Expanded(
                   child: Text(
-                    text,
+                    textoI,
                     style: const TextStyle(fontSize: 20),
                   ),
                 ),
@@ -24,6 +24,23 @@ class HelpersViewAlertMensajeTitulo {
             ),
           ),
         ),
+
+        // Separators (optional):
+        const SizedBox(height: 10),
+
+        // Second text:
+        Container(
+          padding: const EdgeInsets.all(20),
+          child:  Text(
+            text,
+            style: const TextStyle(fontSize: 16),
+          ),
+        ),
+
+        // Separators (optional):
+        const SizedBox(height: 10),
+
+
       ],
     );
   }

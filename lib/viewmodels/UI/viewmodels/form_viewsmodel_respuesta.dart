@@ -1,23 +1,23 @@
 import 'dart:async';
 
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
-import 'package:sicontigoVisita/model/t_formulario.dart';
+import 'package:sicontigoVisita/model/t_respuesta.dart';
 
-import '../../../infraestructure/repository/formdatarepository_formulario.dart';
+import '../../../infraestructure/repository/formdatarepository_respuesta.dart';
 import '../../../model/t_visita.dart';
 
-class FormDataModelViewModel with PaginationViewModel<Formulario> {
+class FormDataModelViewModel with PaginationViewModel<Respuesta> {
 
   final repository = FormDataRepository();
 
   @override
-  Function(Formulario  a, Formulario  b) compare = ((a, b) => a.cod.toString().compareTo(b.cod.toString()));
+  Function(Respuesta  a, Respuesta  b) compare = ((a, b) => a.cod.toString().compareTo(b.cod.toString()));
 
   @override
   bool  sortItems = false;
 
   @override
-  bool areItemsTheSame(Formulario a, Formulario b) {
+  bool areItemsTheSame(Respuesta a, Respuesta b) {
     // TODO: implement areItemsTheSame
     return a.cod == b.cod;
   }
@@ -30,6 +30,6 @@ class FormDataModelViewModel with PaginationViewModel<Formulario> {
   }
 
   @override
-  Stream<PaginationState<List<Formulario>>> streamSubscription() => repository.result;
+  Stream<PaginationState<List<Respuesta>>> streamSubscription() => repository.result;
 
 }

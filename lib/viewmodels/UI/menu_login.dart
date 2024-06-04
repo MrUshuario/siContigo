@@ -1,15 +1,16 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:sicontigo/infraestructure/dao/apis/apiprovider_menuOpciones.dart';
-import 'package:sicontigo/infraestructure/dao/database/database.dart';
-import 'package:sicontigo/model/responseinciofinactividad.dart';
-import 'package:sicontigo/model/t_respuesta.dart';
-import 'package:sicontigo/utils/constantes.dart';
-import 'package:sicontigo/utils/helpersviewAlertMensajeTitutlo.dart';
-import 'package:sicontigo/utils/helpersviewBlancoTexto.dart';
-import 'package:sicontigo/utils/resources.dart';
-import 'package:sicontigo/viewmodels/UI/menu_deOpciones.dart';
+import 'package:sicontigoVisita/infraestructure/dao/apis/apiprovider_menuOpciones.dart';
+import 'package:sicontigoVisita/infraestructure/dao/database/database.dart';
+import 'package:sicontigoVisita/model/responseinciofinactividad.dart';
+import 'package:sicontigoVisita/model/t_padron.dart';
+import 'package:sicontigoVisita/model/t_respuesta.dart';
+import 'package:sicontigoVisita/utils/constantes.dart';
+import 'package:sicontigoVisita/utils/helpersviewAlertMensajeTitutlo.dart';
+import 'package:sicontigoVisita/utils/helpersviewBlancoTexto.dart';
+import 'package:sicontigoVisita/utils/resources.dart';
+import 'package:sicontigoVisita/viewmodels/UI/menu_deOpciones.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +19,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:device_imei/device_imei.dart';
-import 'package:sicontigo/viewmodels/UI/menu_deOpcionesOFFLINE.dart';
+import 'package:sicontigoVisita/viewmodels/UI/menu_deOpcionesOFFLINE.dart';
+
+import '../../utils/helpersviewAlertProgressCircle.dart';
+import '../../utils/helpersviewAlertProgressCircleLOGIN.dart';
+import '../../utils/helpersviewLetrasRojas.dart';
+import 'menu_deOpcionesLISTADO.dart';
 
 
 class login extends StatefulWidget {
@@ -28,12 +34,44 @@ class login extends StatefulWidget {
   TextEditingController formUsuarioCtrl = TextEditingController();
   TextEditingController formClaveCtrl = TextEditingController();
 
+
+  bool _isPasswordVisible = true;
+
   static Route<dynamic> route() =>
       MaterialPageRoute(builder: (context) => login());
 
   @override
   State<StatefulWidget> createState() => _login();
 }
+
+
+class PasswordVisibilityToggle extends StatefulWidget {
+  const PasswordVisibilityToggle({
+    Key? key,
+    required this.isPasswordVisible,
+    required this.onToggle,
+  }) : super(key: key);
+  final bool isPasswordVisible;
+  final VoidCallback onToggle;
+  @override
+  State<PasswordVisibilityToggle> createState() => _PasswordVisibilityToggleState();
+}
+
+class _PasswordVisibilityToggleState extends State<PasswordVisibilityToggle> {
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        widget.isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+      ),
+      onPressed: () {
+        widget.onToggle();
+      },
+    );
+  }
+}
+
+
 
 class _login extends State<login> {
   var _androidId = 'Unknown';
@@ -76,9 +114,10 @@ class _login extends State<login> {
         appBar: AppBar(
           title: const Text(Constants.tituloMenuLogin, style: TextStyle(color: Colors.white),
           ),
-          backgroundColor: Color(0xFFD60000),
+          backgroundColor: Color.fromRGBO(23, 50, 172, 1),
           //leading: Icon(Icons.menu),
-          actions: [
+          actions: const [
+            /*
             IconButton(
               icon: Image.asset(Resources.iconInfo),
               color: Colors.white,
@@ -99,7 +138,7 @@ class _login extends State<login> {
               onPressed: () {
 
                 },
-            ),
+            ), */
           ],
         ),
         //drawer: const MenuLateral(),
@@ -117,7 +156,7 @@ class _login extends State<login> {
         ),
         bottomNavigationBar: Container(
           height: 50, // Altura de la barra
-          color: Color(0xFFD60000),
+          color: Color.fromRGBO(23, 50, 172, 1),
           child: Center(
             child: Text(
               '',
@@ -150,7 +189,7 @@ class _login extends State<login> {
                           InkWell(
                             onTap: () async {
 
-                                Navigator.pop(context);
+                              Navigator.pop(context);
 
                             },
                             child: Container(
@@ -169,6 +208,7 @@ class _login extends State<login> {
         });
   }
 
+ 
 
   Future<void> initializeDatabase() async {
     _appDatabase = await GetIt.I.get<AppDatabase>();
@@ -191,8 +231,45 @@ class _login extends State<login> {
       UTCONCAT = "DESCONOCIDO";
     });
 
-    //AlertCargando("Esta aplicación recoge datos de ubicación para habilitar las funciones de captura de Coordenadas de la Actividad que sincronizara. Esta captura se actualizara en cuanto Presione el boton del Sátelite en la esquina superior");
 
+  }
+
+  final _mostrarLoadingStreamController = StreamController<bool>.broadcast();
+  void CargaDialog() {
+    bool mostrarLOADING = false;
+    String texto1 = "Sincronizacion fallida";
+    String texto2 = "Vuelva a intentar";
+    showDialog(
+      barrierDismissible: mostrarLOADING,
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+
+            _mostrarLoadingStreamController.stream.listen((value) {
+              setState(() {
+                mostrarLOADING = value;
+              });
+            });
+
+            return AlertDialog(
+              contentPadding: EdgeInsets.all(0),
+              content: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    HelpersViewAlertProgressCircleLOGIN(
+                      mostrar: mostrarLOADING,
+                      texto1: texto1,
+                      texto2: texto2,
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 
 
@@ -235,33 +312,64 @@ class _login extends State<login> {
             alignment: Alignment.topCenter,
             child: Container(
               //margin: EdgeInsets.only(bottom: 20),
-              child: Image.asset( Resources.tayta,
+              child: Image.asset( Resources.siContigo,
                 width: 250,
                 height: 100,),
             )),
 
+
+        HelpersViewLetrasRojas.formItemsDesign2( "Visita Domiciliaria"),
+
+
         HelpersViewBlancoTexto.formItemsDesign(
-          "N#Documento",
-          TextFormField(
-            controller: widget.formUsuarioCtrl,
-            //readOnly: true,
-            //inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            maxLength: 20,
+          "Usuario:", // Empty title (optional)
+          Center(
+            child: TextFormField(
+              controller: widget.formUsuarioCtrl,
+              //readOnly: true, // Optional: Set to true if the field is read-only
+              //inputFormatters: [FilteringTextInputFormatter.digitsOnly], // Optional: Restrict input to digits
+              maxLength: 20,
+              decoration: InputDecoration(
+                hintText: "Usuario", // Hint text for empty field
+                counterText: "", // Hides character counter (optional)
+              ),
+            ),
           ),
         ),
 
-        HelpersViewBlancoTexto.formItemsDesign(
-          "Clave",
-          TextFormField(
-            controller: widget.formClaveCtrl,
-            //readOnly: true,
-            //inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            maxLength: 20,
+        Card(
+          elevation: 0,
+          shape: const RoundedRectangleBorder(
+            side: BorderSide(color: Color.fromARGB(255, 45, 55, 207)), // Red border
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0), // Optional padding
+            child: Center( // Center the text field content
+              child: TextFormField(
+                controller: widget.formClaveCtrl,
+                obscureText: widget._isPasswordVisible,
+                maxLength: 20,
+                decoration: InputDecoration(
+                  hintText: "Ingrese su contraseña",
+                  counterText: "",
+                  suffixIcon: PasswordVisibilityToggle(
+                    isPasswordVisible: widget._isPasswordVisible,
+                    onToggle: () {
+                      setState(() {
+                        widget._isPasswordVisible = !widget._isPasswordVisible;
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
 
         GestureDetector(
             onTap: () async {
+              CargaDialog();
 
               String usuario = widget.formUsuarioCtrl.text!;
               String contra = widget.formClaveCtrl.text!;
@@ -274,20 +382,21 @@ class _login extends State<login> {
 
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 await prefs.setString('name', resp.name!);
-                await prefs.setString('apPaterno', resp.name!);
-                await prefs.setString('apMaterno', resp.name!);
+                await prefs.setString('apPaterno', resp.apPaterno!);
+                await prefs.setString('apMaterno', resp.apMaterno!);
                 await prefs.setString('nroDoc', resp.nroDoc!);
                 await prefs.setString('typeUser', resp.typeUser!);
 
-                Widget ContactoRefererencia = MenudeOpcionesOffline(Respuesta());
+           
+
                 Navigator.push(
                   context,
-                  //MaterialPageRoute(builder: (context) =>  MenudeOpciones()),
-                  MaterialPageRoute(builder: (context) =>  ContactoRefererencia),
+                    MaterialPageRoute(builder: (context) =>  MenudeOpcionesListado()),
                 );
 
               }else {
                 //NO ENCONTRO
+                _mostrarLoadingStreamController.add(true);
                 UsuarioNoEncontrado();
               }
 
@@ -298,7 +407,7 @@ class _login extends State<login> {
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0)),
-                color: Color(0xFFD60000),
+                color: Color.fromARGB(255, 27, 65, 187),
               ),
               padding: const EdgeInsets.only(top: 16, bottom: 16),
               child: const Text("Ingresar",
@@ -307,8 +416,8 @@ class _login extends State<login> {
                       fontSize: 18,
                       fontWeight: FontWeight.w500)),
             ))
-
 /*
+        ,
         GestureDetector(
             onTap: () async {
 
@@ -316,7 +425,8 @@ class _login extends State<login> {
               Navigator.push(
                 context,
                 //MaterialPageRoute(builder: (context) =>  MenudeOpciones()),
-                MaterialPageRoute(builder: (context) =>  ContactoRefererencia),
+                //MaterialPageRoute(builder: (context) =>  ContactoRefererencia),
+                MaterialPageRoute(builder: (context) =>  MenudeOpcionesListado()),
               );
 
             },
@@ -335,8 +445,8 @@ class _login extends State<login> {
                       fontSize: 18,
                       fontWeight: FontWeight.w500)),
             ))
-
 */
+
       ],
     );
   }
@@ -362,4 +472,3 @@ class _login extends State<login> {
     );
   }
 }
-

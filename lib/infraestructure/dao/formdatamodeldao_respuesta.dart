@@ -1,4 +1,4 @@
-import 'package:sicontigo/model/t_respuesta.dart';
+import 'package:sicontigoVisita/model/t_respuesta.dart';
 import 'package:floor/floor.dart';
 
 @dao
@@ -21,7 +21,7 @@ abstract class FormDataModelDaoRespuesta {
   @Query('DELETE FROM Respuesta WHERE cod = :cod')
   Future<int?> BorrarFormDataModels(int cod);
 
-  @Query('DELETE FROM Formulario')
+  @Query('DELETE FROM Respuesta')
   Future<int?> BorrarTodo();
 
 }

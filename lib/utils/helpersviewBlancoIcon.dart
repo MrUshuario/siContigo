@@ -22,6 +22,24 @@ class HelpersViewBlancoIcon {
     );
   }
 
+  static Widget formItemsDesignDNI(item, context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.35,
+      padding: const EdgeInsets.symmetric(vertical: 7),
+      child: Card(
+          elevation: 0,
+          shape: const RoundedRectangleBorder(
+            side: BorderSide(
+              color: Colors.red,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+          ),
+          child: ListTile(
+              title: item
+          )),
+    );
+  }
+
   static String? validateField(String value, List<String> paramsValidate) {
     RegExp regExp = RegExp(paramsValidate[0]);
     if (value.isEmpty) {
