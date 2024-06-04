@@ -1,4 +1,4 @@
-import 'package:sicontigoVisita/model/t_html.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_html.dart';
 import 'package:floor/floor.dart';
 
 @dao

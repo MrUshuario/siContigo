@@ -1,7 +1,7 @@
 
 
 import 'package:floor/floor.dart';
-import 'package:sicontigoVisita/model/t_padron.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_padron.dart';
 
 @dao
 abstract class FormDataModelDaoPadron {

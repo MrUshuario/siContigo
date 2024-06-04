@@ -1,4 +1,4 @@
-import 'package:sicontigoVisita/model/t_respuesta.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuesta.dart';
 import 'package:floor/floor.dart';
 
 @dao

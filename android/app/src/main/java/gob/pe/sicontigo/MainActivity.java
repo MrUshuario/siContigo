@@ -1,4 +1,4 @@
-package pe.gob.contigo.sicontigoVisita;
+package pe.gob.contigo.Sicontigo_Visita_Domiciliaria;
 
 import io.flutter.embedding.android.FlutterActivity;
 

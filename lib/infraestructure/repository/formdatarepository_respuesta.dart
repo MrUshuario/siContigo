@@ -3,8 +3,8 @@ import 'dart:async';
 
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_respuesta.dart';
-import 'package:sicontigoVisita/model/t_respuesta.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_respuesta.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuesta.dart';
 import '../dao/database/database.dart';
 
 

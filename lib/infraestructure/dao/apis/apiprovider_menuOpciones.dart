@@ -1,10 +1,10 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sicontigoVisita/model/responseinciofinactividad.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/responseinciofinactividad.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
-import 'package:sicontigoVisita/model/t_padron.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_padron.dart';
 import 'dart:convert';
-import 'package:sicontigoVisita/utils/resources_apis.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/utils/resources_apis.dart';
 
 class apiprovider_menuOpciones {
 

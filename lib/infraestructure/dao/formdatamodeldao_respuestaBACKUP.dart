@@ -1,6 +1,6 @@
 
 import 'package:floor/floor.dart';
-import 'package:sicontigoVisita/model/t_respBackup.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respBackup.dart';
 
 @dao
 abstract class FormDataModelDaoRespuestaBACKUP {

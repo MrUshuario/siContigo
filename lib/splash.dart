@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sicontigoVisita/utils/resources.dart';
-import 'package:sicontigoVisita/viewmodels/UI/menu_login.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/utils/resources.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_login.dart';
 import 'infraestructure/dao/database/database.dart';
 
 class SplashPage extends StatefulWidget {

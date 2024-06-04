@@ -1,16 +1,16 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:sicontigoVisita/infraestructure/dao/apis/apiprovider_menuOpciones.dart';
-import 'package:sicontigoVisita/infraestructure/dao/database/database.dart';
-import 'package:sicontigoVisita/model/responseinciofinactividad.dart';
-import 'package:sicontigoVisita/model/t_padron.dart';
-import 'package:sicontigoVisita/model/t_respuesta.dart';
-import 'package:sicontigoVisita/utils/constantes.dart';
-import 'package:sicontigoVisita/utils/helpersviewAlertMensajeTitutlo.dart';
-import 'package:sicontigoVisita/utils/helpersviewBlancoTexto.dart';
-import 'package:sicontigoVisita/utils/resources.dart';
-import 'package:sicontigoVisita/viewmodels/UI/menu_deOpciones.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/apis/apiprovider_menuOpciones.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/database/database.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/responseinciofinactividad.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_padron.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuesta.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/utils/constantes.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewAlertMensajeTitutlo.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewBlancoTexto.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/utils/resources.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_deOpciones.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +19,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:device_imei/device_imei.dart';
-import 'package:sicontigoVisita/viewmodels/UI/menu_deOpcionesOFFLINE.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_deOpcionesOFFLINE.dart';
 
 import '../../utils/helpersviewAlertProgressCircle.dart';
 import '../../utils/helpersviewAlertProgressCircleLOGIN.dart';

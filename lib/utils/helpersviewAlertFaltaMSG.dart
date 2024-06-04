@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sicontigoVisita/utils/resources.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/utils/resources.dart';
 
 class HelpersViewAlertMensajeFaltaMSG {
 

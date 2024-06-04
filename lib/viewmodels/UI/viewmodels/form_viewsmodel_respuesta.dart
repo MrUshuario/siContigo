@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
-import 'package:sicontigoVisita/model/t_respuesta.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuesta.dart';
 
 import '../../../infraestructure/repository/formdatarepository_respuesta.dart';
 import '../../../model/t_visita.dart';
