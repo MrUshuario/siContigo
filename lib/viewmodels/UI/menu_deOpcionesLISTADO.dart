@@ -690,6 +690,192 @@ late final _appDatabase;
     );
   }
 
+  //MODAL
+  void GuardarPadronDialog(){
+    String MensajeSinc = "Descargando Padrones";
+    String MensajeSubSinc = "El proceso borraria los padrones existentes anteriores, tambien tardara algunos minutos";
+    bool mostrar = false;
+    bool mostrarBoton = true;
+
+    double progresso = 0.0;
+    int progressoInicio = 0;
+    int? progressoFin = 100;
+    double sumando = 1;
+
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context){
+          //AGREGAR ESTO POR SI QUIERO QUE EL DIALOG SE REFRESQUE
+          return StatefulBuilder(
+              builder: (context, setState)
+              {
+                return AlertDialog(
+                    contentPadding: EdgeInsets.all(0),
+                    content: SingleChildScrollView(
+                        child: Column(
+                          children: [
+
+                            //BARRA DE PROGRESO CON SU TITULO
+                            HelpersViewAlertProgressSinc(
+                                Mensaje: MensajeSinc,
+                                subtexto: MensajeSubSinc,
+                                progress: progresso,
+                                mostrar: mostrar,
+                                mostrarBoton: true,
+                                contadorInicio: progressoInicio,
+                                contadorFin: progressoFin
+                            ),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+
+                                Spacer(), // Push remaining space to the left
+
+                                Visibility(
+                                  visible: (!mostrarBoton),
+                                  child: const Column(
+                                    children: <Widget>[
+                                      Text(
+                                        ".",
+                                        style: TextStyle(fontSize: 10),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+
+                                Visibility(
+                                  visible: (mostrarBoton),
+                                  child: Column(
+                                      children: <Widget>[
+
+
+                                        InkWell(
+                                          onTap: () async {
+
+                                            //INICIALIZA CARGA
+                                            setState(() {
+                                              mostrar = true;
+                                              MensajeSinc = "Conectando con la BD sea paciente, tardara unos minutos";
+                                              mostrarBoton = false;
+                                              MensajeSubSinc = "$progressoInicio/$progressoFin";
+                                            });
+
+                                            List<Padron> PadronEntity  = await widget.apiVersion.post_DescargarUsuarios();
+
+                                            ////
+                                            /*
+                                            if(PadronEntity.length>0){
+                                              //BORRAR TODA LA DATA EXISTENTE
+                                              await widget.formDataModelDaoPadron.BorrarTodo();
+                                              for (int i = 0; i < PadronEntity.length; i++) {
+                                                try { await widget.formDataModelDaoPadron.insertFormDataModel(PadronEntity[i]);
+                                                } catch (error) { print("Error saving TIPO DISCAPACIDAD : $error");
+                                                _mostrarLoadingStreamController.add(true);
+                                                }
+                                              }
+
+
+                                              String texto = "Total de Padrones: ${PadronEntity.length}";
+
+                                              setState(() {
+                                                widget.totalPadrones = PadronEntity.length;
+                                              });
+
+                                              _mostrarLoadingStreamController.add(true);
+                                              _mostrarLoadingStreamControllerTEXTO.add(texto);
+
+                                            } else {
+                                              print("ALGO SALIO MAL");
+                                              _mostrarLoadingStreamController.add(true);
+                                            } */
+
+                                            ////
+
+                                            if(PadronEntity.length>0){
+                                              setState(() {
+                                                widget.total = PadronEntity.length;
+                                                MensajeSinc = "Borrando Padrones anteriores";
+                                                progressoFin = PadronEntity.length; //TOTAL PADRONES
+                                                sumando = (100/PadronEntity.length!)/100;
+                                              });
+                                              //BORRAR TODA LA DATA EXISTENTE
+                                              await widget.formDataModelDaoPadron.BorrarTodo();
+                                              setState(() {
+                                                MensajeSinc = "Descargando Padron";
+                                              });
+
+                                              for (int i = 0; i < PadronEntity.length; i++) {
+                                                try {
+                                                  await widget.formDataModelDaoPadron.insertFormDataModel(PadronEntity[i]);
+                                                  print("AGREGADO PADRON ${i}");
+                                                  //AUMENTAR LA BARRA
+                                                  //AUMENTA
+                                                  setState(() {
+                                                    //mostrar = true;
+                                                    //progresso = 0.0;
+                                                    progresso += (sumando);
+                                                    progressoInicio++;
+                                                    MensajeSubSinc = "$progressoInicio/$progressoFin";
+                                                  });
+
+                                                }
+                                                catch (error) { print("Error saving ONDICION CANTIADAD: $error"); }
+                                              }
+                                              //TERMINO
+                                              loadTotalRegister();
+                                              Navigator.pop(
+                                                  context); //Close your current dialog
+                                              showDialogValidFields(
+                                                  "Sincronización exitosa");
+
+                                            } else { print("ALGO SALIO MAL");
+                                            Navigator.pop(
+                                                context);
+                                            showDialogValidFields(
+                                                "No se encontraron Padrones");
+                                            }
+
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.only(
+                                                top: 20, right: 20, bottom: 20),
+                                            child: const Text(
+                                              "Descargar",
+                                              style: const TextStyle(fontSize: 16),
+                                            ),
+                                          ),
+                                        ),
+
+                                        InkWell(
+                                          onTap: () {
+
+                                            Navigator.of(context).pop();
+
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.only(
+                                                top: 20, right: 20, bottom: 20),
+                                            child: const Text(
+                                              "Cancelar",
+                                              style: const TextStyle(fontSize: 16),
+                                            ),
+                                          ),
+                                        ),
+
+
+                                      ]),),
+
+
+                              ],
+                            ),
+                          ],
+                        )
+                    ));});});
+  }
+
   Widget formUI() {
 
     return Container(
@@ -798,38 +984,9 @@ late final _appDatabase;
           GestureDetector(
               onTap: () async {
 
-                CargaDialog();
-
-                //DESCARGAR PADRONES
-                List<Padron> PadronEntity  = List.empty();
-                PadronEntity = await widget.apiVersion.post_DescargarUsuarios();
-
-                if(PadronEntity.length>0){
-                  //BORRAR TODA LA DATA EXISTENTE
-                  await widget.formDataModelDaoPadron.BorrarTodo();
-                  for (int i = 0; i < PadronEntity.length; i++) {
-                    try { await widget.formDataModelDaoPadron.insertFormDataModel(PadronEntity[i]);
-                    } catch (error) { print("Error saving TIPO DISCAPACIDAD : $error");
-                    _mostrarLoadingStreamController.add(true);
-                    }
-                  }
-
-
-                  String texto = "Total de Padrones: ${PadronEntity.length}";
-
-                  setState(() {
-                    widget.totalPadrones = PadronEntity.length;
-                  });
-
-                  _mostrarLoadingStreamController.add(true);
-                  _mostrarLoadingStreamControllerTEXTO.add(texto);
-
-                } else {
-                  print("ALGO SALIO MAL");
-                  _mostrarLoadingStreamController.add(true);
-                }
-
-
+                //CargaDialog();
+                GuardarPadronDialog();
+                
               },
               child: Container(
                 margin: const EdgeInsets.all(10.0),
