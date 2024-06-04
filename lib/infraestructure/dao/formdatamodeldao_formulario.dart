@@ -1,4 +1,4 @@
-import 'package:sicontigo/model/t_formulario.dart';
+import 'package:sicontigoVisita/model/t_formulario.dart';
 
 import 'package:floor/floor.dart';
 

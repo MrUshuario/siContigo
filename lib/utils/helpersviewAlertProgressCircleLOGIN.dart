@@ -4,15 +4,17 @@ import 'package:sicontigoVisita/viewmodels/UI/menu_deOpciones.dart';
 
 import '../viewmodels/UI/menu_deOpcionesLISTADO.dart';
 
-class HelpersViewAlertProgressCircle extends StatelessWidget {
+class HelpersViewAlertProgressCircleLOGIN extends StatelessWidget {
 
-    const HelpersViewAlertProgressCircle({super.key,
+    const HelpersViewAlertProgressCircleLOGIN({super.key,
       required this.mostrar,
-      required this.puntaje,
+      required this.texto1,
+      required this.texto2,
     });
 
     final bool mostrar;
-    final int puntaje;
+    final String texto1;
+    final String texto2;
 
     final double width = 100.0;
     final double height = 100.0;
@@ -66,7 +68,7 @@ class HelpersViewAlertProgressCircle extends StatelessWidget {
                         Image.asset(Resources.iconInfo),
                         Expanded(
                           child: Text(
-                            "Guardado Completado",
+                            texto1,
                             style: const TextStyle(fontSize: 20),
                           ),
                         ),
@@ -82,9 +84,8 @@ class HelpersViewAlertProgressCircle extends StatelessWidget {
                     child: Row(
                       children: [
                         Expanded(
-                            child: Text ("Se guardaron las respuestas\nPuntaje: $puntaje", style: const TextStyle(fontSize: 16),)
+                            child: Text (texto2)
                         ),
-                        const Icon(Icons.save, color: Colors.red,)
                       ],
                     ),
                   ),

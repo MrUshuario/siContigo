@@ -3,18 +3,20 @@ import 'dart:async';
 
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_formulario.dart';
-import '../../model/t_formulario.dart';
+import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_respuesta.dart';
+import 'package:sicontigoVisita/model/t_respuesta.dart';
 import '../dao/database/database.dart';
-import '../dao/formdatamodeldao_visita.dart';
+
 
 class FormDataRepository {
 
-  final _controller = StreamController<PaginationState<List<Formulario>>>();
-  final _appDatabase = GetIt.I.get<AppDatabase>();
-  FormDataModelDaoFormulario get formDataModelDaoForm => _appDatabase.formDataModelDaoFormulario;
+    //StreamController<PaginationState<List<Respuesta>>> _controller23 = StreamController<PaginationState<List<Respuesta>>>.broadcast();
 
-  Stream<PaginationState<List<Formulario>>> get result async* {
+  final _controller = StreamController<PaginationState<List<Respuesta>>>();
+  final _appDatabase = GetIt.I.get<AppDatabase>();
+  FormDataModelDaoRespuesta get formDataModelDaoForm => _appDatabase.formDataModelDaoRespuesta;
+
+  Stream<PaginationState<List<Respuesta>>> get result async* {
     yield* _controller.stream;
   }
 
@@ -23,7 +25,7 @@ class FormDataRepository {
 
     try {
       final offset = (10 * page) - 10;
-      List<Formulario> responses = await formDataModelDaoForm.findFormDataModel(offset, 10);
+      List<Respuesta> responses = await formDataModelDaoForm.findFormDataModel(offset, 10);
       int? total = await formDataModelDaoForm.totalFormDataModels();
       /// emit fetched data
       _controller.add(PaginationSuccess(responses));
@@ -32,7 +34,11 @@ class FormDataRepository {
       /// emit error
       _controller.add(const PaginationError());
       return 0;
+    } finally{
+       print("DISPO");
+        _controller.close();
     }
+
   }
 
 }

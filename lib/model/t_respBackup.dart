@@ -1,7 +1,7 @@
 import 'package:floor/floor.dart';
 
 @entity
-class Respuesta {
+class RespuestaBACKUP {
   @PrimaryKey(autoGenerate: true)
   int? cod;
   int? idformato;
@@ -12,7 +12,6 @@ class Respuesta {
   String? longitud;
   String? latitud;
   int? id_gestor;
-  
   //ESTO SOLO ES PARA MODIFICAR Y DEMAS
   int? p01CobroPension;
   int? p02TipoMeses;
@@ -43,9 +42,9 @@ class Respuesta {
   int? p18Emprendimiento;
 
 
-  Respuesta({
+  RespuestaBACKUP({
     this.cod, this.idformato, this.id_usuario, this.fecha,
-    this.respuestas, this.puntaje, this.longitud, this.latitud, this.id_gestor,
+    this.respuestas, this.puntaje, this.longitud, this.latitud,this.id_gestor,
     this.p01CobroPension, this.p02TipoMeses, this.p03Check, this.p03CheckEspecificar, this.p04Check, this.p05pension,
     this.p06Establecimiento, this.p06EstablecimientoESPECIFICAR, this.p07Atendio, this.p08Check, this.p08CheckEspecificar, this.p09Check, this.p09CheckEspecificar,
     this.p10Frecuencia, this.p11Vive, this.p12Familia, this.p12FamiliaB, this.p13Ayudas, this.p13AyudasB,
@@ -53,8 +52,8 @@ class Respuesta {
     this.p18Emprendimiento
   });
 
-  factory Respuesta.fromJson(dynamic json) {
-    return Respuesta(
+  factory RespuestaBACKUP.fromJson(dynamic json) {
+    return RespuestaBACKUP(
       cod: json['cod'] as int?,
       idformato: json['idformato'] as int?,
       id_usuario: json['id_usuario'] as int?,
@@ -64,7 +63,6 @@ class Respuesta {
       longitud: json['longitud'] as String?,
       latitud: json['latitud'] as String?,
       id_gestor: json['id_gestor'] as int?,
-      
       p01CobroPension: json['p01CobroPension'] as int?,
       p02TipoMeses: json['p02TipoMeses'] as int?,
       p03Check: json['p03Check'] as String?,
@@ -95,10 +93,10 @@ class Respuesta {
     );
   }
 
-  static List<Respuesta> listFromJson(dynamic json) {
+  static List<RespuestaBACKUP> listFromJson(dynamic json) {
     var bienvenidaList = json as List;
-    List<Respuesta> items =
-    bienvenidaList.map((e) => Respuesta.fromJson(e)).toList();
+    List<RespuestaBACKUP> items =
+    bienvenidaList.map((e) => RespuestaBACKUP.fromJson(e)).toList();
     return items ?? [];
   }
 
