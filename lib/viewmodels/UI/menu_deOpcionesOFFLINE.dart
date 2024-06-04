@@ -1580,7 +1580,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       },
                     ),
                     const Text(
-                      'De 3 meses a más',
+                      'De 3 meses\na más',
                       style: TextStyle(
                         fontSize: 14.0,
                       ),
@@ -1622,6 +1622,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                     children: <Widget>[
                       HelpersViewLetrasSubs.formItemsDesign( "Normalmente, de los 300 soles de la pensión que recibe ¿Cómo gasta el dinero? *"),
                       HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
+
                   Row(
                     children: [
                       const Expanded(

@@ -327,8 +327,8 @@ class _login extends State<login> {
             child: TextFormField(
               controller: widget.formUsuarioCtrl,
               //readOnly: true, // Optional: Set to true if the field is read-only
-              //inputFormatters: [FilteringTextInputFormatter.digitsOnly], // Optional: Restrict input to digits
-              maxLength: 20,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly], // Optional: Restrict input to digits
+              maxLength: 8,
               decoration: InputDecoration(
                 hintText: "Usuario", // Hint text for empty field
                 counterText: "", // Hides character counter (optional)
@@ -336,6 +336,7 @@ class _login extends State<login> {
             ),
           ),
         ),
+
 
         Card(
           elevation: 0,

@@ -726,7 +726,7 @@ late final _appDatabase;
                         color: Color.fromARGB(255, 27, 65, 187),
                       ),
                       padding: const EdgeInsets.only(top: 16, bottom: 16),
-                      child: const Text("Continuar Formulario incompleto",
+                      child: const Text("Continuar Formulario\n incompleto",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -736,6 +736,7 @@ late final _appDatabase;
               ],),
           ),
 
+  /*
   GestureDetector(
               onTap: () async {
 
@@ -764,7 +765,7 @@ late final _appDatabase;
                         fontSize: 18,
                         fontWeight: FontWeight.w500)),
               )),
-
+*/
           GestureDetector(
               onTap: () async {
 
@@ -851,7 +852,7 @@ late final _appDatabase;
             margin: EdgeInsets.only(left: 20.0, top: MediaQuery.of(context).size.height * 0.020, bottom: MediaQuery.of(context).size.height * 0.020),
             alignment: Alignment.centerLeft,
             child: Text(
-              "Total de Padrones: ${widget.total}",
+              "Total de Padrones: ${widget.totalPadrones}",
               textAlign: TextAlign.left,
             ),
           ),
