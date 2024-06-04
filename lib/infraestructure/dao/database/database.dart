@@ -9,13 +9,15 @@ import 'package:sicontigoVisita/model/t_respuestaBACKUP.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
 import 'package:floor/floor.dart';
 import '../../../model/t_formulario.dart';
+import '../../../model/t_padron.dart';
 import '../../../model/t_respBackup.dart';
+import '../formdatamodeldao_padron.dart';
 import '../formdatamodeldao_respuesta.dart';
 part 'database.g.dart';
 
 
 @Database(version: 1, entities:
-[ Html, Formulario, Respuesta, RespuestaENVIO, RespuestaBACKUP ])
+[ Html, Formulario, Respuesta, RespuestaENVIO, RespuestaBACKUP, Padron ])
 
 abstract class AppDatabase extends FloorDatabase {
   //FormDataModelDaoVISITA get formDataModelDaoVisita;
@@ -23,5 +25,6 @@ abstract class AppDatabase extends FloorDatabase {
   FormDataModelDaoFormulario get  formDataModelDaoFormulario;
   FormDataModelDaoRespuesta get  formDataModelDaoRespuesta;
   FormDataModelDaoRespuestaBACKUP get formDataModelDaoRespuestaBACKUP;
+  FormDataModelDaoPadron get formDataModelDaoPadron;
 
 }

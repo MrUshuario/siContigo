@@ -21,8 +21,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sicontigoVisita/utils/resources_apis.dart';
 import 'package:sicontigoVisita/viewmodels/UI/menu_login.dart';
 import 'package:sicontigoVisita/viewmodels/UI/viewmodels/form_viewsmodel_formulario.dart';
+import '../../infraestructure/dao/formdatamodeldao_padron.dart';
 import '../../model/t_insertarEncuestaRSPTA.dart';
+import '../../model/t_padron.dart';
 import '../../utils/helpersviewAlertFaltaMSG.dart';
+import '../../utils/helpersviewAlertMensajeFOTO.dart';
 import '../../utils/helpersviewAlertProgressCircle.dart';
 import '../../utils/helpersviewBlancoIcon.dart';
 import '../../utils/helpersviewBlancoSelect.dart';
@@ -37,6 +40,9 @@ class MenudeOpcionesOffline extends StatefulWidget {
   final _appDatabase = GetIt.I.get<AppDatabase>();
   FormDataModelDaoRespuesta get formDataModelDao => _appDatabase.formDataModelDaoRespuesta;
   FormDataModelDaoRespuestaBACKUP get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
+
+  //PADRON
+  FormDataModelDaoPadron get padronsql => _appDatabase.formDataModelDaoPadron;
 
   GlobalKey<FormState> keyForm = GlobalKey();
   //SIGUIENTE
@@ -932,7 +938,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   final _mostrarLoadingStreamController = StreamController<bool>.broadcast();
   final _mostrarLoadingStreamControllerPuntaje = StreamController<int>.broadcast();
   void CargaDialog() {
-    bool mostrarLOADING = true;
+    bool mostrarLOADING = false;
     int puntajeLOADING = 0;
     showDialog(
       barrierDismissible: mostrarLOADING,
@@ -1250,7 +1256,8 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
     widget.formIdUsuario!.clear();
     widget.formNombreUsuario!.clear();
     widget.formP17EspecificarCtrl!.clear();
-    widget.formData = Respuesta();//
+    widget.formData = Respuesta();////
+    widget.formNombreUsuario!.clear();
 
 
     setState(() {
@@ -1332,6 +1339,33 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
   }
 
+  void NoEncontradoDNI(context){
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              contentPadding: EdgeInsets.all(0),
+              content: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      HelpersViewAlertMensajeFOTO.formItemsDesign(
+                          "No existe un padron con el DNI ingresado", "DNI no encontrado"),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        // Align row to the end
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  )));
+        });
+  }
+
   Widget formUI(ScrollController scrollController) {
 
     return Container(
@@ -1354,23 +1388,62 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 //PONER AQUI
 
 
+                                //DNI & BUSCAR
+                Row(
+                  children: [
 
-               HelpersViewBlancoIcon.formItemsDesign(
-                    Icons.person,
-                    TextFormField(
-                      controller: widget.formIdUsuario,
-                      decoration: const InputDecoration(
-                        labelText: 'DNI del entrevistado',
-                      ),
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      /*
+                    const Text('DNI:', style: TextStyle(
+                      fontSize: 12.0,
+                      //color: Colors.white,
+                    ),),
+
+                    HelpersViewBlancoIcon.formItemsDesignDNI(
+                        TextFormField(
+                          controller: widget.formIdUsuario,
+                          decoration: const InputDecoration(
+                            labelText: 'DNI del entrevistado',
+                          ),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                          /*
                       validator: (value) {
                         return HelpersViewBlancoIcon.validateField(
                             value!, widget.formIdUsuario);
                       }, */
-                      maxLength: 8,
-                    ), context),
+                          maxLength: 8,
+                        ), context),
+
+                    IconButton(
+                      icon: Image.asset(Resources.lupa),
+                      color: Colors.white,
+                      onPressed: () async {
+                        List<Padron> padronObj;
+                        Padron padronSelect;
+                        padronObj = await widget.padronsql.findAllPadronDNI(widget.formIdUsuario.text);
+
+                        if(padronObj.isNotEmpty){
+                          padronSelect = padronObj[0];
+                          String? nombreObj = padronSelect.nombre;
+
+                          setState(() {
+                            widget.formNombreUsuario.text = nombreObj!;
+                          });
+
+                        } else {
+                          widget.formNombreUsuario!.clear();
+                          NoEncontradoDNI(context);
+                        }
+
+
+                      },
+                    ),
+
+                  ],
+                ),
+
+
+
+
 
                 HelpersViewBlancoIcon.formItemsDesign(
                     Icons.person,

@@ -4,6 +4,7 @@ class Resources {
 
 
   static const String tayta = 'assets/logo_tayta.png';
+  static const String siContigo = 'assets/logoIcon.jpg';
   static const String pension65 = 'assets/p65.PNG';
   static const String splash = 'assets/splash.jpg';
   static const String ministerio = 'assets/midislogo.png';

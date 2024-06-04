@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sicontigoVisita/model/responseinciofinactividad.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
+import 'package:sicontigoVisita/model/t_padron.dart';
 import 'dart:convert';
 import 'package:sicontigoVisita/utils/resources_apis.dart';
 
@@ -12,6 +13,8 @@ class apiprovider_menuOpciones {
 
 
   final api_post_Login = apisResources.REST_SICONTIGO_LOGIN;
+  final api_post_padron = apisResources.REST_SICONTIGO_PADRON;
+
 
 
 
@@ -49,6 +52,33 @@ class apiprovider_menuOpciones {
     } catch (e) {
       ReponseInicioFinActividades resp = ReponseInicioFinActividades();
       return  resp;
+    }
+  }
+
+  Future<List<Padron>> post_DescargarUsuarios() async {
+    try {
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String token = prefs.getString('token') ?? "ERROR";
+      print("iniciando post_DescargarUsuarios...");
+      String url_login = api_post_padron;
+      Uri uri = Uri.parse(url_login);
+      final response = await client.get(
+        uri,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        },
+      );
+      print("response login2...${response.body}");
+        final Map<String, dynamic> data = jsonDecode(response.body);
+        print("response genero ...${data['object']}");
+        //DEVOLVER DATOS LOGIN
+        return Padron.listFromJson(data['object']);
+
+      } catch (e) {
+      List<Padron> tipo = List.empty();
+      return  tipo;
     }
   }
 

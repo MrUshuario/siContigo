@@ -69,6 +69,8 @@ class _$AppDatabase extends AppDatabase {
 
   FormDataModelDaoRespuestaBACKUP? _formDataModelDaoRespuestaBACKUPInstance;
 
+  FormDataModelDaoPadron? _formDataModelDaoPadronInstance;
+
   Future<sqflite.Database> open(
     String path,
     List<Migration> migrations, [
@@ -100,6 +102,8 @@ class _$AppDatabase extends AppDatabase {
             'CREATE TABLE IF NOT EXISTS `RespuestaENVIO` (`idformato` INTEGER PRIMARY KEY AUTOINCREMENT, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `RespuestaBACKUP` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `Padron` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `fechaCorte` TEXT, `hogarUbigeo` TEXT, `hogarDepartamento` TEXT, `hogarRegion` TEXT, `hogarProvincia` TEXT, `hogarDistrito` TEXT, `hogarNombreCcpp` TEXT, `hogarDireccionDescripcion` TEXT, `area` TEXT, `comunidadNativa` TEXT, `puebloIndigena` TEXT, `saldoCuenta` TEXT, `estadoCuenta` TEXT, `tarjetizacion` TEXT, `tipoDoc` TEXT, `dniCe` TEXT, `apPaterno` TEXT, `apMaterno` TEXT, `nombre` TEXT, `fechaNacimiento` TEXT, `edadPadron` TEXT, `sexo` TEXT, `telefonoUsuario` TEXT, `cse` TEXT, `vigenciaCse` TEXT, `condicionEdad` TEXT, `rangoEdad` TEXT, `estadoActivo` TEXT, `estadoDetalle` TEXT, `ingreso` TEXT, `ultimoPadronAfiliado` TEXT, `motivoDesafiliacionSuspencion` TEXT, `detalleDesafiliacionSuspencion` TEXT, `alertaGeneral` TEXT, `recomendacion` TEXT, `tieneAutorizacion` TEXT, `estadoAutorizacion` TEXT, `detalleObservacion` TEXT, `rde` TEXT, `fechaRde` TEXT, `parentezco` TEXT, `nombreAutorizado` TEXT, `tipoDocAutorizado` TEXT, `dniAutorizado` TEXT, `autorizadoSexo` TEXT, `telefonoAutorizado` TEXT, `correoAutorizado` TEXT, `prioridad` TEXT, `tipoDistrito` TEXT)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -129,6 +133,12 @@ class _$AppDatabase extends AppDatabase {
   FormDataModelDaoRespuestaBACKUP get formDataModelDaoRespuestaBACKUP {
     return _formDataModelDaoRespuestaBACKUPInstance ??=
         _$FormDataModelDaoRespuestaBACKUP(database, changeListener);
+  }
+
+  @override
+  FormDataModelDaoPadron get formDataModelDaoPadron {
+    return _formDataModelDaoPadronInstance ??=
+        _$FormDataModelDaoPadron(database, changeListener);
   }
 }
 
@@ -598,6 +608,222 @@ class _$FormDataModelDaoRespuestaBACKUP
   @override
   Future<void> insertFormDataModel(RespuestaBACKUP formDataModel) async {
     await _respuestaBACKUPInsertionAdapter.insert(
+        formDataModel, OnConflictStrategy.replace);
+  }
+}
+
+class _$FormDataModelDaoPadron extends FormDataModelDaoPadron {
+  _$FormDataModelDaoPadron(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database),
+        _padronInsertionAdapter = InsertionAdapter(
+            database,
+            'Padron',
+            (Padron item) => <String, Object?>{
+                  'id': item.id,
+                  'fechaCorte': item.fechaCorte,
+                  'hogarUbigeo': item.hogarUbigeo,
+                  'hogarDepartamento': item.hogarDepartamento,
+                  'hogarRegion': item.hogarRegion,
+                  'hogarProvincia': item.hogarProvincia,
+                  'hogarDistrito': item.hogarDistrito,
+                  'hogarNombreCcpp': item.hogarNombreCcpp,
+                  'hogarDireccionDescripcion': item.hogarDireccionDescripcion,
+                  'area': item.area,
+                  'comunidadNativa': item.comunidadNativa,
+                  'puebloIndigena': item.puebloIndigena,
+                  'saldoCuenta': item.saldoCuenta,
+                  'estadoCuenta': item.estadoCuenta,
+                  'tarjetizacion': item.tarjetizacion,
+                  'tipoDoc': item.tipoDoc,
+                  'dniCe': item.dniCe,
+                  'apPaterno': item.apPaterno,
+                  'apMaterno': item.apMaterno,
+                  'nombre': item.nombre,
+                  'fechaNacimiento': item.fechaNacimiento,
+                  'edadPadron': item.edadPadron,
+                  'sexo': item.sexo,
+                  'telefonoUsuario': item.telefonoUsuario,
+                  'cse': item.cse,
+                  'vigenciaCse': item.vigenciaCse,
+                  'condicionEdad': item.condicionEdad,
+                  'rangoEdad': item.rangoEdad,
+                  'estadoActivo': item.estadoActivo,
+                  'estadoDetalle': item.estadoDetalle,
+                  'ingreso': item.ingreso,
+                  'ultimoPadronAfiliado': item.ultimoPadronAfiliado,
+                  'motivoDesafiliacionSuspencion':
+                      item.motivoDesafiliacionSuspencion,
+                  'detalleDesafiliacionSuspencion':
+                      item.detalleDesafiliacionSuspencion,
+                  'alertaGeneral': item.alertaGeneral,
+                  'recomendacion': item.recomendacion,
+                  'tieneAutorizacion': item.tieneAutorizacion,
+                  'estadoAutorizacion': item.estadoAutorizacion,
+                  'detalleObservacion': item.detalleObservacion,
+                  'rde': item.rde,
+                  'fechaRde': item.fechaRde,
+                  'parentezco': item.parentezco,
+                  'nombreAutorizado': item.nombreAutorizado,
+                  'tipoDocAutorizado': item.tipoDocAutorizado,
+                  'dniAutorizado': item.dniAutorizado,
+                  'autorizadoSexo': item.autorizadoSexo,
+                  'telefonoAutorizado': item.telefonoAutorizado,
+                  'correoAutorizado': item.correoAutorizado,
+                  'prioridad': item.prioridad,
+                  'tipoDistrito': item.tipoDistrito
+                });
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<Padron> _padronInsertionAdapter;
+
+  @override
+  Future<List<Padron>> findAllPadron() async {
+    return _queryAdapter.queryList('SELECT * FROM Padron',
+        mapper: (Map<String, Object?> row) => Padron(
+            id: row['id'] as int?,
+            fechaCorte: row['fechaCorte'] as String?,
+            hogarUbigeo: row['hogarUbigeo'] as String?,
+            hogarDepartamento: row['hogarDepartamento'] as String?,
+            hogarRegion: row['hogarRegion'] as String?,
+            hogarProvincia: row['hogarProvincia'] as String?,
+            hogarDistrito: row['hogarDistrito'] as String?,
+            hogarNombreCcpp: row['hogarNombreCcpp'] as String?,
+            hogarDireccionDescripcion:
+                row['hogarDireccionDescripcion'] as String?,
+            area: row['area'] as String?,
+            comunidadNativa: row['comunidadNativa'] as String?,
+            puebloIndigena: row['puebloIndigena'] as String?,
+            saldoCuenta: row['saldoCuenta'] as String?,
+            estadoCuenta: row['estadoCuenta'] as String?,
+            tarjetizacion: row['tarjetizacion'] as String?,
+            tipoDoc: row['tipoDoc'] as String?,
+            dniCe: row['dniCe'] as String?,
+            apPaterno: row['apPaterno'] as String?,
+            apMaterno: row['apMaterno'] as String?,
+            nombre: row['nombre'] as String?,
+            fechaNacimiento: row['fechaNacimiento'] as String?,
+            edadPadron: row['edadPadron'] as String?,
+            sexo: row['sexo'] as String?,
+            telefonoUsuario: row['telefonoUsuario'] as String?,
+            cse: row['cse'] as String?,
+            vigenciaCse: row['vigenciaCse'] as String?,
+            condicionEdad: row['condicionEdad'] as String?,
+            rangoEdad: row['rangoEdad'] as String?,
+            estadoActivo: row['estadoActivo'] as String?,
+            estadoDetalle: row['estadoDetalle'] as String?,
+            ingreso: row['ingreso'] as String?,
+            ultimoPadronAfiliado: row['ultimoPadronAfiliado'] as String?,
+            motivoDesafiliacionSuspencion:
+                row['motivoDesafiliacionSuspencion'] as String?,
+            detalleDesafiliacionSuspencion:
+                row['detalleDesafiliacionSuspencion'] as String?,
+            alertaGeneral: row['alertaGeneral'] as String?,
+            recomendacion: row['recomendacion'] as String?,
+            tieneAutorizacion: row['tieneAutorizacion'] as String?,
+            estadoAutorizacion: row['estadoAutorizacion'] as String?,
+            detalleObservacion: row['detalleObservacion'] as String?,
+            rde: row['rde'] as String?,
+            fechaRde: row['fechaRde'] as String?,
+            parentezco: row['parentezco'] as String?,
+            nombreAutorizado: row['nombreAutorizado'] as String?,
+            tipoDocAutorizado: row['tipoDocAutorizado'] as String?,
+            dniAutorizado: row['dniAutorizado'] as String?,
+            autorizadoSexo: row['autorizadoSexo'] as String?,
+            telefonoAutorizado: row['telefonoAutorizado'] as String?,
+            correoAutorizado: row['correoAutorizado'] as String?,
+            prioridad: row['prioridad'] as String?,
+            tipoDistrito: row['tipoDistrito'] as String?));
+  }
+
+  @override
+  Future<List<Padron>> findAllPadronDNI(String id) async {
+    return _queryAdapter.queryList('SELECT * FROM Padron WHERE dniCe = ?1',
+        mapper: (Map<String, Object?> row) => Padron(
+            id: row['id'] as int?,
+            fechaCorte: row['fechaCorte'] as String?,
+            hogarUbigeo: row['hogarUbigeo'] as String?,
+            hogarDepartamento: row['hogarDepartamento'] as String?,
+            hogarRegion: row['hogarRegion'] as String?,
+            hogarProvincia: row['hogarProvincia'] as String?,
+            hogarDistrito: row['hogarDistrito'] as String?,
+            hogarNombreCcpp: row['hogarNombreCcpp'] as String?,
+            hogarDireccionDescripcion:
+                row['hogarDireccionDescripcion'] as String?,
+            area: row['area'] as String?,
+            comunidadNativa: row['comunidadNativa'] as String?,
+            puebloIndigena: row['puebloIndigena'] as String?,
+            saldoCuenta: row['saldoCuenta'] as String?,
+            estadoCuenta: row['estadoCuenta'] as String?,
+            tarjetizacion: row['tarjetizacion'] as String?,
+            tipoDoc: row['tipoDoc'] as String?,
+            dniCe: row['dniCe'] as String?,
+            apPaterno: row['apPaterno'] as String?,
+            apMaterno: row['apMaterno'] as String?,
+            nombre: row['nombre'] as String?,
+            fechaNacimiento: row['fechaNacimiento'] as String?,
+            edadPadron: row['edadPadron'] as String?,
+            sexo: row['sexo'] as String?,
+            telefonoUsuario: row['telefonoUsuario'] as String?,
+            cse: row['cse'] as String?,
+            vigenciaCse: row['vigenciaCse'] as String?,
+            condicionEdad: row['condicionEdad'] as String?,
+            rangoEdad: row['rangoEdad'] as String?,
+            estadoActivo: row['estadoActivo'] as String?,
+            estadoDetalle: row['estadoDetalle'] as String?,
+            ingreso: row['ingreso'] as String?,
+            ultimoPadronAfiliado: row['ultimoPadronAfiliado'] as String?,
+            motivoDesafiliacionSuspencion:
+                row['motivoDesafiliacionSuspencion'] as String?,
+            detalleDesafiliacionSuspencion:
+                row['detalleDesafiliacionSuspencion'] as String?,
+            alertaGeneral: row['alertaGeneral'] as String?,
+            recomendacion: row['recomendacion'] as String?,
+            tieneAutorizacion: row['tieneAutorizacion'] as String?,
+            estadoAutorizacion: row['estadoAutorizacion'] as String?,
+            detalleObservacion: row['detalleObservacion'] as String?,
+            rde: row['rde'] as String?,
+            fechaRde: row['fechaRde'] as String?,
+            parentezco: row['parentezco'] as String?,
+            nombreAutorizado: row['nombreAutorizado'] as String?,
+            tipoDocAutorizado: row['tipoDocAutorizado'] as String?,
+            dniAutorizado: row['dniAutorizado'] as String?,
+            autorizadoSexo: row['autorizadoSexo'] as String?,
+            telefonoAutorizado: row['telefonoAutorizado'] as String?,
+            correoAutorizado: row['correoAutorizado'] as String?,
+            prioridad: row['prioridad'] as String?,
+            tipoDistrito: row['tipoDistrito'] as String?),
+        arguments: [id]);
+  }
+
+  @override
+  Future<int?> totalFormDataModels() async {
+    return _queryAdapter.query('SELECT COUNT(*) FROM Padron',
+        mapper: (Map<String, Object?> row) => row.values.first as int);
+  }
+
+  @override
+  Future<int?> BorrarFormDataModels(int cod) async {
+    return _queryAdapter.query('DELETE FROM Html WHERE cod = ?1',
+        mapper: (Map<String, Object?> row) => row.values.first as int,
+        arguments: [cod]);
+  }
+
+  @override
+  Future<int?> BorrarTodo() async {
+    return _queryAdapter.query('DELETE FROM Padron',
+        mapper: (Map<String, Object?> row) => row.values.first as int);
+  }
+
+  @override
+  Future<void> insertFormDataModel(Padron formDataModel) async {
+    await _padronInsertionAdapter.insert(
         formDataModel, OnConflictStrategy.replace);
   }
 }

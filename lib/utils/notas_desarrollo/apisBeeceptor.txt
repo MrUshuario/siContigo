@@ -9,3 +9,9 @@ keytool -genkey -v -keystore \lib\utils\keystore.jks ^
         -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 ^
         -alias sicontigo
 CONTRASEÑA: contigoperu
+
+////NUEVA LLAVE
+
+keytool -genkey -v -keystore C:\Users\Edgar\Downloads\keystore.jks  -storetype JKS -keyalg RSA -keysize 2048 -validity 10000  -alias gobsicontigo
+
+CONTRASEÑA: gobcontigoperu
