@@ -4,6 +4,7 @@ import 'package:sicontigoVisita/infraestructure/dao/apis/apiprovider_menuOpcione
 import 'package:sicontigoVisita/infraestructure/dao/apis/apiprovider_formulario.dart';
 import 'package:sicontigoVisita/infraestructure/dao/database/database.dart';
 import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_formulario.dart';
+import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_padron.dart';
 import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_respuesta.dart';
 import 'package:sicontigoVisita/infraestructure/dao/formdatamodeldao_respuestaBACKUP.dart';
 import 'package:sicontigoVisita/model/t_formulario.dart';
@@ -13,6 +14,7 @@ import 'package:sicontigoVisita/model/utils/bakcupMapper.dart';
 import 'package:sicontigoVisita/model/utils/respuestaMapper.dart';
 import 'package:sicontigoVisita/utils/constantes.dart';
 import 'package:sicontigoVisita/utils/helpersviewAlertMensajeTitutlo.dart';
+import 'package:sicontigoVisita/utils/helpersviewAlertProgressCircleLOGIN.dart';
 import 'package:sicontigoVisita/utils/resources.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,14 +37,18 @@ class MenudeOpcionesListado extends StatefulWidget {
   final _appDatabase = GetIt.I.get<AppDatabase>();
   apiprovider_formulario apiForm = apiprovider_formulario();
   FormDataModelDaoRespuesta get formDataModelDaoRespuesta => _appDatabase.formDataModelDaoRespuesta;
+  FormDataModelDaoPadron get formDataModelDaoPadron => _appDatabase.formDataModelDaoPadron;
   FormDataModelDaoRespuestaBACKUP get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
   List<Formulario> listForm = List.empty(growable: true);
   MenudeOpcionesListado({Key? key});
+
+  int? totalPadrones = 0;
 
   int? total = 0;
   int? page = 1;
   int? totalPage = 0;
   List<Respuesta> listRespuesta = List.empty(growable: true);
+
 
   apiprovider_menuOpciones apiVersion = apiprovider_menuOpciones();
   //BACKUP
@@ -126,6 +132,7 @@ late final _appDatabase;
     ..listen()
     ..getPaginationList();
     loadTotalRegister();
+    loadTotalPadrones();
     listarVisitasRetro();
     // TODO: implement initState
     super.initState();
@@ -157,6 +164,14 @@ late final _appDatabase;
       widget.total = res;
     });
   }
+
+  Future<void> loadTotalPadrones() async {
+    var res = await widget.formDataModelDaoPadron.totalFormDataModels();
+    setState(() {
+      widget.totalPadrones = res;
+    });
+  }
+
 
   Future<void> listarVisitasRetro() async {
     widget.viewModel
@@ -630,6 +645,51 @@ late final _appDatabase;
         });
   }
 
+  final _mostrarLoadingStreamController = StreamController<bool>.broadcast();
+  final _mostrarLoadingStreamControllerTEXTO = StreamController<String>.broadcast();
+  void CargaDialog() {
+    bool mostrarLOADING = false;
+    String texto1 = "Termino la descarga";
+    String texto2 = "Hubo un error";
+    showDialog(
+      barrierDismissible: mostrarLOADING,
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+
+            _mostrarLoadingStreamController.stream.listen((value) {
+              setState(() {
+                mostrarLOADING = value;
+              });
+            });
+            _mostrarLoadingStreamControllerTEXTO.stream.listen((value) {
+              setState(() {
+                texto2 = value;
+              });
+            });
+
+
+            return AlertDialog(
+              contentPadding: EdgeInsets.all(0),
+              content: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    HelpersViewAlertProgressCircleLOGIN(
+                      mostrar: mostrarLOADING,
+                      texto1: texto1,
+                      texto2: texto2,
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   Widget formUI() {
 
     return Container(
@@ -705,63 +765,6 @@ late final _appDatabase;
                         fontWeight: FontWeight.w500)),
               )),
 
-
-
-
-
-  GestureDetector(
-              onTap: () async {
-
-                if(widget.backup){
-                  await widget.formDataModelDaoBackup.BorrarTodo();
-                }
-
-                      //DESCARGAR PADRONES
-                      List<Padron> PadronEntity  = List.empty();
-                      PadronEntity;//await apiVersion.post_DescargarUsuarios();
-
-                    if(PadronEntity.length>0){
-                      //BORRAR TODA LA DATA EXISTENTE
-                      await _appDatabase.formDataModelDaoPadron.BorrarTodo();
-                      for (int i = 0; i < PadronEntity.length; i++) {
-                        try { await _appDatabase.formDataModelDaoPadron.insertFormDataModel(PadronEntity[i]);
-                        } catch (error) { print("Error saving TIPO DISCAPACIDAD : $error"); }
-                      }
-                      print("TIPO DISCAPACIDAD");
-                    } else {
-                      print("ALGO SALIO MAL");
-                 //     _mostrarLoadingStreamController.add(true);
-                      PadronesNoEncontrado();
-                    }
-
-
-                Widget ContactoRefererencia = MenudeOpcionesOffline(Respuesta()); //CARGO DATA
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
-                );
-
-              },
-              child: Container(
-                margin: const EdgeInsets.all(10.0),
-                alignment: Alignment.center,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  color: Color.fromARGB(255, 27, 65, 187),
-                ),
-                padding: const EdgeInsets.only(top: 16, bottom: 16),
-                child: const Text("Cargar padrón de usuarios",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500)),
-              )),
-
-
-
-
-
           GestureDetector(
               onTap: () async {
 
@@ -791,6 +794,67 @@ late final _appDatabase;
                         fontWeight: FontWeight.w500)),
               )),
 
+          GestureDetector(
+              onTap: () async {
+
+                CargaDialog();
+
+                //DESCARGAR PADRONES
+                List<Padron> PadronEntity  = List.empty();
+                PadronEntity = await widget.apiVersion.post_DescargarUsuarios();
+
+                if(PadronEntity.length>0){
+                  //BORRAR TODA LA DATA EXISTENTE
+                  await widget.formDataModelDaoPadron.BorrarTodo();
+                  for (int i = 0; i < PadronEntity.length; i++) {
+                    try { await widget.formDataModelDaoPadron.insertFormDataModel(PadronEntity[i]);
+                    } catch (error) { print("Error saving TIPO DISCAPACIDAD : $error");
+                    _mostrarLoadingStreamController.add(true);
+                    }
+                  }
+
+
+                  String texto = "Total de Padrones: ${PadronEntity.length}";
+
+                  setState(() {
+                    widget.totalPadrones = PadronEntity.length;
+                  });
+
+                  _mostrarLoadingStreamController.add(true);
+                  _mostrarLoadingStreamControllerTEXTO.add(texto);
+
+                } else {
+                  print("ALGO SALIO MAL");
+                  _mostrarLoadingStreamController.add(true);
+                }
+
+
+              },
+              child: Container(
+                margin: const EdgeInsets.all(10.0),
+                alignment: Alignment.center,
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                  color: Color.fromARGB(255, 27, 65, 187),
+                ),
+                padding: const EdgeInsets.only(top: 16, bottom: 16),
+                child: const Text("Cargar padrón de usuarios",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500)),
+              )),
+
+
+          Container(
+            margin: EdgeInsets.only(left: 20.0, top: MediaQuery.of(context).size.height * 0.020, bottom: MediaQuery.of(context).size.height * 0.020),
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Total de Padrones: ${widget.total}",
+              textAlign: TextAlign.left,
+            ),
+          ),
 
           Container(
             margin: EdgeInsets.only(left: 20.0, top: MediaQuery.of(context).size.height * 0.020, bottom: MediaQuery.of(context).size.height * 0.020),
