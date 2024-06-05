@@ -387,7 +387,12 @@ class _login extends State<login> {
                 await prefs.setString('apMaterno', resp.apMaterno!);
                 await prefs.setString('nroDoc', resp.nroDoc!);
                 await prefs.setString('typeUser', resp.typeUser!);
-                await prefs.setString('distrito', resp.distrito!); //TALVEZ DEPARTAMENTO
+                if (resp.distrito != null) {
+                  await prefs.setString('distrito', resp.distrito!);
+                } else {
+                  await prefs.setString('distrito', "No registrado");
+                }
+                 //TALVEZ DEPARTAMENTO
 
                 //GUARDAR DATOS
                 Navigator.push(

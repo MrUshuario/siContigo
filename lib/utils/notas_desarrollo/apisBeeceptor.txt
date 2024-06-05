@@ -23,6 +23,11 @@ https://youtu.be/AN6bExi_mco
   "password": "Software35"
 }
 
+{
+  "nroDoc": "00100576",
+  "password": "CAMILITA"
+}
+
 VALIDACION PARA EL ADMIN, si es tipo usuario admin.
 CAMILITO ADMIN,
 
