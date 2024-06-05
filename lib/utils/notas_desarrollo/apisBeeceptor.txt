@@ -18,6 +18,14 @@ CONTRASEÑA: perusi
 
 https://youtu.be/AN6bExi_mco
 
+{
+  "nroDoc": "45796435",
+  "password": "Software35"
+}
+
+VALIDACION PARA EL ADMIN, si es tipo usuario admin.
+CAMILITO ADMIN,
+
 
 Visita Domiciliaria a los usuarios del programa contigo
 

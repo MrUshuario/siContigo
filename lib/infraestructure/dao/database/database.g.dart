@@ -71,6 +71,8 @@ class _$AppDatabase extends AppDatabase {
 
   FormDataModelDaoPadron? _formDataModelDaoPadronInstance;
 
+  FormDataModelDaoPadronLogin? _formDataModelDaoPadronLoginInstance;
+
   Future<sqflite.Database> open(
     String path,
     List<Migration> migrations, [
@@ -104,6 +106,8 @@ class _$AppDatabase extends AppDatabase {
             'CREATE TABLE IF NOT EXISTS `RespuestaBACKUP` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Padron` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `fechaCorte` TEXT, `hogarUbigeo` TEXT, `hogarDepartamento` TEXT, `hogarRegion` TEXT, `hogarProvincia` TEXT, `hogarDistrito` TEXT, `hogarNombreCcpp` TEXT, `hogarDireccionDescripcion` TEXT, `area` TEXT, `comunidadNativa` TEXT, `puebloIndigena` TEXT, `saldoCuenta` TEXT, `estadoCuenta` TEXT, `tarjetizacion` TEXT, `tipoDoc` TEXT, `dniCe` TEXT, `apPaterno` TEXT, `apMaterno` TEXT, `nombre` TEXT, `fechaNacimiento` TEXT, `edadPadron` TEXT, `sexo` TEXT, `telefonoUsuario` TEXT, `cse` TEXT, `vigenciaCse` TEXT, `condicionEdad` TEXT, `rangoEdad` TEXT, `estadoActivo` TEXT, `estadoDetalle` TEXT, `ingreso` TEXT, `ultimoPadronAfiliado` TEXT, `motivoDesafiliacionSuspencion` TEXT, `detalleDesafiliacionSuspencion` TEXT, `alertaGeneral` TEXT, `recomendacion` TEXT, `tieneAutorizacion` TEXT, `estadoAutorizacion` TEXT, `detalleObservacion` TEXT, `rde` TEXT, `fechaRde` TEXT, `parentezco` TEXT, `nombreAutorizado` TEXT, `tipoDocAutorizado` TEXT, `dniAutorizado` TEXT, `autorizadoSexo` TEXT, `telefonoAutorizado` TEXT, `correoAutorizado` TEXT, `prioridad` TEXT, `tipoDistrito` TEXT)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `PadronLogin` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `nombre` TEXT, `apellidos` TEXT, `hogarDepartamento` TEXT)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -139,6 +143,12 @@ class _$AppDatabase extends AppDatabase {
   FormDataModelDaoPadron get formDataModelDaoPadron {
     return _formDataModelDaoPadronInstance ??=
         _$FormDataModelDaoPadron(database, changeListener);
+  }
+
+  @override
+  FormDataModelDaoPadronLogin get formDataModelDaoPadronLogin {
+    return _formDataModelDaoPadronLoginInstance ??=
+        _$FormDataModelDaoPadronLogin(database, changeListener);
   }
 }
 
@@ -824,6 +834,83 @@ class _$FormDataModelDaoPadron extends FormDataModelDaoPadron {
   @override
   Future<void> insertFormDataModel(Padron formDataModel) async {
     await _padronInsertionAdapter.insert(
+        formDataModel, OnConflictStrategy.replace);
+  }
+}
+
+class _$FormDataModelDaoPadronLogin extends FormDataModelDaoPadronLogin {
+  _$FormDataModelDaoPadronLogin(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database),
+        _padronLoginInsertionAdapter = InsertionAdapter(
+            database,
+            'PadronLogin',
+            (PadronLogin item) => <String, Object?>{
+                  'id': item.id,
+                  'nombre': item.nombre,
+                  'apellidos': item.apellidos,
+                  'hogarDepartamento': item.hogarDepartamento
+                });
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<PadronLogin> _padronLoginInsertionAdapter;
+
+  @override
+  Future<List<PadronLogin>> findFormDataModel(
+    int offset,
+    int perPage,
+  ) async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM PadronLogin LIMIT ?2 OFFSET ?1',
+        mapper: (Map<String, Object?> row) => PadronLogin(
+            id: row['id'] as int?,
+            nombre: row['nombre'] as String?,
+            apellidos: row['apellidos'] as String?,
+            hogarDepartamento: row['hogarDepartamento'] as String?),
+        arguments: [offset, perPage]);
+  }
+
+  @override
+  Future<List<PadronLogin>> findAllPadronLogin() async {
+    return _queryAdapter.queryList('SELECT * FROM PadronLogin',
+        mapper: (Map<String, Object?> row) => PadronLogin(
+            id: row['id'] as int?,
+            nombre: row['nombre'] as String?,
+            apellidos: row['apellidos'] as String?,
+            hogarDepartamento: row['hogarDepartamento'] as String?));
+  }
+
+  @override
+  Future<String?> findAllPadronLoginID(int id) async {
+    return _queryAdapter.query(
+        'SELECT PadronLogincodigo FROM PadronLogin WHERE id = ?1',
+        mapper: (Map<String, Object?> row) => row.values.first as String,
+        arguments: [id]);
+  }
+
+  @override
+  Future<int?> totalFormDataModels() async {
+    return _queryAdapter.query('SELECT COUNT(*) FROM PadronLogin',
+        mapper: (Map<String, Object?> row) => row.values.first as int);
+  }
+
+  @override
+  Future<int?> BorrarFormDataModels(int ID) async {
+    return _queryAdapter.query(
+        'DELETE FROM PadronLogin WHERE codigoVisita = ?1',
+        mapper: (Map<String, Object?> row) => row.values.first as int,
+        arguments: [ID]);
+  }
+
+  @override
+  Future<void> insertFormDataModel(PadronLogin formDataModel) async {
+    await _padronLoginInsertionAdapter.insert(
         formDataModel, OnConflictStrategy.replace);
   }
 }

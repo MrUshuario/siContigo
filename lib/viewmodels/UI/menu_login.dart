@@ -387,9 +387,9 @@ class _login extends State<login> {
                 await prefs.setString('apMaterno', resp.apMaterno!);
                 await prefs.setString('nroDoc', resp.nroDoc!);
                 await prefs.setString('typeUser', resp.typeUser!);
+                await prefs.setString('distrito', resp.distrito!); //TALVEZ DEPARTAMENTO
 
-           
-
+                //GUARDAR DATOS
                 Navigator.push(
                   context,
                     MaterialPageRoute(builder: (context) =>  MenudeOpcionesListado()),

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_padronLogin.dart';
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/apis/apiprovider_menuOpciones.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/apis/apiprovider_formulario.dart';
@@ -25,6 +26,7 @@ import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/viewmodels/form_view
 
 
 import '../../main.dart';
+import '../../model/t_padronlogin.dart';
 import '../../model/t_respBackup.dart';
 import '../../utils/helpersviewAlertMensajeFOTO.dart';
 import '../../utils/helpersviewAlertProgressSinc.dart';
@@ -38,6 +40,7 @@ class MenudeOpcionesListado extends StatefulWidget {
   apiprovider_formulario apiForm = apiprovider_formulario();
   FormDataModelDaoRespuesta get formDataModelDaoRespuesta => _appDatabase.formDataModelDaoRespuesta;
   FormDataModelDaoPadron get formDataModelDaoPadron => _appDatabase.formDataModelDaoPadron;
+  FormDataModelDaoPadronLogin get formDataModelDaoPadronLogin => _appDatabase.formDataModelDaoPadronLogin;
   FormDataModelDaoRespuestaBACKUP get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
   List<Formulario> listForm = List.empty(growable: true);
   MenudeOpcionesListado({Key? key});
@@ -48,6 +51,9 @@ class MenudeOpcionesListado extends StatefulWidget {
   int? page = 1;
   int? totalPage = 0;
   List<Respuesta> listRespuesta = List.empty(growable: true);
+
+  String? nombrePadron = "";
+  String? departamentoPadron = "";
 
 
   apiprovider_menuOpciones apiVersion = apiprovider_menuOpciones();
@@ -70,6 +76,7 @@ class _MenudeOpcionesListado extends State<MenudeOpcionesListado> {
   late String PREFnroDoc;
   late String PREFtypeUser;
   late String PREFtoken;
+  late String PREFdistrito;
 
 late final _appDatabase;
 
@@ -97,12 +104,13 @@ late final _appDatabase;
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setState(() {
-      PREFname = prefs.getString('name') ?? "ERROR";
-      PREFapPaterno = prefs.getString('apPaterno') ?? "ERROR";
-      PREFapMaterno = prefs.getString('apMaterno') ?? "ERROR";
-      PREFnroDoc = prefs.getString('nroDoc') ?? "ERROR";
-      PREFtypeUser = prefs.getString('typeUser') ?? "ERROR";
-      PREFtoken = prefs.getString('token') ?? "ERROR";
+      PREFname = prefs.getString('name') ?? "Nulo";
+      PREFapPaterno = prefs.getString('apPaterno') ?? "Nulo";
+      PREFapMaterno = prefs.getString('apMaterno') ?? "Nulo";
+      PREFnroDoc = prefs.getString('nroDoc') ?? "Nulo";
+      PREFtypeUser = prefs.getString('typeUser') ?? "Nulo";
+      PREFtoken = prefs.getString('token') ?? "Nulo";
+      PREFdistrito = prefs.getString('distrito') ?? "Nulo";
     });
 
     if(PREFtoken == "ERROR"){
@@ -131,11 +139,29 @@ late final _appDatabase;
     widget.viewModel
     ..listen()
     ..getPaginationList();
+    verificarLogeoAnterior();
     loadTotalRegister();
     loadTotalPadrones();
     listarVisitasRetro();
     // TODO: implement initState
     super.initState();
+  }
+
+  Future<void> verificarLogeoAnterior() async {
+    int resp = 0;
+    int? res = await widget.formDataModelDaoPadronLogin.totalFormDataModels();
+    resp = res!;
+    if(resp>0) {
+      List<PadronLogin> lista = await widget.formDataModelDaoPadronLogin
+          .findAllPadronLogin();
+      PadronLogin padronObj = PadronLogin();
+      padronObj = lista[0];
+
+      setState(() {
+        widget.nombrePadron = "${padronObj.nombre} ${padronObj.apellidos}" ;
+        widget.departamentoPadron = padronObj.hogarDepartamento;
+      });
+    }
   }
 
   int calcularTotalPaginas(int totalRegistros, int registrosPorPagina) {
@@ -608,42 +634,6 @@ late final _appDatabase;
 
 
 
-  void htmlAgregado(String htmlcode) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-              contentPadding: EdgeInsets.all(0),
-              content: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      HelpersViewAlertMensajeTitulo.formItemsDesign(
-                          "Se agrego el codigo HTML ${htmlcode}"),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Spacer(),
-                          InkWell(
-                            onTap: () async {
-
-                              Navigator.pop(context);
-
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.only(
-                                  top: 20, right: 20, bottom: 20),
-                              child: const Text(
-                                "Entiendo",
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )));
-        });
-  }
 
   final _mostrarLoadingStreamController = StreamController<bool>.broadcast();
   final _mostrarLoadingStreamControllerTEXTO = StreamController<String>.broadcast();
@@ -688,6 +678,99 @@ late final _appDatabase;
         );
       },
     );
+  }
+
+  //MODAL ANTES
+  void GuardarPadronDialogAVISO(){
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context){
+          return StatefulBuilder(
+              builder: (context, setState)
+              {
+                return AlertDialog(
+                  contentPadding: EdgeInsets.all(0),
+                  content: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topLeft, // Align to top left corner
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 15, top: 20, right: 20),
+                          child: Row(
+                            children: [
+                              Image.asset(Resources.iconInfo),
+                              Expanded(
+                                child: Text(
+                                  "Ya existen padrones",
+                                  style: const TextStyle(fontSize: 20),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      Container(
+                        padding: EdgeInsets.all(20),
+                        decoration: const BoxDecoration(
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                                child: Text ( "${widget.nombrePadron} Distrito: ${widget.departamentoPadron} " , style: const TextStyle(fontSize: 16),)
+                            ),
+                            const Icon(Icons.save, color: Colors.red,)
+                          ],
+                        ),
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        // Align row to the end
+                        children: [
+                          Spacer(), // Push remaining space to the left
+
+                          InkWell(
+                            onTap: () async {
+
+                              Navigator.pop(context);
+                              GuardarPadronDialog();
+
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                  top: 20, right: 20, bottom: 20),
+                              child: const Text(
+                                "Descargar de todas formas",
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ),
+
+                          InkWell(
+                            onTap: () {
+
+                              Navigator.of(context).pop();
+
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                  top: 20, right: 20, bottom: 20),
+                              child: const Text(
+                                "Cerrar",
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                  )
+                );});});
   }
 
   //MODAL
@@ -803,6 +886,17 @@ late final _appDatabase;
                                               });
                                               //BORRAR TODA LA DATA EXISTENTE
                                               await widget.formDataModelDaoPadron.BorrarTodo();
+
+                                              //AGREGAR AL QUE LO DESCARGO
+                                              PadronLogin objPadron = PadronLogin();
+
+                                              objPadron.id = 1;
+                                              objPadron.nombre = PREFname;
+                                              objPadron.apellidos = "$PREFapPaterno $PREFapMaterno";
+                                              objPadron.hogarDepartamento = PREFdistrito; //ES DISTRITO PERO PUSE DEPA EN LA TABLA
+                                              await widget.formDataModelDaoPadronLogin.insertFormDataModel(objPadron);
+                                              //
+
                                               setState(() {
                                                 MensajeSinc = "Descargando Padron";
                                               });
@@ -873,7 +967,8 @@ late final _appDatabase;
                             ),
                           ],
                         )
-                    ));});});
+                    )
+                );});});
   }
 
   Widget formUI() {
@@ -984,8 +1079,19 @@ late final _appDatabase;
           GestureDetector(
               onTap: () async {
 
-                //CargaDialog();
-                GuardarPadronDialog();
+                if(PREFtypeUser == "ADMIN") {
+
+                  showDialogValidFields(
+                      "Usted es Admin, no puede descargar");
+
+                } else {
+                  if(widget.nombrePadron == "") {
+                    GuardarPadronDialog();
+                    //CargaDialog();
+                  } else {
+                    GuardarPadronDialogAVISO();
+                  }
+                }
                 
               },
               child: Container(

@@ -1064,13 +1064,6 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 } else {
                   CargaDialog(); //INICIALIZA DIALOGO
 
-
-
-
-
-
-
-
                   String respuestas = "";
 
 
