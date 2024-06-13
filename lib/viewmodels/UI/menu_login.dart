@@ -171,7 +171,7 @@ class _login extends State<login> {
     );
   }
 
-  void UsuarioNoEncontrado() {
+  void UsuarioNoEncontrado(String text) {
     showDialog(
         context: context,
         builder: (context) {
@@ -181,7 +181,7 @@ class _login extends State<login> {
                   child: Column(
                     children: [
                       HelpersViewAlertMensajeTitulo.formItemsDesign(
-                          "No se ha encontrado el usuario"),
+                          text),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -235,6 +235,7 @@ class _login extends State<login> {
   }
 
   final _mostrarLoadingStreamController = StreamController<bool>.broadcast();
+  final _mostrarLoadingStreamControllerTEXTO = StreamController<String>.broadcast();
   void CargaDialog() {
     bool mostrarLOADING = false;
     String texto1 = "Sincronizacion fallida";
@@ -249,6 +250,12 @@ class _login extends State<login> {
             _mostrarLoadingStreamController.stream.listen((value) {
               setState(() {
                 mostrarLOADING = value;
+              });
+            });
+
+            _mostrarLoadingStreamControllerTEXTO.stream.listen((value) {
+              setState(() {
+                texto2 = value;
               });
             });
 
@@ -380,7 +387,6 @@ class _login extends State<login> {
               print(resp.nroDoc);
               if(resp.nroDoc != null){
 
-
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 await prefs.setString('name', resp.name!);
                 await prefs.setString('apPaterno', resp.apPaterno!);
@@ -401,9 +407,18 @@ class _login extends State<login> {
                 );
 
               }else {
-                //NO ENCONTRO
-                _mostrarLoadingStreamController.add(true);
-                UsuarioNoEncontrado();
+                if(resp.name == "9999"){
+                  //ENCONTRO UN ERROR
+                  _mostrarLoadingStreamController.add(true);
+                  _mostrarLoadingStreamControllerTEXTO.add("Error en la base de datos");
+                  //UsuarioNoEncontrado( "Error en la base de datos");
+                } else {
+                  //NO ENCONTRO
+                  _mostrarLoadingStreamController.add(true);
+                  _mostrarLoadingStreamControllerTEXTO.add("No se ha encontrado el usuario");
+                  //UsuarioNoEncontrado( "No se ha encontrado el usuario");
+                }
+
               }
 
             },

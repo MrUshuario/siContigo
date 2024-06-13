@@ -34,14 +34,23 @@ class apiprovider_menuOpciones {
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);
 
-        //TOKEN
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        String token = data["token"];
-        print(token);
-        await prefs.setString('token', token);
 
-        //DEVOLVER DATOS LOGIN
-        return ReponseInicioFinActividades.fromJson(data['loginUser']);
+
+        if(data['codigo'] == "9999") {
+          print(data['codigo']);
+          ReponseInicioFinActividades resp = ReponseInicioFinActividades();
+          resp.name = "9999";
+          return  resp;
+        } else {
+          //TOKEN
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          String token = data["token"];
+          print(token);
+          await prefs.setString('token', token);
+          //DEVOLVER DATOS LOGIN
+          return ReponseInicioFinActividades.fromJson(data['loginUser']);
+        }
+
       } else {
         ReponseInicioFinActividades resp = ReponseInicioFinActividades();
         return  resp;

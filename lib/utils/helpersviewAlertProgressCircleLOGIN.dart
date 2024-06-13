@@ -97,23 +97,6 @@ class HelpersViewAlertProgressCircleLOGIN extends StatelessWidget {
                     Spacer(), // Push remaining space to the left
 
                     InkWell(
-                      onTap: () async {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => MenudeOpcionesListado()),
-                        );
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.only(
-                            top: 20, right: 20, bottom: 20),
-                        child: const Text(
-                          "Ir al menú",
-                          style: const TextStyle(fontSize: 16),
-                        ),
-                      ),
-                    ),
-
-                    InkWell(
                       onTap: () {
 
                         Navigator.of(context).pop();
