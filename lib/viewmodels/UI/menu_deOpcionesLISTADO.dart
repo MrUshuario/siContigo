@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_padronLogin.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_deOpciones.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_deOpcionesDINAMICO.dart';
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/apis/apiprovider_menuOpciones.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/apis/apiprovider_formulario.dart';
@@ -42,6 +44,8 @@ class MenudeOpcionesListado extends StatefulWidget {
   FormDataModelDaoPadron get formDataModelDaoPadron => _appDatabase.formDataModelDaoPadron;
   FormDataModelDaoPadronLogin get formDataModelDaoPadronLogin => _appDatabase.formDataModelDaoPadronLogin;
   FormDataModelDaoRespuestaBACKUP get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
+  FormDataModelDaoFormulario get formDataModelDaoFormulario => _appDatabase.formDataModelDaoFormulario; //ENCUESTA PERCEPCIONES
+
   List<Formulario> listForm = List.empty(growable: true);
   MenudeOpcionesListado({Key? key});
 
@@ -59,6 +63,9 @@ class MenudeOpcionesListado extends StatefulWidget {
   apiprovider_menuOpciones apiVersion = apiprovider_menuOpciones();
   //BACKUP
   bool backup = false;
+
+  //FORMULARIO DINAMICO
+  bool dinamico = false;
 
   @override
   State<StatefulWidget> createState() {
@@ -130,11 +137,21 @@ late final _appDatabase;
     });
   }
 
+  Future<void> revisarPercepciones() async {
+    var percepcionesDinamico = await widget.formDataModelDaoFormulario.totalFormDataModels();
+    setState(() {
+      if(percepcionesDinamico! > 0){
+        widget.dinamico = true;
+      }
+    });
+  }
+
 
 
   @override
   void initState() {
     revisarBackup();
+    revisarPercepciones();
     conseguirVersion();
     widget.viewModel
     ..listen()
@@ -635,12 +652,88 @@ late final _appDatabase;
 
 
 
+
+  void BorrarPercepcionesDialog(){
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Row(
+            children: [
+              Image.asset(Resources.iconInfo),
+              SizedBox(width: 4), // Espacio entre el icono y el texto
+              const Expanded(
+                child: Text(
+                  '¿Desea borrar el cuestionario descargado?',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 20, // Tamaño de fuente deseado
+                  ),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            ButtonBar(
+              alignment: MainAxisAlignment.start, // Alinea los botones a la izquierda
+              children: [
+                TextButton(
+                  onPressed: () async {
+                    /*
+                    CargaDialog(); //PANTALLA DE CARGA
+                    try {
+                      await widget.formDataModelDaoFormulario.BorrarTodo();
+                    }  catch (error) {
+                      print("Error erase FORMULARIO: $error");
+                      _mostrarLoadingStreamController.add(true);
+                      _mostrarLoadingStreamControllerTITUTLO.add("Error en el borrado");
+                      _mostrarLoadingStreamControllerTEXTO.add("Ocurrio algun problema");
+                    }
+                    //TERMINO
+                    _mostrarLoadingStreamController.add(true);
+                    _mostrarLoadingStreamControllerTITUTLO.add("Se borro el Formulario");
+                    _mostrarLoadingStreamControllerTEXTO.add("Puede descargar de nuevo");
+
+ */
+                    await widget.formDataModelDaoFormulario.BorrarTodo();
+                    setState(() {
+                      widget.dinamico = false;
+                    });
+
+                    Navigator.pop(context);
+                    showDialogValidFields("Formulario Borrado, puede descargar otro");
+                  },
+                  child: const Text('Sí',
+                    style: TextStyle(
+                      fontSize: 18, // Tamaño de fuente deseado
+                    ),),
+                ),
+                TextButton(
+                  onPressed: () {
+
+                    Navigator.pop(context); // Cierra el diálogo
+
+                  },
+                  child: const Text('No',
+                    style: TextStyle(
+                      fontSize: 18, // Tamaño de fuente deseado
+                    ),),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   final _mostrarLoadingStreamController = StreamController<bool>.broadcast();
+  final _mostrarLoadingStreamControllerTITUTLO = StreamController<String>.broadcast();
   final _mostrarLoadingStreamControllerTEXTO = StreamController<String>.broadcast();
   void CargaDialog() {
     bool mostrarLOADING = false;
-    String texto1 = "Termino la descarga";
-    String texto2 = "Hubo un error";
+    String texto1 = "Descargo Encuesta Percepciones";
+    String texto2 = "Puede ingresar al formulario";
     showDialog(
       barrierDismissible: mostrarLOADING,
       context: context,
@@ -649,13 +742,21 @@ late final _appDatabase;
           builder: (context, setState) {
 
             _mostrarLoadingStreamController.stream.listen((value) {
+              mostrarLOADING = value;
               setState(() {
-                mostrarLOADING = value;
+
+              });
+            });
+            _mostrarLoadingStreamControllerTITUTLO.stream.listen((value) {
+              texto1 = value;
+              setState(() {
+
               });
             });
             _mostrarLoadingStreamControllerTEXTO.stream.listen((value) {
+              texto2 = value;
               setState(() {
-                texto2 = value;
+
               });
             });
 
@@ -848,35 +949,6 @@ late final _appDatabase;
 
                                             List<Padron> PadronEntity  = await widget.apiVersion.post_DescargarUsuarios();
 
-                                            ////
-                                            /*
-                                            if(PadronEntity.length>0){
-                                              //BORRAR TODA LA DATA EXISTENTE
-                                              await widget.formDataModelDaoPadron.BorrarTodo();
-                                              for (int i = 0; i < PadronEntity.length; i++) {
-                                                try { await widget.formDataModelDaoPadron.insertFormDataModel(PadronEntity[i]);
-                                                } catch (error) { print("Error saving TIPO DISCAPACIDAD : $error");
-                                                _mostrarLoadingStreamController.add(true);
-                                                }
-                                              }
-
-
-                                              String texto = "Total de Padrones: ${PadronEntity.length}";
-
-                                              setState(() {
-                                                widget.totalPadrones = PadronEntity.length;
-                                              });
-
-                                              _mostrarLoadingStreamController.add(true);
-                                              _mostrarLoadingStreamControllerTEXTO.add(texto);
-
-                                            } else {
-                                              print("ALGO SALIO MAL");
-                                              _mostrarLoadingStreamController.add(true);
-                                            } */
-
-                                            ////
-
                                             if(PadronEntity.length>0){
                                               setState(() {
                                                 widget.total = PadronEntity.length;
@@ -920,6 +992,11 @@ late final _appDatabase;
                                               }
                                               //TERMINO
                                               loadTotalRegister();
+                                              setState(() {
+                                                widget.totalPadrones = PadronEntity.length;
+                                              });
+
+
                                               Navigator.pop(
                                                   context); //Close your current dialog
                                               showDialogValidFields(
@@ -981,22 +1058,137 @@ late final _appDatabase;
       child: Column(
         children: [
 
-          Visibility(
-            visible: widget.backup,
-            child:Column(
-              children: <Widget>[
-                GestureDetector(
-                    onTap: () {
+          //BOTON ENCUESTA PERCEPCIONES
+          Row(
+            children: [
+              Expanded(
+                  flex: 5,
+                  child:  GestureDetector(
+                      onTap: () async {
 
-                      //Convierto el backup en el objeto respuesta
-                      Respuesta obj = BackupMapper.instance.backuptoResp(objBackup);
-                      //MODIFICAR PARA QUE CARGE un backup con ID null
-                      Widget ContactoRefererencia = MenudeOpcionesOffline(obj); //CARGO DATA
+                        if(!widget.dinamico){
+                          showDialogValidFields("Tiene que descargar la encuesta"); //LO ULTIMO QUE HIZE
+                        } else{
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) =>  MenudeOpcionesDinamico(Respuesta())), //VOY AHI
+                          );
+                        }
+
+
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(10.0),
+                        alignment: Alignment.center,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          color: Color.fromARGB(255, 27, 65, 187),
+                        ),
+                        padding: const EdgeInsets.only(top: 16, bottom: 16),
+                        child: const Text("Encuesta percepciones",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500)),
+                      )),
+              ),
+
+              const Spacer(),
+              //SOBREESCRIBIR ENCUESTA
+              Visibility(
+                visible: widget.dinamico,
+                child:
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child:
+                  IconButton(
+                    icon: Image.asset(Resources.fotoX),
+                    color: Colors.white,
+                    onPressed: () async {
+
+                     //DESEA SOBREESCRIBRI?
+                      BorrarPercepcionesDialog();
+
+                    },
+                  ),
+                ),
+              ),
+
+              //DESCARGAR ENCUESTA!
+              Visibility(
+                visible: !widget.dinamico,
+                child:
+                Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child:
+                    IconButton(
+                      icon:  Image.asset(Resources.iconDownload),
+                      color: Colors.white, // This might not be necessary anymore due to the filter
+                      onPressed: ()  async {
+                        CargaDialog(); //PANTALLA DE CARGA
+
+                        if(PREFtoken == "ERROR"){
+                          showDialogValidFields("El token no se ha recibido");
+                        } else {
+                          List<Formulario> InsertarFormularioENTITY = await widget.apiForm.post_FormularioLista(PREFtoken);
+                          print(InsertarFormularioENTITY.length);
+                          if(InsertarFormularioENTITY.length>0){
+                            //BORRAR TODA LA DATA EXISTENTE
+                            await widget.formDataModelDaoFormulario.BorrarTodo();
+                            for (int i = 0; i < InsertarFormularioENTITY.length; i++) {
+                              try {
+                                await widget.formDataModelDaoFormulario.insertFormDataModel(InsertarFormularioENTITY[i]);
+                                print("AGREGADO FORMULARIO ${i}");
+                              }  catch (error) {
+                                print("Error saving FORMULARIO: $error");
+                                _mostrarLoadingStreamController.add(true);
+                                _mostrarLoadingStreamControllerTITUTLO.add("Error en el guardado");
+                                _mostrarLoadingStreamControllerTEXTO.add("No se pudo guardar el formulario");
+                              }
+                            }
+                            //TERMINO
+                            _mostrarLoadingStreamController.add(true);
+                            _mostrarLoadingStreamControllerTITUTLO.add("Descarga exitosa");
+                            _mostrarLoadingStreamControllerTEXTO.add("Ya puede responder el formulario");
+                            //showDialogValidFields("Sincronización exitosa");
+                            setState(() {
+                            widget.dinamico = true;
+                            });
+
+                          } else {
+                            _mostrarLoadingStreamController.add(true);
+                            _mostrarLoadingStreamControllerTITUTLO.add("Error en la base de datos");
+                            _mostrarLoadingStreamControllerTEXTO.add("No se pudo descargar el formulario");
+                            //showDialogValidFields("No se descargo la encuesta");
+                          }
+
+                        }
+
+                        },
+                    )
+                ),
+              ),
+
+            ],
+          ),
+
+          Row(
+            children: [
+               Expanded(
+                flex: 5,
+                child:           GestureDetector(
+                    onTap: () async {
+
+                      if(widget.backup){
+                        await widget.formDataModelDaoBackup.BorrarTodo();
+                      }
+
+                      Widget ContactoRefererencia = MenudeOpcionesOffline(Respuesta()); //CARGO DATA
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
                       );
-
                     },
                     child: Container(
                       margin: const EdgeInsets.all(10.0),
@@ -1007,74 +1199,59 @@ late final _appDatabase;
                         color: Color.fromARGB(255, 27, 65, 187),
                       ),
                       padding: const EdgeInsets.only(top: 16, bottom: 16),
-                      child: const Text("Continuar Formulario\n incompleto",
+                      child: const Text("Formulario de encuesta",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.w500)),
-                    )),
+                    ))
+              ),
+              const Spacer(),
+              Visibility(
+                  visible: widget.backup,
+                  child:
+                  Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child:
+                    IconButton(
+                      icon: Image.asset(Resources.guardar),
+                      color: Colors.white,
+                      onPressed: () async {
+                        //Convierto el backup en el objeto respuesta
+                        Respuesta obj = BackupMapper.instance.backuptoResp(objBackup);
+                        //MODIFICAR PARA QUE CARGE un backup con ID null
+                        Widget ContactoRefererencia = MenudeOpcionesOffline(obj); //CARGO DATA
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
+                        );
+                      },
+                    ),
+                  ),
+              ),
 
-              ],),
+              Visibility(
+                visible: !widget.backup,
+                child:
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child:
+                  IconButton(
+                    icon: ColorFiltered(
+                      colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.saturation), // Apply grayscale filter
+                      child: Image.asset(Resources.guardar),
+                    ),
+                    color: Colors.white, // This might not be necessary anymore due to the filter
+                    onPressed: ()  {
+                      showDialogValidFields(
+                          "Este es el backup, sino termina una encuesta este boton le permitira retomarla.");
+                    },
+                  )
+                ),
+              ),
+
+            ],
           ),
-
-  /*
-  GestureDetector(
-              onTap: () async {
-
-                if(widget.backup){
-                  await widget.formDataModelDaoBackup.BorrarTodo();
-                }
-
-                Widget ContactoRefererencia = MenudeOpcionesOffline(Respuesta()); //CARGO DATA
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
-                );
-              },
-              child: Container(
-                margin: const EdgeInsets.all(10.0),
-                alignment: Alignment.center,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  color: Color.fromARGB(255, 27, 65, 187),
-                ),
-                padding: const EdgeInsets.only(top: 16, bottom: 16),
-                child: const Text("Modernización del pago",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500)),
-              )),
-*/
-          GestureDetector(
-              onTap: () async {
-
-                if(widget.backup){
-                  await widget.formDataModelDaoBackup.BorrarTodo();
-                }
-
-                Widget ContactoRefererencia = MenudeOpcionesOffline(Respuesta()); //CARGO DATA
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
-                );
-              },
-              child: Container(
-                margin: const EdgeInsets.all(10.0),
-                alignment: Alignment.center,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  color: Color.fromARGB(255, 27, 65, 187),
-                ),
-                padding: const EdgeInsets.only(top: 16, bottom: 16),
-                child: const Text("Formulario de encuesta",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500)),
-              )),
 
           GestureDetector(
               onTap: () async {
@@ -1087,7 +1264,6 @@ late final _appDatabase;
                 } else {
                   if(widget.nombrePadron == "") {
                     GuardarPadronDialog();
-                    //CargaDialog();
                   } else {
                     GuardarPadronDialogAVISO();
                   }

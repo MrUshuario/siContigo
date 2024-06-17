@@ -6,6 +6,7 @@ class Formulario {
   int? cod;
   String? pregunta;
   String? tipoOpcion;
+  String? puntaje;
   int? tipoRepuesta;
   int? id;
   int? idformato;
@@ -18,7 +19,7 @@ class Formulario {
 
 
   Formulario({
-    this.cod, this.pregunta, this.tipoOpcion, this.tipoRepuesta,
+    this.cod, this.pregunta, this.tipoOpcion, this.puntaje, this.tipoRepuesta,
     this.id, this.idformato, this.texto, this.titulo, this.idseccion,
     this.descripcion, this.id_tipo_respuesta, this.id_seccion});
 
@@ -28,13 +29,18 @@ class Formulario {
     if (json['tipoOpcion'] != null || json['tipoOpcion'] != "" || json['tipoOpcion'] != "texto") {
       tipoOpcionList = (json['tipoOpcion'] as List<dynamic>).join(', ');
     }
-    print("get_FormularioLista");
-    print(tipoOpcionList);
+
+    String puntajeList = "";
+    if (json['puntaje'] != null || json['puntaje'] != "" || json['puntaje'] != "texto") {
+      puntajeList = (json['puntaje'] as List<dynamic>).join(', ');
+    }
+
 
     return Formulario(
       cod: json['cod'] as int?,
       pregunta: json['pregunta'] as String?,
       tipoOpcion: tipoOpcionList as String?,
+      puntaje: puntajeList as String?,
       tipoRepuesta: json['tipoRepuesta'] as int?,
       id: json['id'] as int?,
       idformato: json['idformato'] as int?,
@@ -59,6 +65,7 @@ class Formulario {
       "cod": cod,
       "pregunta": pregunta,
       "tipoOpcion": tipoOpcion,
+      "puntaje": puntaje,
       "tipoRepuesta": tipoRepuesta,
       "id": id,
       "idformato": idformato,

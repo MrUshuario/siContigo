@@ -97,7 +97,7 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Html` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `htmlcodigo` TEXT)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Formulario` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `pregunta` TEXT, `tipoOpcion` TEXT, `tipoRepuesta` INTEGER, `id` INTEGER, `idformato` INTEGER, `texto` TEXT, `titulo` TEXT, `idseccion` INTEGER, `descripcion` TEXT, `id_tipo_respuesta` INTEGER, `id_seccion` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `Formulario` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `pregunta` TEXT, `tipoOpcion` TEXT, `puntaje` TEXT, `tipoRepuesta` INTEGER, `id` INTEGER, `idformato` INTEGER, `texto` TEXT, `titulo` TEXT, `idseccion` INTEGER, `descripcion` TEXT, `id_tipo_respuesta` INTEGER, `id_seccion` INTEGER)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Respuesta` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
         await database.execute(
@@ -230,6 +230,7 @@ class _$FormDataModelDaoFormulario extends FormDataModelDaoFormulario {
                   'cod': item.cod,
                   'pregunta': item.pregunta,
                   'tipoOpcion': item.tipoOpcion,
+                  'puntaje': item.puntaje,
                   'tipoRepuesta': item.tipoRepuesta,
                   'id': item.id,
                   'idformato': item.idformato,
@@ -260,6 +261,7 @@ class _$FormDataModelDaoFormulario extends FormDataModelDaoFormulario {
             cod: row['cod'] as int?,
             pregunta: row['pregunta'] as String?,
             tipoOpcion: row['tipoOpcion'] as String?,
+            puntaje: row['puntaje'] as String?,
             tipoRepuesta: row['tipoRepuesta'] as int?,
             id: row['id'] as int?,
             idformato: row['idformato'] as int?,
@@ -279,6 +281,7 @@ class _$FormDataModelDaoFormulario extends FormDataModelDaoFormulario {
             cod: row['cod'] as int?,
             pregunta: row['pregunta'] as String?,
             tipoOpcion: row['tipoOpcion'] as String?,
+            puntaje: row['puntaje'] as String?,
             tipoRepuesta: row['tipoRepuesta'] as int?,
             id: row['id'] as int?,
             idformato: row['idformato'] as int?,
