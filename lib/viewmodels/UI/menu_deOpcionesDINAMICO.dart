@@ -55,7 +55,7 @@ class MenudeOpcionesDinamico extends StatefulWidget {
 
   //FORMULARIOS DINAMCIOS
   int idbutton = 1;
-  int? total = 0;
+  int? IDSECCION = 0;
   int? totalFase2 = 0;
 
   final ParamGestor = List.filled(3, "", growable: false);
@@ -90,7 +90,7 @@ class RadioButtonsDinamic {
   }
 }
 
-enum EstadoFallecido { a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, x, y, z, si } //SOLO SIRVE PARA MOSTRAR NO SE GUARDA
+enum idDinamico { a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, x, y, z, noRpta } //SOLO SIRVE PARA MOSTRAR NO SE GUARDA
 
 class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
 
@@ -108,24 +108,6 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
   String? GPSlongitude = "";
   String? GPSaltitude = "";
 
-  String rpstP01 = "P01 ";
-  String rpstP02 = " P02 ";
-  String rpstP03 = " P03 ";
-  String rpstP04 = " P04 ";
-  String rpstP05 = " P05 ";
-  String rpstP06 = " P06 ";
-  String rpstP07 = " P07 ";
-  String rpstP08 = " P08 ";
-  String rpstP09 = " P09 ";
-  String rpstP10 = " P10 ";
-  String rpstP11 = " P11 ";
-  String rpstP12 = " P12 ";
-  String rpstP13 = " P13 ";
-  String rpstP14 = " P14 ";
-  String rpstP15 = " P15 ";
-  String rpstP16 = " P16 ";
-  String rpstP17 = " P17 ";
-  String rpstP18 = " P18 ";
   int puntaje = 0;
 
   //BACKUP
@@ -178,8 +160,12 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
     super.initState();
   }
 
-  //EstadoFallecido? _EstadoFallecido = null;
-  List<EstadoFallecido> _EstadoFallecidoList = [];
+  //idDinamico? _idDinamico = null;
+  List<idDinamico> _idDinamicoListInput = [];
+  List<idDinamico> _idDinamicoListCircle = [];
+  List<bool> _idDinamicoListCheck = [];
+
+
 
   @override
   void dispose() {
@@ -228,10 +214,8 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
   }
 
   Future<void> guardadoFase1() async{
-
     widget.formData?.id_usuario =  int.parse(widget.formIdUsuario!.text);
   }
-
 
   Future<void> guardadoFase2() async{
     await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
@@ -362,16 +346,39 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
 
   //FORMULARIOS
   Future<void> loadTotalRegister() async {
-    var res = await widget.formDataModelDaoFormulario.totalFormDataModels();
-    if(res!>0){
-      for (int i = 0; i < res!; i++) {
-        _EstadoFallecidoList.add(EstadoFallecido.si); // Adjust 'si' value as needed
-      }
-    }
+    //var res = await widget.formDataModelDaoFormulario.totalFormDataModels();
+    var res = await widget.formDataModelDaoFormulario.totalFormDataModelsSECCION(widget.IDSECCION!);
 
-    setState(() {
-      widget.total = res;
-    });
+    //findFormDataModelSECCION; AGREGAR LA SEPARACION POR SECCIONES
+
+
+    var resRADIO = await widget.formDataModelDaoFormulario.totalFormDataModelsCIRCLE();
+    //PARA RADIOBUTTON
+    if(resRADIO!>0){
+      for (int i = 0; i < resRADIO!; i++) {
+        _idDinamicoListCircle .add(idDinamico.noRpta);
+      }}
+
+    var resCHECK = await widget.formDataModelDaoFormulario.totalFormDataModelsCHECKS();
+    List<Formulario> listcheck = await widget.formDataModelDaoFormulario.findAllFormularioCHECK();
+    //PARA CHECKBOX
+      if(listcheck.isNotEmpty){
+        for (int i = 0; i < listcheck.length; i++) {
+          List<String>? OpcionCHECKcount;
+          OpcionCHECKcount = listcheck[i].tipoOpcion!.split(';');
+            for (int i = 0; i < OpcionCHECKcount.length; i++) {
+              _idDinamicoListCheck .add(false);
+            }
+        }}
+
+    var resINPUT = await widget.formDataModelDaoFormulario.totalFormDataModelsINPUT();
+    //PARA INPUT
+        if(resINPUT!>0){
+          for (int i = 0; i < resINPUT!; i++) {
+            _idDinamicoListInput .add(idDinamico.noRpta);
+          }}
+
+    setState(() {});
   }
 
   Future<void> listarVisitasRetro() async {
@@ -781,8 +788,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                     viewModel: widget.viewModel,
                     itemBuilder: (context, index, item) {
 
-                      bool MostrarInput = false;
-                      bool MostrarOpcion = false; //false opcion multiple //true checkbox
+
 
 
                       List<String>? tipoOpcionList;
@@ -790,146 +796,186 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                       List<RadioButtonsDinamic> idOpciones = List.empty();
                       int indexPregunta =0;
 
-                      if (item.id_tipo_respuesta == 4 || //SELCCIONAR OPCION
-                          item.id_tipo_respuesta == 5) { //CHECKBOX
+                      if (item.tipoRepuesta == 2 || //CIRCLE OPCION
+                          item.tipoRepuesta == 4) { //CHECKBOX
                         tipoOpcionList = item.tipoOpcion!.split(';'); //ENUNCIADO
                         tipoOpcionPuntaje = item.puntaje!.split(';'); //PUNTAJE
                         indexPregunta = index;
                         //idOpciones = RadioButtonsDinamic.generateData(tipoOpcionList.length); //GENERA ID
+
+                        if(item.tipoRepuesta == 4){ //CHECBOX
+
+                          return Column(
+                            children: [
+
+                              //TODAS LAS PREGUNTAS ENUNCIADOS
+                              HelpersViewLetrasRojas.formItemsPREGUNTA(index, item.pregunta!, item.texto!, item.descripcion!,  context),
+
+                              //OPCIONES CHECK
+                                SizedBox(
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: tipoOpcionList?.length ?? 0,
+                                    itemBuilder: (context, index) {
+
+                                      return Container(
+                                        decoration: const BoxDecoration(
+                                          border: Border(
+                                            bottom: BorderSide( // Apply color and width to the bottom side
+                                              color: Colors.red, // Change this to your desired color
+                                              width: 1.0,      // Adjust border width here
+                                            ),
+                                          ),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              flex: 5,
+                                              child: Padding(
+                                                padding: EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  "${index+1}) ${tipoOpcionList?[index]}",
+                                                  style: TextStyle(
+                                                    fontSize: 14.0,
+                                                    //color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+
+                                            const Spacer(),
+                                            //EN LA SGTE PREGUNTA AGARRA EL INDEX DE ARRIBA HACER SUMATORIA
+                                            Checkbox(
+                                              value: _idDinamicoListCheck[index],
+                                              onChanged: (bool? value) {
+                                                setState(() {
+                                                  _idDinamicoListCheck[index] = value!;
+                                                });
+                                              },
+                                            ),
+
+                                            SizedBox(
+                                              height: MediaQuery.of(context).size.height * 0.005,
+                                            ),
+
+                                          ],
+                                        ),
+                                      );
+
+                                    },
+                                  ),
+                                ),
+
+
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height * 0.020,
+                              ),
+                            ],
+                          );
+
+                        } else if (item.tipoRepuesta == 2){ //CIRCLE
+
+                          return Column(
+                            children: [
+
+                              //TODAS LAS PREGUNTAS ENUNCIADOS
+                              HelpersViewLetrasRojas.formItemsPREGUNTA(index, item.pregunta!, item.texto!, item.descripcion!,  context),
+
+                              //OPCIONES CIRCLE
+                                SizedBox(
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: tipoOpcionList?.length ?? 0,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        decoration: const BoxDecoration(
+                                          border: Border(
+                                            bottom: BorderSide( // Apply color and width to the bottom side
+                                              color: Colors.red, // Change this to your desired color
+                                              width: 1.0,      // Adjust border width here
+                                            ),
+                                          ),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              flex: 5,
+                                              child: Padding(
+                                                padding: EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  "${index+1}) ${tipoOpcionList?[index]}",
+                                                  style: TextStyle(
+                                                    fontSize: 14.0,
+                                                    //color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+
+                                            const Spacer(),
+
+                                            Radio<idDinamico>(
+                                              value: idDinamico.values[index],
+                                              groupValue: _idDinamicoListCircle[indexPregunta], //
+                                              onChanged: (idDinamico? value) {
+                                                setState(() {
+                                                  _idDinamicoListCircle[indexPregunta] = value!;
+                                                });
+                                              },
+                                            ),
+
+                                            SizedBox(
+                                              height: MediaQuery.of(context).size.height * 0.005,
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height * 0.020,
+                              ),
+                            ],
+                          );
+
+                        }
+
                       } else {
-                        MostrarInput = true; //INPUT
+                        //MOSTRAR INPUT
+                        return  Column(
+                          children: [
+
+                            //TODAS LAS PREGUNTAS ENUNCIADOS
+                            HelpersViewLetrasRojas.formItemsPREGUNTA(index, item.pregunta!, item.texto!, item.descripcion!,  context),
+
+                            //INPUT TEXT
+                              HelpersViewBlancoIcon.formItemsDesign(
+                                Icons.question_mark,
+                                TextFormField(
+                                  // Access item data here
+                                  decoration: InputDecoration(
+                                    //labelText:"${item.tipoRepuesta}",
+                                    labelText:"Ingresar respuesta única",
+                                  ),
+                                ),
+                                context,
+                              ),
+
+
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.020,
+                            ),
+                          ],
+                        );
+
                       }
 
 
                       return Column(
                         children: [
-
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.010,
-                          ),
-
-                          Text(
-                            "${index + 1}) ${item.pregunta}:  ${item.texto}", // Example,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-
-                          Text(
-                            "${item.descripcion}", // Example,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black87,
-                            ),
-                          ),
-
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.010,
-                          ),
-
-                          //INPUT TEXT
-                          Visibility(
-                            visible: MostrarInput,
-                            child:
-                            HelpersViewBlancoIcon.formItemsDesign(
-                              Icons.question_mark,
-                              TextFormField(
-                                // Access item data here
-                                decoration: InputDecoration(
-                                  //labelText:"${item.tipoRepuesta}",
-                                  labelText:"Ingresar respuesta única",
-                                ),
-                              ),
-                              context,
-                            ),
-                          ),
-
-                          //OPCIONES CIRCLE
-                          Visibility(
-                            visible: !MostrarInput,
-                            child:
-                            SizedBox(
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: tipoOpcionList?.length ?? 0,
-                                itemBuilder: (context, index) {
-
-                                  return Container(
-                                    decoration: const BoxDecoration(
-                                      border: Border(
-                                        bottom: BorderSide( // Apply color and width to the bottom side
-                                          color: Colors.red, // Change this to your desired color
-                                          width: 1.0,      // Adjust border width here
-                                        ),
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                         Expanded(
-                                          flex: 5,
-                                          child: Padding(
-                                            padding: EdgeInsets.all(8.0),
-                                            child: Text(
-                                              "${index+1}) ${tipoOpcionList?[index]}",
-                                              style: TextStyle(
-                                                fontSize: 14.0,
-                                                //color: Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-
-                                        const Spacer(),
-
-                                        /*
-                                        Radio<EstadoFallecido>(
-                                          value: EstadoFallecido.Si,
-                                          groupValue: _EstadoFallecido,
-                                          onChanged: (EstadoFallecido? value) {
-                                            setState(() {
-                                              _EstadoFallecido = value;
-                                            });
-                                          },
-                                        ),
-
-                                         */
-
-                                        Radio<EstadoFallecido>(
-                                          value: EstadoFallecido.values[index],
-                                          groupValue: _EstadoFallecidoList[indexPregunta],
-                                          onChanged: (EstadoFallecido? value) {
-                                            setState(() {
-                                              _EstadoFallecidoList[indexPregunta] = value!;
-                                            });
-                                          },
-                                        ),
-
-                                        SizedBox(
-                                          height: MediaQuery.of(context).size.height * 0.005,
-                                        ),
-
-                                      ],
-                                    ),
-                                  );
-
-                                  /* INTENTO DE SOLUCION PARA QUE PUEDA SCROLLEAR
-                                  return Row( children: [
-                                    const SizedBox(height: 16.0),
-                                    ],
-                                  );*/
-
-                                },
-                              ),
-                            ),
-                          ),
-
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.020,
-                          ),
-
+                          SizedBox(height: MediaQuery.of(context).size.height * 0.020,),
                         ],
                       );
 

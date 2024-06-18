@@ -19,6 +19,30 @@ abstract class FormDataModelDaoFormulario {
   @Query('SELECT COUNT(*) FROM Formulario')
   Future<int?> totalFormDataModels();
 
+  //SEPARAR PREGUNTAS POR TIPOS
+  @Query('SELECT COUNT(*) FROM Formulario WHERE tipoRepuesta = 2')
+  Future<int?> totalFormDataModelsCIRCLE();
+
+  @Query('SELECT COUNT(*) FROM Formulario WHERE tipoRepuesta = 4')
+  Future<int?> totalFormDataModelsCHECKS();
+  //ESTE ES UN CASO ESPECIAL REQUIERE EL NUMERO DE CHECKS
+  @Query('SELECT * FROM Formulario WHERE tipoRepuesta = 4')
+  Future<List<Formulario>> findAllFormularioCHECK();
+  //@Query('SELECT formulario_id, puntaje, COUNT(regexp_matches(puntaje, "[^;]+")) AS num_puntajes FROM Formulario')
+  //Future<int?> totalFormDataModelsCHECKSconteo();
+
+
+  @Query('SELECT COUNT(*) FROM Formulario WHERE tipoRepuesta = 1')
+  Future<int?> totalFormDataModelsINPUT();
+
+  //SEGUN LA SECCION
+  @Query('SELECT COUNT(*) FROM Formulario WHERE id_seccion = :id')
+  Future<int?> totalFormDataModelsSECCION(int id);
+
+  @Query('SELECT * FROM Formulario WHERE id_seccion = :id  LIMIT :perPage OFFSET :offset')
+  Future<List<Formulario>> findFormDataModelSECCION(int offset, int perPage, int id);
+  ////
+
   @Query('DELETE FROM Html WHERE cod = :cod')
   Future<int?> BorrarFormDataModels(int cod);
 

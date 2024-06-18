@@ -307,6 +307,80 @@ class _$FormDataModelDaoFormulario extends FormDataModelDaoFormulario {
   }
 
   @override
+  Future<int?> totalFormDataModelsCIRCLE() async {
+    return _queryAdapter.query(
+        'SELECT COUNT(*) FROM Formulario WHERE tipoRepuesta = 2',
+        mapper: (Map<String, Object?> row) => row.values.first as int);
+  }
+
+  @override
+  Future<int?> totalFormDataModelsCHECKS() async {
+    return _queryAdapter.query(
+        'SELECT COUNT(*) FROM Formulario WHERE tipoRepuesta = 4',
+        mapper: (Map<String, Object?> row) => row.values.first as int);
+  }
+
+  @override
+  Future<List<Formulario>> findAllFormularioCHECK() async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM Formulario WHERE tipoRepuesta = 4',
+        mapper: (Map<String, Object?> row) => Formulario(
+            cod: row['cod'] as int?,
+            pregunta: row['pregunta'] as String?,
+            tipoOpcion: row['tipoOpcion'] as String?,
+            puntaje: row['puntaje'] as String?,
+            tipoRepuesta: row['tipoRepuesta'] as int?,
+            id: row['id'] as int?,
+            idformato: row['idformato'] as int?,
+            texto: row['texto'] as String?,
+            titulo: row['titulo'] as String?,
+            idseccion: row['idseccion'] as int?,
+            descripcion: row['descripcion'] as String?,
+            id_tipo_respuesta: row['id_tipo_respuesta'] as int?,
+            id_seccion: row['id_seccion'] as int?));
+  }
+
+  @override
+  Future<int?> totalFormDataModelsINPUT() async {
+    return _queryAdapter.query(
+        'SELECT COUNT(*) FROM Formulario WHERE tipoRepuesta = 1',
+        mapper: (Map<String, Object?> row) => row.values.first as int);
+  }
+
+  @override
+  Future<int?> totalFormDataModelsSECCION(int id) async {
+    return _queryAdapter.query(
+        'SELECT COUNT(*) FROM Formulario WHERE id_seccion = ?1',
+        mapper: (Map<String, Object?> row) => row.values.first as int,
+        arguments: [id]);
+  }
+
+  @override
+  Future<List<Formulario>> findFormDataModelSECCION(
+    int offset,
+    int perPage,
+    int id,
+  ) async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM Formulario WHERE id_seccion = ?3  LIMIT ?2 OFFSET ?1',
+        mapper: (Map<String, Object?> row) => Formulario(
+            cod: row['cod'] as int?,
+            pregunta: row['pregunta'] as String?,
+            tipoOpcion: row['tipoOpcion'] as String?,
+            puntaje: row['puntaje'] as String?,
+            tipoRepuesta: row['tipoRepuesta'] as int?,
+            id: row['id'] as int?,
+            idformato: row['idformato'] as int?,
+            texto: row['texto'] as String?,
+            titulo: row['titulo'] as String?,
+            idseccion: row['idseccion'] as int?,
+            descripcion: row['descripcion'] as String?,
+            id_tipo_respuesta: row['id_tipo_respuesta'] as int?,
+            id_seccion: row['id_seccion'] as int?),
+        arguments: [offset, perPage, id]);
+  }
+
+  @override
   Future<int?> BorrarFormDataModels(int cod) async {
     return _queryAdapter.query('DELETE FROM Html WHERE cod = ?1',
         mapper: (Map<String, Object?> row) => row.values.first as int,

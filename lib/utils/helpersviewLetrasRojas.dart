@@ -76,6 +76,40 @@ static Widget formItemsDesign2(String text) {
 }
 
 
+static Widget formItemsPREGUNTA(int index, String ipregunta, itexto, idescripcion,  context) {
+  return Column(
+    children: [
+
+      SizedBox(
+        height: MediaQuery.of(context).size.height * 0.010,
+      ),
+
+      Text(
+        "${index + 1}) ${ipregunta}:  ${itexto}", // Example,
+        textAlign: TextAlign.left,
+        style: const TextStyle(
+          fontSize: 16.0,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+
+      Text(
+        "${idescripcion}", // Example,
+        textAlign: TextAlign.left,
+        style: const TextStyle(
+          fontSize: 14.0,
+          color: Colors.black87,
+        ),
+      ),
+
+      SizedBox(
+        height: MediaQuery.of(context).size.height * 0.010,
+      ),
+
+    ],
+  );
+}
+
 
 
 }

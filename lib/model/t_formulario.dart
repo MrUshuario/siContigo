@@ -31,7 +31,7 @@ class Formulario {
     }
 
     String puntajeList = "";
-    if (json['puntaje'] != null || json['puntaje'] != "" || json['puntaje'] != "texto") {
+    if (json['puntaje'] != null) {
       puntajeList = (json['puntaje'] as List<dynamic>).join('; ');
     }
 
