@@ -27,12 +27,12 @@ class Formulario {
 
     String tipoOpcionList = "";
     if (json['tipoOpcion'] != null || json['tipoOpcion'] != "" || json['tipoOpcion'] != "texto") {
-      tipoOpcionList = (json['tipoOpcion'] as List<dynamic>).join(', ');
+      tipoOpcionList = (json['tipoOpcion'] as List<dynamic>).join('; ');
     }
 
     String puntajeList = "";
     if (json['puntaje'] != null || json['puntaje'] != "" || json['puntaje'] != "texto") {
-      puntajeList = (json['puntaje'] as List<dynamic>).join(', ');
+      puntajeList = (json['puntaje'] as List<dynamic>).join('; ');
     }
 
 

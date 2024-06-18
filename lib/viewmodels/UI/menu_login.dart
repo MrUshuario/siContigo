@@ -116,15 +116,16 @@ class _login extends State<login> {
           ),
           backgroundColor: Color.fromRGBO(23, 50, 172, 1),
           //leading: Icon(Icons.menu),
-          actions: const [
+          actions: [
             /*
             IconButton(
-              icon: Image.asset(Resources.iconInfo),
+              icon: Image.asset(Resources.iconDownload),
               color: Colors.white,
               onPressed: () async {
 
               },
             ),
+
             IconButton(
               icon: Image.asset(Resources.iconDownload),
               color: Colors.white,

@@ -49,21 +49,23 @@ class MenudeOpcionesDinamico extends StatefulWidget {
   TextEditingController formIdUsuario = TextEditingController();
   TextEditingController formNombreUsuario = TextEditingController();
 
+
   //BACKUP
   bool backup = false;
 
   //FORMULARIOS DINAMCIOS
+  int idbutton = 1;
   int? total = 0;
   int? totalFase2 = 0;
 
   final ParamGestor = List.filled(3, "", growable: false);
-
 
   //ENVIAR LA DATA
   apiprovider_formulario apiForm = apiprovider_formulario();
   Respuesta? formData;
   RespuestaBACKUP? formDataBACKUP = RespuestaBACKUP();
   MenudeOpcionesDinamico(this.formData, {super.key});
+
 
   @override
   State<StatefulWidget> createState() {
@@ -72,7 +74,23 @@ class MenudeOpcionesDinamico extends StatefulWidget {
 
 }
 
-enum EstadoFallecido { Si, No } //SOLO SIRVE PARA MOSTRAR NO SE GUARDA
+//DINAMISMO
+class RadioButtonsDinamic {
+  final int name;
+  final bool bol;
+  final int puntaje;
+  RadioButtonsDinamic(this.name,  this.bol,  this.puntaje);
+
+  static List<RadioButtonsDinamic> generateData(int count) {
+    List<RadioButtonsDinamic> data = [];
+    for (int i = 0; i < count; i++) {
+      data.add(RadioButtonsDinamic(i+1, true, 0)); // Adjust 'si' value as needed
+    }
+    return data;
+  }
+}
+
+enum EstadoFallecido { a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, x, y, z, si } //SOLO SIRVE PARA MOSTRAR NO SE GUARDA
 
 class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
 
@@ -160,7 +178,8 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
     super.initState();
   }
 
-  EstadoFallecido? _EstadoFallecido = null;
+  //EstadoFallecido? _EstadoFallecido = null;
+  List<EstadoFallecido> _EstadoFallecidoList = [];
 
   @override
   void dispose() {
@@ -344,6 +363,12 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
   //FORMULARIOS
   Future<void> loadTotalRegister() async {
     var res = await widget.formDataModelDaoFormulario.totalFormDataModels();
+    if(res!>0){
+      for (int i = 0; i < res!; i++) {
+        _EstadoFallecidoList.add(EstadoFallecido.si); // Adjust 'si' value as needed
+      }
+    }
+
     setState(() {
       widget.total = res;
     });
@@ -508,7 +533,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
               maxWidth: double.infinity, // Set your maximum width here
             ),
             child: Container(
-              margin: const EdgeInsets.all(41.0),
+              margin: const EdgeInsets.all(22.0),
               child: Form(
                 //key: widget.keyForm,
                 child: formUI(scrollController),
@@ -740,17 +765,19 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
             child:Column(
               children: <Widget>[
 
-                HelpersViewLetrasRojas.formItemsDesign( "Formulario (* Obligatorio)"),
-                const SizedBox(height: 16.0),
+                HelpersViewLetrasRojas.formItemsDesign( "Módulo II: USUARIO Y CUIDADOR"),
+                const SizedBox(height: 10.0),
 
-                HelpersViewLetrasSubs.formItemsDesign( "INSERTAR SUB *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                //HelpersViewLetrasSubs.formItemsDesign( "INSERTAR SUB *"),
+                //HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
 
                 //FORMULARIO FASE2
                 SizedBox(
                   width: double.infinity, // Fills available space horizontally
-                  height: 350, // Set your desired height
-                  child: AnimatedInfiniteScrollView<Formulario>(
+                  height: MediaQuery.of(context).size.height * 0.70,
+                  child:
+                  Scrollbar(thumbVisibility: true,child:
+                    AnimatedInfiniteScrollView<Formulario>(
                     viewModel: widget.viewModel,
                     itemBuilder: (context, index, item) {
 
@@ -759,12 +786,20 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
 
 
                       List<String>? tipoOpcionList;
-                      if (item.id_tipo_respuesta == 4 ||
-                          item.id_tipo_respuesta == 5) {
-                        tipoOpcionList = item.tipoOpcion!.split(',');
+                      List<String>? tipoOpcionPuntaje;
+                      List<RadioButtonsDinamic> idOpciones = List.empty();
+                      int indexPregunta =0;
+
+                      if (item.id_tipo_respuesta == 4 || //SELCCIONAR OPCION
+                          item.id_tipo_respuesta == 5) { //CHECKBOX
+                        tipoOpcionList = item.tipoOpcion!.split(';'); //ENUNCIADO
+                        tipoOpcionPuntaje = item.puntaje!.split(';'); //PUNTAJE
+                        indexPregunta = index;
+                        //idOpciones = RadioButtonsDinamic.generateData(tipoOpcionList.length); //GENERA ID
                       } else {
-                        MostrarInput = true;
+                        MostrarInput = true; //INPUT
                       }
+
 
                       return Column(
                         children: [
@@ -787,7 +822,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                             textAlign: TextAlign.left,
                             style: const TextStyle(
                               fontSize: 14.0,
-                              color: Colors.black12,
+                              color: Colors.black87,
                             ),
                           ),
 
@@ -833,27 +868,41 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                                     ),
                                     child: Row(
                                       children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(right: 5.0),
-                                          child: Text(
-                                            "Opción ${index+1}) ${tipoOpcionList?[index]}",
-                                            textAlign: TextAlign.left,
-                                            overflow: TextOverflow.fade,
-                                            maxLines: 2, // Set the number of lines here
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 15.0),
+                                         Expanded(
+                                          flex: 5,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "${index+1}) ${tipoOpcionList?[index]}",
+                                              style: TextStyle(
+                                                fontSize: 14.0,
+                                                //color: Colors.white,
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                        //Icon(iconValue, color: Colors.red,),
 
-                                        const SizedBox(height: 16.0), // Add spacing between text and radio
+                                        const Spacer(),
+
+                                        /*
                                         Radio<EstadoFallecido>(
                                           value: EstadoFallecido.Si,
                                           groupValue: _EstadoFallecido,
                                           onChanged: (EstadoFallecido? value) {
                                             setState(() {
                                               _EstadoFallecido = value;
+                                            });
+                                          },
+                                        ),
+
+                                         */
+
+                                        Radio<EstadoFallecido>(
+                                          value: EstadoFallecido.values[index],
+                                          groupValue: _EstadoFallecidoList[indexPregunta],
+                                          onChanged: (EstadoFallecido? value) {
+                                            setState(() {
+                                              _EstadoFallecidoList[indexPregunta] = value!;
                                             });
                                           },
                                         ),
@@ -865,6 +914,13 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                                       ],
                                     ),
                                   );
+
+                                  /* INTENTO DE SOLUCION PARA QUE PUEDA SCROLLEAR
+                                  return Row( children: [
+                                    const SizedBox(height: 16.0),
+                                    ],
+                                  );*/
+
                                 },
                               ),
                             ),
@@ -880,10 +936,13 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                     },
                     refreshIndicator: true,
                   ),
+                  ), //SCROLLBAR
                 ),
 
                 //BOTON PARA CONTINUAR
-
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
                 GestureDetector(
                     onTap: ()  async {
 
@@ -943,6 +1002,9 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                 HelpersViewLetrasSubs.formItemsDesign( "Actualmente. ¿A qué tipo de establecimiento de Salud, acude con frecuencia? *"),
                 HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
 
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
                 GestureDetector(
                     onTap: ()  async {
                       if(
@@ -1014,6 +1076,9 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                 HelpersViewLetrasSubs.formItemsDesign( "¿Que tipo de vivienda tienes? *"),
                 HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
 
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
                 GestureDetector(
                     onTap: ()  async {
                       if(

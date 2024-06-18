@@ -327,6 +327,64 @@ late final _appDatabase;
               SincronizarDialog();
             },
           ),
+
+          IconButton(
+            icon: Image.asset(
+              !widget.dinamico
+                  ? Resources.iconProgreso
+                  : Resources.fotoX,
+              // Usa la imagen verde si isSatelliteGreen es verdadero, de lo contrario, usa la imagen roja
+            ),
+            color: Colors.white,
+            onPressed: () async {
+
+              if(!widget.dinamico){
+                CargaDialog(); //PANTALLA DE CARGA
+                if(PREFtoken == "ERROR"){
+                  showDialogValidFields("El token no se ha recibido");
+                } else {
+                  List<Formulario> InsertarFormularioENTITY = await widget.apiForm.post_FormularioLista(PREFtoken);
+                  print(InsertarFormularioENTITY.length);
+                  if(InsertarFormularioENTITY.length>0){
+                    //BORRAR TODA LA DATA EXISTENTE
+                    await widget.formDataModelDaoFormulario.BorrarTodo();
+                    for (int i = 0; i < InsertarFormularioENTITY.length; i++) {
+                      try {
+                        await widget.formDataModelDaoFormulario.insertFormDataModel(InsertarFormularioENTITY[i]);
+                        print("AGREGADO FORMULARIO ${i}");
+                      }  catch (error) {
+                        print("Error saving FORMULARIO: $error");
+                        _mostrarLoadingStreamController.add(true);
+                        _mostrarLoadingStreamControllerTITUTLO.add("Error en el guardado");
+                        _mostrarLoadingStreamControllerTEXTO.add("No se pudo guardar el formulario");
+                      }
+                    }
+                    //TERMINO
+                    _mostrarLoadingStreamController.add(true);
+                    _mostrarLoadingStreamControllerTITUTLO.add("Descarga exitosa");
+                    _mostrarLoadingStreamControllerTEXTO.add("Ya puede responder el formulario");
+                    //showDialogValidFields("Sincronización exitosa");
+                    setState(() {
+                      widget.dinamico = true;
+                    });
+
+                  } else {
+                    _mostrarLoadingStreamController.add(true);
+                    _mostrarLoadingStreamControllerTITUTLO.add("Error en la base de datos");
+                    _mostrarLoadingStreamControllerTEXTO.add("No se pudo descargar el formulario");
+                    //showDialogValidFields("No se descargo la encuesta");
+                  }
+                }
+              }else{
+                //DESEA SOBREESCRIBRI?
+                BorrarPercepcionesDialog();
+              }
+
+
+
+            },
+          ),
+
         ],
       ),
       body: Center (
@@ -1058,120 +1116,7 @@ late final _appDatabase;
       child: Column(
         children: [
 
-          //BOTON ENCUESTA PERCEPCIONES
-          Row(
-            children: [
-              Expanded(
-                  flex: 5,
-                  child:  GestureDetector(
-                      onTap: () async {
 
-                        if(!widget.dinamico){
-                          showDialogValidFields("Tiene que descargar la encuesta"); //LO ULTIMO QUE HIZE
-                        } else{
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) =>  MenudeOpcionesDinamico(Respuesta())), //VOY AHI
-                          );
-                        }
-
-
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.all(10.0),
-                        alignment: Alignment.center,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          color: Color.fromARGB(255, 27, 65, 187),
-                        ),
-                        padding: const EdgeInsets.only(top: 16, bottom: 16),
-                        child: const Text("Encuesta percepciones",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500)),
-                      )),
-              ),
-
-              const Spacer(),
-              //SOBREESCRIBIR ENCUESTA
-              Visibility(
-                visible: widget.dinamico,
-                child:
-                Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child:
-                  IconButton(
-                    icon: Image.asset(Resources.fotoX),
-                    color: Colors.white,
-                    onPressed: () async {
-
-                     //DESEA SOBREESCRIBRI?
-                      BorrarPercepcionesDialog();
-
-                    },
-                  ),
-                ),
-              ),
-
-              //DESCARGAR ENCUESTA!
-              Visibility(
-                visible: !widget.dinamico,
-                child:
-                Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child:
-                    IconButton(
-                      icon:  Image.asset(Resources.iconDownload),
-                      color: Colors.white, // This might not be necessary anymore due to the filter
-                      onPressed: ()  async {
-                        CargaDialog(); //PANTALLA DE CARGA
-
-                        if(PREFtoken == "ERROR"){
-                          showDialogValidFields("El token no se ha recibido");
-                        } else {
-                          List<Formulario> InsertarFormularioENTITY = await widget.apiForm.post_FormularioLista(PREFtoken);
-                          print(InsertarFormularioENTITY.length);
-                          if(InsertarFormularioENTITY.length>0){
-                            //BORRAR TODA LA DATA EXISTENTE
-                            await widget.formDataModelDaoFormulario.BorrarTodo();
-                            for (int i = 0; i < InsertarFormularioENTITY.length; i++) {
-                              try {
-                                await widget.formDataModelDaoFormulario.insertFormDataModel(InsertarFormularioENTITY[i]);
-                                print("AGREGADO FORMULARIO ${i}");
-                              }  catch (error) {
-                                print("Error saving FORMULARIO: $error");
-                                _mostrarLoadingStreamController.add(true);
-                                _mostrarLoadingStreamControllerTITUTLO.add("Error en el guardado");
-                                _mostrarLoadingStreamControllerTEXTO.add("No se pudo guardar el formulario");
-                              }
-                            }
-                            //TERMINO
-                            _mostrarLoadingStreamController.add(true);
-                            _mostrarLoadingStreamControllerTITUTLO.add("Descarga exitosa");
-                            _mostrarLoadingStreamControllerTEXTO.add("Ya puede responder el formulario");
-                            //showDialogValidFields("Sincronización exitosa");
-                            setState(() {
-                            widget.dinamico = true;
-                            });
-
-                          } else {
-                            _mostrarLoadingStreamController.add(true);
-                            _mostrarLoadingStreamControllerTITUTLO.add("Error en la base de datos");
-                            _mostrarLoadingStreamControllerTEXTO.add("No se pudo descargar el formulario");
-                            //showDialogValidFields("No se descargo la encuesta");
-                          }
-
-                        }
-
-                        },
-                    )
-                ),
-              ),
-
-            ],
-          ),
 
           Row(
             children: [
@@ -1252,6 +1197,38 @@ late final _appDatabase;
 
             ],
           ),
+
+          //BOTON ENCUESTA PERCEPCIONES
+          GestureDetector(
+              onTap: () async {
+
+                if(!widget.dinamico){
+                  showDialogValidFields("Tiene que descargar la encuesta"); //LO ULTIMO QUE HIZE
+                } else{
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>  MenudeOpcionesDinamico(Respuesta())), //VOY AHI
+                  );
+                }
+
+
+              },
+              child: Container(
+                margin: const EdgeInsets.all(10.0),
+                alignment: Alignment.center,
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                  color: Color.fromARGB(255, 27, 65, 187),
+                ),
+                padding: const EdgeInsets.only(top: 16, bottom: 16),
+                child: const Text("Encuesta percepciones",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500)),
+              )),
+
 
           GestureDetector(
               onTap: () async {
