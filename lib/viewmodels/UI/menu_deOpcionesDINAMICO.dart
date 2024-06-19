@@ -49,11 +49,15 @@ class MenudeOpcionesDinamico extends StatefulWidget {
   TextEditingController formIdUsuario = TextEditingController();
   TextEditingController formNombreUsuario = TextEditingController();
 
+  final scrollControllerOPTIONS = ScrollController();
 
   //BACKUP
   bool backup = false;
 
   //FORMULARIOS DINAMCIOS
+  int sumatoriacheck = 0; //GUARDA LO QUE SE SUMARA
+  int auxsumatoriacheck = 0;  //AYUDA A MANTENER LOS ID
+
   int idbutton = 1;
   int? IDSECCION = 0;
   int? totalFase2 = 0;
@@ -783,18 +787,30 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                   width: double.infinity, // Fills available space horizontally
                   height: MediaQuery.of(context).size.height * 0.70,
                   child:
-                  Scrollbar(thumbVisibility: true,child:
-                    AnimatedInfiniteScrollView<Formulario>(
+
+                    AnimatedInfiniteScrollView<Formulario>( //QUITAR ESTO
                     viewModel: widget.viewModel,
                     itemBuilder: (context, index, item) {
 
 
-
+                      String? ipregunta = "";
+                      String? itexto = "";
+                      String? idescripcion = "";
+                      String? ititulo = "";
 
                       List<String>? tipoOpcionList;
                       List<String>? tipoOpcionPuntaje;
                       List<RadioButtonsDinamic> idOpciones = List.empty();
                       int indexPregunta =0;
+
+
+                      widget.sumatoriacheck = widget.sumatoriacheck + widget.auxsumatoriacheck;
+
+
+                      if( !(item.pregunta == null)){ ipregunta = item.pregunta!;}
+                      if( !(item.texto == null)){ itexto = item.texto!;}
+                      if( !(item.descripcion == null)){ idescripcion = item.descripcion!;}
+                      if( !(item.titulo == null)){ ititulo = item.titulo!;}
 
                       if (item.tipoRepuesta == 2 || //CIRCLE OPCION
                           item.tipoRepuesta == 4) { //CHECKBOX
@@ -804,12 +820,12 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                         //idOpciones = RadioButtonsDinamic.generateData(tipoOpcionList.length); //GENERA ID
 
                         if(item.tipoRepuesta == 4){ //CHECBOX
-
+                          widget.auxsumatoriacheck = tipoOpcionList.length;
                           return Column(
                             children: [
 
                               //TODAS LAS PREGUNTAS ENUNCIADOS
-                              HelpersViewLetrasRojas.formItemsPREGUNTA(index, item.pregunta!, item.texto!, item.descripcion!,  context),
+                              HelpersViewLetrasRojas.formItemsPREGUNTA(index, ipregunta!, itexto!, idescripcion!,  context),
 
                               //OPCIONES CHECK
                                 SizedBox(
@@ -846,9 +862,11 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                                             const Spacer(),
                                             //EN LA SGTE PREGUNTA AGARRA EL INDEX DE ARRIBA HACER SUMATORIA
                                             Checkbox(
+                                              //value: _idDinamicoListCheck[index + widget.sumatoriacheck],
                                               value: _idDinamicoListCheck[index],
                                               onChanged: (bool? value) {
                                                 setState(() {
+                                                  //_idDinamicoListCheck[index + widget.sumatoriacheck] = value!;
                                                   _idDinamicoListCheck[index] = value!;
                                                 });
                                               },
@@ -866,6 +884,16 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                                   ),
                                 ),
 
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height * 0.020,
+                              ),
+                              Text(
+                                "${ititulo ?? ""}", // Example,
+                                textAlign: TextAlign.left,
+                                style: const TextStyle(
+                                  fontSize: 16.0,
+                                ),
+                              ),
 
                               SizedBox(
                                 height: MediaQuery.of(context).size.height * 0.020,
@@ -879,7 +907,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                             children: [
 
                               //TODAS LAS PREGUNTAS ENUNCIADOS
-                              HelpersViewLetrasRojas.formItemsPREGUNTA(index, item.pregunta!, item.texto!, item.descripcion!,  context),
+                              HelpersViewLetrasRojas.formItemsPREGUNTA(index, ipregunta!, itexto!, idescripcion!,  context),
 
                               //OPCIONES CIRCLE
                                 SizedBox(
@@ -937,6 +965,17 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                               SizedBox(
                                 height: MediaQuery.of(context).size.height * 0.020,
                               ),
+                              Text(
+                                "${ititulo ?? ""}", // Example,
+                                textAlign: TextAlign.left,
+                                style: const TextStyle(
+                                  fontSize: 16.0,
+                                ),
+                              ),
+
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height * 0.020,
+                              ),
                             ],
                           );
 
@@ -948,7 +987,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                           children: [
 
                             //TODAS LAS PREGUNTAS ENUNCIADOS
-                            HelpersViewLetrasRojas.formItemsPREGUNTA(index, item.pregunta!, item.texto!, item.descripcion!,  context),
+                            HelpersViewLetrasRojas.formItemsPREGUNTA(index, ipregunta!, itexto!, idescripcion!,  context),
 
                             //INPUT TEXT
                               HelpersViewBlancoIcon.formItemsDesign(
@@ -963,6 +1002,17 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                                 context,
                               ),
 
+
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.020,
+                            ),
+                            Text(
+                              "${ititulo ?? ""}", // Example,
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
 
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.020,
@@ -982,55 +1032,96 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                     },
                     refreshIndicator: true,
                   ),
-                  ), //SCROLLBAR
+ //SCROLLBAR
                 ),
 
                 //BOTON PARA CONTINUAR
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
-                GestureDetector(
-                    onTap: ()  async {
 
-                      if(
-                      (1 == 1) ||
-                      (1 == 1)
-                      ){
-                        showDialogValidFields(Constants.faltanCampos);
-                      } else {
-                        await guardadoFase2();
-                        setState(() {
-                          Fase2 = false;
-                          Fase3 = true;
-                        });
-                        scrollController.animateTo(
-                            0.0,
+                Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    // Center horizontally
+                    children: [
+
+                      /*
+                      GestureDetector(
+                        onTap: ()  {
+                          //NO SIRVE NI EL CONTROLLADOR DE SCROLL WIDGET NI EL OPTION 2
+                          double currentScrollOffset = widget.scrollControllerOPTIONS.offset;
+                          double targetOffset = currentScrollOffset - 150.0; // Add 50 units to scroll down
+                          widget.scrollControllerOPTIONS.animateTo(
+                            targetOffset,
                             duration: const Duration(milliseconds: 500),
                             curve: Curves.easeInOut,);
-                      }
-                      scrollController.animateTo(
-                        0.0,
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeInOut,
-                      );
+                        },
+                        child: Image.asset(Resources.flechaazulARRIBA, width: 48, height: 48),
+                      ), */
+
+                      GestureDetector(
+                          onTap: ()  async {
+
+                            if(
+                            (1 == 1) ||
+                                (1 == 1)
+                            ){
+                              showDialogValidFields(Constants.faltanCampos);
+                            } else {
+                              await guardadoFase2();
+                              setState(() {
+                                Fase2 = false;
+                                Fase3 = true;
+                              });
+                              scrollController.animateTo(
+                                0.0,
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeInOut,);
+                            }
+                            scrollController.animateTo(
+                              0.0,
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeInOut,
+                            );
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+                            alignment: Alignment.center,
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              color: Color.fromARGB(255, 27, 65, 187),
+                            ),
+                            padding: const EdgeInsets.only(top: 10, bottom: 10),
+                            child: const Text("Continuar",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500)),
+                          )),
+
+                      /*
+                      GestureDetector(
+                        onTap: ()  {
+                          //NO SIRVE NI EL CONTROLLADOR DE SCROLL WIDGET NI EL OPTION 2
+                          double currentScrollOffset = widget.scrollControllerOPTIONS.offset;
+                          double targetOffset = currentScrollOffset + 150.0; // Add 50 units to scroll down
+                          widget.scrollControllerOPTIONS.animateTo(
+                            targetOffset,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,);
+
+                        },
+                        child: Image.asset(Resources.flechaazulABAJO, width: 48, height: 48),
+                      ) */
 
 
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-                      alignment: Alignment.center,
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        color: Color.fromARGB(255, 27, 65, 187),
-                      ),
-                      padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: const Text("Continuar",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500)),
-                    )),
+                    ],
+                  ),
+                ),
+
+
 
 
 

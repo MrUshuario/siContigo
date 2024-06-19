@@ -13,6 +13,6 @@ class apisResources {
   static final String REST_SICONTIGO_INSERTAR	 							= "https://servicios.contigo.gob.pe:9104/mcs-sicontigo-consultas/encuestas/insertar-respuesta";
 
   //IDFORMATO "idFormato":5
-  static final int api_idFormato = 6;
+  static final int api_idFormato = 9;
 
 }

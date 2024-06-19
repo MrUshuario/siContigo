@@ -27,6 +27,8 @@ class Resources {
   static const String iconInfo = 'assets/info.png';
 
   static const String flechaazul = 'assets/flechaazul.png';
+  static const String flechaazulARRIBA = 'assets/flechaazulARRIBA.png';
+  static const String flechaazulABAJO = 'assets/flechaazulABAJO.png';
   static const String guardar = 'assets/guardar.png';
   static const String sateliteverde = 'assets/sateliteverde.png';
   static const String sateliterojo = 'assets/radar_inactivo_48x48.png';

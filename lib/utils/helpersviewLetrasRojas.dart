@@ -76,16 +76,37 @@ static Widget formItemsDesign2(String text) {
 }
 
 
-static Widget formItemsPREGUNTA(int index, String ipregunta, itexto, idescripcion,  context) {
+static Widget formItemsPREGUNTA(int index, String ipregunta, String itexto, String idescripcion,  context) {
   return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-
       SizedBox(
         height: MediaQuery.of(context).size.height * 0.010,
       ),
 
+      /*
+            Text(
+        "${index + 1}) ${ipregunta ?? ""}:  ${itexto ?? ""}", // Example,
+        textAlign: TextAlign.left,
+        style: const TextStyle(
+          fontSize: 16.0,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+       */
+
       Text(
-        "${index + 1}) ${ipregunta}:  ${itexto}", // Example,
+        "${idescripcion ?? ""}", // Example,
+        textAlign: TextAlign.left,
+        style: const TextStyle(
+          fontSize: 14.0,
+          color: Colors.blue,
+        ),
+      ),
+
+
+      Text(
+        "${index + 1}) ${ipregunta ?? ""}", // Example,
         textAlign: TextAlign.left,
         style: const TextStyle(
           fontSize: 16.0,
@@ -94,13 +115,13 @@ static Widget formItemsPREGUNTA(int index, String ipregunta, itexto, idescripcio
       ),
 
       Text(
-        "${idescripcion}", // Example,
+        "${itexto ?? ""}", // Example,
         textAlign: TextAlign.left,
         style: const TextStyle(
           fontSize: 14.0,
-          color: Colors.black87,
         ),
       ),
+
 
       SizedBox(
         height: MediaQuery.of(context).size.height * 0.010,
