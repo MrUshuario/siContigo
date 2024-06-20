@@ -3,6 +3,7 @@ class Constants {
 
   static const String tituloPermisos = "Permisos";
   static const String tituloMenudeOpciones = "ENCUESTA 1ra VISITA";
+  static const String tituloPercepciones = "ENCUESTA PERCEPCIÓN";
   static const String tituloMenudeOpcionesListado = "Vista de envios";
   static const String tituloMenuLogin = "Autentificación";
 
@@ -10,6 +11,7 @@ class Constants {
   static const String faltanCampos = "Termine de seleccionar los campos obligatorios";
   static const String circleAviso = "(Leer las alternativas) (marcar solo una alternativa)";
   static const String checkAviso = "(Leer las alternativas) (puede escribir en más de una alternativa) ";
+
 
   //DEPEARTAMENTOS
   static const String departamento_amazonas = "AMAZONAS";

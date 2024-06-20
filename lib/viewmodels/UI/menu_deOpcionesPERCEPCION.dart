@@ -49,9 +49,34 @@ class MenudeOpcionesPercepcion extends StatefulWidget {
   TextEditingController formIdUsuario = TextEditingController();
   TextEditingController formNombreUsuario = TextEditingController();
 
+  //MODULO 1 (FASE 2)
+  TextEditingController P01EspecificarPerc = TextEditingController();
+  final ParamP01EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P02EspecificarPerc = TextEditingController();
+  final ParamP02EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P03EspecificarPerc = TextEditingController();
+  final ParamP03EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P04EspecificarPerc = TextEditingController();
+  final ParamP04EspecificarPerc = List.filled(3, "", growable: false);
 
 
-  //P03
+  TextEditingController P05OTROEspecificarPerc = TextEditingController();
+  final ParamP05OTROEspecificarPerc = List.filled(3, "", growable: false);
+
+
+
+  TextEditingController P06EspecificarPerc = TextEditingController();
+  final ParamP06EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P07EspecificarPerc = TextEditingController();
+  final ParamP07EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P08EspecificarPerc = TextEditingController();
+  final ParamP08EspecificarPerc = List.filled(3, "", growable: false);
+
+  //FASE2
+  TextEditingController P12EspecificarPerc = TextEditingController();
+  final ParamP12EspecificarPerc = List.filled(3, "", growable: false);
+
+  //DEL ANTERIOR
   TextEditingController formP03EspecificarCtrl = TextEditingController();
   final ParamP03EspecificarCtrl = List.filled(3, "", growable: false);
 
@@ -89,6 +114,15 @@ class MenudeOpcionesPercepcion extends StatefulWidget {
   }
 
 }
+
+enum P05Perc { avenida, calle, jiron, pasaje, carretera, otro }
+enum P09Perc { Si, No }
+enum P10Perc { Si, No }
+enum P11Perc { Si, No }
+
+enum P13Perc { hombre, mujer }
+enum P14Perc { Si, No }
+enum P15Perc { Si, No }
 
 enum CobroPension { Si, No }
 enum PensionRecibe { Totalmente, Parcialmente}
@@ -174,6 +208,15 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
     });
   }
+
+  P05Perc? _P05Perc;
+  P09Perc? _P09Perc;
+  P10Perc? _P10Perc;
+  P11Perc? _P11Perc;
+
+  P13Perc? _P13Perc;
+  P14Perc? _P14Perc;
+  P15Perc? _P15Perc;
 
   CobroPension? _CobroPension;
   PensionRecibe? _PensionRecibe;
@@ -1009,7 +1052,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
-          Constants.tituloMenudeOpciones,
+          Constants.tituloPercepciones,
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 27, 65, 187),
@@ -1404,7 +1447,19 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                           padronSelect = padronObj[0];
                           String? nombreObj =  '${padronSelect.nombre} ${padronSelect.apPaterno} ${padronSelect.apMaterno}';
                           setState(() {
+
                             widget.formNombreUsuario.text = nombreObj!;
+                            widget.P01EspecificarPerc.text = padronSelect.hogarDepartamento!;
+                            widget.P02EspecificarPerc.text = padronSelect.hogarProvincia!;
+                            widget.P03EspecificarPerc.text = padronSelect.hogarDistrito!;
+                            widget.P04EspecificarPerc.text = padronSelect.hogarNombreCcpp!;
+
+                           // widget.P05OTROEspecificarPerc.text = padronSelect.!;
+
+                            widget.P06EspecificarPerc.text = padronSelect.hogarDireccionDescripcion!;
+                            widget.P07EspecificarPerc.text = padronSelect.telefonoUsuario!;
+                            widget.P08EspecificarPerc.text = padronSelect.hogarUbigeo!;
+
                           });
 
                         } else {
@@ -1418,9 +1473,6 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                   ],
                 ),
-
-
-
 
 
                 HelpersViewBlancoIcon.formItemsDesign(
@@ -1437,6 +1489,263 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                       }, */
                       maxLength: 35,
                     ), context),
+
+
+                HelpersViewLetrasRojas.formItemsDesign( "I) Identificación de Vivienda"),
+                const SizedBox(height: 16.0),
+
+                //PREGUNTAS INPUT
+                HelpersViewLetrasSubs.formItemsDesign( "Ubicación Geografica"),
+
+                HelpersViewLetrasSubsGris.formItemsDesign("Departamento"),
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.P01EspecificarPerc,
+                            decoration: const InputDecoration(
+                              labelText: 'Departamento',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.ParamP01EspecificarPerc);
+                            },
+                            maxLength: 100,
+                          ), context),
+                    ]
+                ),
+
+                HelpersViewLetrasSubsGris.formItemsDesign("Provincia"),
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.P02EspecificarPerc,
+                            decoration: const InputDecoration(
+                              labelText: 'Provincia',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.ParamP02EspecificarPerc);
+                            },
+                            maxLength: 100,
+                          ), context),
+                    ]
+                ),
+
+                HelpersViewLetrasSubsGris.formItemsDesign("Distrito"),
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.P03EspecificarPerc,
+                            decoration: const InputDecoration(
+                              labelText: 'Distrito',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.ParamP03EspecificarPerc);
+                            },
+                            maxLength: 100,
+                          ), context),
+                    ]
+                ),
+
+                HelpersViewLetrasSubsGris.formItemsDesign("Centro Poblado"),
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.P04EspecificarPerc,
+                            decoration: const InputDecoration(
+                              labelText: 'Centro Poblado',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.ParamP04EspecificarPerc);
+                            },
+                            maxLength: 100,
+                          ), context),
+                    ]
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesign( "Dirección de vivienda"),
+                HelpersViewLetrasSubsGris.formItemsDesign("Tipo de Vía Avenida"),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Avenida"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P05Perc>(
+                        value: P05Perc.avenida,
+                        groupValue: _P05Perc,
+                        onChanged: (P05Perc? value) {
+                          setState(() {
+                            _P05Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Calle"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P05Perc>(
+                        value: P05Perc.calle,
+                        groupValue: _P05Perc,
+                        onChanged: (P05Perc? value) {
+                          setState(() {
+                            _P05Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Jirón"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P05Perc>(
+                        value: P05Perc.jiron,
+                        groupValue: _P05Perc,
+                        onChanged: (P05Perc? value) {
+                          setState(() {
+                            _P05Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Pasaje"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P05Perc>(
+                        value: P05Perc.pasaje,
+                        groupValue: _P05Perc,
+                        onChanged: (P05Perc? value) {
+                          setState(() {
+                            _P05Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Carretera"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P05Perc>(
+                        value: P05Perc.carretera,
+                        groupValue: _P05Perc,
+                        onChanged: (P05Perc? value) {
+                          setState(() {
+                            _P05Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P05Perc>(
+                        value: P05Perc.otro,
+                        groupValue: _P05Perc,
+                        onChanged: (P05Perc? value) {
+                          setState(() {
+                            _P05Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                HelpersViewLetrasSubsGris.formItemsDesign("Nombre de la vía"),
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.P06EspecificarPerc,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.ParamP06EspecificarPerc);
+                            },
+                            maxLength: 100,
+                          ), context),
+                    ]
+                ),
+
+                HelpersViewLetrasSubsGris.formItemsDesign("Télefono del Informante"),
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.P07EspecificarPerc,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.ParamP07EspecificarPerc);
+                            },
+                            maxLength: 100,
+                          ), context),
+                    ]
+                ),
+
+                HelpersViewLetrasSubsGris.formItemsDesign("Ubigeo"),
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.P08EspecificarPerc,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.ParamP08EspecificarPerc);
+                            },
+                            maxLength: 100,
+                          ), context),
+                    ]
+                ),
+
+                const SizedBox(height: 16.0),
+
+                //BOTON PARA PRESEGUIR
 
                 GestureDetector(
                     onTap: ()  async {
@@ -1486,13 +1795,13 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
             child:Column(
               children: <Widget>[
 
-                HelpersViewLetrasRojas.formItemsDesign( "I Identificación de Vivienda"),
+                HelpersViewLetrasRojas.formItemsDesign( "II) Identificación del Usuario y Cuidador"),
+                HelpersViewLetrasSubs.formItemsDesign( "Datos de la persona con discapacidad"),
                 const SizedBox(height: 16.0),
-
-
-
-                HelpersViewLetrasSubs.formItemsDesign( "¿Usted ha realizado el cobro correspondiente al último padrón *"),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al informante del hogar y solicitar entrevistar a la persona con discapacidad, consultar si la está en condiciones de responder, caso contrario solicitar que esté presente el cuidador/a para apoyar en la entrevista."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Hay alguna persona con discapacidad en este hogar?"),
                 HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
                 Row(
                   children: [
                     const Text(
@@ -1501,12 +1810,12 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         fontSize: 14.0,
                       ),
                     ),
-                    Radio<CobroPension>(
-                      value: CobroPension.Si,
-                      groupValue: _CobroPension,
-                      onChanged: (CobroPension? value) {
+                    Radio<P09Perc>(
+                      value: P09Perc.Si,
+                      groupValue: _P09Perc,
+                      onChanged: (P09Perc? value) {
                         setState(() {
-                          _CobroPension = value;
+                          _P09Perc = value;
                         });
                       },
                     ),
@@ -1516,748 +1825,241 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         fontSize: 14.0,
                       ),
                     ),
-                    Radio<CobroPension>(
-                      value: CobroPension.No,
-                      groupValue: _CobroPension,
-                      onChanged: (CobroPension? value) {
+                    Radio<P09Perc>(
+                      value: P09Perc.No,
+                      groupValue: _P09Perc,
+                      onChanged: (P09Perc? value) {
                         setState(() {
-                          _CobroPension = value;
+                          _P09Perc = value;
                         });
                       },),],
                 ),
 
                 const SizedBox(height: 16.0),
-
-                HelpersViewLetrasSubs.formItemsDesign( "Usualmente ¿Cada cuánto tiempo cobra la pensión? *"),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta a la persona con discapacidad o cuidador/a.\n"
+                    "●Finalizar la encuesta si la persona señala que no es usuario/a del programa."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿La persona con discapacidad es usuario/a del Programa CONTIGO?"),
                 HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
                 Row(
                   children: [
                     const Text(
-                      'Cada 2 meses',
+                      'Sí',
                       style: TextStyle(
                         fontSize: 14.0,
                       ),
                     ),
-                    Radio<Tiempomeses>(
-                      value: Tiempomeses.dos,
-                      groupValue: _Tiempomeses,
-                      onChanged: (Tiempomeses? value) {
+                    Radio<P10Perc>(
+                      value: P10Perc.Si,
+                      groupValue: _P10Perc,
+                      onChanged: (P10Perc? value) {
                         setState(() {
-                          _Tiempomeses = value;
-                          PregCada3meses = false;
-                          PregCada2meses = true;
-                          //DESACTIVA CHECKS DEL OTRO
-                          isCheckedP03Distancia = false;
-                          isCheckedP03Acumular = false;
-                          isCheckedP03Noacompaniado = false;
-                          isCheckedP03Ahorrando = false;
-                          isCheckedP03DificultarTrasladar = false;
-                          isCheckedP03OtroEspecificar = false;
-
-                          //RESETEA EL INPUT
-                          widget.formP03EspecificarCtrl!.clear();
+                          _P10Perc = value;
                         });
                       },
                     ),
                     const Text(
-                      'De 3 meses\na más',
+                      'No',
                       style: TextStyle(
                         fontSize: 14.0,
                       ),
                     ),
-                    Radio<Tiempomeses>(
-                      value: Tiempomeses.tres,
-                      groupValue: _Tiempomeses,
-                      onChanged: (Tiempomeses? value) {
+                    Radio<P10Perc>(
+                      value: P10Perc.No,
+                      groupValue: _P10Perc,
+                      onChanged: (P10Perc? value) {
                         setState(() {
-                          _Tiempomeses = value;
-                          PregCada3meses = true;
-                          PregCada2meses = false;
-                          //DESACTIVA LOS CHECKS DEL OTRO
-                          isCheckedP04Alimentacion = false;
-                          isCheckedP04Salud = false;
-                          isCheckedP04Limpieza = false;
-                          isCheckedP04Rehabilitacion = false;
-                          isCheckedP04Educacion = false;
-                          isCheckedP04PagoServicio = false;
-                          isCheckedP04PagoComunicacion = false;
-                          isCheckedP04Transporte = false;
-                          isCheckedP04Vestimenta = false;
-                          isCheckedP04Recreacion = false;
-                          isCheckedP04Ahorro = false;
-                          isCheckedP04AhorroSalud = false;
-                          isCheckedP04OtroGasto = false;
-                          //RESETEA EL INPUT
-                          widget.formP03EspecificarCtrl!.clear();
+                          _P10Perc = value;
                         });
                       },),],
                 ),
 
                 const SizedBox(height: 16.0),
-                ////
-
-                Visibility(
-                  visible: PregCada2meses,
-                  child:Column(
-                    children: <Widget>[
-                      HelpersViewLetrasSubs.formItemsDesign( "Normalmente, de los 300 soles de la pensión que recibe ¿Cómo gasta el dinero? *"),
-                      HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
-
-                  Row(
-                    children: [
-                      const Expanded(
-                        flex: 5,
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Alimentación (arroz, leche, papas, verduras,frutas,etc.).',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              //color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Checkbox(
-                          value: isCheckedP04Alimentacion,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              isCheckedP04Alimentacion = value!;
-                            });
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Salud (pastillas, exámenes, inyecciones,jarabe,etc).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP04Salud,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP04Salud = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Limpieza y Aseo (insumos de aseo personal y limpieza en el hogar).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP04Limpieza,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP04Limpieza = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Rehabilitación.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP04Rehabilitacion,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP04Rehabilitacion = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Educación (Pictogramas, cuadernos, regletas, pinturas, etc).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP04Educacion,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP04Educacion = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Pago de servicios de agua y luz.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP04PagoServicio,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP04PagoServicio = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Pago de servicios para acceso en comunicación (internet, celular, teléfono). ',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP04PagoComunicacion,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP04PagoComunicacion = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Transporte (para desplazarte al centro de salud, rehabilitación, centro de estudios, actividades de recreación o productivas etc). ',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP04Transporte,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP04Transporte = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Vestimenta.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP04Vestimenta,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP04Vestimenta = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Recreación (Juegos, deporte, participación en espacios de la comunidad, etc).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP04Recreacion,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP04Recreacion = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Ahorro para poder comprar equipos y acondicionamiento en el hogar.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP04Ahorro,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP04Ahorro = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Ahorro para salud (operación, exámenes, etc).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP04AhorroSalud,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP04AhorroSalud = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Otros Gastos.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP04OtroGasto,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP04OtroGasto = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-
-                      const SizedBox(height: 16.0),
-                    ],),
-                ),
-
-                Visibility(
-                  visible: PregCada3meses,
-                  child:Column(
-                    children: <Widget>[
-                      HelpersViewLetrasSubs.formItemsDesign( "¿Por qué no cobra la pensión, cada dos meses? *"),
-                      HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Por la distancia y/o tiempo de traslado al punto de cobro.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP03Distancia,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP03Distancia = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Deja que se acumule las pensiones por el elevado costo de transporte.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP03Acumular,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP03Acumular = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'No tiene con quien ir o quien le acompañe a cobrar la pensión al banco, cajero o agente.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP03Ahorrando,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP03Ahorrando = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Porque está ahorrando. (Para salud, estudios, compra de equipos, acondicionamiento en su hogar, etc).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP03Noacompaniado,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP03Noacompaniado = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Es muy dificultoso trasladarse para el cobro de la pensión por su estado físico o de salud.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP03DificultarTrasladar,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP03DificultarTrasladar = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Otro (especificar).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Checkbox(
-                              value: isCheckedP03OtroEspecificar,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isCheckedP03OtroEspecificar = value!;
-                                  //RESETEA EL INPUT
-                                  widget.formP03EspecificarCtrl!.clear();
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-
-                      //SE MUESTRA SI SE MARCA OTROS ESPECIFICAR
-
-                      Visibility(
-                      visible: isCheckedP03OtroEspecificar,
-                      child:Column(
-                      children: <Widget>[
-                        HelpersViewBlancoIcon.formItemsDesign(
-                            Icons.pending_actions,
-                            TextFormField(
-                              controller: widget.formP03EspecificarCtrl,
-                              decoration: const InputDecoration(
-                                labelText: 'Especifique',
-                              ),
-                              validator: (value) {
-                                return HelpersViewBlancoIcon.validateField(
-                                    value!, widget.ParamP03EspecificarCtrl);
-                              },
-                              maxLength: 100,
-                            ), context),
-
-                      ]
-                      )),
-
-
-                      const SizedBox(height: 16.0),
-                    ],),
-                ),
-
-
-                HelpersViewLetrasSubs.formItemsDesign( "¿La pensión que recibe el usuario, está destinada a sus necesidades: *"),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                    "●	Miembro del hogar: Es la persona pariente o no que reside en la vivienda, comparten al menos las comidas principales y/o "
+                    "tienen en común otras necesidades básicas, con cargo a un presupuesto común (comen de una misma olla)."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿El/la usuario/a del programa es miembro del hogar?"),
                 HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
                 Row(
                   children: [
                     const Text(
-                      'Totalmente',
+                      'Sí',
                       style: TextStyle(
                         fontSize: 14.0,
                       ),
                     ),
-                    Radio<PensionRecibe>(
-                      value: PensionRecibe.Totalmente,
-                      groupValue: _PensionRecibe,
-                      onChanged: (PensionRecibe? value) {
+                    Radio<P11Perc>(
+                      value: P11Perc.Si,
+                      groupValue: _P11Perc,
+                      onChanged: (P11Perc? value) {
                         setState(() {
-                          _PensionRecibe = value;
+                          _P11Perc = value;
                         });
                       },
                     ),
                     const Text(
-                      'Parcialmente',
+                      'No',
                       style: TextStyle(
                         fontSize: 14.0,
                       ),
                     ),
-                    Radio<PensionRecibe>(
-                      value: PensionRecibe.Parcialmente,
-                      groupValue: _PensionRecibe,
-                      onChanged: (PensionRecibe? value) {
+                    Radio<P11Perc>(
+                      value: P11Perc.No,
+                      groupValue: _P11Perc,
+                      onChanged: (P11Perc? value) {
                         setState(() {
-                          _PensionRecibe = value;
+                          _P11Perc = value;
                         });
                       },),],
                 ),
 
-                /////
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a."),
+                HelpersViewLetrasSubs.formItemsDesign( "El/la usuario/a del programa ¿Qué edad tiene en años cumplidos?"),
+
+                Row(
+                  children: [
+                    const Text('Años:', style: TextStyle(
+                      fontSize: 12.0,
+                      //color: Colors.white,
+                    ),),
+
+                    HelpersViewBlancoIcon.formItemsDesignDNI(
+                        TextFormField(
+                          controller: widget.P12EspecificarPerc,
+                          decoration: const InputDecoration(
+                            labelText: 'Edad',
+                          ),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                          /*
+                      validator: (value) {
+                        return HelpersViewBlancoIcon.validateField(
+                            value!, widget.formIdUsuario);
+                      }, */
+                          maxLength: 2,
+                        ), context),
+
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Registrar por observación. De ser el caso realizar la pregunta al usuario/a o cuidador/a. "),
+                HelpersViewLetrasSubs.formItemsDesign( "Sexo del usuario/a del programa"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text(
+                      'Hombre',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P13Perc>(
+                      value: P13Perc.hombre,
+                      groupValue: _P13Perc,
+                      onChanged: (P13Perc? value) {
+                        setState(() {
+                          _P13Perc = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'Mujer',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P13Perc>(
+                      value: P13Perc.mujer,
+                      groupValue: _P13Perc,
+                      onChanged: (P13Perc? value) {
+                        setState(() {
+                          _P13Perc = value;
+                        });
+                      },),],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a."),
+                HelpersViewLetrasSubs.formItemsDesign( "Actualmente ¿Cuenta con DNI?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text(
+                      'Sí',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P14Perc>(
+                      value: P14Perc.Si,
+                      groupValue: _P14Perc,
+                      onChanged: (P14Perc? value) {
+                        setState(() {
+                          _P14Perc = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'No',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P14Perc>(
+                      value: P14Perc.No,
+                      groupValue: _P14Perc,
+                      onChanged: (P14Perc? value) {
+                        setState(() {
+                          _P14Perc = value;
+                        });
+                      },),],
+                ),
+
+                HelpersViewLetrasSubs.formItemsDesign( "Datos del cuidador"),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿La persona con discapacidad tiene cuidador?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text(
+                      'Sí',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P15Perc>(
+                      value: P15Perc.Si,
+                      groupValue: _P15Perc,
+                      onChanged: (P15Perc? value) {
+                        setState(() {
+                          _P15Perc = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'No',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P15Perc>(
+                      value: P15Perc.No,
+                      groupValue: _P15Perc,
+                      onChanged: (P15Perc? value) {
+                        setState(() {
+                          _P15Perc = value;
+                        });
+                      },),],
+                ),
+
 
                 const SizedBox(height: 16.0),
 
@@ -2267,35 +2069,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     onTap: ()  async {
 
                       if(
-                      (_CobroPension == null) ||
-                      (_Tiempomeses == null) ||
-                      (_PensionRecibe == null) ||
-                      (//CADA 2 meses lamenos uno marcado
-                          !isCheckedP04Alimentacion &&
-                          !isCheckedP04Salud &&
-                          !isCheckedP04Limpieza &&
-                          !isCheckedP04Rehabilitacion &&
-                          !isCheckedP04Educacion &&
-                          !isCheckedP04PagoServicio &&
-                          !isCheckedP04PagoComunicacion &&
-                          !isCheckedP04Transporte &&
-                          !isCheckedP04Vestimenta &&
-                          !isCheckedP04Recreacion &&
-                          !isCheckedP04Ahorro &&
-                          !isCheckedP04AhorroSalud &&
-                          !isCheckedP04OtroGasto &&
-                        //CADA 3 meses lamenos uno marcado
-                          !isCheckedP03Distancia  &&
-                          !isCheckedP03Acumular  &&
-                          !isCheckedP03Noacompaniado  &&
-                          !isCheckedP03Ahorrando  &&
-                          !isCheckedP03DificultarTrasladar  &&
-                        (widget.formP03EspecificarCtrl == null || widget.formP03EspecificarCtrl!.text.isEmpty)
-                      )
+                      1==2
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {
-                        await guardadoFase2();
+                        //await guardadoFase2();
                         setState(() {
                           Fase2 = false;
                           Fase3 = true;
@@ -2307,7 +2085,6 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.easeInOut,
                       );
-
 
                     },
                     child: Container(
@@ -2337,919 +2114,15 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
             child:Column(
               children: <Widget>[
 
-                HelpersViewLetrasRojas.formItemsDesign( "SALUD"),
-                const SizedBox(height: 16.0),
-                HelpersViewLetrasSubs.formItemsDesign( "Actualmente. ¿A qué tipo de establecimiento de Salud, acude con frecuencia? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
-
-                Row(
-                  children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿Seguro integral de salud (SIS)?',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<TipoEstablecimientoSalud>(
-                        value: TipoEstablecimientoSalud.sis,
-                        groupValue: _TipoEstablecimientoSalud,
-                        onChanged: (TipoEstablecimientoSalud? value) {
-                          setState(() {
-                            _TipoEstablecimientoSalud = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿ESSALUD?',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<TipoEstablecimientoSalud>(
-                        value: TipoEstablecimientoSalud.essalud,
-                        groupValue: _TipoEstablecimientoSalud,
-                        onChanged: (TipoEstablecimientoSalud? value) {
-                          setState(() {
-                            _TipoEstablecimientoSalud = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿Seguro de fuerzas armadas o policiales?',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<TipoEstablecimientoSalud>(
-                        value: TipoEstablecimientoSalud.policiales,
-                        groupValue: _TipoEstablecimientoSalud,
-                        onChanged: (TipoEstablecimientoSalud? value) {
-                          setState(() {
-                            _TipoEstablecimientoSalud = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿Seguro privado de salud?',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<TipoEstablecimientoSalud>(
-                        value: TipoEstablecimientoSalud.privado,
-                        groupValue: _TipoEstablecimientoSalud,
-                        onChanged: (TipoEstablecimientoSalud? value) {
-                          setState(() {
-                            _TipoEstablecimientoSalud = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Ninguno.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<TipoEstablecimientoSalud>(
-                        value: TipoEstablecimientoSalud.ninguno,
-                        groupValue: _TipoEstablecimientoSalud,
-                        onChanged: (TipoEstablecimientoSalud? value) {
-                          setState(() {
-                            _TipoEstablecimientoSalud = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'No sabe.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<TipoEstablecimientoSalud>(
-                        value: TipoEstablecimientoSalud.nosabe,
-                        groupValue: _TipoEstablecimientoSalud,
-                        onChanged: (TipoEstablecimientoSalud? value) {
-                          setState(() {
-                            _TipoEstablecimientoSalud = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Otro (especificar)',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<TipoEstablecimientoSalud>(
-                        value: TipoEstablecimientoSalud.otro,
-                        groupValue: _TipoEstablecimientoSalud,
-                        onChanged: (TipoEstablecimientoSalud? value) {
-                          setState(() {
-                            _TipoEstablecimientoSalud = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                //OTRO ESPECIFICAR
-
-                Visibility(
-                    visible: (_TipoEstablecimientoSalud == TipoEstablecimientoSalud.otro),
-                    child:Column(
-                        children: <Widget>[
-                          HelpersViewBlancoIcon.formItemsDesign(
-                              Icons.pending_actions,
-                              TextFormField(
-                                controller: widget.formP06EspecificarCtrl,
-                                decoration: const InputDecoration(
-                                  labelText: 'Especifique',
-                                ),
-                                validator: (value) {
-                                  return HelpersViewBlancoIcon.validateField(
-                                      value!, widget.ParamP06EspecificarCtrl);
-                                },
-                                maxLength: 100,
-                              ), context),
-                        ]
-                    )),
-
 
                 const SizedBox(height: 16.0),
-
-                HelpersViewLetrasSubs.formItemsDesign( "¿Se ha atendido en algún centro de salud/ puesto de salud/posta médica u hospital? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
-                Row(
-                  children: [
-                    const Text(
-                      'Sí',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    Radio<SeAtendio>(
-                      value: SeAtendio.Si,
-                      groupValue: _SeAtendio,
-                      onChanged: (SeAtendio? value) {
-                        setState(() {
-                          _SeAtendio = value;
-                          isCheckedP08NoCentro = false;
-                          isCheckedP08NoNecesito= false;
-                          isCheckedP08MetodoTradicional = false;
-                          isCheckedP08NoBuenTrato= false;
-                          isCheckedP08NoDoctores = false;
-                          isCheckedP08NoMedicina = false;
-                          isCheckedP08Otros = false;
-                          isCheckedP09MedicinaGeneral = false;
-                          isCheckedP09Rehabilitacion= false;
-                          isCheckedP09Psicologia = false;
-                          isCheckedP09Odontologia = false;
-                          isCheckedP09Oftalmologia = false;
-                          isCheckedP09Ginecologia = false;
-                          isCheckedP09Otros = false;
-                          widget.formP08EspecificarCtrl!.clear();
-                          widget.formP09EspecificarCtrl!.clear();
-                        });
-                      },
-                    ),
-                    const Text(
-                      'No',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    Radio<SeAtendio>(
-                      value: SeAtendio.No,
-                      groupValue: _SeAtendio,
-                      onChanged: (SeAtendio? value) {
-                        setState(() {
-                          _SeAtendio = value;
-                          isCheckedP08NoCentro = false;
-                          isCheckedP08NoNecesito= false;
-                          isCheckedP08MetodoTradicional = false;
-                          isCheckedP08NoBuenTrato= false;
-                          isCheckedP08NoDoctores = false;
-                          isCheckedP08NoMedicina = false;
-                          isCheckedP08Otros = false;
-                          isCheckedP09MedicinaGeneral = false;
-                          isCheckedP09Rehabilitacion= false;
-                          isCheckedP09Psicologia = false;
-                          isCheckedP09Odontologia = false;
-                          isCheckedP09Oftalmologia = false;
-                          isCheckedP09Ginecologia = false;
-                          isCheckedP09Otros = false;
-                          widget.formP08EspecificarCtrl!.clear();
-                          widget.formP09EspecificarCtrl!.clear();
-                        });
-                      },),],
-                ),
-
-                Visibility(
-                    visible: (_SeAtendio == SeAtendio.No),
-                    child:Column(
-                        children: <Widget>[
-                          const SizedBox(height: 16.0),
-                          HelpersViewLetrasSubs.formItemsDesign( "¿Por qué no se atendió en algún centro de salud, puesto de salud/posta médica u hospital? *"),
-                          HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'No hay centro de salud, posta médica u hospital cercano.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP08NoCentro ,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP08NoCentro  = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'No lo necesito/ se encontraba bien de salud.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP08NoNecesito,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP08NoNecesito= value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Uso métodos tradicionales (hierbas,curanderos, hueseros, etc.) para curarse.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP08MetodoTradicional ,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP08MetodoTradicional  = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'La última vez no lo/a trataron bien.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP08NoBuenTrato,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP08NoBuenTrato = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'No hay doctores o especialistas que lo/la atiendan.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP08NoDoctores,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP08NoDoctores = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'No le dieron medicinas adecuadas/ No hay medicinas.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP08NoMedicina,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP08NoMedicina = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Otro (Especificar).',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP08Otros,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP08Otros = value!;
-                                      //RESETEA EL INPUT
-                                      widget.formP08EspecificarCtrl!.clear();
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Visibility(
-                              visible: isCheckedP08Otros,
-                              child:Column(
-                                  children: <Widget>[
-                                    HelpersViewBlancoIcon.formItemsDesign(
-                                        Icons.pending_actions,
-                                        TextFormField(
-                                          controller: widget.formP08EspecificarCtrl,
-                                          decoration: const InputDecoration(
-                                            labelText: 'Especifique',
-                                          ),
-                                          validator: (value) {
-                                            return HelpersViewBlancoIcon.validateField(
-                                                value!, widget.ParamP08EspecificarCtrl);
-                                          },
-                                          maxLength: 100,
-                                        ), context),
-                                  ]
-                              )),
-                        ])),
-
-                Visibility(
-                    visible: (_SeAtendio == SeAtendio.Si),
-                    child:Column(
-                        children: <Widget>[
-                          const SizedBox(height: 16.0),
-                          HelpersViewLetrasSubs.formItemsDesign( "¿Cuáles son los servicios a los que accede con mayor frecuencia, cuando se atiende en el centro de salud, puesto de salud/posta médica u hospital? *"),
-                          HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Medicina General.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP09MedicinaGeneral ,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP09MedicinaGeneral  = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Rehabilitación.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP09Rehabilitacion,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP09Rehabilitacion=  value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Psicología.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP09Psicologia ,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP09Psicologia  = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Odontología.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP09Odontologia,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP09Odontologia=  value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Oftalmología.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP09Oftalmologia ,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP09Oftalmologia  = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Ginecología.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP09Ginecologia ,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP09Ginecologia  = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Otro (especificar).',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Checkbox(
-                                  value: isCheckedP09Otros ,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isCheckedP09Otros  = value!;
-                                      //RESETEA INPUT
-                                      widget.formP09EspecificarCtrl!.clear();
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Visibility(
-                              visible: isCheckedP09Otros,
-                              child:Column(
-                                  children: <Widget>[
-                                    HelpersViewBlancoIcon.formItemsDesign(
-                                        Icons.pending_actions,
-                                        TextFormField(
-                                          controller: widget.formP09EspecificarCtrl,
-                                          decoration: const InputDecoration(
-                                            labelText: 'Especifique',
-                                          ),
-                                          validator: (value) {
-                                            return HelpersViewBlancoIcon.validateField(
-                                                value!, widget.ParamP09EspecificarCtrl);
-                                          },
-                                          maxLength: 100,
-                                        ), context),
-                                  ]
-                              )),
-                        ])),
-
-                const SizedBox(height: 16.0),
-
-                HelpersViewLetrasSubs.formItemsDesign( "¿Con qué frecuencia se atiende en el centro de salud, puesto de salud/posta médica u hospital?"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
-
-                Row(
-                  children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'De 0 a 6 meses.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<FrecuenciaAtiende>(
-                        value: FrecuenciaAtiende.tiempoMes06,
-                        groupValue: _FrecuenciaAtiende,
-                        onChanged: (FrecuenciaAtiende? value) {
-                          setState(() {
-                            _FrecuenciaAtiende = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'De 6 meses a 1 año.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<FrecuenciaAtiende>(
-                        value: FrecuenciaAtiende.tiempoAno,
-                        groupValue: _FrecuenciaAtiende,
-                        onChanged: (FrecuenciaAtiende? value) {
-                          setState(() {
-                            _FrecuenciaAtiende = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'De un año a más.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<FrecuenciaAtiende>(
-                        value: FrecuenciaAtiende.tiempoMasdeUnAno,
-                        groupValue: _FrecuenciaAtiende,
-                        onChanged: (FrecuenciaAtiende? value) {
-                          setState(() {
-                            _FrecuenciaAtiende = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-
                 GestureDetector(
                     onTap: ()  async {
-                      if(
-                      (_TipoEstablecimientoSalud == null) ||
-                      (_SeAtendio == null) ||
-                      (//SI MARCO NO
-                      !isCheckedP08NoCentro  &&
-                      !isCheckedP08NoNecesito  &&
-                      !isCheckedP08MetodoTradicional  &&
-                      !isCheckedP08NoBuenTrato  &&
-                      !isCheckedP08NoDoctores  &&
-                      !isCheckedP08NoMedicina &&
-                      (widget.formP08EspecificarCtrl == null || widget.formP08EspecificarCtrl!.text.isEmpty) &&
-                      //SI MARCO SI
-                      !isCheckedP09MedicinaGeneral   &&
-                      !isCheckedP09Rehabilitacion   &&
-                      !isCheckedP09Psicologia   &&
-                      !isCheckedP09Odontologia   &&
-                      !isCheckedP09Oftalmologia   &&
-                      !isCheckedP09Ginecologia  &&
-                      (widget.formP09EspecificarCtrl == null || widget.formP09EspecificarCtrl!.text.isEmpty)
-                      ) ||
-                      (_FrecuenciaAtiende == null)
-
+                      if( 2 == 2
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {
-                        await guardadoFase3();
+                        //await guardadoFase3();
                         setState(() {
                           Fase3 = false;
                           Fase4 = true;
@@ -3272,7 +2145,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         color: Color.fromARGB(255, 27, 65, 187),
                       ),
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: const Text("Continuar",
+                      child: const Text("Continuar (bloqueado)",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -3299,19 +2172,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Vive con otras personas (en pareja y/o familia) y hay hijos/as u otros familiares que requiere de cuidados.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con otras personas (en pareja y/o familia) y hay hijos/as u otros familiares que requiere de cuidados."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3329,19 +2190,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Vive con otras personas (en pareja o familia), requiere de cuidados, haya o no hijos/as u otros familiares que lo ayuden.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con otras personas (en pareja o familia), requiere de cuidados, haya o no hijos/as u otros familiares que lo ayuden."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3359,19 +2208,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Vive con otras personas (en pareja y/o con familiares) de edad avanzada, con/sin hijos/as con dificultades, capacidad y/o disponibilidad para prestar cuidados de larga duración.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con otras personas (en pareja y/o con familiares) de edad avanzada, con/sin hijos/as con dificultades, capacidad y/o"
+                        " disponibilidad para prestar cuidados de larga duración."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3389,19 +2227,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Vive solo y hay hijos o familia con limitaciones en capacidad, disponibilidad o disposición para cuidarlo/a.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive solo y hay hijos o familia con limitaciones en capacidad, disponibilidad o disposición para cuidarlo/a."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3419,19 +2245,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Vive solo, con familiares que está distante (física o afectivamente) y presenta falta de cuidados.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive solo, con familiares que está distante (física o afectivamente) y presenta falta de cuidados."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3498,19 +2312,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                   Row(
                     children: [
-                      const Expanded(
-                        flex: 5,
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            '¿Ha recibido visita de algún familiar, suele visitarlos por lo menos una vez a la semana? o durante la semana participa en alguna actividad pública.',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              //color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
+                      HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Ha recibido visita de algún familiar, suele visitarlos por lo menos una vez a la semana? "
+                          "o durante la semana participa en alguna actividad pública."),
                       const Spacer(),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -3528,19 +2331,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Suele salir fuera de su domicilio y se mantiene activa/o con familiares, amigos, vecinos, lo ha hecho en esta semana.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Suele salir fuera de su domicilio y se mantiene activa/o con familiares, amigos, vecinos, lo ha hecho en esta semana."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -3571,19 +2362,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Suele salir fuera de su hogar, con o sin compañía, por lo menos una vez a la semana.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Suele salir fuera de su hogar, con o sin compañía, por lo menos una vez a la semana."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -3602,19 +2381,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Recibe visita de algún familiar en su hogar? Por lo menos una vez por semana.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Recibe visita de algún familiar en su hogar? Por lo menos una vez por semana."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -3631,21 +2398,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                       ),
 
 
-                                            Row(
+                  Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'No recibe visitas, no sale a la calle, se encuentra en aislamiento social.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No recibe visitas, no sale a la calle, se encuentra en aislamiento social."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -3718,19 +2473,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     Row(
                       children: [
-                        const Expanded(
-                          flex: 5,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Requiere ayuda y la recibe de la red informal y/o formal y es suficiente.',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                //color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Requiere ayuda y la recibe de la red informal y/o formal y es suficiente."),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -3748,19 +2491,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     Row(
                       children: [
-                        const Expanded(
-                          flex: 5,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Requiere ayuda y la recibe en su mayor parte de una persona cuidadora externa (privada).',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                //color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Requiere ayuda y la recibe en su mayor parte de una persona cuidadora externa (privada)."),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -3778,19 +2509,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                         Row(
                       children: [
-                        const Expanded(
-                          flex: 5,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Requiere ayuda y la recibe de la red informal y/o formal y es insuficiente.',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                //color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Requiere ayuda y la recibe de la red informal y/o formal y es insuficiente."),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -3809,19 +2528,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                      Row(
                       children: [
-                        const Expanded(
-                          flex: 5,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Requiere ayuda y no tiene apoyo de la red de recursos (formal/informal) y/o no se puede ejercer.',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                //color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Requiere ayuda y no tiene apoyo de la red de recursos (formal/informal) y/o no se puede ejercer."),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -3845,19 +2552,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿Reciben  más de S/2,050 mensualmente?',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Reciben  más de S/2,050 mensualmente?"),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3875,19 +2570,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿Reciben más de S/ 1537.50 hasta S/ 2,050 mensualmente?.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Reciben más de S/ 1537.50 hasta S/ 2,050 mensualmente?."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3905,19 +2588,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿Reciben mas de S/ 1025 hasta S/ 1537.50 mensualmente?',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Reciben mas de S/ 1025 hasta S/ 1537.50 mensualmente?"),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3935,19 +2606,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Reciben igual o menos de S/ 1025 mensualmente.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Reciben igual o menos de S/ 1025 mensualmente."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3965,19 +2624,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Sin ingresos fijos.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sin ingresos fijos."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -4100,19 +2747,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Inadecuada: Barreras arquitectónicas internas en el domicilio.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Inadecuada: Barreras arquitectónicas internas en el domicilio."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -4130,19 +2765,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Inadecuada: Falta uno o más suministros y/o dos o más equipamientos.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Inadecuada: Falta uno o más suministros y/o dos o más equipamientos."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -4160,19 +2783,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Inadecuada: Ausencia de vivienda, infravivienda.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Inadecuada: Ausencia de vivienda, infravivienda."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -4241,19 +2852,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'En relación al cobro.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("En relación al cobro."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -4271,19 +2870,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'En relación a riesgo socioemocional.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("En relación a riesgo socioemocional."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -4308,19 +2895,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Cuidados de la PCDS.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Cuidados de la PCDS."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -4338,19 +2913,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Rehabilitación.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Rehabilitación."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -4368,19 +2931,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Alimentación.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Alimentación."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -4398,19 +2949,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Otro (Especificar)',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (Especificar)"),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),

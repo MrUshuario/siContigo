@@ -470,27 +470,35 @@ late final _appDatabase;
 
                                     //apiprovider_formulario apiForm = apiprovider_formulario();
                                     var iniciFinActividades = await widget._appDatabase.formDataModelDaoRespuesta.findAllRespuesta();
-                                
+                                    bool problemas = false;
                                     if (iniciFinActividades.isEmpty) {
                                       ScaffoldMessenger.of(context).showSnackBar(
                                           const SnackBar(
                                               content: Text(
                                                   "No hay data para sincronizar")));
                                     } else {
-                                      var listRespuestaApi = RespuestaMapper.instance.listRespuestaToRespuestaENVIO(iniciFinActividades);
-                                      for (var element in listRespuestaApi) {
-                                        var response = await widget.apiForm.post_EnviarRspt(element,PREFtoken);
-                                      
-                                         print("atento4333");
-                                         print(listRespuestaApi);
-                                        print("response: $response");
 
+                                      //OBTENER IDS
+                                      List<int?> codigosBorrar =[];
+                                      for (int i = 0; i < iniciFinActividades.length; i++) {
+                                        codigosBorrar.add(iniciFinActividades[i].cod);
+                                      }
+
+                                      var listRespuestaApi = RespuestaMapper.instance.listRespuestaToRespuestaENVIO(iniciFinActividades);
+                                      for (int i = 0; i < listRespuestaApi.length; i++) {
+                                      //for (var element in listRespuestaApi) {
+                                        var element = listRespuestaApi[i];
+                                        var response = await widget.apiForm.post_EnviarRspt(element,PREFtoken);
+                                        print("response: $response");
                                         //BORRA LA SENTENCIA
                                         // if(response.codigo == "0105"){
                                         if(response.codigo != "0000"){
                                           print("ENVIO BIEN SUPONGO");
                                           //NO BORRA PORQUE NO TENGO UN CODIGO!
-                                          //widget._appDatabase.formDataModelDaoRespuesta.BorrarFormDataModels(element.cod!);
+                                          widget._appDatabase.formDataModelDaoRespuesta.BorrarFormDataModels(codigosBorrar[i]!);
+                                          //widget._appDatabase.formDataModelDaoRespuesta.BorrarTodo();
+                                        } else {
+                                          problemas = true;
                                         }
 
                                         //AUMENTA
@@ -506,8 +514,16 @@ late final _appDatabase;
 
                                       Navigator.pop(
                                           context); //Close your current dialog
-                                      showDialogValidFields(
-                                          "Sincronización exitosa");
+
+                                      if(problemas){
+                                        showDialogValidFields(
+                                            "Hubo problemas en la sincronización");
+                                      } else {
+                                        showDialogValidFields(
+                                            "Sincronización exitosa");
+                                      }
+
+
 
                                       listarVisitasRetro();
                                       //Navigator.of(context).pop();

@@ -22,9 +22,24 @@ class HelpersViewLetrasSubsGris {
             ),
           ),
         ),
-
-
       ],
     );
   }
+
+  static Widget formItemsDesignOPTIONTEXT(String text) {
+    return
+        Expanded(
+          flex: 5,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child:  Text(
+              text,
+              style: const TextStyle(
+                fontSize: 14.0,
+              ),
+            ),
+          ),
+        );
+  }
+
 }

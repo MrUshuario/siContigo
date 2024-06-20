@@ -1617,19 +1617,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                   Row(
                     children: [
-                      const Expanded(
-                        flex: 5,
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Alimentación (arroz, leche, papas, verduras,frutas,etc.).',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              //color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
+                      HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Alimentación (arroz, leche, papas, verduras,frutas,etc.)."),
                       const Spacer(),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -1648,19 +1636,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Salud (pastillas, exámenes, inyecciones,jarabe,etc).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Salud (pastillas, exámenes, inyecciones,jarabe,etc)."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -1678,19 +1654,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Limpieza y Aseo (insumos de aseo personal y limpieza en el hogar).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Limpieza y Aseo (insumos de aseo personal y limpieza en el hogar)."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -1709,19 +1673,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Rehabilitación.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Rehabilitación"),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -1739,19 +1691,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Educación (Pictogramas, cuadernos, regletas, pinturas, etc).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Educación (Pictogramas, cuadernos, regletas, pinturas, etc)."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -1769,19 +1709,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Pago de servicios de agua y luz.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Pago de servicios de agua y luz."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -1799,19 +1727,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Pago de servicios para acceso en comunicación (internet, celular, teléfono). ',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Pago de servicios para acceso en comunicación (internet, celular, teléfono)."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -1829,19 +1745,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Transporte (para desplazarte al centro de salud, rehabilitación, centro de estudios, actividades de recreación o productivas etc). ',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Transporte (para desplazarte al centro de salud, rehabilitación, centro de estudios, actividades de recreación o productivas etc)."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -1860,19 +1764,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Vestimenta.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vestimenta"),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -1890,19 +1782,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Recreación (Juegos, deporte, participación en espacios de la comunidad, etc).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Recreación (Juegos, deporte, participación en espacios de la comunidad, etc)."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -1921,19 +1801,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Ahorro para poder comprar equipos y acondicionamiento en el hogar.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Ahorro para poder comprar equipos y acondicionamiento en el hogar."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -1952,19 +1820,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Ahorro para salud (operación, exámenes, etc).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT('Ahorro para salud (operación, exámenes, etc).'),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -1982,19 +1838,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Otros Gastos.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otros Gastos."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -2023,19 +1867,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Por la distancia y/o tiempo de traslado al punto de cobro.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Por la distancia y/o tiempo de traslado al punto de cobro."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -2053,19 +1885,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Deja que se acumule las pensiones por el elevado costo de transporte.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Deja que se acumule las pensiones por el elevado costo de transporte."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -2083,19 +1903,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'No tiene con quien ir o quien le acompañe a cobrar la pensión al banco, cajero o agente.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No tiene con quien ir o quien le acompañe a cobrar la pensión al banco, cajero o agente."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -2113,19 +1921,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Porque está ahorrando. (Para salud, estudios, compra de equipos, acondicionamiento en su hogar, etc).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Porque está ahorrando. (Para salud, estudios, compra de equipos, acondicionamiento en su hogar, etc)."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -2144,19 +1940,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Es muy dificultoso trasladarse para el cobro de la pensión por su estado físico o de salud.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Es muy dificultoso trasladarse para el cobro de la pensión por su estado físico o de salud."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -2174,19 +1958,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Otro (especificar).',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (especificar)."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -2356,19 +2128,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿Seguro integral de salud (SIS)?',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Seguro integral de salud (SIS)?"),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -2386,19 +2146,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿ESSALUD?',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿ESSALUD?"),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -2416,19 +2164,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿Seguro de fuerzas armadas o policiales?',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Seguro de fuerzas armadas o policiales?"),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -2446,19 +2182,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿Seguro privado de salud?',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Seguro privado de salud?"),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -2476,19 +2200,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Ninguno.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Ninguno."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -2506,19 +2218,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'No sabe.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -2536,19 +2236,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Otro (especificar)',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (especificar)"),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -2666,19 +2354,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'No hay centro de salud, posta médica u hospital cercano.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No hay centro de salud, posta médica u hospital cercano."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -2696,19 +2372,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'No lo necesito/ se encontraba bien de salud.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No lo necesito/ se encontraba bien de salud."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -2726,19 +2390,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Uso métodos tradicionales (hierbas,curanderos, hueseros, etc.) para curarse.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Uso métodos tradicionales (hierbas,curanderos, hueseros, etc.) para curarse."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -2756,19 +2408,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'La última vez no lo/a trataron bien.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("La última vez no lo/a trataron bien."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -2786,19 +2426,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'No hay doctores o especialistas que lo/la atiendan.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No hay doctores o especialistas que lo/la atiendan."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -2816,19 +2444,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'No le dieron medicinas adecuadas/ No hay medicinas.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No le dieron medicinas adecuadas/ No hay medicinas."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -2846,19 +2462,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Otro (Especificar).',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (Especificar)."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -2907,19 +2511,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Medicina General.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Medicina General."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -2937,19 +2529,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Rehabilitación.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Rehabilitación."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -2967,19 +2547,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Psicología.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Psicología."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -2997,19 +2565,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Odontología.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Odontología."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -3027,19 +2583,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Oftalmología.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Oftalmología."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -3057,19 +2601,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Ginecología.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Ginecología."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -3087,19 +2619,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Otro (especificar).',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (especificar)."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -3145,19 +2665,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'De 0 a 6 meses.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("De 0 a 6 meses."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3175,19 +2683,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'De 6 meses a 1 año.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("De 6 meses a 1 año."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3205,19 +2701,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'De un año a más.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("De un año a más."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3307,23 +2791,12 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿Con quién vive usted? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubsGris.formItemsDesign("Haga la pregunta directa, OBSERVE, detenidamente el contexto, solo puede marcar una alternativa"
+                    ", según la percepción del gestor social"),
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Vive con otras personas (en pareja y/o familia) y hay hijos/as u otros familiares que requiere de cuidados.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con otras personas (en pareja y/o familia) y hay hijos/as u otros familiares que requiere de cuidados."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3341,19 +2814,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Vive con otras personas (en pareja o familia), requiere de cuidados, haya o no hijos/as u otros familiares que lo ayuden.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con otras personas (en pareja o familia), requiere de cuidados, haya o no hijos/as u otros familiares que lo ayuden."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3371,19 +2832,8 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Vive con otras personas (en pareja y/o con familiares) de edad avanzada, con/sin hijos/as con dificultades, capacidad y/o disponibilidad para prestar cuidados de larga duración.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con otras personas (en pareja y/o con familiares) de edad avanzada, con/sin hijos/as con dificultades, capacidad y/o disponibilidad"
+                        " para prestar cuidados de larga duración."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3401,19 +2851,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Vive solo y hay hijos o familia con limitaciones en capacidad, disponibilidad o disposición para cuidarlo/a.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive solo y hay hijos o familia con limitaciones en capacidad, disponibilidad o disposición para cuidarlo/a."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3431,19 +2869,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Vive solo, con familiares que está distante (física o afectivamente) y presenta falta de cuidados.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive solo, con familiares que está distante (física o afectivamente) y presenta falta de cuidados."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3510,19 +2936,8 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                   Row(
                     children: [
-                      const Expanded(
-                        flex: 5,
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            '¿Ha recibido visita de algún familiar, suele visitarlos por lo menos una vez a la semana? o durante la semana participa en alguna actividad pública.',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              //color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
+                      HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Ha recibido visita de algún familiar, suele visitarlos por lo menos una vez a la semana? o durante la semana participa"
+                          " en alguna actividad pública."),
                       const Spacer(),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -3540,19 +2955,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Suele salir fuera de su domicilio y se mantiene activa/o con familiares, amigos, vecinos, lo ha hecho en esta semana.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Suele salir fuera de su domicilio y se mantiene activa/o con familiares, amigos, vecinos, lo ha hecho en esta semana."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -3583,19 +2986,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Suele salir fuera de su hogar, con o sin compañía, por lo menos una vez a la semana.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Suele salir fuera de su hogar, con o sin compañía, por lo menos una vez a la semana."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -3614,19 +3005,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Recibe visita de algún familiar en su hogar? Por lo menos una vez por semana.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Recibe visita de algún familiar en su hogar? Por lo menos una vez por semana."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -3643,21 +3022,9 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       ),
 
 
-                                            Row(
+                   Row(
                         children: [
-                          const Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'No recibe visitas, no sale a la calle, se encuentra en aislamiento social.',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  //color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No recibe visitas, no sale a la calle, se encuentra en aislamiento social."),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -3730,19 +3097,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                     Row(
                       children: [
-                        const Expanded(
-                          flex: 5,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Requiere ayuda y la recibe de la red informal y/o formal y es suficiente.',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                //color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Requiere ayuda y la recibe de la red informal y/o formal y es suficiente."),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -3760,19 +3115,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                     Row(
                       children: [
-                        const Expanded(
-                          flex: 5,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Requiere ayuda y la recibe en su mayor parte de una persona cuidadora externa (privada).',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                //color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Requiere ayuda y la recibe en su mayor parte de una persona cuidadora externa (privada)."),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -3790,19 +3133,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                         Row(
                       children: [
-                        const Expanded(
-                          flex: 5,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Requiere ayuda y la recibe de la red informal y/o formal y es insuficiente.',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                //color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Requiere ayuda y la recibe de la red informal y/o formal y es insuficiente."),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -3821,19 +3152,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                      Row(
                       children: [
-                        const Expanded(
-                          flex: 5,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Requiere ayuda y no tiene apoyo de la red de recursos (formal/informal) y/o no se puede ejercer.',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                //color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Requiere ayuda y no tiene apoyo de la red de recursos (formal/informal) y/o no se puede ejercer."),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -3857,19 +3176,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿Reciben  más de S/2,050 mensualmente?',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Reciben  más de S/2,050 mensualmente?"),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3887,19 +3194,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿Reciben más de S/ 1537.50 hasta S/ 2,050 mensualmente?.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Reciben más de S/ 1537.50 hasta S/ 2,050 mensualmente?."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3917,19 +3212,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          '¿Reciben mas de S/ 1025 hasta S/ 1537.50 mensualmente?',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Reciben mas de S/ 1025 hasta S/ 1537.50 mensualmente?"),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3947,19 +3230,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Reciben igual o menos de S/ 1025 mensualmente.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Reciben igual o menos de S/ 1025 mensualmente."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -3977,19 +3248,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Sin ingresos fijos.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sin ingresos fijos."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -4112,19 +3371,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Inadecuada: Barreras arquitectónicas internas en el domicilio.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Inadecuada: Barreras arquitectónicas internas en el domicilio."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -4142,19 +3389,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Inadecuada: Falta uno o más suministros y/o dos o más equipamientos.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Inadecuada: Falta uno o más suministros y/o dos o más equipamientos."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -4172,19 +3407,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Inadecuada: Ausencia de vivienda, infravivienda.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Inadecuada: Ausencia de vivienda, infravivienda."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -4253,19 +3476,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'En relación al cobro.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("En relación al cobro."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -4283,19 +3494,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                           Row(
                             children: [
-                              const Expanded(
-                                flex: 5,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'En relación a riesgo socioemocional.',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      //color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("En relación a riesgo socioemocional."),
                               const Spacer(),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -4320,19 +3519,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Cuidados de la PCDS.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Cuidados de la PCDS."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -4350,19 +3537,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Rehabilitación.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Rehabilitación."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -4380,19 +3555,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Alimentación.',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Alimentación."),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -4410,19 +3573,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
                 Row(
                   children: [
-                    const Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Otro (Especificar)',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            //color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (Especificar)"),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
