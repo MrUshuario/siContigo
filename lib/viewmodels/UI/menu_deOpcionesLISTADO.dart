@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_padronLogin.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_deOpciones.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_deOpcionesDINAMICO.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_deOpcionesPERCEPCION.dart';
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/apis/apiprovider_menuOpciones.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/apis/apiprovider_formulario.dart';
@@ -328,6 +329,7 @@ late final _appDatabase;
             },
           ),
 
+          /*
           IconButton(
             icon: Image.asset(
               !widget.dinamico
@@ -384,7 +386,7 @@ late final _appDatabase;
 
             },
           ),
-
+*/
         ],
       ),
       body: Center (
@@ -1116,8 +1118,7 @@ late final _appDatabase;
       child: Column(
         children: [
 
-
-
+          //FORMULARIO ENCUESTA
           Row(
             children: [
                Expanded(
@@ -1194,11 +1195,91 @@ late final _appDatabase;
                   )
                 ),
               ),
+            ],
+          ),
 
+          //ENCUESTAS PERCEPCIONES EN DURO
+          Row(
+            children: [
+              Expanded(
+                  flex: 5,
+                  child:  GestureDetector(
+                      onTap: () async {
+
+                        if(widget.backup){
+                          await widget.formDataModelDaoBackup.BorrarTodo();
+                        }
+
+                        Widget ContactoRefererencia = MenudeOpcionesPercepcion(Respuesta()); //CARGO DATA
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(10.0),
+                        alignment: Alignment.center,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          color: Color.fromARGB(255, 27, 65, 187),
+                        ),
+                        padding: const EdgeInsets.only(top: 16, bottom: 16),
+                        child: const Text("Encuesta Percepcion",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500)),
+                      ))
+              ),
+              const Spacer(),
+              Visibility(
+                visible: widget.backup,
+                child:
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child:
+                  IconButton(
+                    icon: Image.asset(Resources.guardar),
+                    color: Colors.white,
+                    onPressed: () async {
+                      //Convierto el backup en el objeto respuesta
+                      Respuesta obj = BackupMapper.instance.backuptoResp(objBackup);
+                      //MODIFICAR PARA QUE CARGE un backup con ID null
+                      Widget ContactoRefererencia = MenudeOpcionesOffline(obj); //CARGO DATA
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
+                      );
+                    },
+                  ),
+                ),
+              ),
+
+              Visibility(
+                visible: !widget.backup,
+                child:
+                Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child:
+                    IconButton(
+                      icon: ColorFiltered(
+                        colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.saturation), // Apply grayscale filter
+                        child: Image.asset(Resources.guardar),
+                      ),
+                      color: Colors.white, // This might not be necessary anymore due to the filter
+                      onPressed: ()  {
+                        showDialogValidFields(
+                            "Este es el backup, sino termina una encuesta este boton le permitira retomarla.");
+                      },
+                    )
+                ),
+              ),
             ],
           ),
 
           //BOTON ENCUESTA PERCEPCIONES
+          /*
           GestureDetector(
               onTap: () async {
 
@@ -1222,13 +1303,13 @@ late final _appDatabase;
                   color: Color.fromARGB(255, 27, 65, 187),
                 ),
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
-                child: const Text("Encuesta percepciones",
+                child: const Text("Encuesta percepcion",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.w500)),
               )),
-
+          */
 
           GestureDetector(
               onTap: () async {
