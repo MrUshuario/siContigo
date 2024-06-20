@@ -7,6 +7,9 @@ abstract class FormDataModelDaoFormulario {
   @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertFormDataModel(Formulario formDataModel);
 
+  @Query('SELECT * FROM Formulario')
+  Future<List<Formulario>> findFormDataModelORIGINAL();
+
   @Query('SELECT * FROM Formulario LIMIT :perPage OFFSET :offset')
   Future<List<Formulario>> findFormDataModel(int offset, int perPage);
 

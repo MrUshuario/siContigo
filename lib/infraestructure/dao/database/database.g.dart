@@ -251,6 +251,25 @@ class _$FormDataModelDaoFormulario extends FormDataModelDaoFormulario {
   final InsertionAdapter<Formulario> _formularioInsertionAdapter;
 
   @override
+  Future<List<Formulario>> findFormDataModelORIGINAL() async {
+    return _queryAdapter.queryList('SELECT * FROM Formulario',
+        mapper: (Map<String, Object?> row) => Formulario(
+            cod: row['cod'] as int?,
+            pregunta: row['pregunta'] as String?,
+            tipoOpcion: row['tipoOpcion'] as String?,
+            puntaje: row['puntaje'] as String?,
+            tipoRepuesta: row['tipoRepuesta'] as int?,
+            id: row['id'] as int?,
+            idformato: row['idformato'] as int?,
+            texto: row['texto'] as String?,
+            titulo: row['titulo'] as String?,
+            idseccion: row['idseccion'] as int?,
+            descripcion: row['descripcion'] as String?,
+            id_tipo_respuesta: row['id_tipo_respuesta'] as int?,
+            id_seccion: row['id_seccion'] as int?));
+  }
+
+  @override
   Future<List<Formulario>> findFormDataModel(
     int offset,
     int perPage,

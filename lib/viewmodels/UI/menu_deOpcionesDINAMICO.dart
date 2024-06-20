@@ -35,7 +35,7 @@ import 'menu_deOpcionesLISTADO.dart';
 
 
 class MenudeOpcionesDinamico extends StatefulWidget {
-  final viewModel = FormDataModelViewModel();
+  //final viewModel = FormDataModelViewModel();
   final _appDatabase = GetIt.I.get<AppDatabase>();
   FormDataModelDaoRespuesta get formDataModelDao => _appDatabase.formDataModelDaoRespuesta;
   FormDataModelDaoRespuestaBACKUP get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
@@ -61,6 +61,7 @@ class MenudeOpcionesDinamico extends StatefulWidget {
   int idbutton = 1;
   int? IDSECCION = 0;
   int? totalFase2 = 0;
+  List<Formulario> listFormulario = List.empty(growable: true);
 
   final ParamGestor = List.filled(3, "", growable: false);
 
@@ -148,10 +149,11 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
   void initState() {
     conseguirVersion();
     revisarBackup();
-    widget.viewModel
-      ..listen()
-      ..getPaginationList();
+    //widget.viewModel
+    //  ..listen()
+    //  ..getPaginationList();
     loadTotalRegister();
+    listarVisitasRetro();
 
     if(widget.formData != null) {
       if (widget.formData!.id_gestor != null) {
@@ -170,12 +172,12 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
   List<bool> _idDinamicoListCheck = [];
 
 
-
+/*
   @override
   void dispose() {
     widget.viewModel.dispose();
     super.dispose();
-  }
+  } */
 
   bool isSatelliteGreen=false;
 
@@ -382,13 +384,18 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
             _idDinamicoListInput .add(idDinamico.noRpta);
           }}
 
+
     setState(() {});
   }
 
   Future<void> listarVisitasRetro() async {
+
+    widget.listFormulario = await widget.formDataModelDaoFormulario.findFormDataModelORIGINAL();
+    //TALVEZ VALAL TALVEZ NO
+    /*
     widget.viewModel
       ..listen()
-      ..getPaginationList();
+      ..getPaginationList(); */
     setState(() {});
   }
 
@@ -774,6 +781,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
           Visibility(
             visible: Fase2,
             child:Column(
+
               children: <Widget>[
 
                 HelpersViewLetrasRojas.formItemsDesign( "Módulo II: USUARIO Y CUIDADOR"),
@@ -782,52 +790,65 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                 //HelpersViewLetrasSubs.formItemsDesign( "INSERTAR SUB *"),
                 //HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
 
-                //FORMULARIO FASE2
-                SizedBox(
-                  width: double.infinity, // Fills available space horizontally
-                  height: MediaQuery.of(context).size.height * 0.70,
-                  child:
-
-                    AnimatedInfiniteScrollView<Formulario>( //QUITAR ESTO
+                /*  AnimatedInfiniteScrollView<Formulario>( //CAMBIAR LA LISTA POR ITEM
                     viewModel: widget.viewModel,
-                    itemBuilder: (context, index, item) {
+                    itemBuilder: (context, index, item) {*/
+
+            Container(  // Container with border around the Row
+              decoration: const BoxDecoration(
+                border: Border(
+                  right: BorderSide( // Border for all sides
+                  color: Colors.red, // Change color as desired
+                  width: 2.0, // Adjust border width
+                ),),
+              ),
+            child:
+            Row(
+              children: [
+                SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.8, // Adjust width as needed
+                    child: widget.listFormulario.isNotEmpty
+                        ? ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: widget.listFormulario!.length,
+                        itemBuilder: (context, index) {
 
 
-                      String? ipregunta = "";
-                      String? itexto = "";
-                      String? idescripcion = "";
-                      String? ititulo = "";
+                        String? ipregunta = "";
+                        String? itexto = "";
+                        String? idescripcion = "";
+                        String? ititulo = "";
 
-                      List<String>? tipoOpcionList;
-                      List<String>? tipoOpcionPuntaje;
-                      List<RadioButtonsDinamic> idOpciones = List.empty();
-                      int indexPregunta =0;
-
-
-                      widget.sumatoriacheck = widget.sumatoriacheck + widget.auxsumatoriacheck;
+                        List<String>? tipoOpcionList;
+                        List<String>? tipoOpcionPuntaje;
+                        List<RadioButtonsDinamic> idOpciones = List.empty();
+                        int indexPregunta =0;
 
 
-                      if( !(item.pregunta == null)){ ipregunta = item.pregunta!;}
-                      if( !(item.texto == null)){ itexto = item.texto!;}
-                      if( !(item.descripcion == null)){ idescripcion = item.descripcion!;}
-                      if( !(item.titulo == null)){ ititulo = item.titulo!;}
+                        widget.sumatoriacheck = widget.sumatoriacheck + widget.auxsumatoriacheck;
 
-                      if (item.tipoRepuesta == 2 || //CIRCLE OPCION
-                          item.tipoRepuesta == 4) { //CHECKBOX
-                        tipoOpcionList = item.tipoOpcion!.split(';'); //ENUNCIADO
-                        tipoOpcionPuntaje = item.puntaje!.split(';'); //PUNTAJE
-                        indexPregunta = index;
-                        //idOpciones = RadioButtonsDinamic.generateData(tipoOpcionList.length); //GENERA ID
 
-                        if(item.tipoRepuesta == 4){ //CHECBOX
-                          widget.auxsumatoriacheck = tipoOpcionList.length;
-                          return Column(
-                            children: [
+                        if( !(widget.listFormulario![index].pregunta == null)){ ipregunta = widget.listFormulario![index].pregunta!;}
+                        if( !(widget.listFormulario![index].texto == null)){ itexto = widget.listFormulario![index].texto!;}
+                        if( !(widget.listFormulario![index].descripcion == null)){ idescripcion = widget.listFormulario![index].descripcion!;}
+                        if( !(widget.listFormulario![index].titulo == null)){ ititulo = widget.listFormulario![index].titulo!;}
 
-                              //TODAS LAS PREGUNTAS ENUNCIADOS
-                              HelpersViewLetrasRojas.formItemsPREGUNTA(index, ipregunta!, itexto!, idescripcion!,  context),
+                        if (widget.listFormulario![index].tipoRepuesta == 2 || //CIRCLE OPCION
+                            widget.listFormulario![index].tipoRepuesta == 4) { //CHECKBOX
+                          tipoOpcionList = widget.listFormulario![index].tipoOpcion!.split(';'); //ENUNCIADO
+                          tipoOpcionPuntaje = widget.listFormulario![index].puntaje!.split(';'); //PUNTAJE
+                          indexPregunta = index;
+                          //idOpciones = RadioButtonsDinamic.generateData(tipoOpcionList.length); //GENERA ID
 
-                              //OPCIONES CHECK
+                          if(widget.listFormulario![index].tipoRepuesta == 4){ //CHECBOX
+                            widget.auxsumatoriacheck = tipoOpcionList.length;
+                            return Column(
+                              children: [
+
+                                //TODAS LAS PREGUNTAS ENUNCIADOS
+                                HelpersViewLetrasRojas.formItemsPREGUNTA(index, ipregunta!, itexto!, idescripcion!,  context),
+
+                                //OPCIONES CHECK
                                 SizedBox(
                                   child: ListView.builder(
                                     shrinkWrap: true,
@@ -884,32 +905,32 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                                   ),
                                 ),
 
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height * 0.020,
-                              ),
-                              Text(
-                                "${ititulo ?? ""}", // Example,
-                                textAlign: TextAlign.left,
-                                style: const TextStyle(
-                                  fontSize: 16.0,
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.020,
                                 ),
-                              ),
+                                Text(
+                                  "${ititulo ?? ""}", // Example,
+                                  textAlign: TextAlign.left,
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                  ),
+                                ),
 
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height * 0.020,
-                              ),
-                            ],
-                          );
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.020,
+                                ),
+                              ],
+                            );
 
-                        } else if (item.tipoRepuesta == 2){ //CIRCLE
+                          } else if (widget.listFormulario![index].tipoRepuesta == 2){ //CIRCLE
 
-                          return Column(
-                            children: [
+                            return Column(
+                              children: [
 
-                              //TODAS LAS PREGUNTAS ENUNCIADOS
-                              HelpersViewLetrasRojas.formItemsPREGUNTA(index, ipregunta!, itexto!, idescripcion!,  context),
+                                //TODAS LAS PREGUNTAS ENUNCIADOS
+                                HelpersViewLetrasRojas.formItemsPREGUNTA(index, ipregunta!, itexto!, idescripcion!,  context),
 
-                              //OPCIONES CIRCLE
+                                //OPCIONES CIRCLE
                                 SizedBox(
                                   child: ListView.builder(
                                     shrinkWrap: true,
@@ -962,6 +983,47 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                                   ),
                                 ),
 
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.020,
+                                ),
+                                Text(
+                                  "${ititulo ?? ""}", // Example,
+                                  textAlign: TextAlign.left,
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.020,
+                                ),
+                              ],
+                            );
+
+                          }
+
+                        } else {
+                          //MOSTRAR INPUT
+                          return  Column(
+                            children: [
+
+                              //TODAS LAS PREGUNTAS ENUNCIADOS
+                              HelpersViewLetrasRojas.formItemsPREGUNTA(index, ipregunta!, itexto!, idescripcion!,  context),
+
+                              //INPUT TEXT
+                              HelpersViewBlancoIcon.formItemsDesign(
+                                Icons.question_mark,
+                                TextFormField(
+                                  // Access item data here
+                                  decoration: InputDecoration(
+                                    //labelText:"${item.tipoRepuesta}",
+                                    labelText:"Ingresar respuesta única",
+                                  ),
+                                ),
+                                context,
+                              ),
+
+
                               SizedBox(
                                 height: MediaQuery.of(context).size.height * 0.020,
                               ),
@@ -978,151 +1040,27 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                               ),
                             ],
                           );
-
                         }
 
-                      } else {
-                        //MOSTRAR INPUT
-                        return  Column(
+                        return Column(
                           children: [
-
-                            //TODAS LAS PREGUNTAS ENUNCIADOS
-                            HelpersViewLetrasRojas.formItemsPREGUNTA(index, ipregunta!, itexto!, idescripcion!,  context),
-
-                            //INPUT TEXT
-                              HelpersViewBlancoIcon.formItemsDesign(
-                                Icons.question_mark,
-                                TextFormField(
-                                  // Access item data here
-                                  decoration: InputDecoration(
-                                    //labelText:"${item.tipoRepuesta}",
-                                    labelText:"Ingresar respuesta única",
-                                  ),
-                                ),
-                                context,
-                              ),
-
-
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.020,
-                            ),
-                            Text(
-                              "${ititulo ?? ""}", // Example,
-                              textAlign: TextAlign.left,
-                              style: const TextStyle(
-                                fontSize: 16.0,
-                              ),
-                            ),
-
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.020,
-                            ),
+                            SizedBox(height: MediaQuery.of(context).size.height * 0.020,),
                           ],
                         );
 
-                      }
-
-
-                      return Column(
-                        children: [
-                          SizedBox(height: MediaQuery.of(context).size.height * 0.020,),
-                        ],
-                      );
-
-                    },
-                    refreshIndicator: true,
-                  ),
- //SCROLLBAR
+                      },
+                    )
+                        : const Text('Aún no hay data para mostrar')
                 ),
+                Spacer(),
+              ]),),
+
+
 
                 //BOTON PARA CONTINUAR
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
-
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    // Center horizontally
-                    children: [
-
-                      /*
-                      GestureDetector(
-                        onTap: ()  {
-                          //NO SIRVE NI EL CONTROLLADOR DE SCROLL WIDGET NI EL OPTION 2
-                          double currentScrollOffset = widget.scrollControllerOPTIONS.offset;
-                          double targetOffset = currentScrollOffset - 150.0; // Add 50 units to scroll down
-                          widget.scrollControllerOPTIONS.animateTo(
-                            targetOffset,
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.easeInOut,);
-                        },
-                        child: Image.asset(Resources.flechaazulARRIBA, width: 48, height: 48),
-                      ), */
-
-                      GestureDetector(
-                          onTap: ()  async {
-
-                            if(
-                            (1 == 1) ||
-                                (1 == 1)
-                            ){
-                              showDialogValidFields(Constants.faltanCampos);
-                            } else {
-                              await guardadoFase2();
-                              setState(() {
-                                Fase2 = false;
-                                Fase3 = true;
-                              });
-                              scrollController.animateTo(
-                                0.0,
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.easeInOut,);
-                            }
-                            scrollController.animateTo(
-                              0.0,
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeInOut,
-                            );
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-                            alignment: Alignment.center,
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              color: Color.fromARGB(255, 27, 65, 187),
-                            ),
-                            padding: const EdgeInsets.only(top: 10, bottom: 10),
-                            child: const Text("Continuar",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500)),
-                          )),
-
-                      /*
-                      GestureDetector(
-                        onTap: ()  {
-                          //NO SIRVE NI EL CONTROLLADOR DE SCROLL WIDGET NI EL OPTION 2
-                          double currentScrollOffset = widget.scrollControllerOPTIONS.offset;
-                          double targetOffset = currentScrollOffset + 150.0; // Add 50 units to scroll down
-                          widget.scrollControllerOPTIONS.animateTo(
-                            targetOffset,
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.easeInOut,);
-
-                        },
-                        child: Image.asset(Resources.flechaazulABAJO, width: 48, height: 48),
-                      ) */
-
-
-                    ],
-                  ),
-                ),
-
-
-
 
 
               ],),
