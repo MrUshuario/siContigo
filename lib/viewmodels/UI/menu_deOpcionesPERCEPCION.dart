@@ -59,12 +59,6 @@ class MenudeOpcionesPercepcion extends StatefulWidget {
   TextEditingController P04EspecificarPerc = TextEditingController();
   final ParamP04EspecificarPerc = List.filled(3, "", growable: false);
 
-
-  TextEditingController P05OTROEspecificarPerc = TextEditingController();
-  final ParamP05OTROEspecificarPerc = List.filled(3, "", growable: false);
-
-
-
   TextEditingController P06EspecificarPerc = TextEditingController();
   final ParamP06EspecificarPerc = List.filled(3, "", growable: false);
   TextEditingController P07EspecificarPerc = TextEditingController();
@@ -75,6 +69,8 @@ class MenudeOpcionesPercepcion extends StatefulWidget {
   //FASE2
   TextEditingController P12EspecificarPerc = TextEditingController();
   final ParamP12EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P19EspecificarPerc = TextEditingController();
+  final ParamP19EspecificarPerc = List.filled(3, "", growable: false);
 
   //DEL ANTERIOR
   TextEditingController formP03EspecificarCtrl = TextEditingController();
@@ -123,6 +119,19 @@ enum P11Perc { Si, No }
 enum P13Perc { hombre, mujer }
 enum P14Perc { Si, No }
 enum P15Perc { Si, No }
+enum P16Perc { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P17Perc { Si, No }
+enum P18Perc { Si, No }
+
+enum P20Perc { hombre, mujer }
+enum P21Perc { Si, No }
+enum P22Perc { omadep, familaires, medios, personal, yo, otro}
+enum P23Perc { jefe, esposa, hijo, yerno, nieto, padres, hermano, trabajador, otropariente }
+enum P24Perc { hombre, mujer }
+
+enum P28Perc {muybuena, buena, mala, muymala, nosabe}
+enum P29Perc {muybuena, buena, mala, muymala, nosabe}
+
 
 enum CobroPension { Si, No }
 enum PensionRecibe { Totalmente, Parcialmente}
@@ -217,6 +226,17 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
   P13Perc? _P13Perc;
   P14Perc? _P14Perc;
   P15Perc? _P15Perc;
+  P16Perc? _P16Perc;
+  P17Perc? _P17Perc;
+  P18Perc? _P18Perc;
+  P20Perc? _P20Perc;
+  P21Perc? _P21Perc;
+  P22Perc? _P22Perc;
+  P23Perc? _P23Perc;
+  P24Perc? _P24Perc;
+
+  P28Perc? _P28Perc;
+  P29Perc? _P29Perc;
 
   CobroPension? _CobroPension;
   PensionRecibe? _PensionRecibe;
@@ -1490,7 +1510,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                       maxLength: 35,
                     ), context),
 
-
+                const SizedBox(height: 16.0),
                 HelpersViewLetrasRojas.formItemsDesign( "I) Identificación de Vivienda"),
                 const SizedBox(height: 16.0),
 
@@ -1573,7 +1593,65 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ]
                 ),
 
+                HelpersViewLetrasSubsGris.formItemsDesign("Nombre de la vía"),
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.P06EspecificarPerc,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.ParamP06EspecificarPerc);
+                            },
+                            maxLength: 100,
+                          ), context),
+                    ]
+                ),
+
+                HelpersViewLetrasSubsGris.formItemsDesign("Télefono del Informante"),
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.P07EspecificarPerc,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.ParamP07EspecificarPerc);
+                            },
+                            maxLength: 100,
+                          ), context),
+                    ]
+                ),
+
+                HelpersViewLetrasSubsGris.formItemsDesign("Ubigeo"),
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.P08EspecificarPerc,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.ParamP08EspecificarPerc);
+                            },
+                            maxLength: 100,
+                          ), context),
+                    ]
+                ),
+
                 const SizedBox(height: 16.0),
+
                 HelpersViewLetrasSubs.formItemsDesign( "Dirección de vivienda"),
                 HelpersViewLetrasSubsGris.formItemsDesign("Tipo de Vía Avenida"),
 
@@ -1686,63 +1764,6 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                   ],
                 ),
 
-                HelpersViewLetrasSubsGris.formItemsDesign("Nombre de la vía"),
-                Column(
-                    children: <Widget>[
-                      HelpersViewBlancoIcon.formItemsDesign(
-                          Icons.pending_actions,
-                          TextFormField(
-                            controller: widget.P06EspecificarPerc,
-                            decoration: const InputDecoration(
-                              labelText: '',
-                            ),
-                            validator: (value) {
-                              return HelpersViewBlancoIcon.validateField(
-                                  value!, widget.ParamP06EspecificarPerc);
-                            },
-                            maxLength: 100,
-                          ), context),
-                    ]
-                ),
-
-                HelpersViewLetrasSubsGris.formItemsDesign("Télefono del Informante"),
-                Column(
-                    children: <Widget>[
-                      HelpersViewBlancoIcon.formItemsDesign(
-                          Icons.pending_actions,
-                          TextFormField(
-                            controller: widget.P07EspecificarPerc,
-                            decoration: const InputDecoration(
-                              labelText: '',
-                            ),
-                            validator: (value) {
-                              return HelpersViewBlancoIcon.validateField(
-                                  value!, widget.ParamP07EspecificarPerc);
-                            },
-                            maxLength: 100,
-                          ), context),
-                    ]
-                ),
-
-                HelpersViewLetrasSubsGris.formItemsDesign("Ubigeo"),
-                Column(
-                    children: <Widget>[
-                      HelpersViewBlancoIcon.formItemsDesign(
-                          Icons.pending_actions,
-                          TextFormField(
-                            controller: widget.P08EspecificarPerc,
-                            decoration: const InputDecoration(
-                              labelText: '',
-                            ),
-                            validator: (value) {
-                              return HelpersViewBlancoIcon.validateField(
-                                  value!, widget.ParamP08EspecificarPerc);
-                            },
-                            maxLength: 100,
-                          ), context),
-                    ]
-                ),
-
                 const SizedBox(height: 16.0),
 
                 //BOTON PARA PRESEGUIR
@@ -1796,7 +1817,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
               children: <Widget>[
 
                 HelpersViewLetrasRojas.formItemsDesign( "II) Identificación del Usuario y Cuidador"),
-                HelpersViewLetrasSubs.formItemsDesign( "Datos de la persona con discapacidad"),
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasRojas.formItemsDesign( "Datos de la persona con discapacidad"),
                 const SizedBox(height: 16.0),
                 HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al informante del hogar y solicitar entrevistar a la persona con discapacidad, consultar si la está en condiciones de responder, caso contrario solicitar que esté presente el cuidador/a para apoyar en la entrevista."),
                 HelpersViewLetrasSubs.formItemsDesign( "¿Hay alguna persona con discapacidad en este hogar?"),
@@ -2020,7 +2042,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                       },),],
                 ),
 
-                HelpersViewLetrasSubs.formItemsDesign( "Datos del cuidador"),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasRojas.formItemsDesign( "Datos del cuidador"),
 
                 const SizedBox(height: 16.0),
                 HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a."),
@@ -2060,6 +2084,541 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                       },),],
                 ),
 
+
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Cuál es la relación de parentesco del/de la cuidador/a con e/la usuario/a del Programa CONTIGO?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P16Perc>(
+                        value: P16Perc.esposa,
+                        groupValue: _P16Perc,
+                        onChanged: (P16Perc? value) {
+                          setState(() {
+                            _P16Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P16Perc>(
+                        value: P16Perc.conviviente,
+                        groupValue: _P16Perc,
+                        onChanged: (P16Perc? value) {
+                          setState(() {
+                            _P16Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P16Perc>(
+                        value: P16Perc.hijo,
+                        groupValue: _P16Perc,
+                        onChanged: (P16Perc? value) {
+                          setState(() {
+                            _P16Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P16Perc>(
+                        value: P16Perc.hijastro,
+                        groupValue: _P16Perc,
+                        onChanged: (P16Perc? value) {
+                          setState(() {
+                            _P16Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P16Perc>(
+                        value: P16Perc.yerno,
+                        groupValue: _P16Perc,
+                        onChanged: (P16Perc? value) {
+                          setState(() {
+                            _P16Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P16Perc>(
+                        value: P16Perc.nieto,
+                        groupValue: _P16Perc,
+                        onChanged: (P16Perc? value) {
+                          setState(() {
+                            _P16Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P16Perc>(
+                        value: P16Perc.padres,
+                        groupValue: _P16Perc,
+                        onChanged: (P16Perc? value) {
+                          setState(() {
+                            _P16Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Suegro/a"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P16Perc>(
+                        value: P16Perc.suegro,
+                        groupValue: _P16Perc,
+                        onChanged: (P16Perc? value) {
+                          setState(() {
+                            _P16Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hermano/a"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P16Perc>(
+                        value: P16Perc.hermano,
+                        groupValue: _P16Perc,
+                        onChanged: (P16Perc? value) {
+                          setState(() {
+                            _P16Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Trabajador/a del Hogar"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P16Perc>(
+                        value: P16Perc.trabajador,
+                        groupValue: _P16Perc,
+                        onChanged: (P16Perc? value) {
+                          setState(() {
+                            _P16Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro/a pariente (especificar)"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P16Perc>(
+                        value: P16Perc.otropariente,
+                        groupValue: _P16Perc,
+                        onChanged: (P16Perc? value) {
+                          setState(() {
+                            _P16Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro/a no pariente (especificar)"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P16Perc>(
+                        value: P16Perc.otronopariente,
+                        groupValue: _P16Perc,
+                        onChanged: (P16Perc? value) {
+                          setState(() {
+                            _P16Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a\n"
+                    "●	Miembro del hogar: Es la persona pariente o no que reside en la vivienda, comparten al menos "
+                    "las comidas principales y/o tienen en común otras necesidades básicas, con cargo a un presupuesto común (comen de una misma olla)."
+          ),
+                HelpersViewLetrasSubs.formItemsDesign( "¿El/la cuidador/a es miembro del hogar?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text(
+                      'Sí',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P17Perc>(
+                      value: P17Perc.Si,
+                      groupValue: _P17Perc,
+                      onChanged: (P17Perc? value) {
+                        setState(() {
+                          _P17Perc = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'No',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P17Perc>(
+                      value: P17Perc.No,
+                      groupValue: _P17Perc,
+                      onChanged: (P17Perc? value) {
+                        setState(() {
+                          _P17Perc = value;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "● Realizar la pregunta al usuario/a o cuidador/a. \n"
+                    "●	Si el usuario/a indica que él solo realiza el cobro, marcar la opción 2. Recordar que el cuidador/a no necesariamente es la persona autorizada para el cobro. "
+                ),
+                HelpersViewLetrasSubs.formItemsDesign( "¿El/la cuidador/a es el autorizado para realizar el cobro del dinero del Programa CONTIGO?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text(
+                      'Sí',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P18Perc>(
+                      value: P18Perc.Si,
+                      groupValue: _P18Perc,
+                      onChanged: (P18Perc? value) {
+                        setState(() {
+                          _P18Perc = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'No',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P18Perc>(
+                      value: P18Perc.No,
+                      groupValue: _P18Perc,
+                      onChanged: (P18Perc? value) {
+                        setState(() {
+                          _P18Perc = value;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a."),
+                HelpersViewLetrasSubs.formItemsDesign( "El/la cuidador/a ¿Qué edad tiene en años cumplidos?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text('Años:', style: TextStyle(
+                      fontSize: 12.0,
+                      //color: Colors.white,
+                    ),),
+
+                    HelpersViewBlancoIcon.formItemsDesignDNI(
+                        TextFormField(
+                          controller: widget.P19EspecificarPerc,
+                          decoration: const InputDecoration(
+                            labelText: 'Edad',
+                          ),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                          /*
+                      validator: (value) {
+                        return HelpersViewBlancoIcon.validateField(
+                            value!, widget.formIdUsuario);
+                      }, */
+                          maxLength: 2,
+                        ), context),
+
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Registrar por observación, de ser el caso realizar la pregunta al usuario/a o cuidador/a. "),
+                HelpersViewLetrasSubs.formItemsDesign( "Sexo del cuidador/a"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text(
+                      'Hombre',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P20Perc>(
+                      value: P20Perc.hombre,
+                      groupValue: _P20Perc,
+                      onChanged: (P20Perc? value) {
+                        setState(() {
+                          _P20Perc = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'Mujer',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P20Perc>(
+                      value: P20Perc.mujer,
+                      groupValue: _P20Perc,
+                      onChanged: (P20Perc? value) {
+                        setState(() {
+                          _P20Perc = value;
+                        });
+                      },),],
+                ),
+
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿El cuidador ha recibido capacitación en prácticas de cuidado, atención y trato adecuado a las personas con discapacidad?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text(
+                      'Sí',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P21Perc>(
+                      value: P21Perc.Si,
+                      groupValue: _P21Perc,
+                      onChanged: (P21Perc? value) {
+                        setState(() {
+                          _P21Perc = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'No',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P21Perc>(
+                      value: P21Perc.No,
+                      groupValue: _P21Perc,
+                      onChanged: (P21Perc? value) {
+                        setState(() {
+                          _P21Perc = value;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a."),
+                HelpersViewLetrasSubs.formItemsDesign("¿De quién recibió la capacitación?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Personal de la Municipalidad (OMAPED)"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P22Perc>(
+                        value: P22Perc.omadep,
+                        groupValue: _P22Perc,
+                        onChanged: (P22Perc? value) {
+                          setState(() {
+                            _P22Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Familiares / Vecinos / Amigos"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P22Perc>(
+                        value: P22Perc.familaires,
+                        groupValue: _P22Perc,
+                        onChanged: (P22Perc? value) {
+                          setState(() {
+                            _P22Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Medios de comunicación (radio, televisión, perifoneo, etc.)"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P22Perc>(
+                        value: P22Perc.medios,
+                        groupValue: _P22Perc,
+                        onChanged: (P22Perc? value) {
+                          setState(() {
+                            _P22Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Personal del Programa CONTIGO"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P22Perc>(
+                        value: P22Perc.personal,
+                        groupValue: _P22Perc,
+                        onChanged: (P22Perc? value) {
+                          setState(() {
+                            _P22Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yo mismo buscando en internet"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P22Perc>(
+                        value: P22Perc.yo,
+                        groupValue: _P22Perc,
+                        onChanged: (P22Perc? value) {
+                          setState(() {
+                            _P22Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (especifique)"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P22Perc>(
+                        value: P22Perc.otro,
+                        groupValue: _P22Perc,
+                        onChanged: (P22Perc? value) {
+                          setState(() {
+                            _P22Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
 
                 const SizedBox(height: 16.0),
 
@@ -2114,6 +2673,215 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
             child:Column(
               children: <Widget>[
 
+                HelpersViewLetrasRojas.formItemsDesign( "III) Características del Hogar"),
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas.\n"
+                    "●	Jefe del hogar: Es la persona, a quien los miembros del hogar reconocen como tal y reside habitualmente en la vivienda, usualmente es la persona mayor de 18 años,"
+                    " sostén económico del hogar y/o responsable de las decisiones y administración de este."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Cuál es la relación de parentesco del usuario/a del Programa CONTIGO con el jefe o jefa del hogar?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Jefe/a del hogar "),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P23Perc>(
+                        value: P23Perc.jefe,
+                        groupValue: _P23Perc,
+                        onChanged: (P23Perc? value) {
+                          setState(() {
+                            _P23Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposo/a o compañero/a "),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P23Perc>(
+                        value: P23Perc.esposa,
+                        groupValue: _P23Perc,
+                        onChanged: (P23Perc? value) {
+                          setState(() {
+                            _P23Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a / Hijastro/a"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P23Perc>(
+                        value: P23Perc.hijo,
+                        groupValue: _P23Perc,
+                        onChanged: (P23Perc? value) {
+                          setState(() {
+                            _P23Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno / nuera"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P23Perc>(
+                        value: P23Perc.yerno,
+                        groupValue: _P23Perc,
+                        onChanged: (P23Perc? value) {
+                          setState(() {
+                            _P23Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P23Perc>(
+                        value: P23Perc.nieto,
+                        groupValue: _P23Perc,
+                        onChanged: (P23Perc? value) {
+                          setState(() {
+                            _P23Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/ madre / suegro/a"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P23Perc>(
+                        value: P23Perc.padres,
+                        groupValue: _P23Perc,
+                        onChanged: (P23Perc? value) {
+                          setState(() {
+                            _P23Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hermano/a"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P23Perc>(
+                        value: P23Perc.hermano,
+                        groupValue: _P23Perc,
+                        onChanged: (P23Perc? value) {
+                          setState(() {
+                            _P23Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Trabajador/a del hogar"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P23Perc>(
+                        value: P23Perc.trabajador,
+                        groupValue: _P23Perc,
+                        onChanged: (P23Perc? value) {
+                          setState(() {
+                            _P23Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro/a pariente (especificar):"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P23Perc>(
+                        value: P23Perc.otropariente,
+                        groupValue: _P23Perc,
+                        onChanged: (P23Perc? value) {
+                          setState(() {
+                            _P23Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. "),
+                HelpersViewLetrasSubs.formItemsDesign( "Sexo del jefe/a del hogar"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text(
+                      'Hombre',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P24Perc>(
+                      value: P24Perc.hombre,
+                      groupValue: _P24Perc,
+                      onChanged: (P24Perc? value) {
+                        setState(() {
+                          _P24Perc = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'Mujer',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P24Perc>(
+                      value: P24Perc.mujer,
+                      groupValue: _P24Perc,
+                      onChanged: (P24Perc? value) {
+                        setState(() {
+                          _P24Perc = value;
+                        });
+                      },),],
+                ),
+
+                //COMBO DE PREGUNTA 25,26,27
 
                 const SizedBox(height: 16.0),
                 GestureDetector(
@@ -2164,481 +2932,109 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
             child:Column(
               children: <Widget>[
 
-                HelpersViewLetrasRojas.formItemsDesign( "VALORACION SOCIO FAMILIAR - OBSERVACION DEL GESTOR"),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\nCalidad de vida es …"
+                    "\n● El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Cómo crees que ha sido tu calidad de vida   en los últimos 30 días?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy buena"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P28Perc>(
+                        value: P28Perc.muybuena,
+                        groupValue: _P28Perc,
+                        onChanged: (P28Perc? value) {
+                          setState(() {
+                            _P28Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Buena"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P28Perc>(
+                        value: P28Perc.buena,
+                        groupValue: _P28Perc,
+                        onChanged: (P28Perc? value) {
+                          setState(() {
+                            _P28Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Mala"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P28Perc>(
+                        value: P28Perc.mala,
+                        groupValue: _P28Perc,
+                        onChanged: (P28Perc? value) {
+                          setState(() {
+                            _P28Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy mala"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P28Perc>(
+                        value: P28Perc.muymala,
+                        groupValue: _P28Perc,
+                        onChanged: (P28Perc? value) {
+                          setState(() {
+                            _P28Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe / No responde"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P28Perc>(
+                        value: P28Perc.muybuena,
+                        groupValue: _P28Perc,
+                        onChanged: (P28Perc? value) {
+                          setState(() {
+                            _P28Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 16.0),
 
-                HelpersViewLetrasSubs.formItemsDesign( "¿Con quién vive usted? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
-
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con otras personas (en pareja y/o familia) y hay hijos/as u otros familiares que requiere de cuidados."),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<ViveUsted>(
-                        value: ViveUsted.otrasConHijos,
-                        groupValue: _ViveUsted,
-                        onChanged: (ViveUsted? value) {
-                          setState(() {
-                            _ViveUsted = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con otras personas (en pareja o familia), requiere de cuidados, haya o no hijos/as u otros familiares que lo ayuden."),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<ViveUsted>(
-                        value: ViveUsted.otrasConHijosCuidado,
-                        groupValue: _ViveUsted,
-                        onChanged: (ViveUsted? value) {
-                          setState(() {
-                            _ViveUsted = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con otras personas (en pareja y/o con familiares) de edad avanzada, con/sin hijos/as con dificultades, capacidad y/o"
-                        " disponibilidad para prestar cuidados de larga duración."),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<ViveUsted>(
-                        value: ViveUsted.otrasEnPareja,
-                        groupValue: _ViveUsted,
-                        onChanged: (ViveUsted? value) {
-                          setState(() {
-                            _ViveUsted = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive solo y hay hijos o familia con limitaciones en capacidad, disponibilidad o disposición para cuidarlo/a."),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<ViveUsted>(
-                        value: ViveUsted.soloConHijos,
-                        groupValue: _ViveUsted,
-                        onChanged: (ViveUsted? value) {
-                          setState(() {
-                            _ViveUsted = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive solo, con familiares que está distante (física o afectivamente) y presenta falta de cuidados."),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<ViveUsted>(
-                        value: ViveUsted.soloConFamiliares,
-                        groupValue: _ViveUsted,
-                        onChanged: (ViveUsted? value) {
-                          setState(() {
-                            _ViveUsted = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-
-                HelpersViewLetrasSubs.formItemsDesign( "¿Usted tiene amigos, familiares, vecinos a los que suele visitar? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
-
-                Row(
-                  children: [
-                    const Text(
-                      'Sí',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    Radio<TieneFamilia>(
-                      value: TieneFamilia.Si,
-                      groupValue: _TieneFamilia,
-                      onChanged: (TieneFamilia? value) {
-                        setState(() {
-                          _TieneFamilia = value;
-                          _TieneFamiliaABCDE = null;
-                        });
-                      },
-                    ),
-                    const Text(
-                      'No',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    Radio<TieneFamilia>(
-                      value: TieneFamilia.No,
-                      groupValue: _TieneFamilia,
-                      onChanged: (TieneFamilia? value) {
-                        setState(() {
-                          _TieneFamilia = value;
-                          _TieneFamiliaABCDE = null;
-
-                        });
-                      },),],
-                ),
-
-                Visibility(
-                  visible: (_TieneFamilia ==TieneFamilia.Si),
-                  child:Column(
-                    children: <Widget>[
-
-                      HelpersViewLetrasSubsGris.formItemsDesign("Marque una opción"),
-
-                      const SizedBox(height: 16.0),
-
-                  Row(
-                    children: [
-                      HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Ha recibido visita de algún familiar, suele visitarlos por lo menos una vez a la semana? "
-                          "o durante la semana participa en alguna actividad pública."),
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Radio<TieneFamiliaABCDE>(
-                          value: TieneFamiliaABCDE.opcionA,
-                          groupValue: _TieneFamiliaABCDE,
-                          onChanged: (TieneFamiliaABCDE? value) {
-                            setState(() {
-                              _TieneFamiliaABCDE = value;
-                            });
-                          },),
-                      ),
-                    ],
-                  ),
-
-                      Row(
-                        children: [
-                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Suele salir fuera de su domicilio y se mantiene activa/o con familiares, amigos, vecinos, lo ha hecho en esta semana."),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Radio<TieneFamiliaABCDE>(
-                              value: TieneFamiliaABCDE.opcionB,
-                              groupValue: _TieneFamiliaABCDE,
-                              onChanged: (TieneFamiliaABCDE? value) {
-                                setState(() {
-                                  _TieneFamiliaABCDE = value;
-                                });
-                              },),
-                          ),
-                        ],
-                      ),
-
-
-
-                    ],),
-                ),
-
-                Visibility(
-                  visible: (_TieneFamilia ==TieneFamilia.No),
-                  child:Column(
-                    children: <Widget>[
-
-                      HelpersViewLetrasSubsGris.formItemsDesign("Marque una opción"),
-                      const SizedBox(height: 16.0),
-
-                      Row(
-                        children: [
-                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Suele salir fuera de su hogar, con o sin compañía, por lo menos una vez a la semana."),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Radio<TieneFamiliaABCDE>(
-                              value: TieneFamiliaABCDE.opcionC,
-                              groupValue: _TieneFamiliaABCDE,
-                              onChanged: (TieneFamiliaABCDE? value) {
-                                setState(() {
-                                  _TieneFamiliaABCDE = value;
-                                });
-                              },),
-                          ),
-                        ],
-                      ),
-
-
-                      Row(
-                        children: [
-                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Recibe visita de algún familiar en su hogar? Por lo menos una vez por semana."),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Radio<TieneFamiliaABCDE>(
-                              value: TieneFamiliaABCDE.opcionD,
-                              groupValue: _TieneFamiliaABCDE,
-                              onChanged: (TieneFamiliaABCDE? value) {
-                                setState(() {
-                                  _TieneFamiliaABCDE = value;
-                                });
-                              },),
-                          ),
-                        ],
-                      ),
-
-
-                  Row(
-                        children: [
-                          HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No recibe visitas, no sale a la calle, se encuentra en aislamiento social."),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Radio<TieneFamiliaABCDE>(
-                              value: TieneFamiliaABCDE.opcionE,
-                              groupValue: _TieneFamiliaABCDE,
-                              onChanged: (TieneFamiliaABCDE? value) {
-                                setState(() {
-                                  _TieneFamiliaABCDE = value;
-                                });
-                              },),
-                          ),
-                        ],
-                      ),
-
-
-
-                    ],),
-                ),
-
-                const SizedBox(height: 16.0),
-
-                HelpersViewLetrasSubs.formItemsDesign( "¿Recibe ayuda en las actividades diarias? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
-
-                Row(
-                  children: [
-                    const Text(
-                      'No requiere \nayuda',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    Radio<TieneAyudas>(
-                      value: TieneAyudas.No,
-                      groupValue: _TieneAyudas,
-                      onChanged: (TieneAyudas? value) {
-                        setState(() {
-                          _TieneAyudas = value;
-                          _TieneAyudasABCD = null;
-                        });
-                      },
-                    ),
-                    const Text(
-                      'Sí requiere \nayuda',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    Radio<TieneAyudas>(
-                      value: TieneAyudas.Si,
-                      groupValue: _TieneAyudas,
-                      onChanged: (TieneAyudas? value) {
-                        setState(() {
-                          _TieneAyudas= value;
-                          _TieneAyudasABCD = null;
-
-                        });
-                      },),],
-                ),
-
-                ////SEGUN LO MARCADO
-                Visibility(
-                visible: (_TieneAyudas ==TieneAyudas.Si),
-                  child:Column(
-                  children: <Widget>[
-
-                    HelpersViewLetrasSubsGris.formItemsDesign("Marque una opción"),
-                    const SizedBox(height: 16.0),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Requiere ayuda y la recibe de la red informal y/o formal y es suficiente."),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<TieneAyudasABCD>(
-                            value: TieneAyudasABCD.redInformalSUficiente,
-                            groupValue: _TieneAyudasABCD,
-                            onChanged: (TieneAyudasABCD? value) {
-                              setState(() {
-                                _TieneAyudasABCD = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Requiere ayuda y la recibe en su mayor parte de una persona cuidadora externa (privada)."),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<TieneAyudasABCD>(
-                            value: TieneAyudasABCD.cuidadoraExterna,
-                            groupValue: _TieneAyudasABCD,
-                            onChanged: (TieneAyudasABCD? value) {
-                              setState(() {
-                                _TieneAyudasABCD = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                        Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Requiere ayuda y la recibe de la red informal y/o formal y es insuficiente."),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<TieneAyudasABCD>(
-                            value: TieneAyudasABCD.redInformalInsuficiente,
-                            groupValue: _TieneAyudasABCD,
-                            onChanged: (TieneAyudasABCD? value) {
-                              setState(() {
-                                _TieneAyudasABCD = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-
-                     Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Requiere ayuda y no tiene apoyo de la red de recursos (formal/informal) y/o no se puede ejercer."),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<TieneAyudasABCD>(
-                            value: TieneAyudasABCD.noTieneApoyo,
-                            groupValue: _TieneAyudasABCD,
-                            onChanged: (TieneAyudasABCD? value) {
-                              setState(() {
-                                _TieneAyudasABCD = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                  ])),
-                const SizedBox(height: 16.0),
-                HelpersViewLetrasSubs.formItemsDesign( "¿Cual es el ingreso economico en su hogar? *"),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
+                    "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.\n"
+                    "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5."),
+                HelpersViewLetrasSubs.formItemsDesign( "En la actualidad, dirías que tu salud es …"),
                 HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
 
 
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Reciben  más de S/2,050 mensualmente?"),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<IngresoEconomico >(
-                        value: IngresoEconomico.recibenMas2050,
-                        groupValue: _IngresoEconomico ,
-                        onChanged: (IngresoEconomico ? value) {
-                          setState(() {
-                            _IngresoEconomico  = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Reciben más de S/ 1537.50 hasta S/ 2,050 mensualmente?."),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<IngresoEconomico >(
-                        value: IngresoEconomico.recibenMas1537,
-                        groupValue: _IngresoEconomico ,
-                        onChanged: (IngresoEconomico ? value) {
-                          setState(() {
-                            _IngresoEconomico  = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("¿Reciben mas de S/ 1025 hasta S/ 1537.50 mensualmente?"),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<IngresoEconomico >(
-                        value: IngresoEconomico.recibenIgual1537,
-                        groupValue: _IngresoEconomico ,
-                        onChanged: (IngresoEconomico ? value) {
-                          setState(() {
-                            _IngresoEconomico  = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Reciben igual o menos de S/ 1025 mensualmente."),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<IngresoEconomico >(
-                        value: IngresoEconomico.reciben1025,
-                        groupValue: _IngresoEconomico ,
-                        onChanged: (IngresoEconomico ? value) {
-                          setState(() {
-                            _IngresoEconomico  = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sin ingresos fijos."),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Radio<IngresoEconomico >(
-                        value: IngresoEconomico.sinIngresosFijos,
-                        groupValue: _IngresoEconomico ,
-                        onChanged: (IngresoEconomico ? value) {
-                          setState(() {
-                            _IngresoEconomico  = value;
-                          });
-                        },),
-                    ),
-                  ],
-                ),
 
                 const SizedBox(height: 16.0),
 

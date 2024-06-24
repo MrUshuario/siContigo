@@ -24,7 +24,7 @@ static Widget formItemsDesign(String text) {
             ),
             child: Text(
               text,
-              textAlign: TextAlign.left, // Maintain left alignment
+              textAlign: TextAlign.center, // Maintain left alignment
               style: const TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
