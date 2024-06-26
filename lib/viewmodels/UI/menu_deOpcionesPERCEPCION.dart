@@ -65,6 +65,8 @@ class MenudeOpcionesPercepcion extends StatefulWidget {
   final ParamP07EspecificarPerc = List.filled(3, "", growable: false);
   TextEditingController P08EspecificarPerc = TextEditingController();
   final ParamP08EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P50EspecificarPerc = TextEditingController();
+  final ParamP50EspecificarPerc = List.filled(3, "", growable: false);
 
   //FASE2
   TextEditingController P12EspecificarPerc = TextEditingController();
@@ -129,20 +131,45 @@ enum P22Perc { omadep, familaires, medios, personal, yo, otro}
 enum P23Perc { jefe, esposa, hijo, yerno, nieto, padres, hermano, trabajador, otropariente }
 enum P24Perc { hombre, mujer }
 
+enum P25Perc {solo, esposohijos, esposo, padreshermanos, padres}
+enum P26Perc {Si, No}
+enum P27Perc {Si, No}
+
 enum P28Perc {muybuena, buena, mala, muymala, nosabe}
 enum P29Perc {muybuena, buena, mala, muymala, nosabe}
 
+//30,31,32,33
 
-enum CobroPension { Si, No }
-enum PensionRecibe { Totalmente, Parcialmente}
-enum Tiempomeses {dos,tres}
-enum TipoEstablecimientoSalud {sis, essalud, policiales, privado, ninguno, nosabe, otro}
-enum FrecuenciaAtiende {tiempoMes06,tiempoAno,tiempoMasdeUnAno}
-enum ViveUsted {otrasConHijos,otrasConHijosCuidado,otrasEnPareja,soloConHijos,soloConFamiliares}
-enum SeAtendio { Si, No }
-enum TieneFamilia { Si, No }
-enum TieneFamiliaABCDE {opcionA,opcionB,opcionC,opcionD,opcionE}
-enum TieneAyudas {Si, No}
+enum P34Perc {muysatisfecho, satisfecho, insatisfecho, muyinsatisfecho, nosabe}
+
+enum P35Perc {nunca, algunavez, frecuente, siempre}
+enum P36Perc {nunca, algunavez, frecuente, siempre}
+enum P37Perc {nunca, algunavez, frecuente, siempre}
+enum P38Perc {nunca, algunavez, frecuente, siempre}
+enum P39Perc {nunca, algunavez, frecuente, siempre}
+enum P40Perc {muysatisfecho, satisfecho, insatisfecho, muyinsatisfecho, nosabe}
+enum P41Perc {sigueigual, hamejorado, haempeorado, nosabe}
+
+enum P43Perc {Si, No}
+enum P44Perc { omadep, familaires, medios, personal, banco, yo, otro}
+enum P45Perc {dosmeses, masdosmeses, seismeses, nosabe, otro}
+enum P46Perc {nosabiausuario, nosabiafecha, enfermo, guarde, movilidad, nosabe, otro}
+enum P47Perc {independiente, cuidador, familiar, municipalidad, cobro}
+
+enum P48Perc {mediahora, masmediahora, unoadoshoras, masdoshoras}
+enum P49Perc {apie, bicicletas, caballo, mototaxi, motocicleta, automovil, taxi, colectivo, camion, otro}
+//enum P50Perc MONTO EN SOLES
+enum P51Perc {banco, debito, agente, pagador, pias}
+
+//enum P52Perc {ninguno,sidistancia,sigasto,silascolas,sipersonalbanco,sipersonalprograma,sifecha,sidinero,sicobrar,siagente,sibanco,otro}
+
+enum P53Perc {Si, No}
+//enum P54Perc {} //MULTIPLES OPCIONES
+enum P55Perc {Si, No}
+enum P56Perc {cuidador, autorizada}
+enum P57Perc {salud, ayuda, alimentacion, vestimenta, transporte, invierte, mejora, ahorra, pago, nosabe, otro}
+
+
 enum TipoVivienda {Si, No}
 enum SituacionRiesgo {Si, No}
 enum TipoEmprendimiento {Si, No}
@@ -168,6 +195,65 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
   String? GPSlatitude = "";
   String? GPSlongitude = "";
   String? GPSaltitude = "";
+
+  String PercP01 = "P01 ";
+  String PercP02 = " P02 ";
+  String PercP03 = " P03 ";
+  String PercP04 = " P04 ";
+  String PercP05 = " P05 ";
+  String PercP06 = " P06 ";
+  String PercP07 = " P07 ";
+  String PercP08 = " P08 ";
+  String PercP09 = " P09 ";
+  String PercP10 = " P10 ";
+  String PercP11 = " P11 ";
+  String PercP12 = " P12 ";
+  String PercP13 = " P13 ";
+  String PercP14 = " P14 ";
+  String PercP15 = " P15 ";
+  String PercP16 = " P16 ";
+  String PercP17 = " P17 ";
+  String PercP18 = " P18 ";
+  String PercP19 = " P19 ";
+  String PercP20 = " P20 ";
+  String PercP21 = " P21 ";
+  String PercP22 = " P22 ";
+  String PercP23 = " P23 ";
+  String PercP24 = " P24 ";
+  String PercP25 = " P25 ";
+  String PercP26 = " P26 ";
+  String PercP27 = " P27 ";
+  String PercP28 = " P28 ";
+  String PercP29 = " P29 ";
+  String PercP30 = " P30 ";
+  String PercP31 = " P31 ";
+  String PercP32 = " P32 ";
+  String PercP33 = " P33 ";
+  String PercP34 = " P34 ";
+  String PercP35 = " P35 ";
+  String PercP36 = " P36 ";
+  String PercP37 = " P37 ";
+  String PercP38 = " P38 ";
+  String PercP39 = " P39 ";
+  String PercP40 = " P40 ";
+  String PercP41 = " P41 ";
+  String PercP42 = " P42 ";
+  String PercP43 = " P43 ";
+  String PercP44 = " P44 ";
+  String PercP45 = " P45 ";
+  String PercP46 = " P46 ";
+  String PercP47 = " P47 ";
+  String PercP48 = " P48 ";
+  String PercP49 = " P49 ";
+  String PercP50 = " P50 ";
+  String PercP51 = " P51 ";
+  String PercP52 = " P52 ";
+  String PercP53 = " P53 ";
+  String PercP54 = " P54 ";
+  String PercP55 = " P55 ";
+  String PercP56 = " P56 ";
+  String PercP57 = " P57 ";
+
 
   String rpstP01 = "P01 ";
   String rpstP02 = " P02 ";
@@ -218,6 +304,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     });
   }
 
+
+
   P05Perc? _P05Perc;
   P09Perc? _P09Perc;
   P10Perc? _P10Perc;
@@ -235,19 +323,56 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
   P23Perc? _P23Perc;
   P24Perc? _P24Perc;
 
+  P25Perc? _P25Perc;
+  P26Perc? _P26Perc;
+  P27Perc? _P27Perc;
+
   P28Perc? _P28Perc;
   P29Perc? _P29Perc;
 
-  CobroPension? _CobroPension;
-  PensionRecibe? _PensionRecibe;
-  Tiempomeses? _Tiempomeses;
-  TipoEstablecimientoSalud? _TipoEstablecimientoSalud;
-  FrecuenciaAtiende? _FrecuenciaAtiende;
-  SeAtendio? _SeAtendio;
-  ViveUsted ? _ViveUsted;
-  TieneFamilia? _TieneFamilia;
-  TieneFamiliaABCDE? _TieneFamiliaABCDE;
-  TieneAyudas? _TieneAyudas;
+  P34Perc? _P34Perc;
+
+  P35Perc? _P35Perc;
+  P36Perc? _P36Perc;
+  P37Perc? _P37Perc;
+  P38Perc? _P38Perc;
+  P39Perc? _P39Perc;
+  P40Perc? _P40Perc;
+  P41Perc? _P41Perc;
+
+  P43Perc? _P43Perc;
+  P44Perc? _P44Perc;
+  P45Perc? _P45Perc;
+  P46Perc? _P46Perc;
+  P47Perc? _P47Perc;
+
+  P48Perc? _P48Perc;
+  P49Perc? _P49Perc;
+
+  P51Perc? _P51Perc;
+  //P52Perc? _P52Perc; ES CHECK
+  bool P52Perc01 = false;
+  bool P52Perc02 = false;
+  bool P52Perc03 = false;
+  bool P52Perc04 = false;
+  bool P52Perc05 = false;
+  bool P52Perc06 = false;
+  bool P52Perc07 = false;
+  bool P52Perc08 = false;
+  bool P52Perc09 = false;
+  bool P52Perc10 = false;
+  bool P52Perc11 = false;
+  bool P52Perc12 = false;
+
+
+  P53Perc? _P53Perc;
+
+  P55Perc? _P55Perc;
+  P56Perc? _P56Perc;
+  P57Perc? _P57Perc;
+
+
+
   TieneAyudasABCD? _TieneAyudasABCD;
   TipoVivienda? _TipoVivienda;
   TipoViviendaABC? _TipoViviendaABC;
@@ -266,330 +391,6 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
     if(widget.formData != null) {
 
-      if (widget.formData!.id_gestor != null) {
-        setState(() {
-          widget.formIdUsuario!.text = widget.formData!.id_usuario!.toString();
-        });
-      }
-
-      if (widget.formData!.p01CobroPension != null) {
-        setState(() {
-          _CobroPension = widget.formData!.p01CobroPension == 0
-              ? CobroPension.Si
-              : CobroPension.No;
-        });
-      }
-
-      if (widget.formData!.p02TipoMeses != null) {
-        setState(() {
-          _Tiempomeses = widget.formData!.p02TipoMeses == 0
-              ? Tiempomeses.dos
-              : Tiempomeses.tres;
-        });
-      }
-
-      if (widget.formData!.p02TipoMeses != null) {
-        setState(() {
-          _Tiempomeses = widget.formData!.p02TipoMeses == 0
-              ? Tiempomeses.dos
-              : Tiempomeses.tres;
-        });
-      }
-
-      if (widget.formData!.p03Check != null  && widget.formData!.p03Check!.isNotEmpty) {
-        setState(() {
-          if( widget.formData!.p03Check!.contains('A')){isCheckedP03Distancia = true;}
-          if( widget.formData!.p03Check!.contains('B')){isCheckedP03Acumular = true;}
-          if( widget.formData!.p03Check!.contains('C')){isCheckedP03Noacompaniado = true;}
-          if( widget.formData!.p03Check!.contains('D')){isCheckedP03Ahorrando = true;}
-          if( widget.formData!.p03Check!.contains('E')){isCheckedP03DificultarTrasladar = true;}
-        });
-      }
-
-      if (widget.formData!.p03CheckEspecificar != null  && widget.formData!.p03CheckEspecificar!.isNotEmpty) {
-        setState(() {
-          widget.formP03EspecificarCtrl!.text = widget.formData!.p03CheckEspecificar!;
-          isCheckedP03OtroEspecificar = true; //esto tengo que simplificarlo
-        });
-      }
-
-      if (widget.formData!.p04Check != null  && widget.formData!.p04Check!.isNotEmpty) {
-        setState(() {
-          if( widget.formData!.p04Check!.contains('A')){isCheckedP04Alimentacion = true;}
-          if( widget.formData!.p04Check!.contains('B')){isCheckedP04Salud = true;}
-          if( widget.formData!.p04Check!.contains('C')){isCheckedP04Limpieza = true;}
-          if( widget.formData!.p04Check!.contains('D')){isCheckedP04Rehabilitacion = true;}
-          if( widget.formData!.p04Check!.contains('E')){isCheckedP04Educacion = true;}
-          if( widget.formData!.p04Check!.contains('F')){isCheckedP04PagoServicio = true;}
-          if( widget.formData!.p04Check!.contains('G')){isCheckedP04PagoComunicacion = true;}
-          if( widget.formData!.p04Check!.contains('H')){isCheckedP04Transporte = true;}
-          if( widget.formData!.p04Check!.contains('I')){isCheckedP04Vestimenta = true;}
-          if( widget.formData!.p04Check!.contains('J')){isCheckedP04Recreacion = true;}
-          if( widget.formData!.p04Check!.contains('K')){isCheckedP04Ahorro = true;}
-          if( widget.formData!.p04Check!.contains('L')){isCheckedP04AhorroSalud = true;}
-          if( widget.formData!.p04Check!.contains('M')){isCheckedP04OtroGasto = true;}
-        });
-      }
-
-      if (widget.formData!.p05pension != null) {
-        setState(() {
-          _PensionRecibe = widget.formData!.p05pension == 0
-              ? PensionRecibe.Totalmente
-              : PensionRecibe.Parcialmente;
-        });
-      }
-
-      if (widget.formData!.p06Establecimiento != null) {
-        setState(() {
-          switch (widget.formData!.p06Establecimiento) {
-            case 0:
-              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.sis;
-            case 1:
-              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.essalud;
-            case 2:
-              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.policiales;
-            case 3:
-              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.privado;
-            case 4:
-              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.ninguno;
-            case 5:
-              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.nosabe;
-            case 6:
-              _TipoEstablecimientoSalud = TipoEstablecimientoSalud.otro;
-          }
-        });
-      }
-
-      if (widget.formData!.p06EstablecimientoESPECIFICAR != null  && widget.formData!.p06EstablecimientoESPECIFICAR!.isNotEmpty) {
-        setState(() {
-          widget.formP06EspecificarCtrl!.text = widget.formData!.p06EstablecimientoESPECIFICAR!;
-        });
-      }
-
-      if (widget.formData!.p07Atendio != null) {
-        setState(() {
-          _SeAtendio = widget.formData!.p07Atendio == 0
-              ? SeAtendio.Si
-              : SeAtendio.No;
-        });
-      }
-
-      if (widget.formData!.p08Check != null  && widget.formData!.p08Check!.isNotEmpty) {
-        setState(() {
-          if( widget.formData!.p08Check!.contains('A')){isCheckedP08NoCentro = true;}
-          if( widget.formData!.p08Check!.contains('B')){isCheckedP08NoNecesito = true;}
-          if( widget.formData!.p08Check!.contains('C')){isCheckedP08MetodoTradicional = true;}
-          if( widget.formData!.p08Check!.contains('D')){isCheckedP08NoBuenTrato = true;}
-          if( widget.formData!.p08Check!.contains('E')){isCheckedP08NoDoctores = true;}
-          if( widget.formData!.p08Check!.contains('F')){isCheckedP08NoMedicina = true;}
-          if( widget.formData!.p08Check!.contains('G')){isCheckedP08Otros = true;}
-        });
-      }
-
-      if (widget.formData!.p08CheckEspecificar != null  && widget.formData!.p08CheckEspecificar!.isNotEmpty) {
-        setState(() {
-          widget.formP08EspecificarCtrl!.text = widget.formData!.p08CheckEspecificar!;
-        });
-      }
-
-      if (widget.formData!.p09Check != null  && widget.formData!.p09Check!.isNotEmpty) {
-        setState(() {
-          if( widget.formData!.p09Check!.contains('A')){isCheckedP09MedicinaGeneral = true;}
-          if( widget.formData!.p09Check!.contains('B')){isCheckedP09Rehabilitacion = true;}
-          if( widget.formData!.p09Check!.contains('C')){isCheckedP09Psicologia = true;}
-          if( widget.formData!.p09Check!.contains('D')){isCheckedP09Odontologia = true;}
-          if( widget.formData!.p09Check!.contains('E')){isCheckedP09Oftalmologia = true;}
-          if( widget.formData!.p09Check!.contains('F')){isCheckedP09Ginecologia = true;}
-          if( widget.formData!.p09Check!.contains('G')){isCheckedP09Otros = true;}
-        });
-      }
-
-      if (widget.formData!.p09CheckEspecificar != null  && widget.formData!.p09CheckEspecificar!.isNotEmpty) {
-        setState(() {
-          widget.formP09EspecificarCtrl!.text = widget.formData!.p09CheckEspecificar!;
-        });
-      }
-
-      if (widget.formData!.p10Frecuencia != null) {
-        setState(() {
-          switch (widget.formData!.p10Frecuencia) {
-            case 0:
-              _FrecuenciaAtiende = FrecuenciaAtiende.tiempoMes06;
-            case 1:
-              _FrecuenciaAtiende = FrecuenciaAtiende.tiempoAno;
-            case 2:
-              _FrecuenciaAtiende = FrecuenciaAtiende.tiempoMasdeUnAno;
-          }
-        });
-      }
-
-      if (widget.formData!.p11Vive != null) {
-        setState(() {
-          switch (widget.formData!.p11Vive) {
-            case 0:
-              _ViveUsted = ViveUsted.otrasConHijos;
-            case 1:
-              _ViveUsted = ViveUsted.otrasConHijosCuidado;
-            case 2:
-              _ViveUsted = ViveUsted.otrasEnPareja;
-            case 3:
-              _ViveUsted = ViveUsted.soloConHijos;
-            case 4:
-              _ViveUsted = ViveUsted.soloConFamiliares;
-          }
-        });
-      }
-
-      if (widget.formData!.p12Familia != null) {
-        setState(() {
-          _TieneFamilia = widget.formData!.p12Familia == 0
-              ? TieneFamilia.Si
-              : TieneFamilia.No;
-        });
-      }
-
-      if (widget.formData!.p12FamiliaB != null) {
-        setState(() {
-          switch (widget.formData!.p12FamiliaB) {
-            case 0:
-              _TieneFamiliaABCDE = TieneFamiliaABCDE.opcionA;
-            case 1:
-              _TieneFamiliaABCDE = TieneFamiliaABCDE.opcionB;
-            case 2:
-              _TieneFamiliaABCDE = TieneFamiliaABCDE.opcionC;
-            case 3:
-              _TieneFamiliaABCDE = TieneFamiliaABCDE.opcionD;
-            case 4:
-              _TieneFamiliaABCDE = TieneFamiliaABCDE.opcionE;
-          }
-        });
-      }
-
-      if (widget.formData!.p13Ayudas != null) {
-        setState(() {
-          _TieneAyudas = widget.formData!.p13Ayudas == 0
-              ? TieneAyudas.Si
-              : TieneAyudas.No;
-        });
-      }
-
-      if (widget.formData!.p13AyudasB != null) {
-        setState(() {
-          switch (widget.formData!.p13AyudasB) {
-            case 0:
-              _TieneAyudasABCD = TieneAyudasABCD.redInformalSUficiente;
-            case 1:
-              _TieneAyudasABCD = TieneAyudasABCD.cuidadoraExterna;
-            case 2:
-              _TieneAyudasABCD = TieneAyudasABCD.redInformalInsuficiente;
-            case 3:
-              _TieneAyudasABCD = TieneAyudasABCD.noTieneApoyo;
-          }
-        });
-      }
-
-      if (widget.formData!.p14Ingreso != null) {
-        setState(() {
-          switch (widget.formData!.p14Ingreso) {
-            case 0:
-              _IngresoEconomico = IngresoEconomico.recibenMas2050;
-            case 1:
-              _IngresoEconomico = IngresoEconomico.recibenMas1537;
-            case 2:
-              _IngresoEconomico = IngresoEconomico.recibenIgual1537;
-            case 3:
-              _IngresoEconomico = IngresoEconomico.reciben1025;
-            case 4:
-              _IngresoEconomico = IngresoEconomico.sinIngresosFijos;
-          }
-        });
-      }
-
-      if (widget.formData!.p15Tipovivienda != null) {
-        setState(() {
-          _TipoVivienda = widget.formData!.p15Tipovivienda == 0
-              ? TipoVivienda.Si
-              : TipoVivienda.No;
-        });
-      }
-
-      if (widget.formData!.p15TipoviviendaB != null) {
-        setState(() {
-          switch (widget.formData!.p15Tipovivienda) {
-            case 0:
-              _TipoViviendaABC = TipoViviendaABC.inadecuadaBarreras;
-            case 1:
-              _TipoViviendaABC = TipoViviendaABC.inadecuadaSuministros;
-            case 2:
-              _TipoViviendaABC = TipoViviendaABC.inadecuadaAusencia;
-          }
-        });
-      }
-
-      if (widget.formData!.p15Tipovivienda != null) {
-        setState(() {
-          _TipoVivienda = widget.formData!.p15Tipovivienda == 0
-              ? TipoVivienda.Si
-              : TipoVivienda.No;
-        });
-      }
-
-      if (widget.formData!.p15TipoviviendaB != null) {
-        setState(() {
-          switch (widget.formData!.p15Tipovivienda) {
-            case 0:
-              _TipoViviendaABC = TipoViviendaABC.inadecuadaBarreras;
-            case 1:
-              _TipoViviendaABC = TipoViviendaABC.inadecuadaSuministros;
-            case 2:
-              _TipoViviendaABC = TipoViviendaABC.inadecuadaAusencia;
-          }
-        });
-      }
-
-      if (widget.formData!.p16Riesgo != null) {
-        setState(() {
-          _SituacionRiesgo = widget.formData!.p16Riesgo == 0
-              ? SituacionRiesgo.Si
-              : SituacionRiesgo.No;
-        });
-      }
-
-      if (widget.formData!.p16RiesgoB != null) {
-        setState(() {
-          switch (widget.formData!.p16RiesgoB) {
-            case 0:
-              _SituacionRiesgoAB = SituacionRiesgoAB.relacionCobro;
-            case 1:
-              _SituacionRiesgoAB = SituacionRiesgoAB.relacionSocioEconomico;
-          }
-        });
-      }
-
-      if (widget.formData!.p17Check != null  && widget.formData!.p17Check!.isNotEmpty) {
-        setState(() {
-          if( widget.formData!.p17Check!.contains('A')){isCheckedP17Cuidados = true;}
-          if( widget.formData!.p17Check!.contains('B')){isCheckedP17ORehabilitacion = true;}
-          if( widget.formData!.p17Check!.contains('C')){isCheckedP17Alimentacion = true;}
-          if( widget.formData!.p17Check!.contains('D')){isCheckedP17Otros = true;}
-        });
-      }
-
-      if (widget.formData!.p17CheckEspecificar != null  && widget.formData!.p17CheckEspecificar!.isNotEmpty) {
-        setState(() {
-          widget.formP17EspecificarCtrl!.text = widget.formData!.p17CheckEspecificar!;
-        });
-      }
-
-      if (widget.formData!.p18Emprendimiento != null) {
-        setState(() {
-          _TipoEmprendimiento = widget.formData!.p18Emprendimiento == 0
-              ? TipoEmprendimiento.Si
-              : TipoEmprendimiento.No;
-        });
-      }
-
-
     }
 
     // TODO: implement initState
@@ -604,6 +405,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
   bool Fase4 = false;
   bool Fase5 = false;
   bool Fase6 = false;
+  bool Fase7 = false;
 
   //OCULTAR PREGUNTAS
   bool PregCada3meses = false;
@@ -698,258 +500,197 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
   }
 
   Future<void> guardadoFase1() async{
-
+  //MODULO I
     widget.formData?.id_usuario =  int.parse(widget.formIdUsuario!.text);
+
+    PercP01 = "${PercP01}${widget.P01EspecificarPerc!.text};";
+    PercP02 = "${PercP02}${widget.P02EspecificarPerc!.text};";
+    PercP03 = "${PercP03}${widget.P03EspecificarPerc!.text};";
+    PercP04 = "${PercP04}${widget.P04EspecificarPerc!.text};";
+
+
+    if(_P05Perc == P05Perc.avenida) {PercP05 = "${PercP05}Avenida-A;";}
+    if(_P05Perc == P05Perc.calle) {PercP05 = "${PercP05}Calle-B;";}
+    if(_P05Perc == P05Perc.jiron) {PercP05 = "${PercP05}Jiron-C;";}
+    if(_P05Perc == P05Perc.pasaje) {PercP05 = "${PercP05}Pasaje-D;";}
+    if(_P05Perc == P05Perc.carretera) {PercP05 = "${PercP05}Carretera-E;";}
+    if(_P05Perc == P05Perc.otro) {PercP05 = "${PercP05}Otro-F;";}
+
+    PercP06 = widget.P06EspecificarPerc!.text;
+    PercP07 = widget.P07EspecificarPerc!.text;
+    PercP08 = widget.P08EspecificarPerc!.text;
+
+  //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
 
   Future<void> guardadoFase2() async{
-    //P01 - P05
 
-    if(_CobroPension == CobroPension.Si){rpstP01 = "${rpstP01}Sí-A";}
-    else {rpstP01 = "${rpstP01}No-B";}
-    rpstP01 = "${rpstP01};";
+    //MODULO II
 
-    widget.formData?.p01CobroPension = _CobroPension?.index;
-    widget.formDataBACKUP?.p01CobroPension = _CobroPension?.index;
+    if(_P09Perc == P09Perc.Si) {PercP05 = "${PercP09}Sí-A";}
+    if(_P09Perc == P09Perc.No) {PercP05 = "${PercP09}No-B";}
 
+    if(_P10Perc == P10Perc.Si) {PercP10 = "${PercP10}Sí-A";}
+    if(_P10Perc == P10Perc.No) {PercP10 = "${PercP10}No-B";}
 
-    if(_Tiempomeses == Tiempomeses.dos){rpstP02 = "${rpstP02}Dos-A";}
-    else {rpstP02 = "${rpstP02}Tres-B";}
-    rpstP02 = "${rpstP02};";
+    if(_P11Perc == P11Perc.Si) {PercP11 = "${PercP11}Sí-A";}
+    if(_P11Perc == P11Perc.No) {PercP11 = "${PercP11}No-B";}
 
-    widget.formData?.p02TipoMeses = _Tiempomeses?.index;
-    widget.formDataBACKUP?.p02TipoMeses = _Tiempomeses?.index;
+    PercP12 = "${PercP12}${widget.P12EspecificarPerc!.text};";
 
-    //3 meses oculto
-    String p03check = ""; //POR EL ESPECIFICA
-    if(isCheckedP03Distancia){rpstP03 = "${rpstP03}A,"; p03check ="${p03check}A";}
-    if(isCheckedP03Acumular){rpstP03 = "${rpstP03}B,"; p03check ="${p03check}B";}
-    if(isCheckedP03Noacompaniado){rpstP03 = "${rpstP03}C,"; p03check ="${p03check}C";}
-    if(isCheckedP03Ahorrando){rpstP03 = "${rpstP03}D,,"; p03check ="${p03check}D";}
-    if(isCheckedP03DificultarTrasladar){rpstP03 = "${rpstP03}E,"; p03check ="${p03check}E";}
-    if(isCheckedP03OtroEspecificar){rpstP03 = "${rpstP03}F:${widget.formP03EspecificarCtrl!.text}"; p03check ="${p03check}F";}
-    rpstP03 = "${rpstP03};";
+    if(_P13Perc == P13Perc.hombre)  {PercP13 = "${PercP13}Hombre-A";}
+    if(_P13Perc == P13Perc.mujer)   {PercP13 = "${PercP13}Mujer-B";}
 
-    widget.formData?.p03Check = p03check;
-    widget.formDataBACKUP?.p03Check = p03check;
-    widget.formData?.p03CheckEspecificar =widget.formP03EspecificarCtrl!.text;
-    widget.formDataBACKUP?.p03CheckEspecificar =widget.formP03EspecificarCtrl!.text;
+    if(_P14Perc == P14Perc.Si) {PercP14 = "${PercP14}Sí-A";}
+    if(_P14Perc == P14Perc.No) {PercP14 = "${PercP14}No-B";}
 
-    //2meses
-    if(isCheckedP04Alimentacion){rpstP04 = "${rpstP04}A,";}
-    if(isCheckedP04Salud){rpstP04 = "${rpstP04}B,";}
-    if(isCheckedP04Limpieza){rpstP04 = "${rpstP04}C,";}
-    if(isCheckedP04Rehabilitacion){rpstP04 = "${rpstP04}D,";}
-    if(isCheckedP04Educacion){rpstP04 = "${rpstP04}E,";}
-    if(isCheckedP04PagoServicio){rpstP04 = "${rpstP04}F,";}
-    if(isCheckedP04PagoComunicacion){rpstP04 = "${rpstP04}G,";}
-    if(isCheckedP04Transporte){rpstP04 = "${rpstP04}H,";}
-    if(isCheckedP04Vestimenta){rpstP04 = "${rpstP04}I,";}
-    if(isCheckedP04Recreacion){rpstP04 = "${rpstP04}J,";}
-    if(isCheckedP04Ahorro){rpstP04 = "${rpstP04}K,";}
-    if(isCheckedP04AhorroSalud){rpstP04 = "${rpstP04}L,";}
-    if(isCheckedP04OtroGasto){rpstP04 = "${rpstP04}M,";}
-    rpstP04 = "${rpstP04};";
+    if(_P15Perc == P15Perc.Si) {PercP15 = "${PercP15}Sí-A";}
+    if(_P15Perc == P15Perc.No) {PercP15 = "${PercP15}No-B";}
 
-    widget.formData?.p04Check = rpstP04;
-    widget.formDataBACKUP?.p04Check = rpstP04;
+    if(_P16Perc == P16Perc.esposa)          {PercP16 = "${PercP16}Esposa/o-A";}
+    if(_P16Perc == P16Perc.conviviente)     {PercP16 = "${PercP16}Conviviente-B";}
+    if(_P16Perc == P16Perc.hijo)            {PercP16 = "${PercP16}Hijo/a-C";}
+    if(_P16Perc == P16Perc.hijastro)        {PercP16 = "${PercP16}Hijastro/a-D";}
+    if(_P16Perc == P16Perc.yerno)           {PercP16 = "${PercP16}Yerno/nuera-E";}
+    if(_P16Perc == P16Perc.nieto)           {PercP16 = "${PercP16}Nieto/a-F";}
+    if(_P16Perc == P16Perc.padres)          {PercP16 = "${PercP16}Padre/madre-G";}
+    if(_P16Perc == P16Perc.suegro)          {PercP16 = "${PercP16}Suegro/a-H";}
+    if(_P16Perc == P16Perc.hermano)         {PercP16 = "${PercP16}Hermano/a-I";}
+    if(_P16Perc == P16Perc.trabajador)      {PercP16 = "${PercP16}Trabajador/a del hogar-J";}
+    if(_P16Perc == P16Perc.otropariente)    {PercP16 = "${PercP16}Otro/a pariente-K";}
+    if(_P16Perc == P16Perc.otronopariente)  {PercP16 = "${PercP16}Otro/a no pariente-L";}
 
-    if(_PensionRecibe == PensionRecibe.Totalmente){rpstP05 = "${rpstP05}Totalmente-A";}
-    else {rpstP05 = "${rpstP05}Parcialmente-B";}
-    rpstP05 = "${rpstP05};";
+    if(_P17Perc == P17Perc.Si) {PercP17 = "${PercP17}Sí-A";}
+    if(_P17Perc == P17Perc.No) {PercP17 = "${PercP17}No-B";}
 
-    widget.formData?.p05pension = _PensionRecibe?.index;
-    widget.formDataBACKUP?.p05pension = _PensionRecibe?.index;
+    if(_P18Perc == P18Perc.Si) {PercP18 = "${PercP18}Sí-A";}
+    if(_P18Perc == P18Perc.No) {PercP18 = "${PercP18}No-B";}
 
-    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+    PercP19 = "${PercP19}${widget.P19EspecificarPerc!.text};";
+
+    if(_P20Perc == P20Perc.hombre) {PercP20 = "${PercP20}hombre-A";}
+    if(_P20Perc == P20Perc.mujer) {PercP20 = "${PercP20}mujer-B";}
+
+    if(_P21Perc == P21Perc.Si) {PercP21 = "${PercP21}Sí-A";}
+    if(_P21Perc == P21Perc.No) {PercP21 = "${PercP21}No-B";}
+
+    if(_P22Perc == P22Perc.omadep)          {PercP22 = "${PercP22}Personal de la Municipalidad (OMAPED)-A";}
+    if(_P22Perc == P22Perc.familaires)      {PercP22 = "${PercP22}Familiares / Vecinos / Amigos-B";}
+    if(_P22Perc == P22Perc.medios)          {PercP22 = "${PercP22}Medios de comunicación (radio, televisión, perifoneo, etc.)-C";}
+    if(_P22Perc == P22Perc.personal)        {PercP22 = "${PercP22}Personal del Programa CONTIGO -D";}
+    if(_P22Perc == P22Perc.yo)              {PercP22 = "${PercP22}Yo mismo buscando en internet -E";}
+    if(_P22Perc == P22Perc.otro)            {PercP22 = "${PercP22}Otro (especifique)-F";}
+
+    //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase3() async{
-    //P06 - P10
 
-    //REVISEMOS
-    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.sis){rpstP06 = "${rpstP06}SIS-A";}
-    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.essalud){rpstP06 = "${rpstP06}ESSALUD-B";}
-    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.policiales){rpstP06 = "${rpstP06}Armado-C";}
-    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.privado){rpstP06 = "${rpstP06}Privado-D";}
-    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.ninguno){rpstP06 = "${rpstP06}Ninguno-E";}
-    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.nosabe){rpstP06 = "${rpstP06}NoSabe-F";}
-    if(_TipoEstablecimientoSalud== TipoEstablecimientoSalud.otro){rpstP06 = "${rpstP06}G:${widget.formP06EspecificarCtrl!.text}";}
-    rpstP06 = "${rpstP06};";
+    if(_P23Perc == P23Perc.jefe)            {PercP23 = "${PercP23}Jefe/a del hogar-A";}
+    if(_P23Perc == P23Perc.esposa)          {PercP23 = "${PercP23}Esposo/a o compañero/a-B";}
+    if(_P23Perc == P23Perc.hijo)            {PercP23 = "${PercP23}Hijo/a / Hijastro/a-C";}
+    if(_P23Perc == P23Perc.yerno)           {PercP23 = "${PercP23}Yerno / nuera-D";}
+    if(_P23Perc == P23Perc.nieto)           {PercP23 = "${PercP23}Nieto/a-E";}
+    if(_P23Perc == P23Perc.padres)          {PercP23 = "${PercP23}Padre/ madre / suegro/a-F";}
+    if(_P23Perc == P23Perc.hermano)         {PercP23 = "${PercP23}Hermano/a-G";}
+    if(_P23Perc == P23Perc.trabajador)      {PercP23 = "${PercP23}Trabajador/a del hogar-H";}
+    if(_P23Perc == P23Perc.otropariente)    {PercP23 = "${PercP23}Otro/a pariente (especificar):-I";}
 
-    widget.formData?.p06Establecimiento = _TipoEstablecimientoSalud?.index;
-    widget.formDataBACKUP?.p06Establecimiento = _TipoEstablecimientoSalud?.index;
-    widget.formData?.p06EstablecimientoESPECIFICAR = widget.formP06EspecificarCtrl!.text;
-    widget.formDataBACKUP?.p06EstablecimientoESPECIFICAR = widget.formP06EspecificarCtrl!.text;
+    if(_P24Perc == P24Perc.hombre) {PercP24 = "${PercP24}hombre-A";}
+    if(_P24Perc == P24Perc.mujer) {PercP24 = "${PercP24}mujer-B";}
 
-    //FALTA
-
-    if(_SeAtendio == SeAtendio.Si){rpstP07 = "${rpstP07}Sí-A";}
-    else {rpstP07 = "${rpstP07}No-B";}
-    rpstP07 = "${rpstP07};";
-
-    widget.formData?.p07Atendio = _SeAtendio?.index;
-    widget.formDataBACKUP?.p07Atendio = _SeAtendio?.index;
-
-    //P08 si P07 es no
-    String p08check = ""; //POR EL ESPECIFICA
-    if(isCheckedP08NoCentro){rpstP08 = "${rpstP08}A,"; p08check ="${p08check}A";}
-    if(isCheckedP08NoNecesito){rpstP08 = "${rpstP08}B,"; p08check ="${p08check}B";}
-    if(isCheckedP08MetodoTradicional){rpstP08 = "${rpstP08}C,"; p08check ="${p08check}C";}
-    if(isCheckedP08NoBuenTrato){rpstP08 = "${rpstP08}D,"; p08check ="${p08check}D";}
-    if(isCheckedP08NoDoctores){rpstP08 = "${rpstP08}E,"; p08check ="${p08check}E";}
-    if(isCheckedP08NoMedicina){rpstP08 = "${rpstP08}F,"; p08check ="${p08check}F";}
-    if(isCheckedP08Otros){rpstP08 = "${rpstP08}G:${widget.formP08EspecificarCtrl!.text}"; p08check ="${p08check}G";}
-    rpstP08 = "${rpstP08};";
-
-    widget.formData?.p08Check = p08check;
-    widget.formDataBACKUP?.p08Check = p08check;
-    widget.formData?.p08CheckEspecificar = widget.formP08EspecificarCtrl!.text;
-    widget.formDataBACKUP?.p08CheckEspecificar = widget.formP08EspecificarCtrl!.text;
-
-    //P09 si P07 es SI
-    String p09check = ""; //POR EL ESPECIFICA
-    if(isCheckedP09MedicinaGeneral){rpstP09 = "${rpstP09}A,"; p09check ="${p09check}A";}
-    if(isCheckedP09Rehabilitacion){rpstP09 = "${rpstP09}B,"; p09check ="${p09check}B";}
-    if(isCheckedP09Psicologia){rpstP09 = "${rpstP09}C,"; p09check ="${p09check}C";}
-    if(isCheckedP09Odontologia){rpstP09 = "${rpstP09}D,"; p09check ="${p09check}D";}
-    if(isCheckedP09Oftalmologia){rpstP09 = "${rpstP09}E,"; p09check ="${p09check}E";}
-    if(isCheckedP09Ginecologia){rpstP09 = "${rpstP09}F,"; p09check ="${p09check}F";}
-    if(isCheckedP09Otros){rpstP09 = "${rpstP09}G:${widget.formP09EspecificarCtrl!.text}"; p09check ="${p09check}G";}
-    rpstP09 = "${rpstP09};";
-
-    widget.formData?.p09Check = p09check;
-    widget.formDataBACKUP?.p09Check = p09check;
-    widget.formData?.p09CheckEspecificar = widget.formP09EspecificarCtrl!.text;
-    widget.formDataBACKUP?.p09CheckEspecificar = widget.formP09EspecificarCtrl!.text;
-
-    //P10
-    if(_FrecuenciaAtiende== FrecuenciaAtiende.tiempoMes06){rpstP10 = "${rpstP10}A";}
-    if(_FrecuenciaAtiende== FrecuenciaAtiende.tiempoAno){rpstP10 = "${rpstP10}B";}
-    if(_FrecuenciaAtiende== FrecuenciaAtiende.tiempoMasdeUnAno){rpstP10 = "${rpstP10}C";}
-    rpstP10 = "${rpstP10};";
-
-    widget.formData?.p10Frecuencia = _FrecuenciaAtiende?.index;
-    widget.formDataBACKUP?.p10Frecuencia = _FrecuenciaAtiende?.index;
+    //25, 26 y 27
 
 
-    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+    //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase4() async{
-    //P11 - P14
+    //MODULO III parte 2
 
+    if(_P28Perc == P28Perc.muybuena)  {PercP28 = "${PercP28}Muy buena-A";}
+    if(_P28Perc == P28Perc.buena)     {PercP28 = "${PercP28}Buena-B";}
+    if(_P28Perc == P28Perc.mala)      {PercP28 = "${PercP28}Mala-C";}
+    if(_P28Perc == P28Perc.muymala)   {PercP28 = "${PercP28}Muy mala-D";}
+    if(_P28Perc == P28Perc.nosabe)    {PercP28 = "${PercP28}No sabe / No responde-E";}
 
-    //HAY PUNTAJE!
-    if(_ViveUsted== ViveUsted.otrasConHijos){rpstP11 = "${rpstP11}ConOtros-A"; puntaje=puntaje+1;}
-    if(_ViveUsted== ViveUsted.otrasConHijosCuidado){rpstP11 = "${rpstP11}ConOtros-B"; puntaje=puntaje+2;}
-    if(_ViveUsted== ViveUsted.otrasEnPareja){rpstP11 = "${rpstP11}ConOtros-C"; puntaje=puntaje+3;}
-    if(_ViveUsted== ViveUsted.soloConHijos){rpstP11 = "${rpstP11}Solo-D"; puntaje=puntaje+4;}
-    if(_ViveUsted== ViveUsted.soloConFamiliares){rpstP11 = "${rpstP11}Solo-E"; puntaje=puntaje+5;}
-    rpstP11 = "${rpstP11};";
+    if(_P29Perc == P29Perc.muybuena)  {PercP29 = "${PercP29}Muy buena-A";}
+    if(_P29Perc == P29Perc.buena)     {PercP29 = "${PercP29}Buena-B";}
+    if(_P29Perc == P29Perc.mala)      {PercP29 = "${PercP29}Mala-C";}
+    if(_P29Perc == P29Perc.muymala)   {PercP29 = "${PercP29}Muy mala-D";}
+    if(_P29Perc == P29Perc.nosabe)    {PercP29 = "${PercP29}No sabe / No responde-E";}
 
-    widget.formData?.p11Vive = _ViveUsted?.index;
-    widget.formDataBACKUP?.p11Vive = _ViveUsted?.index;
+    //30,31,32,33
 
-    if(_TieneFamilia == TieneFamilia.Si){rpstP12 = "${rpstP12}Sí-A";}
-    else {rpstP12 = "${rpstP12}No-B,";}
+    if(_P34Perc == P34Perc.muysatisfecho)     {PercP34 = "${PercP34}Muy satisfecho/a-A";}
+    if(_P34Perc == P34Perc.satisfecho)        {PercP34 = "${PercP34}Satisfecho/a-B";}
+    if(_P34Perc == P34Perc.insatisfecho)      {PercP34 = "${PercP34}Insatisfecho/a-C";}
+    if(_P34Perc == P34Perc.muyinsatisfecho)   {PercP34 = "${PercP34}Muy insatisfecho/a-D";}
+    if(_P34Perc == P34Perc.nosabe)            {PercP34 = "${PercP34}No sabe/No responde-E";}
 
-    widget.formData?.p12Familia = _TieneFamilia?.index;
-    widget.formDataBACKUP?.p12Familia = _TieneFamilia?.index;
+    if(_P35Perc == P35Perc.nunca)            {PercP35 = "${PercP35}Nunca-A";}
+    if(_P35Perc == P35Perc.algunavez)        {PercP35 = "${PercP35}Alguna vez-B";}
+    if(_P35Perc == P35Perc.frecuente)        {PercP35 = "${PercP35}Frecuentemente-C";}
+    if(_P35Perc == P35Perc.siempre)          {PercP35 = "${PercP35}Siempre-D";}
 
-    if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionA){rpstP12 = "${rpstP12}A";puntaje=puntaje+1;}
-    if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionB){rpstP12 = "${rpstP12}B";puntaje=puntaje+2;}
-    if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionC){rpstP12 = "${rpstP12}C";puntaje=puntaje+3;}
-    if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionD){rpstP12 = "${rpstP12}D";puntaje=puntaje+4;}
-    if(_TieneFamiliaABCDE== TieneFamiliaABCDE.opcionE){rpstP12 = "${rpstP12}E";puntaje=puntaje+5;}
-    rpstP12 = "${rpstP12};";
+    if(_P36Perc == P36Perc.nunca)            {PercP36 = "${PercP36}Nunca-A";}
+    if(_P36Perc == P36Perc.algunavez)        {PercP36 = "${PercP36}Alguna vez-B";}
+    if(_P36Perc == P36Perc.frecuente)        {PercP36 = "${PercP36}Frecuentemente-C";}
+    if(_P36Perc == P36Perc.siempre)          {PercP36 = "${PercP36}Siempre-D";}
 
-    widget.formData?.p12FamiliaB = _TieneFamiliaABCDE?.index;
-    widget.formDataBACKUP?.p12FamiliaB = _TieneFamiliaABCDE?.index;
+    if(_P37Perc == P37Perc.nunca)            {PercP37 = "${PercP37}Nunca-A";}
+    if(_P37Perc == P37Perc.algunavez)        {PercP37 = "${PercP37}Alguna vez-B";}
+    if(_P37Perc == P37Perc.frecuente)        {PercP37 = "${PercP37}Frecuentementeente";}
+    if(_P37Perc == P37Perc.siempre)          {PercP37 = "${PercP37}Siempre-D";}
 
-    if(_TieneAyudas == TieneAyudas.No){rpstP13 = "${rpstP13}No-A";puntaje=puntaje+1;}
-    else {rpstP13 = "${rpstP13}Sí-B,";}
+    if(_P38Perc == P38Perc.nunca)            {PercP38 = "${PercP38}Nunca-A";}
+    if(_P38Perc == P38Perc.algunavez)        {PercP38 = "${PercP38}Alguna vez-B";}
+    if(_P38Perc == P38Perc.frecuente)        {PercP38 = "${PercP38}Frecuentementente";}
+    if(_P38Perc == P38Perc.siempre)          {PercP38 = "${PercP38}Siempre-D";}
 
-    widget.formData?.p13Ayudas= _TieneAyudas?.index;
-    widget.formDataBACKUP?.p13Ayudas= _TieneAyudas?.index;
+    if(_P39Perc == P39Perc.nunca)            {PercP39 = "${PercP39}Nunca-A";}
+    if(_P39Perc == P39Perc.algunavez)        {PercP39 = "${PercP39}Alguna vez-B";}
+    if(_P39Perc == P39Perc.frecuente)        {PercP39 = "${PercP39}Frecuentementente";}
+    if(_P39Perc == P39Perc.siempre)          {PercP39 = "${PercP39}Siempre-D";}
 
-    if(_TieneAyudasABCD== TieneAyudasABCD.redInformalSUficiente){rpstP13 = "${rpstP13}A";puntaje=puntaje+2;}
-    if(_TieneAyudasABCD== TieneAyudasABCD.cuidadoraExterna){rpstP13 = "${rpstP13}B";puntaje=puntaje+3;}
-    if(_TieneAyudasABCD== TieneAyudasABCD.redInformalInsuficiente){rpstP13 = "${rpstP13}C";puntaje=puntaje+4;}
-    if(_TieneAyudasABCD== TieneAyudasABCD.noTieneApoyo){rpstP13 = "${rpstP13}D";puntaje=puntaje+5;}
-    rpstP13 = "${rpstP13};";
+    if(_P40Perc == P40Perc.muysatisfecho)    {PercP40 = "${PercP40}Nunca-A";}
+    if(_P40Perc == P40Perc.satisfecho)       {PercP40 = "${PercP40}Alguna vez-B";}
+    if(_P40Perc == P40Perc.insatisfecho)     {PercP40 = "${PercP40}Frecuentemente-C";}
+    if(_P40Perc == P40Perc.muyinsatisfecho)  {PercP40 = "${PercP40}Siempre-D";}
+    if(_P40Perc == P40Perc.nosabe)           {PercP40 = "${PercP40}Siempre-E";}
 
-    widget.formData?.p13AyudasB= _TieneAyudasABCD?.index;
-    widget.formDataBACKUP?.p13AyudasB= _TieneAyudasABCD?.index;
+    if(_P41Perc == P41Perc.sigueigual)      {PercP41 = "${PercP41}Sigue igual-A";}
+    if(_P41Perc == P41Perc.hamejorado)      {PercP41 = "${PercP41}Ha mejorado-B";}
+    if(_P41Perc == P41Perc.haempeorado)     {PercP41 = "${PercP41}Ha empeorado-C";}
+    if(_P41Perc == P41Perc.nosabe)          {PercP41 = "${PercP41}No sabe/ No responde-D";}
 
-    if(_IngresoEconomico== IngresoEconomico.recibenMas2050){rpstP14 = "${rpstP14}Ingresos-A";puntaje=puntaje+1;}
-    if(_IngresoEconomico== IngresoEconomico.recibenMas1537){rpstP14 = "${rpstP14}Ingresos-B";puntaje=puntaje+2;}
-    if(_IngresoEconomico== IngresoEconomico.recibenIgual1537){rpstP14 = "${rpstP14}Ingresos-C";puntaje=puntaje+3;}
-    if(_IngresoEconomico== IngresoEconomico.reciben1025){rpstP14 = "${rpstP14}Ingresos-D";puntaje=puntaje+4;}
-    if(_IngresoEconomico== IngresoEconomico.sinIngresosFijos){rpstP14 = "${rpstP14}SinIngresos-E";puntaje=puntaje+5;}
-    rpstP14 = "${rpstP14};";
+    //42
 
-    widget.formData?.p14Ingreso = _IngresoEconomico?.index;
-    widget.formDataBACKUP?.p14Ingreso = _IngresoEconomico?.index;
-
-    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+   // await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase5() async{
     //P15 - P18
+    if(_P43Perc == P43Perc.Si)      {PercP43 = "${PercP43}Sí-A";}
+    if(_P43Perc == P43Perc.No)      {PercP43 = "${PercP43}No-B";}
 
-    if(_TipoVivienda == TipoVivienda.Si){rpstP15 = "${rpstP15}Adecuada-A";puntaje=puntaje+1;}
-    else {rpstP15 = "${rpstP15}Inadecuada-B,";puntaje=puntaje+2;}
+    if(_P44Perc == P44Perc.omadep)     {PercP44 = "${PercP44}OMAPED-A";}
+    if(_P44Perc == P44Perc.familaires)     {PercP44 = "${PercP44}Familiares / Vecinos / Amigos-B";}
+    if(_P44Perc == P44Perc.medios)     {PercP44 = "${PercP44}Medios de comunicación (radio, televisión, perifoneo, etc.)-C";}
+    if(_P44Perc == P44Perc.personal)     {PercP44 = "${PercP44}Personal del Programa CONTIGO-D";}
+    if(_P44Perc == P44Perc.banco)     {PercP44 = "${PercP44}Banco de la Nación-E";}
+    if(_P44Perc == P44Perc.yo)     {PercP44 = "${PercP44}Yo mismo buscando en internet-F";}
+    if(_P44Perc == P44Perc.otro)     {PercP44 = "${PercP44}Otro (especifique):-G";}
 
-    widget.formData?.p15Tipovivienda = _TipoVivienda?.index;
-    widget.formDataBACKUP?.p15Tipovivienda = _TipoVivienda?.index;
+    /*
+    enum P45Perc {dosmeses, masdosmeses, seismeses, nosabe, otro}
+    enum P46Perc {nosabiausuario, nosabiafecha, enfermo, guarde, movilidad, nosabe, otro}
+    enum P47Perc {independiente, cuidador, familiar, municipalidad, cobro}
 
-    if(_TipoViviendaABC== TipoViviendaABC.inadecuadaBarreras){rpstP15 = "${rpstP15}A";puntaje=puntaje+3;}
-    if(_TipoViviendaABC== TipoViviendaABC.inadecuadaSuministros){rpstP15 = "${rpstP15}B";puntaje=puntaje+4;}
-    if(_TipoViviendaABC== TipoViviendaABC.inadecuadaAusencia){rpstP15 = "${rpstP15}C";puntaje=puntaje+5;}
-    rpstP15 = "${rpstP15};";
+     */
 
-    widget.formData?.p15TipoviviendaB = _TipoViviendaABC?.index;
-    widget.formDataBACKUP?.p15TipoviviendaB = _TipoViviendaABC?.index;
-
-    //TERMINA EL PUNTAJE
-
-    if(_SituacionRiesgo == SituacionRiesgo.Si){rpstP12 = "${rpstP16}No-A";}
-    else {rpstP16 = "${rpstP16}Sí-B,";}
-
-    widget.formData?.p16Riesgo = _SituacionRiesgo?.index;
-    widget.formDataBACKUP?.p16Riesgo = _SituacionRiesgo?.index;
-
-    if(_SituacionRiesgoAB== SituacionRiesgoAB.relacionCobro){rpstP16 = "${rpstP16}A";}
-    if(_SituacionRiesgoAB== SituacionRiesgoAB.relacionSocioEconomico){rpstP16 = "${rpstP16}B";}
-    rpstP16 = "${rpstP16};";
-
-    widget.formData?.p16RiesgoB = _SituacionRiesgoAB?.index;
-    widget.formDataBACKUP?.p16RiesgoB = _SituacionRiesgoAB?.index;
-
-    //P17
-    String p17check = ""; //POR EL ESPECIFICA
-    if(isCheckedP17Cuidados){rpstP17 = "${rpstP17}A,"; p17check ="${p17check}A";}
-    if(isCheckedP17ORehabilitacion){rpstP17 = "${rpstP17}B,"; p17check ="${p17check}B";}
-    if(isCheckedP17Alimentacion){rpstP17 = "${rpstP17}C,"; p17check ="${p17check}C";}
-    if(isCheckedP17Otros){rpstP17 = "${rpstP17}D:${widget.formP17EspecificarCtrl!.text},"; p17check ="${p17check}D";}
-    rpstP17 = "${rpstP17};";
-
-    widget.formData?.p17Check = p17check;
-    widget.formDataBACKUP?.p17Check = p17check;
-    widget.formData?.p17CheckEspecificar = widget.formP17EspecificarCtrl!.text;
-    widget.formDataBACKUP?.p17CheckEspecificar = widget.formP17EspecificarCtrl!.text;
-
-
-    if(_TipoEmprendimiento == TipoEmprendimiento.Si){rpstP18 = "${rpstP18}Sí-A";}
-    else {rpstP18 = "${rpstP18}No-B";}
-    rpstP18 = "${rpstP18};";
-
-    widget.formData?.p18Emprendimiento= _TipoEmprendimiento?.index;
-    widget.formDataBACKUP?.p18Emprendimiento= _TipoEmprendimiento?.index;
-
-    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+    //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   void PedirPermiso(){
@@ -1144,7 +885,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
             color: Colors.white,
             onPressed: () async {
               if ( GPSlongitude != "") {
-                if (!Fase6) {
+                if (!Fase7) {
                   HelpersViewAlertMensajeFaltaMSG.formItemsDesign("Faltan llenar campos", context);
                 } else {
                   CargaDialog(); //INICIALIZA DIALOGO
@@ -1154,9 +895,18 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                   respuestas = ''
                       'Respuestas:'
-                      '$rpstP01$rpstP02$rpstP03$rpstP04$rpstP05$rpstP06$rpstP07'
-                      '$rpstP08$rpstP09$rpstP10$rpstP11$rpstP12$rpstP13$rpstP14'
-                      '$rpstP15$rpstP16$rpstP17'
+                      '$PercP01$PercP02$PercP03$PercP04$PercP05'
+                      '$PercP06$PercP07$PercP08$PercP09$PercP10'
+                      '$PercP11$PercP12$PercP13$PercP14$PercP15'
+                      '$PercP16$PercP17$PercP18$PercP19$PercP20'
+                      '$PercP21$PercP22$PercP23$PercP24$PercP25'
+                      '$PercP26$PercP27$PercP28$PercP29$PercP30'
+                      '$PercP31$PercP32$PercP33$PercP34$PercP35'
+                      '$PercP36$PercP37$PercP38$PercP39$PercP40'
+                      '$PercP41$PercP42$PercP43$PercP44$PercP45'
+                      '$PercP46$PercP47$PercP48$PercP49$PercP50'
+                      '$PercP51$PercP52$PercP53$PercP54$PercP55'
+                      '$PercP56$PercP57'
                       '- Nombre:$PREFname,'
                       '- Appaterno:$PREFapPaterno,'
                       '- MatMaterno:$PREFapMaterno,'
@@ -1289,8 +1039,6 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
   }
 
   void cleanForm() {
-    _CobroPension = null;
-    _Tiempomeses = null;
     widget.formP03EspecificarCtrl!.clear();
     widget.formP08EspecificarCtrl!.clear();
     widget.formP09EspecificarCtrl!.clear();
@@ -1309,18 +1057,10 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
       Fase4 = false;
       Fase5 = false;
       Fase6 = false;
+      Fase7 = false;
       //
 
-      _CobroPension = null;
-      _PensionRecibe = null;
-      _Tiempomeses = null;
-      _TipoEstablecimientoSalud = null;
-      _FrecuenciaAtiende = null;
-      _ViveUsted = null;
-      _SeAtendio = null;
-      _TieneFamilia = null;
-      _TieneFamiliaABCDE = null;
-      _TieneAyudas = null;
+
       _TipoVivienda = null;
       _SituacionRiesgo = null;
       _TipoEmprendimiento = null;
@@ -1329,8 +1069,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
       _TieneAyudasABCD = null;
       _IngresoEconomico = null;
 
-      _CobroPension = null;
-      _Tiempomeses = null;
+
       //OCULTAR PREGUNTAS
       PregCada3meses = false;
       PregCada2meses = false;
@@ -1641,6 +1380,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             decoration: const InputDecoration(
                               labelText: '',
                             ),
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                             validator: (value) {
                               return HelpersViewBlancoIcon.validateField(
                                   value!, widget.ParamP08EspecificarPerc);
@@ -2884,9 +2625,180 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                 //COMBO DE PREGUNTA 25,26,27
 
                 const SizedBox(height: 16.0),
+                //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. "),
+                HelpersViewLetrasSubs.formItemsDesign( "En los últimos 6 meses ¿Con quién vive el usuario/a del Programa CONTIGO?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Solo/a"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P25Perc>(
+                        value: P25Perc.solo,
+                        groupValue: _P25Perc,
+                        onChanged: (P25Perc? value) {
+                          setState(() {
+                            _P25Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con su esposo/a e hijos "),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P25Perc>(
+                        value: P25Perc.esposohijos,
+                        groupValue: _P25Perc,
+                        onChanged: (P25Perc? value) {
+                          setState(() {
+                            _P25Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con su esposo/a"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P25Perc>(
+                        value: P25Perc.esposo,
+                        groupValue: _P25Perc,
+                        onChanged: (P25Perc? value) {
+                          setState(() {
+                            _P25Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con su padre/madre y hermano/as "),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P25Perc>(
+                        value: P25Perc.padreshermanos,
+                        groupValue: _P25Perc,
+                        onChanged: (P25Perc? value) {
+                          setState(() {
+                            _P25Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vivo con su padre/madre"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P25Perc>(
+                        value: P25Perc.padres,
+                        groupValue: _P25Perc,
+                        onChanged: (P25Perc? value) {
+                          setState(() {
+                            _P25Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+                //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. "),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Vive con otros familiares (como tío/as, primo/as, etc.)?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text(
+                      'Sí',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P26Perc>(
+                      value: P26Perc.Si,
+                      groupValue: _P26Perc,
+                      onChanged: (P26Perc? value) {
+                        setState(() {
+                          _P26Perc = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'No',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P26Perc>(
+                      value: P26Perc.No,
+                      groupValue: _P26Perc,
+                      onChanged: (P26Perc? value) {
+                        setState(() {
+                          _P26Perc = value;
+                        });
+                      },),],
+                ),
+
+                const SizedBox(height: 16.0),
+                //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. "),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Vive con otros familiares y/u otras personas que nos son parte de su familia (como hermanastro/as, madrina, etc.)?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text(
+                      'Sí',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P27Perc>(
+                      value: P27Perc.Si,
+                      groupValue: _P27Perc,
+                      onChanged: (P27Perc? value) {
+                        setState(() {
+                          _P27Perc = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'No',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P27Perc>(
+                      value: P27Perc.No,
+                      groupValue: _P27Perc,
+                      onChanged: (P27Perc? value) {
+                        setState(() {
+                          _P27Perc = value;
+                        });
+                      },),],
+                ),
+
+                const SizedBox(height: 16.0),
                 GestureDetector(
                     onTap: ()  async {
-                      if( 2 == 2
+                      if( 2 == 3
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {
@@ -2913,7 +2825,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         color: Color.fromARGB(255, 27, 65, 187),
                       ),
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: const Text("Continuar (bloqueado)",
+                      child: const Text("Continuar",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -2932,8 +2844,12 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
             child:Column(
               children: <Widget>[
 
-                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\nCalidad de vida es …"
-                    "\n● El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5."),
+                HelpersViewLetrasRojas.formItemsDesign( "III) Perceción de la calidad de vida"),
+                const SizedBox(height: 16.0),
+
+
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario: Calidad de vida es …\n"
+                    "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5."),
                 HelpersViewLetrasSubs.formItemsDesign( "¿Cómo crees que ha sido tu calidad de vida   en los últimos 30 días?"),
                 HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
 
@@ -3034,20 +2950,805 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                 HelpersViewLetrasSubs.formItemsDesign( "En la actualidad, dirías que tu salud es …"),
                 HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
 
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy buena"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P29Perc>(
+                        value: P29Perc.muybuena,
+                        groupValue: _P29Perc,
+                        onChanged: (P29Perc? value) {
+                          setState(() {
+                            _P29Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
 
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Buena"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P29Perc>(
+                        value: P29Perc.buena,
+                        groupValue: _P29Perc,
+                        onChanged: (P29Perc? value) {
+                          setState(() {
+                            _P29Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Mala"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P29Perc>(
+                        value: P29Perc.mala,
+                        groupValue: _P29Perc,
+                        onChanged: (P29Perc? value) {
+                          setState(() {
+                            _P29Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy mala"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P29Perc>(
+                        value: P29Perc.muymala,
+                        groupValue: _P29Perc,
+                        onChanged: (P29Perc? value) {
+                          setState(() {
+                            _P29Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe/No responde"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P29Perc>(
+                        value: P29Perc.nosabe,
+                        groupValue: _P29Perc,
+                        onChanged: (P29Perc? value) {
+                          setState(() {
+                            _P29Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
 
                 const SizedBox(height: 16.0),
+                //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"),
+                HelpersViewLetrasSubs.formItemsDesign( "Debido a tu condición de salud, ¿tiene dificultad para … sin ayuda o supervisión?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                ///FALTA PROQUE NO LE ENTIENDO
+
+                const SizedBox(height: 16.0),
+                //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                const SizedBox(height: 16.0),
+                //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"),
+                HelpersViewLetrasSubs.formItemsDesign( "Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                const SizedBox(height: 16.0),
+                //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Con qué frecuencia recibe asistencia?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                //FIN DE LOS QUE NO ENTIENDO BIEN
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente "
+                    "enunciado al Usuario:“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.\n"
+                 "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Qué tan satisfecho/a estás con el apoyo que tienes de tus familiares?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy satisfecho"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P34Perc>(
+                        value: P34Perc.muysatisfecho,
+                        groupValue: _P34Perc,
+                        onChanged: (P34Perc? value) {
+                          setState(() {
+                            _P34Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Satisfecho"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P34Perc>(
+                        value: P34Perc.satisfecho,
+                        groupValue: _P34Perc,
+                        onChanged: (P34Perc? value) {
+                          setState(() {
+                            _P34Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Insatisfecho/a "),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P34Perc>(
+                        value: P34Perc.insatisfecho,
+                        groupValue: _P34Perc,
+                        onChanged: (P34Perc? value) {
+                          setState(() {
+                            _P34Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy insatisfecho/a "),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P34Perc>(
+                        value: P34Perc.muyinsatisfecho,
+                        groupValue: _P34Perc,
+                        onChanged: (P34Perc? value) {
+                          setState(() {
+                            _P34Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe/No responde"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P34Perc>(
+                        value: P34Perc.nosabe,
+                        groupValue: _P34Perc,
+                        onChanged: (P34Perc? value) {
+                          setState(() {
+                            _P34Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
+                "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Tiene amigos que lo visitan en su casa?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nunca"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P35Perc>(
+                        value: P35Perc.nunca,
+                        groupValue: _P35Perc,
+                        onChanged: (P35Perc? value) {
+                          setState(() {
+                            _P35Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Alguna vez"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P35Perc>(
+                        value: P35Perc.algunavez,
+                        groupValue: _P35Perc,
+                        onChanged: (P35Perc? value) {
+                          setState(() {
+                            _P35Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Frecuentemente"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P35Perc>(
+                        value: P35Perc.frecuente,
+                        groupValue: _P35Perc,
+                        onChanged: (P35Perc? value) {
+                          setState(() {
+                            _P35Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Siempre"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P35Perc>(
+                        value: P35Perc.frecuente,
+                        groupValue: _P35Perc,
+                        onChanged: (P35Perc? value) {
+                          setState(() {
+                            _P35Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                    "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
+                    "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Sientes que tienes alguna persona que te exprese afecto y ánimo?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nunca"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P36Perc>(
+                        value: P36Perc.nunca,
+                        groupValue: _P36Perc,
+                        onChanged: (P36Perc? value) {
+                          setState(() {
+                            _P36Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Alguna vez"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P36Perc>(
+                        value: P36Perc.algunavez,
+                        groupValue: _P36Perc,
+                        onChanged: (P36Perc? value) {
+                          setState(() {
+                            _P36Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Frecuentemnete"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P36Perc>(
+                        value: P36Perc.frecuente,
+                        groupValue: _P36Perc,
+                        onChanged: (P36Perc? value) {
+                          setState(() {
+                            _P36Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Siempre"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P36Perc>(
+                        value: P36Perc.siempre,
+                        groupValue: _P36Perc,
+                        onChanged: (P36Perc? value) {
+                          setState(() {
+                            _P36Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                    "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
+                    "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Sientes que tienes alguna persona que te aliente a expresar tus ideas y pensamientos?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nunca"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P37Perc>(
+                        value: P37Perc.nunca,
+                        groupValue: _P37Perc,
+                        onChanged: (P37Perc? value) {
+                          setState(() {
+                            _P37Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Alguna vez"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P37Perc>(
+                        value: P37Perc.algunavez,
+                        groupValue: _P37Perc,
+                        onChanged: (P37Perc? value) {
+                          setState(() {
+                            _P37Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Frecuentemnete"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P37Perc>(
+                        value: P37Perc.frecuente,
+                        groupValue: _P37Perc,
+                        onChanged: (P37Perc? value) {
+                          setState(() {
+                            _P37Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Siempre"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P37Perc>(
+                        value: P37Perc.siempre,
+                        groupValue: _P37Perc,
+                        onChanged: (P37Perc? value) {
+                          setState(() {
+                            _P37Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                    "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
+                    "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Sientes que tienes alguna persona que te pueda prestar ayuda económica?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nunca"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P38Perc>(
+                        value: P38Perc.nunca,
+                        groupValue: _P38Perc,
+                        onChanged: (P38Perc? value) {
+                          setState(() {
+                            _P38Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Alguna vez"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P38Perc>(
+                        value: P38Perc.algunavez,
+                        groupValue: _P38Perc,
+                        onChanged: (P38Perc? value) {
+                          setState(() {
+                            _P38Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Frecuentemnete"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P38Perc>(
+                        value: P38Perc.frecuente,
+                        groupValue: _P38Perc,
+                        onChanged: (P38Perc? value) {
+                          setState(() {
+                            _P38Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Siempre"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P38Perc>(
+                        value: P38Perc.siempre,
+                        groupValue: _P38Perc,
+                        onChanged: (P38Perc? value) {
+                          setState(() {
+                            _P38Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                    "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
+                    "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Sientes que tienes alguna persona a la cual le puedas contarle tus problemas?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nunca"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P39Perc>(
+                        value: P39Perc.nunca,
+                        groupValue: _P39Perc,
+                        onChanged: (P39Perc? value) {
+                          setState(() {
+                            _P39Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Alguna vez"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P39Perc>(
+                        value: P39Perc.algunavez,
+                        groupValue: _P39Perc,
+                        onChanged: (P39Perc? value) {
+                          setState(() {
+                            _P39Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Frecuentemnete"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P39Perc>(
+                        value: P39Perc.frecuente,
+                        groupValue: _P39Perc,
+                        onChanged: (P39Perc? value) {
+                          setState(() {
+                            _P39Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Siempre"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P39Perc>(
+                        value: P39Perc.siempre,
+                        groupValue: _P39Perc,
+                        onChanged: (P39Perc? value) {
+                          setState(() {
+                            _P39Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                    "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
+                    "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.\n"
+                "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Qué tan satisfecho/a estás contigo mismo(a)?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy satisfecho/a"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P40Perc>(
+                        value: P40Perc.muysatisfecho,
+                        groupValue: _P40Perc,
+                        onChanged: (P40Perc? value) {
+                          setState(() {
+                            _P40Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Satisfecho/a"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P40Perc>(
+                        value: P40Perc.satisfecho,
+                        groupValue: _P40Perc,
+                        onChanged: (P40Perc? value) {
+                          setState(() {
+                            _P40Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+              Row(
+                children: [
+                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Insatisfecho/a"),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Radio<P40Perc>(
+                      value: P40Perc.insatisfecho,
+                      groupValue: _P40Perc,
+                      onChanged: (P40Perc? value) {
+                        setState(() {
+                          _P40Perc = value;
+                        });
+                      },),
+                  ),
+                ],
+              ),
+
+              Row(
+                children: [
+                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy insatisfecho/a"),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Radio<P40Perc>(
+                      value: P40Perc.muyinsatisfecho,
+                      groupValue: _P40Perc,
+                      onChanged: (P40Perc? value) {
+                        setState(() {
+                          _P40Perc = value;
+                        });
+                      },),
+                  ),
+                ],
+              ),
+
+              Row(
+                children: [
+                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe / No responde"),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Radio<P40Perc>(
+                      value: P40Perc.nosabe,
+                      groupValue: _P40Perc,
+                      onChanged: (P40Perc? value) {
+                        setState(() {
+                          _P40Perc = value;
+                        });
+                      },),
+                  ),
+                ],
+              ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "● Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
+                    "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.\n"
+                    "●	El/la encuestador/a debe leer solo las alternativas del 1 al 3. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 4."),
+                HelpersViewLetrasSubs.formItemsDesign( "Desde que estás en el Programa CONTIGO, consideras que tu situación económica"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sigue igual"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P41Perc>(
+                        value: P41Perc.sigueigual,
+                        groupValue: _P41Perc,
+                        onChanged: (P41Perc? value) {
+                          setState(() {
+                            _P41Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Ha mejorado"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P41Perc>(
+                        value: P41Perc.hamejorado,
+                        groupValue: _P41Perc,
+                        onChanged: (P41Perc? value) {
+                          setState(() {
+                            _P41Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Ha empeorado"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P41Perc>(
+                        value: P41Perc.hamejorado,
+                        groupValue: _P41Perc,
+                        onChanged: (P41Perc? value) {
+                          setState(() {
+                            _P41Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe/ No responde"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P41Perc>(
+                        value: P41Perc.hamejorado,
+                        groupValue: _P41Perc,
+                        onChanged: (P41Perc? value) {
+                          setState(() {
+                            _P41Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Dejar que el Usuario se tome su tiempo para pensar en la respuesta y de ser "
+                    "necesario repetirle la pregunta. Recuerde que no debe leer las alternativas.\n"
+                    "●	No debe de inducir o sugerir respuestas a la pregunta formulada, como darle ejemplos. Solo si es necesario podría precisar al usuario/a que se le pregunta"
+                    " sobre el principal problema en su hogar que lo ha tenido preocupado en este año.\n"
+                    "● Si la respuesta es distinta a las presentadas, seleccione “Otro” (Especifique) y registre la información correspondiente.\n"
+                    "●	Se debe indagar en la respuesta brindada y de acuerdo a orden de importancia marcar las tres principales preocupaciones.\n"
+                    "●	Puede haber 3, 2, 1 o ninguna preocupación. "),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Cuáles han sido las mayores preocupaciones que han afectado tu bienestar durante el transcurso de este año 2024?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
 
                 //BOTON DE SUBIR
                 GestureDetector(
                     onTap: ()  async {
                       if(
-                      (_ViveUsted == null) || //P11
-                      (_TieneFamilia == null) || //P12
-                      (_TieneFamiliaABCDE == null) ||
-                      (_TieneAyudas == null) ||
-                      (_TieneAyudas == TieneAyudas.Si && _TieneAyudasABCD == null) ||
-                      (_IngresoEconomico == null)
+                      (1 == 2)
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {
@@ -3090,316 +3791,29 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
             child:Column(
               children: <Widget>[
 
-                HelpersViewLetrasRojas.formItemsDesign( "Tipo de Vivienda"),
-                const SizedBox(height: 16.0),
+                //MODULO IV
 
-                HelpersViewLetrasSubs.formItemsDesign( "¿Que tipo de vivienda tienes? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasRojas.formItemsDesign( "IV) Acceso a la pensión no contributativa"),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Conoce la última fecha de pago o cronograma de pagos de la pensión del Programa CONTIGO?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAvisoNO),
 
                 Row(
                   children: [
-                    const Text(
-                      'Adecuada',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    Radio<TipoVivienda>(
-                      value: TipoVivienda.Si,
-                      groupValue: _TipoVivienda,
-                      onChanged: (TipoVivienda? value) {
-                        setState(() {
-                          _TipoVivienda = value;
-                          _TipoViviendaABC = null;
-                        });
-                      },
-                    ),
-                    const Text(
-                      'Inadecuada',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    Radio<TipoVivienda>(
-                      value: TipoVivienda.No,
-                      groupValue: _TipoVivienda,
-                      onChanged: (TipoVivienda? value) {
-                        setState(() {
-                          _TipoVivienda= value;
-                          _TipoViviendaABC = null;
-
-                        });
-                      },),],
-                ),
-
-                ////SEGUN LO MARCADO
-                Visibility(
-                    visible: (_TipoVivienda == TipoVivienda.No),
-                    child:Column(
-                        children: <Widget>[
-
-                          HelpersViewLetrasSubsGris.formItemsDesign("Marque una opción"),
-                          const SizedBox(height: 16.0),
-
-                          Row(
-                            children: [
-                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Inadecuada: Barreras arquitectónicas internas en el domicilio."),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Radio<TipoViviendaABC>(
-                                  value: TipoViviendaABC.inadecuadaBarreras,
-                                  groupValue: _TipoViviendaABC,
-                                  onChanged: (TipoViviendaABC? value) {
-                                    setState(() {
-                                      _TipoViviendaABC = value;
-                                    });
-                                  },),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Inadecuada: Falta uno o más suministros y/o dos o más equipamientos."),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Radio<TipoViviendaABC>(
-                                  value: TipoViviendaABC.inadecuadaSuministros,
-                                  groupValue: _TipoViviendaABC,
-                                  onChanged: (TipoViviendaABC? value) {
-                                    setState(() {
-                                      _TipoViviendaABC = value;
-                                    });
-                                  },),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Inadecuada: Ausencia de vivienda, infravivienda."),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Radio<TipoViviendaABC>(
-                                  value: TipoViviendaABC.inadecuadaAusencia,
-                                  groupValue: _TipoViviendaABC,
-                                  onChanged: (TipoViviendaABC? value) {
-                                    setState(() {
-                                      _TipoViviendaABC = value;
-                                    });
-                                  },),
-                              ),
-                            ],
-                          ),
-                        ])),
-
-                const SizedBox(height: 16.0),
-
-                HelpersViewLetrasSubs.formItemsDesign( "¿El gestor social, ha identificado alguna situación de riesgo? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
-
-                Row(
-                  children: [
-                    const Text(
-                      'No',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    Radio<SituacionRiesgo>(
-                      value: SituacionRiesgo.No,
-                      groupValue: _SituacionRiesgo,
-                      onChanged: (SituacionRiesgo? value) {
-                        setState(() {
-                          _SituacionRiesgo = value;
-                          _SituacionRiesgoAB = null;
-                        });
-                      },
-                    ),
                     const Text(
                       'Sí',
                       style: TextStyle(
                         fontSize: 14.0,
                       ),
                     ),
-                    Radio<SituacionRiesgo>(
-                      value: SituacionRiesgo.Si,
-                      groupValue: _SituacionRiesgo,
-                      onChanged: (SituacionRiesgo? value) {
+                    Radio<P43Perc>(
+                      value: P43Perc.Si,
+                      groupValue: _P43Perc,
+                      onChanged: (P43Perc? value) {
                         setState(() {
-                          _SituacionRiesgo= value;
-                          _SituacionRiesgoAB = null;
-
-                        });
-                      },),],
-                ),
-
-                ////SEGUN LO MARCADO
-                Visibility(
-                    visible: (_SituacionRiesgo== SituacionRiesgo.Si),
-                    child:Column(
-                        children: <Widget>[
-
-                          HelpersViewLetrasSubsGris.formItemsDesign("Marque una opción"),
-                          const SizedBox(height: 16.0),
-
-                          Row(
-                            children: [
-                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("En relación al cobro."),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Radio<SituacionRiesgoAB>(
-                                  value: SituacionRiesgoAB.relacionCobro,
-                                  groupValue: _SituacionRiesgoAB,
-                                  onChanged: (SituacionRiesgoAB? value) {
-                                    setState(() {
-                                      _SituacionRiesgoAB = value;
-                                    });
-                                  },),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            children: [
-                              HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("En relación a riesgo socioemocional."),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Radio<SituacionRiesgoAB>(
-                                  value: SituacionRiesgoAB.relacionSocioEconomico,
-                                  groupValue: _SituacionRiesgoAB,
-                                  onChanged: (SituacionRiesgoAB? value) {
-                                    setState(() {
-                                      _SituacionRiesgoAB = value;
-                                    });
-                                  },),
-                              ),
-                            ],
-                          ),
-
-                        ])),
-
-                const SizedBox(height: 16.0),
-
-                HelpersViewLetrasSubs.formItemsDesign( "¿De qué temas le interesaría, informase en las siguientes visitas? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
-
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Cuidados de la PCDS."),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Checkbox(
-                        value: isCheckedP17Cuidados,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedP17Cuidados=  value!;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Rehabilitación."),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Checkbox(
-                        value: isCheckedP17ORehabilitacion,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedP17ORehabilitacion=  value!;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Alimentación."),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Checkbox(
-                        value: isCheckedP17Alimentacion ,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedP17Alimentacion =  value!;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (Especificar)"),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Checkbox(
-                        value: isCheckedP17Otros ,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isCheckedP17Otros =  value!;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-
-                Visibility(
-                    visible: isCheckedP17Otros,
-                    child:Column(
-                        children: <Widget>[
-                          HelpersViewBlancoIcon.formItemsDesign(
-                              Icons.pending_actions,
-                              TextFormField(
-                                controller: widget.formP17EspecificarCtrl,
-                                decoration: const InputDecoration(
-                                  labelText: 'Especifique',
-                                ),
-                                validator: (value) {
-                                  return HelpersViewBlancoIcon.validateField(
-                                      value!, widget.ParamP17EspecificarCtrl);
-                                },
-                                maxLength: 100,
-                              ), context),
-                        ]
-                    )),
-
-                const SizedBox(height: 16.0),
-
-                HelpersViewLetrasSubs.formItemsDesign( "A la fecha, la persona usuaria, desarrolla algún tipo de emprendimiento *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
-
-                Row(
-                  children: [
-                    const Text(
-                      'Si',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    Radio<TipoEmprendimiento>(
-                      value: TipoEmprendimiento.Si,
-                      groupValue: _TipoEmprendimiento,
-                      onChanged: (TipoEmprendimiento? value) {
-                        setState(() {
-                          _TipoEmprendimiento = value;
+                          _P43Perc = value;
                         });
                       },
                     ),
@@ -3409,31 +3823,1155 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         fontSize: 14.0,
                       ),
                     ),
-                    Radio<TipoEmprendimiento>(
-                      value: TipoEmprendimiento.No,
-                      groupValue: _TipoEmprendimiento,
-                      onChanged: (TipoEmprendimiento? value) {
+                    Radio<P43Perc>(
+                      value: P43Perc.No,
+                      groupValue: _P43Perc,
+                      onChanged: (P43Perc? value) {
                         setState(() {
-                          _TipoEmprendimiento= value;
+                          _P43Perc = value;
                         });
                       },),],
                 ),
 
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                    "●	Indagar sobre la respuesta brindada y marcar la que más se asemeje."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Cómo se informó para saber la última fecha de pago o el cronograma de pagos de la Pensión del Programa CONTIGO?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAvisoNO),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Personal de la Municipalidad (OMAPED) "),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P44Perc>(
+                        value: P44Perc.omadep,
+                        groupValue: _P44Perc,
+                        onChanged: (P44Perc? value) {
+                          setState(() {
+                            _P44Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Familiares / Vecinos / Amigos "),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P44Perc>(
+                    value: P44Perc.familaires,
+                    groupValue: _P44Perc,
+                    onChanged: (P44Perc? value) {
+                      setState(() {
+                        _P44Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+              Row(
+                children: [
+                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Medios de comunicación (radio, televisión, perifoneo, etc.)"),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Radio<P44Perc>(
+                      value: P44Perc.medios,
+                      groupValue: _P44Perc,
+                      onChanged: (P44Perc? value) {
+                        setState(() {
+                          _P44Perc = value;
+                        });
+                      },),
+                  ),
+                ],
+              ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Personal del Programa CONTIGO"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P44Perc>(
+                    value: P44Perc.personal,
+                    groupValue: _P44Perc,
+                    onChanged: (P44Perc? value) {
+                      setState(() {
+                        _P44Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Banco de la Nación "),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P44Perc>(
+                    value: P44Perc.banco,
+                    groupValue: _P44Perc,
+                    onChanged: (P44Perc? value) {
+                      setState(() {
+                        _P44Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yo mismo buscando en internet"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P44Perc>(
+                    value: P44Perc.yo,
+                    groupValue: _P44Perc,
+                    onChanged: (P44Perc? value) {
+                      setState(() {
+                        _P44Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (especifique):"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P44Perc>(
+                    value: P44Perc.otro,
+                    groupValue: _P44Perc,
+                    onChanged: (P44Perc? value) {
+                      setState(() {
+                        _P44Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Si la respuesta del Usuario/a es diferente a las alternativas comprendidas entre el código 1 y el 4, "
+                    "seleccione el código 5 “Otro” (Especifique) y registre la información correspondiente.\n"
+                    "●	En el caso que el Usuario responda con el nombre de un mes en particular, marcar según la opción que corresponda.\n"
+                    "●	Recuerde realizar el cálculo (en meses) según la respuesta que brinde el usuario/a."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Cuándo fue la última vez que cobraste tu pensión del Programa CONTIGO?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAvisoNO),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hace 2 meses o menos"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P45Perc>(
+                        value: P45Perc.dosmeses,
+                        groupValue: _P45Perc,
+                        onChanged: (P45Perc? value) {
+                          setState(() {
+                            _P45Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hace más de 2 a 6 meses"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P45Perc>(
+                    value: P45Perc.masdosmeses,
+                    groupValue: _P45Perc,
+                    onChanged: (P45Perc? value) {
+                      setState(() {
+                        _P45Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hace 6 meses o más"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P45Perc>(
+                    value: P45Perc.seismeses,
+                    groupValue: _P45Perc,
+                    onChanged: (P45Perc? value) {
+                      setState(() {
+                        _P45Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe / No responde"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P45Perc>(
+                    value: P45Perc.nosabe,
+                    groupValue: _P45Perc,
+                    onChanged: (P45Perc? value) {
+                      setState(() {
+                        _P45Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (especifique):"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P45Perc>(
+                    value: P45Perc.otro,
+                    groupValue: _P45Perc,
+                    onChanged: (P45Perc? value) {
+                      setState(() {
+                        _P45Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Si es necesario, al realizar la pregunta precisar que la última fecha de pago se refiere a los últimos 2 meses o menos.\n"
+                    "● Si la respuesta del Usuario es diferente a las alternativas comprendidas entre el código 1 y el 6, seleccione el código 7 “Otro” (Especifique) y registre la información correspondiente."),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Por qué razón no cobraste tu pensión del Programa CONTIGO en la última fecha de pago?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAvisoNO),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabía que era usuario del Programa"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P46Perc>(
+                        value: P46Perc.nosabiausuario,
+                        groupValue: _P46Perc,
+                        onChanged: (P46Perc? value) {
+                          setState(() {
+                            _P46Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabía de la fecha de pago"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P46Perc>(
+                        value: P46Perc.nosabiafecha,
+                        groupValue: _P46Perc,
+                        onChanged: (P46Perc? value) {
+                          setState(() {
+                            _P46Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Estuve enfermo"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P46Perc>(
+                        value: P46Perc.enfermo,
+                        groupValue: _P46Perc,
+                        onChanged: (P46Perc? value) {
+                          setState(() {
+                            _P46Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Guardé/junte pensiones para luego hacer el cobro"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P46Perc>(
+                        value: P46Perc.guarde,
+                        groupValue: _P46Perc,
+                        onChanged: (P46Perc? value) {
+                          setState(() {
+                            _P46Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Por la falta de movilidad"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P46Perc>(
+                        value: P46Perc.movilidad,
+                        groupValue: _P46Perc,
+                        onChanged: (P46Perc? value) {
+                          setState(() {
+                            _P46Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe / No responde"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P46Perc>(
+                        value: P46Perc.nosabe,
+                        groupValue: _P46Perc,
+                        onChanged: (P46Perc? value) {
+                          setState(() {
+                            _P46Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (especifique):"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P46Perc>(
+                        value: P46Perc.otro,
+                        groupValue: _P46Perc,
+                        onChanged: (P46Perc? value) {
+                          setState(() {
+                            _P46Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE( "●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro. \n"),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Quién realiza el cobro de su pensión del Programa CONTIGO?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yo, de manera independiente"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P47Perc>(
+                        value: P47Perc.independiente,
+                        groupValue: _P47Perc,
+                        onChanged: (P47Perc? value) {
+                          setState(() {
+                            _P47Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yo, acompañado de cuidador"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P47Perc>(
+                        value: P47Perc.cuidador,
+                        groupValue: _P47Perc,
+                        onChanged: (P47Perc? value) {
+                          setState(() {
+                            _P47Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yo, acompañado de familiar"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P47Perc>(
+                        value: P47Perc.familiar,
+                        groupValue: _P47Perc,
+                        onChanged: (P47Perc? value) {
+                          setState(() {
+                            _P47Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yo, con apoyo del personal de la Municipalidad"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P47Perc>(
+                        value: P47Perc.municipalidad,
+                        groupValue: _P47Perc,
+                        onChanged: (P47Perc? value) {
+                          setState(() {
+                            _P47Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Persona autorizada para el cobro"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P47Perc>(
+                        value: P47Perc.cobro,
+                        groupValue: _P47Perc,
+                        onChanged: (P47Perc? value) {
+                          setState(() {
+                            _P47Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+            const SizedBox(height: 16.0),
+            HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Si en el último pago tuvo contratiempos (problemas en las vías u otro) deberá de repreguntar por el tiempo que suele "
+                "demorarse normalmente, donde no se da dichos contratiempos.\n"
+                "●	Sondear el tiempo y marcar la respuesta más idónea."),
+            HelpersViewLetrasSubs.formItemsDesign( "La última vez que cobraste tu pensión del Programa, ya sea de manera personal o a través de tu "
+                "familiar autorizado, o con el apoyo de otra persona ¿Cuánto tiempo demoró para llegar al lugar de pago?"),
+            HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAvisoIDA),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Media hora o menos "),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P48Perc>(
+                    value: P48Perc.mediahora,
+                    groupValue: _P48Perc,
+                    onChanged: (P48Perc? value) {
+                      setState(() {
+                        _P48Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Más de media hora, pero menos de 1 hora"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P48Perc>(
+                    value: P48Perc.masmediahora,
+                    groupValue: _P48Perc,
+                    onChanged: (P48Perc? value) {
+                      setState(() {
+                        _P48Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("De 1 a 2 horas"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P48Perc>(
+                    value: P48Perc.unoadoshoras,
+                    groupValue: _P48Perc,
+                    onChanged: (P48Perc? value) {
+                      setState(() {
+                        _P48Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Más de 2 horas"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P48Perc>(
+                    value: P48Perc.masdoshoras,
+                    groupValue: _P48Perc,
+                    onChanged: (P48Perc? value) {
+                      setState(() {
+                        _P48Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 16.0),
+            HelpersViewLetrasSubs.formItemsDesignBLUE("●	De mencionar el usuario dos o más medios de movilización, deberá precisar que responda solo el "
+                "medio de transporte donde viaja más tiempo. "
+                "●	Si la respuesta del Usuario es diferente a las alternativas comprendidas entre el código 1 y el 10, seleccione el código 11 “Otro” "
+                "(Especifique) y registre la información correspondiente.\n"
+            "●	Sondear el tiempo y marcar la respuesta más idónea."),
+            HelpersViewLetrasSubs.formItemsDesign( "La última vez que cobraste tu pensión del Programa ya sea de manera "
+                "personal o a través de tu familiar autorizado, o con el apoyo de otra persona, "
+                "¿Cómo te movilizaste o cómo se movilizó tu familiar o cómo se movilizaron para llegar al lugar de pago? "),
+            HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAvisoMEDIO),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("A pie"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P49Perc>(
+                    value: P49Perc.apie,
+                    groupValue: _P49Perc,
+                    onChanged: (P49Perc? value) {
+                      setState(() {
+                        _P49Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Bicicleta"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P49Perc>(
+                    value: P49Perc.bicicletas,
+                    groupValue: _P49Perc,
+                    onChanged: (P49Perc? value) {
+                      setState(() {
+                        _P49Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Caballo / Acémila"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P49Perc>(
+                    value: P49Perc.caballo,
+                    groupValue: _P49Perc,
+                    onChanged: (P49Perc? value) {
+                      setState(() {
+                        _P49Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Mototaxi"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P49Perc>(
+                    value: P49Perc.mototaxi,
+                    groupValue: _P49Perc,
+                    onChanged: (P49Perc? value) {
+                      setState(() {
+                        _P49Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Motocicleta"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P49Perc>(
+                    value: P49Perc.motocicleta,
+                    groupValue: _P49Perc,
+                    onChanged: (P49Perc? value) {
+                      setState(() {
+                        _P49Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Automóvil / Camioneta"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P49Perc>(
+                    value: P49Perc.automovil,
+                    groupValue: _P49Perc,
+                    onChanged: (P49Perc? value) {
+                      setState(() {
+                        _P49Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Taxi"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P49Perc>(
+                    value: P49Perc.taxi,
+                    groupValue: _P49Perc,
+                    onChanged: (P49Perc? value) {
+                      setState(() {
+                        _P49Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Colectivo/Microbús/Coaster"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P49Perc>(
+                    value: P49Perc.colectivo,
+                    groupValue: _P49Perc,
+                    onChanged: (P49Perc? value) {
+                      setState(() {
+                        _P49Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Camión"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P49Perc>(
+                    value: P49Perc.camion,
+                    groupValue: _P49Perc,
+                    onChanged: (P49Perc? value) {
+                      setState(() {
+                        _P49Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (especifique):"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P49Perc>(
+                    value: P49Perc.otro,
+                    groupValue: _P49Perc,
+                    onChanged: (P49Perc? value) {
+                      setState(() {
+                        _P49Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 16.0),
+            HelpersViewLetrasSubs.formItemsDesignBLUE("●	Considerar todos los medios de transporte que tuvieron algún costo "
+                "para el Usuario/a, tanto de ida como de retorno a su vivienda.\n"
+                "●	Recuerde registrar: Si no realiza gasto alguno anote en la respuesta cero “0”. "
+                "Si no recuerda el monto gastado en la última vez registre “9999”.\n"
+            "●	Si la persona va a pie al lugar de pago, debe registrar cero “0”."),
+            HelpersViewLetrasSubs.formItemsDesign( "¿Cuánto gastaste o cuanto gastó tu familiar o cuánto gastaron en transporte de manera conjunta la última vez que "
+                "acudieron a cobrar el dinero del Programa?"),
+            HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAvisoPasaje),
+
+            Column(
+                children: <Widget>[
+                  HelpersViewBlancoIcon.formItemsDesign(
+                      Icons.pending_actions,
+                      TextFormField(
+                        controller: widget.P50EspecificarPerc,
+                        decoration: const InputDecoration(
+                          labelText: '',
+                        ),
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        validator: (value) {
+                          return HelpersViewBlancoIcon.validateField(
+                              value!, widget.ParamP50EspecificarPerc);
+                        },
+                        maxLength: 5,
+                      ), context),
+                ]
+            ),
+
+            const SizedBox(height: 16.0),
+            HelpersViewLetrasSubs.formItemsDesignBLUE("●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro."),
+            HelpersViewLetrasSubs.formItemsDesign( "¿Bajo qué modalidad cobró la última vez el dinero otorgado por el Programa?"),
+            HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Cobro por ventanilla del Banco de la Nación"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P51Perc>(
+                    value: P51Perc.banco,
+                    groupValue: _P51Perc,
+                    onChanged: (P51Perc? value) {
+                      setState(() {
+                        _P51Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Cobro con tarjeta de débito (cobro por cajero)"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P51Perc>(
+                    value: P51Perc.debito,
+                    groupValue: _P51Perc,
+                    onChanged: (P51Perc? value) {
+                      setState(() {
+                        _P51Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Cobro por agente "),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P51Perc>(
+                    value: P51Perc.agente,
+                    groupValue: _P51Perc,
+                    onChanged: (P51Perc? value) {
+                      setState(() {
+                        _P51Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Carrito pagador "),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P51Perc>(
+                    value: P51Perc.pagador,
+                    groupValue: _P51Perc,
+                    onChanged: (P51Perc? value) {
+                      setState(() {
+                        _P51Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            Row(
+              children: [
+                HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Plataformas itinerantes de acción social (PIAS)"),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Radio<P51Perc>(
+                    value: P51Perc.pias,
+                    groupValue: _P51Perc,
+                    onChanged: (P51Perc? value) {
+                      setState(() {
+                        _P51Perc = value;
+                      });
+                    },),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 16.0),
+            HelpersViewLetrasSubs.formItemsDesignBLUE("●	Dejar que el Usuario se tome su tiempo para pensar en la respuesta y de ser "
+                "necesario repetirle la pregunta. Recuerde que no debe leer las alternativas.\n"
+                "●	No debe de inducir o sugerir respuestas a la pregunta formulada, ni brindarle algunas alternativas como ejemplo.\n"
+                "●	Si la respuesta del Usuario es diferente a las alternativas comprendidas entre el código 1 y el 11, seleccione el código 12 "
+                "“Otro” (Especifique) y registre la información correspondiente."),
+
+            HelpersViewLetrasSubs.formItemsDesign( "De acuerdo a la modalidad que cobra el dinero del Programa, actualmente, "
+                "¿Se presenta algún problema cada vez que cobra su pensión?"),
+            HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAvisoNo),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No, ninguno / Todo bien"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Checkbox(
+                        value: P52Perc01 ,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            P52Perc01  = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sí, la distancia al lugar de pago"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Checkbox(
+                        value: P52Perc02 ,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            P52Perc02  = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sí, gasto mucho en transporte"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Checkbox(
+                        value: P52Perc03 ,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            P52Perc03  = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sí, las colas en el banco que demora mucho"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Checkbox(
+                        value: P52Perc04,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            P52Perc04 = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sí, no recibimos un buen trato del personal del banco "),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Checkbox(
+                        value: P52Perc05,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            P52Perc05 = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sí, no recibimos un buen trato del personal del Programa"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Checkbox(
+                        value: P52Perc06,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            P52Perc06 = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sí, no nos pagan en la fecha programada "),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Checkbox(
+                        value: P52Perc07,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            P52Perc07 = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sí, no nos entregan todo el dinero de la pensión"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Checkbox(
+                        value: P52Perc08,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            P52Perc08 = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sí, mi familiar autorizado no puede cobrar"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Checkbox(
+                        value: P52Perc09,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            P52Perc09 = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sí, el agente multired no nos atiende "),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Checkbox(
+                        value: P52Perc10,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            P52Perc10 = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sí, en el banco no reconocen mi huella"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Checkbox(
+                        value: P52Perc11,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            P52Perc11 = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (especifique):"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Checkbox(
+                        value: P52Perc12,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            P52Perc12 = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE("●	La respuesta la puede brindar el usuario del programa, "
+                    "su cuidador o familiar autorizado para el cobro."),
+                HelpersViewLetrasSubs.formItemsDesign( "Cada vez que vas a cobrar tu dinero del Programa, ¿Se te hace difícil, o "
+                    "se le hace difícil a tu familiar, o se les hace difícil llegar al lugar de pago?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text(
+                      'Sí',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P53Perc>(
+                      value: P53Perc.Si,
+                      groupValue: _P53Perc,
+                      onChanged: (P53Perc? value) {
+                        setState(() {
+                          _P53Perc = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'No',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P53Perc>(
+                      value: P53Perc.No,
+                      groupValue: _P53Perc,
+                      onChanged: (P53Perc? value) {
+                        setState(() {
+                          _P53Perc = value;
+                        });
+                      },),],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE("●	Dejar que el Usuario se tome su tiempo para pensar en la respuesta y de ser "
+                    "necesario repetirle la pregunta. Recuerde que no debe leer las alternativas.\n"
+                    "●	Si la respuesta es distinta a las presentadas, seleccione “Otro” (Especifique) y registre la información correspondiente.\n"
+                "●	Se debe indagar en la respuesta brindada y de acuerdo a orden de importancia marcar los tres principales motivos.\n"
+                    "●	Precisar que la dificultad debe estar referida al traslado del usuario/a al lugar de pago.\n"
+                    "●	Puede haber 3, 2, 1 o ninguna preocupación.\n"),
+                HelpersViewLetrasSubs.formItemsDesign( "¿Cuáles son los tres principales motivos por los que se le hace difícil llegar al lugar de pago?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
+
+
+
+
+
                 GestureDetector(
                     onTap: ()  async {
                       if(
-                      (_ViveUsted == null) ||
-                      (_TipoVivienda == null) ||
-                      ( _TipoVivienda == TipoVivienda.No && _TipoViviendaABC == null) ||
-                      (_SituacionRiesgo == null) ||
-                      (_SituacionRiesgo == SituacionRiesgo.Si && _SituacionRiesgoAB == null) ||
-                      (_TipoEmprendimiento == null) ||
-                      ( //
-                      !isCheckedP17Cuidados &&
-                      !isCheckedP17ORehabilitacion &&
-                      !isCheckedP17Alimentacion &&
-                      (widget.formP17EspecificarCtrl == null || widget.formP17EspecificarCtrl!.text.isEmpty)
-                      )
+                      (1 == 2)
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {
@@ -3460,7 +4998,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         color: Color.fromARGB(255, 27, 65, 187),
                       ),
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: const Text("Finalizar el formulario",
+                      child: const Text("Continuar",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -3477,10 +5015,344 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
             child:Column(
               children: <Widget>[
 
+                HelpersViewLetrasRojas.formItemsDesign( "V) Módulo del dinero"),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE("●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro."),
+                HelpersViewLetrasSubs.formItemsDesign( "Normalmente, usted (usuario del Programa) decide sobre el uso o destino del cobro del dinero del Programa"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text(
+                      'Sí',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P55Perc>(
+                      value: P55Perc.Si,
+                      groupValue: _P55Perc,
+                      onChanged: (P55Perc? value) {
+                        setState(() {
+                          _P55Perc = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'No',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P55Perc>(
+                      value: P55Perc.No,
+                      groupValue: _P55Perc,
+                      onChanged: (P55Perc? value) {
+                        setState(() {
+                          _P55Perc = value;
+                        });
+                      },),],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE("●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro."),
+                HelpersViewLetrasSubs.formItemsDesign( "En caso que usted no administre ni participa en el uso del dinero ¿Quién lo realiza?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+
+                Row(
+                  children: [
+                    const Text(
+                      'Cuidador/a',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P56Perc>(
+                      value: P56Perc.cuidador,
+                      groupValue: _P56Perc,
+                      onChanged: (P56Perc? value) {
+                        setState(() {
+                          _P56Perc = value;
+                        });
+                      },
+                    ),
+                    const Text(
+                      'Persona autorizada para el cobro',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    Radio<P56Perc>(
+                      value: P56Perc.autorizada,
+                      groupValue: _P56Perc,
+                      onChanged: (P56Perc? value) {
+                        setState(() {
+                          _P56Perc = value;
+                        });
+                      },),],
+                ),
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasSubs.formItemsDesignBLUE("●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro.\n"
+                    "●	Es importante recalcar al Usuario/a que la pregunta se refiere al gasto que normalmente realiza con la pensión que cobró.\n"
+                    "●	Si la respuesta del Usuario es diferente a las alternativas comprendidas entre el código 1 y el 9, "
+                    "seleccione el código 10 “Otro” (Especifique) y registre la información correspondiente.\n"
+                    "●	La alternativa de “Invierte en negocio / activos productivos” considera el inicio de un "
+                    "emprendimiento o la compra de herramientas, semillas o animales que le sirva de insumos para una actividad productiva."),
+                HelpersViewLetrasSubs.formItemsDesign( "Normalmente, ¿En qué se gasta principalmente el dinero que recibes del Programa?"),
+                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAvisoPrincipal),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Salud/Medicinas como tratamientos, pastillas, inyecciones o exámenes, etc."),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P57Perc>(
+                        value: P57Perc.salud,
+                        groupValue: _P57Perc,
+                        onChanged: (P57Perc? value) {
+                          setState(() {
+                            _P57Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Ayudas técnicas como andador, bastón, cojín, anti escara, muletas, etc."),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P57Perc>(
+                        value: P57Perc.ayuda,
+                        groupValue: _P57Perc,
+                        onChanged: (P57Perc? value) {
+                          setState(() {
+                            _P57Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Alimentación (leche, azúcar, fideos, panes, frutas, etc.)"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P57Perc>(
+                        value: P57Perc.alimentacion,
+                        groupValue: _P57Perc,
+                        onChanged: (P57Perc? value) {
+                          setState(() {
+                            _P57Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vestimenta o ropa"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P57Perc>(
+                        value: P57Perc.vestimenta,
+                        groupValue: _P57Perc,
+                        onChanged: (P57Perc? value) {
+                          setState(() {
+                            _P57Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Transporte"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P57Perc>(
+                        value: P57Perc.transporte,
+                        groupValue: _P57Perc,
+                        onChanged: (P57Perc? value) {
+                          setState(() {
+                            _P57Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Invierte en negocio / activos productivos"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P57Perc>(
+                        value: P57Perc.invierte,
+                        groupValue: _P57Perc,
+                        onChanged: (P57Perc? value) {
+                          setState(() {
+                            _P57Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Mejora de vivienda "),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P57Perc>(
+                        value: P57Perc.mejora,
+                        groupValue: _P57Perc,
+                        onChanged: (P57Perc? value) {
+                          setState(() {
+                            _P57Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Ahorro"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P57Perc>(
+                        value: P57Perc.ahorra,
+                        groupValue: _P57Perc,
+                        onChanged: (P57Perc? value) {
+                          setState(() {
+                            _P57Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Pago de servicios del hogar: Luz, agua, alquiler"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P57Perc>(
+                        value: P57Perc.pago,
+                        groupValue: _P57Perc,
+                        onChanged: (P57Perc? value) {
+                          setState(() {
+                            _P57Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No Sabe en qué se gasta"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P57Perc>(
+                        value: P57Perc.nosabe,
+                        groupValue: _P57Perc,
+                        onChanged: (P57Perc? value) {
+                          setState(() {
+                            _P57Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (especifique):"),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Radio<P57Perc>(
+                        value: P57Perc.otro,
+                        groupValue: _P57Perc,
+                        onChanged: (P57Perc? value) {
+                          setState(() {
+                            _P57Perc = value;
+                          });
+                        },),
+                    ),
+                  ],
+                ),
+
+
+                GestureDetector(
+                    onTap: ()  async {
+                      if(
+                      (1 == 2)
+                      ){
+                        showDialogValidFields(Constants.faltanCampos);
+                      } else {
+                        await guardadoFase5();
+                        setState(()  {
+                          Fase6 = false;
+                          Fase7 = true;
+                        });
+                      }
+
+                      scrollController.animateTo(
+                        0.0,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                      );
+
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+                      alignment: Alignment.center,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        color: Color.fromARGB(255, 27, 65, 187),
+                      ),
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: const Text("Finalizar Cuestionario",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500)),
+                    )),
+
+
+              ],),
+          ),
+
+          Visibility(
+            visible: Fase7,
+            child:Column(
+              children: <Widget>[
+
                 HelpersViewLetrasSubs.formItemsDesign( "Para mejorar la precisión de la coordenada presioné icono del satélite, luego guarde su cuestionario presionando el icono diskette."),
 
               ],),
           ),
+
 
         ],),
     );

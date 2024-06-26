@@ -10,7 +10,13 @@ class Constants {
   //MENSAJES
   static const String faltanCampos = "Termine de seleccionar los campos obligatorios";
   static const String circleAviso = "(Leer las alternativas) (marcar solo una alternativa)";
+  static const String circleAvisoPrincipal = "(Leer las alternativas) (marcar solo una alternativa)";
+  static const String circleAvisoNO = "(Leer las alternativas) (marcar solo una alternativa)";
   static const String checkAviso = "(Leer las alternativas) (puede escribir en más de una alternativa) ";
+  static const String checkAvisoNo = "(Leer las alternativas) (puede escribir en más de una alternativa) ";
+  static const String circleAvisoIDA = "(No leer alternativas) (Considerar el tiempo solo de ida)";
+  static const String circleAvisoMEDIO = "(No leer alternativas) (Considerar sólo el principal medio de movilización)";
+  static const String circleAvisoPasaje = "(Considerar pasaje de ida, vuelta, y de transbordo)";
 
 
   //DEPEARTAMENTOS

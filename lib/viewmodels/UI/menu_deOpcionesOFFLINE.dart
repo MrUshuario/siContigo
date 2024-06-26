@@ -615,6 +615,8 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
   Future<void> guardadoFase1() async{
 
     widget.formData?.id_usuario =  int.parse(widget.formIdUsuario!.text);
+    widget.formDataBACKUP?.id_usuario = int.parse(widget.formIdUsuario!.text);
+    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
 
@@ -1071,7 +1073,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                       'Respuestas:'
                       '$rpstP01$rpstP02$rpstP03$rpstP04$rpstP05$rpstP06$rpstP07'
                       '$rpstP08$rpstP09$rpstP10$rpstP11$rpstP12$rpstP13$rpstP14'
-                      '$rpstP15$rpstP16$rpstP17'
+                      '$rpstP15$rpstP16$rpstP17$rpstP18'
                       '- Nombre:$PREFname,'
                       '- Appaterno:$PREFapPaterno,'
                       '- MatMaterno:$PREFapMaterno,'
