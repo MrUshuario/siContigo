@@ -58,21 +58,38 @@ class MenudeOpcionesPercepcion extends StatefulWidget {
   final ParamP03EspecificarPerc = List.filled(3, "", growable: false);
   TextEditingController P04EspecificarPerc = TextEditingController();
   final ParamP04EspecificarPerc = List.filled(3, "", growable: false);
-
   TextEditingController P06EspecificarPerc = TextEditingController();
   final ParamP06EspecificarPerc = List.filled(3, "", growable: false);
   TextEditingController P07EspecificarPerc = TextEditingController();
   final ParamP07EspecificarPerc = List.filled(3, "", growable: false);
   TextEditingController P08EspecificarPerc = TextEditingController();
   final ParamP08EspecificarPerc = List.filled(3, "", growable: false);
-  TextEditingController P50EspecificarPerc = TextEditingController();
-  final ParamP50EspecificarPerc = List.filled(3, "", growable: false);
-
-  //FASE2
   TextEditingController P12EspecificarPerc = TextEditingController();
   final ParamP12EspecificarPerc = List.filled(3, "", growable: false);
   TextEditingController P19EspecificarPerc = TextEditingController();
   final ParamP19EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P50EspecificarPerc = TextEditingController();
+  final ParamP50EspecificarPerc = List.filled(3, "", growable: false);
+
+  //ESPECIFICAR OTROS
+  TextEditingController P16EspecificarPerc = TextEditingController();
+  final ParamP16EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P22EspecificarPerc = TextEditingController();
+  final ParamP22EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P23EspecificarPerc = TextEditingController();
+  final ParamP23EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P44EspecificarPerc = TextEditingController();
+  final ParamP44EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P45EspecificarPerc = TextEditingController();
+  final ParamP45EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P46EspecificarPerc = TextEditingController();
+  final ParamP46EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P49EspecificarPerc = TextEditingController();
+  final ParamP49EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P52EspecificarPerc = TextEditingController();
+  final ParamP52EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P57EspecificarPerc = TextEditingController();
+  final ParamP57EspecificarPerc = List.filled(3, "", growable: false);
 
   //DEL ANTERIOR
   TextEditingController formP03EspecificarCtrl = TextEditingController();
@@ -122,6 +139,8 @@ enum P13Perc { hombre, mujer }
 enum P14Perc { Si, No }
 enum P15Perc { Si, No }
 enum P16Perc { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+//ESPECIFICAR
+
 enum P17Perc { Si, No }
 enum P18Perc { Si, No }
 
@@ -2048,6 +2067,27 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                   ],
                 ),
 
+                //OTRO ESPECIFICAR
+                Visibility(
+                    visible: (_P16Perc == P16Perc.otronopariente || _P16Perc == P16Perc.otropariente),
+                    child:Column(
+                        children: <Widget>[
+                          HelpersViewBlancoIcon.formItemsDesign(
+                              Icons.pending_actions,
+                              TextFormField(
+                                controller: widget.P16EspecificarPerc ,
+                                decoration: const InputDecoration(
+                                  labelText: 'Especifique',
+                                ),
+                                validator: (value) {
+                                  return HelpersViewBlancoIcon.validateField(
+                                      value!, widget.ParamP16EspecificarPerc );
+                                },
+                                maxLength: 100,
+                              ), context),
+                        ]
+                    )),
+
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a\n"
@@ -2361,6 +2401,27 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                   ],
                 ),
 
+                //OTRO ESPECIFICAR
+                Visibility(
+                    visible: (_P22Perc == P22Perc.otro),
+                    child:Column(
+                        children: <Widget>[
+                          HelpersViewBlancoIcon.formItemsDesign(
+                              Icons.pending_actions,
+                              TextFormField(
+                                controller: widget.P22EspecificarPerc ,
+                                decoration: const InputDecoration(
+                                  labelText: 'Especifique',
+                                ),
+                                validator: (value) {
+                                  return HelpersViewBlancoIcon.validateField(
+                                      value!, widget.ParamP22EspecificarPerc );
+                                },
+                                maxLength: 100,
+                              ), context),
+                        ]
+                    )),
+
                 const SizedBox(height: 16.0),
 
                 //BOTON PARA PRESEGUIR
@@ -2583,6 +2644,27 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
                   ],
                 ),
+
+                //OTRO ESPECIFICAR
+                Visibility(
+                    visible: (_P23Perc == P23Perc.otropariente),
+                    child:Column(
+                        children: <Widget>[
+                          HelpersViewBlancoIcon.formItemsDesign(
+                              Icons.pending_actions,
+                              TextFormField(
+                                controller: widget.P23EspecificarPerc ,
+                                decoration: const InputDecoration(
+                                  labelText: 'Especifique',
+                                ),
+                                validator: (value) {
+                                  return HelpersViewBlancoIcon.validateField(
+                                      value!, widget.ParamP23EspecificarPerc );
+                                },
+                                maxLength: 100,
+                              ), context),
+                        ]
+                    )),
 
                 const SizedBox(height: 16.0),
                 HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. "),
@@ -3965,6 +4047,27 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
               ],
             ),
 
+            //OTRO ESPECIFICAR
+            Visibility(
+                visible: (_P44Perc == P44Perc.otro),
+                child:Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.P44EspecificarPerc ,
+                            decoration: const InputDecoration(
+                              labelText: 'Especifique',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.ParamP44EspecificarPerc );
+                            },
+                            maxLength: 100,
+                          ), context),
+                    ]
+                )),
+
                 const SizedBox(height: 16.0),
                 HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Si la respuesta del Usuario/a es diferente a las alternativas comprendidas entre el código 1 y el 4, "
                     "seleccione el código 5 “Otro” (Especifique) y registre la información correspondiente.\n"
@@ -4062,6 +4165,27 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                 ),
               ],
             ),
+
+                //OTRO ESPECIFICAR
+                Visibility(
+                    visible: (_P45Perc == P45Perc.otro),
+                    child:Column(
+                        children: <Widget>[
+                          HelpersViewBlancoIcon.formItemsDesign(
+                              Icons.pending_actions,
+                              TextFormField(
+                                controller: widget.P45EspecificarPerc ,
+                                decoration: const InputDecoration(
+                                  labelText: 'Especifique',
+                                ),
+                                validator: (value) {
+                                  return HelpersViewBlancoIcon.validateField(
+                                      value!, widget.ParamP45EspecificarPerc );
+                                },
+                                maxLength: 100,
+                              ), context),
+                        ]
+                    )),
 
                 const SizedBox(height: 16.0),
                 HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Si es necesario, al realizar la pregunta precisar que la última fecha de pago se refiere a los últimos 2 meses o menos.\n"
@@ -4194,6 +4318,27 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
                   ],
                 ),
+
+                //OTRO ESPECIFICAR
+                Visibility(
+                    visible: (_P46Perc == P46Perc.otro),
+                    child:Column(
+                        children: <Widget>[
+                          HelpersViewBlancoIcon.formItemsDesign(
+                              Icons.pending_actions,
+                              TextFormField(
+                                controller: widget.P46EspecificarPerc ,
+                                decoration: const InputDecoration(
+                                  labelText: 'Especifique',
+                                ),
+                                validator: (value) {
+                                  return HelpersViewBlancoIcon.validateField(
+                                      value!, widget.ParamP46EspecificarPerc );
+                                },
+                                maxLength: 100,
+                              ), context),
+                        ]
+                    )),
 
                 const SizedBox(height: 16.0),
                 HelpersViewLetrasSubs.formItemsDesignBLUE( "●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro. \n"),
@@ -4561,6 +4706,27 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
               ],
             ),
 
+                //OTRO ESPECIFICAR
+                Visibility(
+                    visible: (_P49Perc == P49Perc.otro),
+                    child:Column(
+                        children: <Widget>[
+                          HelpersViewBlancoIcon.formItemsDesign(
+                              Icons.pending_actions,
+                              TextFormField(
+                                controller: widget.P49EspecificarPerc ,
+                                decoration: const InputDecoration(
+                                  labelText: 'Especifique',
+                                ),
+                                validator: (value) {
+                                  return HelpersViewBlancoIcon.validateField(
+                                      value!, widget.ParamP49EspecificarPerc );
+                                },
+                                maxLength: 100,
+                              ), context),
+                        ]
+                    )),
+
             const SizedBox(height: 16.0),
             HelpersViewLetrasSubs.formItemsDesignBLUE("●	Considerar todos los medios de transporte que tuvieron algún costo "
                 "para el Usuario/a, tanto de ida como de retorno a su vivienda.\n"
@@ -4912,6 +5078,27 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
                   ],
                 ),
+
+                //OTRO ESPECIFICAR
+                Visibility(
+                    visible: (P52Perc12),
+                    child:Column(
+                        children: <Widget>[
+                          HelpersViewBlancoIcon.formItemsDesign(
+                              Icons.pending_actions,
+                              TextFormField(
+                                controller: widget.P52EspecificarPerc ,
+                                decoration: const InputDecoration(
+                                  labelText: 'Especifique',
+                                ),
+                                validator: (value) {
+                                  return HelpersViewBlancoIcon.validateField(
+                                      value!, widget.ParamP52EspecificarPerc );
+                                },
+                                maxLength: 100,
+                              ), context),
+                        ]
+                    )),
 
 
                 const SizedBox(height: 16.0),
@@ -5300,6 +5487,27 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
                   ],
                 ),
+
+                //OTRO ESPECIFICAR
+                Visibility(
+                    visible: (_P57Perc == P57Perc.otro),
+                    child:Column(
+                        children: <Widget>[
+                          HelpersViewBlancoIcon.formItemsDesign(
+                              Icons.pending_actions,
+                              TextFormField(
+                                controller: widget.P57EspecificarPerc ,
+                                decoration: const InputDecoration(
+                                  labelText: 'Especifique',
+                                ),
+                                validator: (value) {
+                                  return HelpersViewBlancoIcon.validateField(
+                                      value!, widget.ParamP57EspecificarPerc );
+                                },
+                                maxLength: 100,
+                              ), context),
+                        ]
+                    )),
 
 
                 GestureDetector(
