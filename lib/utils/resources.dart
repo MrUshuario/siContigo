@@ -46,6 +46,8 @@ class Resources {
 
   static const String useragregar = 'assets/agregar.png';
   static const String userquitar = 'assets/eliminar.png';
+  static const String background = 'assets/bg.png';
+  static const String backgroundAzul = 'assets/bg2.png';
 
   //SERVICIOS LISTA
   static const String tayta_Visita_Presencial = 'assets/icono_tayta_visita_presencial.png';

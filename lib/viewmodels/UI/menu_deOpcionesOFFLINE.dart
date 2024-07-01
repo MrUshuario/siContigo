@@ -1506,7 +1506,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿Usted ha realizado el cobro correspondiente al último padrón *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
                 Row(
                   children: [
                     const Text(
@@ -1543,7 +1543,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "Usualmente ¿Cada cuánto tiempo cobra la pensión? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
                 Row(
                   children: [
                     const Text(
@@ -1615,7 +1615,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   child:Column(
                     children: <Widget>[
                       HelpersViewLetrasSubs.formItemsDesign( "Normalmente, de los 300 soles de la pensión que recibe ¿Cómo gasta el dinero? *"),
-                      HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
+                      HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
 
                   Row(
                     children: [
@@ -1866,7 +1866,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   child:Column(
                     children: <Widget>[
                       HelpersViewLetrasSubs.formItemsDesign( "¿Por qué no cobra la pensión, cada dos meses? *"),
-                      HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
+                      HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
                       Row(
                         children: [
                           HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Por la distancia y/o tiempo de traslado al punto de cobro."),
@@ -2009,7 +2009,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿La pensión que recibe el usuario, está destinada a sus necesidades: *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
                 Row(
                   children: [
                     const Text(
@@ -2126,7 +2126,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 HelpersViewLetrasRojas.formItemsDesign( "SALUD"),
                 const SizedBox(height: 16.0),
                 HelpersViewLetrasSubs.formItemsDesign( "Actualmente. ¿A qué tipo de establecimiento de Salud, acude con frecuencia? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
                   children: [
@@ -2280,7 +2280,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿Se ha atendido en algún centro de salud/ puesto de salud/posta médica u hospital? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
                 Row(
                   children: [
                     const Text(
@@ -2352,7 +2352,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                         children: <Widget>[
                           const SizedBox(height: 16.0),
                           HelpersViewLetrasSubs.formItemsDesign( "¿Por qué no se atendió en algún centro de salud, puesto de salud/posta médica u hospital? *"),
-                          HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
+                          HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
 
                           Row(
                             children: [
@@ -2509,7 +2509,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                         children: <Widget>[
                           const SizedBox(height: 16.0),
                           HelpersViewLetrasSubs.formItemsDesign( "¿Cuáles son los servicios a los que accede con mayor frecuencia, cuando se atiende en el centro de salud, puesto de salud/posta médica u hospital? *"),
-                          HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
+                          HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
 
                           Row(
                             children: [
@@ -2663,7 +2663,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿Con qué frecuencia se atiende en el centro de salud, puesto de salud/posta médica u hospital?"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
                   children: [
@@ -2793,7 +2793,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿Con quién vive usted? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign("Haga la pregunta directa, OBSERVE, detenidamente el contexto, solo puede marcar una alternativa"
+                HelpersViewLetrasSubs.formItemsDesignGris("Haga la pregunta directa, OBSERVE, detenidamente el contexto, solo puede marcar una alternativa"
                     ", según la percepción del gestor social"),
 
                 Row(
@@ -2889,7 +2889,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
 
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿Usted tiene amigos, familiares, vecinos a los que suele visitar? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
                   children: [
@@ -2932,7 +2932,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   child:Column(
                     children: <Widget>[
 
-                      HelpersViewLetrasSubsGris.formItemsDesign("Marque una opción"),
+                      HelpersViewLetrasSubs.formItemsDesignGris("Marque una opción"),
 
                       const SizedBox(height: 16.0),
 
@@ -2983,7 +2983,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   child:Column(
                     children: <Widget>[
 
-                      HelpersViewLetrasSubsGris.formItemsDesign("Marque una opción"),
+                      HelpersViewLetrasSubs.formItemsDesignGris("Marque una opción"),
                       const SizedBox(height: 16.0),
 
                       Row(
@@ -3050,7 +3050,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿Recibe ayuda en las actividades diarias? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
                   children: [
@@ -3094,7 +3094,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   child:Column(
                   children: <Widget>[
 
-                    HelpersViewLetrasSubsGris.formItemsDesign("Marque una opción"),
+                    HelpersViewLetrasSubs.formItemsDesignGris("Marque una opción"),
                     const SizedBox(height: 16.0),
 
                     Row(
@@ -3173,7 +3173,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                   ])),
                 const SizedBox(height: 16.0),
                 HelpersViewLetrasSubs.formItemsDesign( "¿Cual es el ingreso economico en su hogar? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
 
                 Row(
@@ -3324,7 +3324,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿Que tipo de vivienda tienes? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
                   children: [
@@ -3368,7 +3368,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                     child:Column(
                         children: <Widget>[
 
-                          HelpersViewLetrasSubsGris.formItemsDesign("Marque una opción"),
+                          HelpersViewLetrasSubs.formItemsDesignGris("Marque una opción"),
                           const SizedBox(height: 16.0),
 
                           Row(
@@ -3429,7 +3429,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿El gestor social, ha identificado alguna situación de riesgo? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
                   children: [
@@ -3473,7 +3473,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                     child:Column(
                         children: <Widget>[
 
-                          HelpersViewLetrasSubsGris.formItemsDesign("Marque una opción"),
+                          HelpersViewLetrasSubs.formItemsDesignGris("Marque una opción"),
                           const SizedBox(height: 16.0),
 
                           Row(
@@ -3517,7 +3517,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿De qué temas le interesaría, informase en las siguientes visitas? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.checkAviso),
+                HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
 
                 Row(
                   children: [
@@ -3614,7 +3614,7 @@ class _MenudeOpcionesOffline extends State<MenudeOpcionesOffline> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "A la fecha, la persona usuaria, desarrolla algún tipo de emprendimiento *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
                   children: [

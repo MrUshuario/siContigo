@@ -10,7 +10,7 @@ class HelpersViewBlancoIcon {
           elevation: 0,
           shape: const RoundedRectangleBorder(
             side: BorderSide(
-              color: Colors.red,
+              color: Colors.blue,
               //color: Theme.of(context).colorScheme.outline,
             ),
             borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -30,7 +30,7 @@ class HelpersViewBlancoIcon {
           elevation: 0,
           shape: const RoundedRectangleBorder(
             side: BorderSide(
-              color: Colors.red,
+              color: Colors.blue,
             ),
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),

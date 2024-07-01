@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class HelpersViewLetrasSubsGris {
 
-  static Widget formItemsDesign(String text) {
+  static Widget formItemsDesignGris(String text) {
     return   Row(
       mainAxisAlignment: MainAxisAlignment.start, // Align content to the left
       children: [

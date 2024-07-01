@@ -111,50 +111,36 @@ class _login extends State<login> {
     return MaterialApp(
       debugShowCheckedModeBanner: true, //SACA LA BARRA DEBUG
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(Constants.tituloMenuLogin, style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Color.fromRGBO(23, 50, 172, 1),
-          //leading: Icon(Icons.menu),
-          actions: [
-            /*
-            IconButton(
-              icon: Image.asset(Resources.iconDownload),
-              color: Colors.white,
-              onPressed: () async {
-
-              },
-            ),
-
-            IconButton(
-              icon: Image.asset(Resources.iconDownload),
-              color: Colors.white,
-              onPressed: () async {
-
-              },
-            ),
-            IconButton(
-              icon: Image.asset(Resources.iconCandado),
-              color: Colors.white,
-              onPressed: () {
-
-                },
-            ), */
-          ],
-        ),
+        appBar: null,
         //drawer: const MenuLateral(),
-        body: Center(
-          child: SingleChildScrollView(
-            child: Container(
-              width: 420,
-              margin: const EdgeInsets.symmetric(horizontal: 60.0),
-              child: Form(
-                key: widget.keyForm,
-                child: formUI(),
+        body: Stack(
+          children: [
+            // Background element (replace with your preference)
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              child: Image.asset(
+                Resources.background,
+                fit: BoxFit.cover,
               ),
             ),
-          ),
+
+            // Existing content with Center, SingleChildScrollView, and Container
+            Center(
+              child: SingleChildScrollView(
+                child: Container(
+                  width: 420,
+                  margin: const EdgeInsets.symmetric(horizontal: 60.0),
+                  child: Form(
+                    key: widget.keyForm,
+                    child: formUI(),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
+        /*
         bottomNavigationBar: Container(
           height: 50, // Altura de la barra
           color: Color.fromRGBO(23, 50, 172, 1),
@@ -167,7 +153,7 @@ class _login extends State<login> {
               ),
             ),
           ),
-        ),
+        ),*/
       ),
     );
   }
@@ -349,7 +335,8 @@ class _login extends State<login> {
         Card(
           elevation: 0,
           shape: const RoundedRectangleBorder(
-            side: BorderSide(color: Color.fromARGB(255, 45, 55, 207)), // Red border
+            //side: BorderSide(color: Color.fromARGB(255, 45, 55, 207)), // Red border
+            side: BorderSide(color: Color.fromARGB(255, 30, 144, 255)), // Red border
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Padding(
@@ -467,6 +454,7 @@ class _login extends State<login> {
                       fontSize: 18,
                       fontWeight: FontWeight.w500)),
             ))
+
 
 
       ],

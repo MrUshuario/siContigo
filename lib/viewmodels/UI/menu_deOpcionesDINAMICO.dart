@@ -788,7 +788,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                 const SizedBox(height: 10.0),
 
                 //HelpersViewLetrasSubs.formItemsDesign( "INSERTAR SUB *"),
-                //HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                //HelpersViewLetrasSubs.formItemsDesign(Constants.circleAviso),
 
                 /*  AnimatedInfiniteScrollView<Formulario>( //CAMBIAR LA LISTA POR ITEM
                     viewModel: widget.viewModel,
@@ -1075,7 +1075,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                 HelpersViewLetrasRojas.formItemsDesign( "SALUD"),
                 const SizedBox(height: 16.0),
                 HelpersViewLetrasSubs.formItemsDesign( "Actualmente. ¿A qué tipo de establecimiento de Salud, acude con frecuencia? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesign(Constants.circleAviso),
 
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
@@ -1134,7 +1134,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿Con quién vive usted? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesign(Constants.circleAviso),
 
 
               ],),
@@ -1149,7 +1149,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                 const SizedBox(height: 16.0),
 
                 HelpersViewLetrasSubs.formItemsDesign( "¿Que tipo de vivienda tienes? *"),
-                HelpersViewLetrasSubsGris.formItemsDesign(Constants.circleAviso),
+                HelpersViewLetrasSubs.formItemsDesign(Constants.circleAviso),
 
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,

@@ -389,22 +389,32 @@ late final _appDatabase;
 */
         ],
       ),
-      body: Center (
-        child: SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minWidth: 440.0, // Set your minimum width here
-              maxWidth: double.infinity, // Set your maximum width here
+      body: Stack(
+        children: [
+          // Background element (replace with your preference)
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: Image.asset(
+              Resources.backgroundAzul, // Replace with your image path
+              fit: BoxFit.cover, // Adjust fit as needed
             ),
-            child: Container(
-              margin: const EdgeInsets.all(41.0),
-              child: Form(
-                //key: widget.keyForm,
-                child: formUI(),
+          ),
+
+          // Existing content with Center, SingleChildScrollView, and Container
+          Center(
+            child: SingleChildScrollView(
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.95,
+                margin: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Form(
+                  //key: widget.keyForm,
+                  child: formUI(),
+                ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -1127,10 +1137,7 @@ late final _appDatabase;
   Widget formUI() {
 
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
+
       child: Column(
         children: [
 

@@ -10,7 +10,7 @@ class HelpersViewBlancoSelect {
           elevation: 0,
           shape: const RoundedRectangleBorder(
             side: BorderSide(
-              color: Colors.red,
+              color: Colors.blue,
             ),
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
