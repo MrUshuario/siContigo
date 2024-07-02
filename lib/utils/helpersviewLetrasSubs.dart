@@ -74,6 +74,7 @@ class HelpersViewLetrasSubs {
   }
 
 
+  /*
   static Widget formItemsDesignBLUETooltip(String text, bool showText) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start, // Align content to the left
@@ -92,7 +93,7 @@ class HelpersViewLetrasSubs {
         ),
       ],
     );
-  }
+  }*/
 
 
 }

@@ -21,6 +21,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/resources_apis.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_login.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/viewmodels/form_viewsmodel_formulario.dart';
+import 'package:super_tooltip/super_tooltip.dart';
 import '../../infraestructure/dao/formdatamodeldao_padron.dart';
 import '../../model/t_insertarEncuestaRSPTA.dart';
 import '../../model/t_padron.dart';
@@ -31,6 +32,7 @@ import '../../utils/helpersviewBlancoIcon.dart';
 import '../../utils/helpersviewBlancoSelect.dart';
 import '../../utils/helpersviewLetrasRojas.dart';
 import '../../utils/helpersviewLetrasSubs.dart';
+import '../../utils/helpersviewLetrasToolTip.dart';
 import '../../utils/helperviewCabecera.dart';
 import 'menu_deOpcionesLISTADO.dart';
 
@@ -319,12 +321,12 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     });
   }
 
+  bool p09 = true;
 
   P05Perc? _P05Perc;
   P09Perc? _P09Perc;
   P10Perc? _P10Perc;
   P11Perc? _P11Perc;
-
   P13Perc? _P13Perc;
   P14Perc? _P14Perc;
   P15Perc? _P15Perc;
@@ -416,6 +418,56 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     // TODO: implement initState
     super.initState();
   }
+  final _tip09 = SuperTooltipController();
+  final _tip10 = SuperTooltipController();
+  final _tip11 = SuperTooltipController();
+  final _tip12 = SuperTooltipController();
+  final _tip13 = SuperTooltipController();
+  final _tip14 = SuperTooltipController();
+  final _tip15 = SuperTooltipController();
+  final _tip16 = SuperTooltipController();
+  final _tip17 = SuperTooltipController();
+  final _tip18 = SuperTooltipController();
+  final _tip19 = SuperTooltipController();
+  final _tip20 = SuperTooltipController();
+  final _tip21 = SuperTooltipController();
+  final _tip22 = SuperTooltipController();
+  final _tip23 = SuperTooltipController();
+  final _tip24 = SuperTooltipController();
+  final _tip25 = SuperTooltipController();
+  final _tip26 = SuperTooltipController();
+  final _tip27 = SuperTooltipController();
+  final _tip28 = SuperTooltipController();
+  final _tip29 = SuperTooltipController();
+  final _tip30 = SuperTooltipController();
+  final _tip31 = SuperTooltipController();
+  final _tip32 = SuperTooltipController();
+  final _tip33 = SuperTooltipController();
+  final _tip34 = SuperTooltipController();
+  final _tip35 = SuperTooltipController();
+  final _tip36 = SuperTooltipController();
+  final _tip37 = SuperTooltipController();
+  final _tip38 = SuperTooltipController();
+  final _tip39 = SuperTooltipController();
+  final _tip40 = SuperTooltipController();
+  final _tip41 = SuperTooltipController();
+  final _tip42 = SuperTooltipController();
+  final _tip43 = SuperTooltipController();
+  final _tip44 = SuperTooltipController();
+  final _tip45 = SuperTooltipController();
+  final _tip46 = SuperTooltipController();
+  final _tip47 = SuperTooltipController();
+  final _tip48 = SuperTooltipController();
+  final _tip49 = SuperTooltipController();
+  final _tip50 = SuperTooltipController();
+  final _tip51 = SuperTooltipController();
+  final _tip52 = SuperTooltipController();
+  final _tip53 = SuperTooltipController();
+  final _tip54 = SuperTooltipController();
+  final _tip55 = SuperTooltipController();
+  final _tip56 = SuperTooltipController();
+  final _tip57 = SuperTooltipController();
+
 
   bool isSatelliteGreen = false;
 
@@ -1839,12 +1891,10 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     HelpersViewLetrasRojas.formItemsDesign( "Datos de la persona con discapacidad"),
                     const SizedBox(height: 16.0),
 
-
-
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al informante del hogar y solicitar entrevistar a la persona con discapacidad, consultar si la está en condiciones de responder, caso contrario solicitar que esté presente el cuidador/a para apoyar en la entrevista."),
-                    HelpersViewLetrasSubs.formItemsDesign( "08) ¿Hay alguna persona con discapacidad en este hogar?"),
+                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al informante del hogar y solicitar entrevistar a la persona con discapacidad, consultar si la está en condiciones de responder, caso contrario solicitar que esté presente el cuidador/a para apoyar en la entrevista.",
+                        controller: _tip09),
+                    HelpersViewLetrasSubs.formItemsDesign( "09) ¿Hay alguna persona con discapacidad en este hogar?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
-
 
                     Row(
                       children: [
@@ -1892,9 +1942,10 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta a la persona con discapacidad o cuidador/a.\n"
-                        "●Finalizar la encuesta si la persona señala que no es usuario/a del programa."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿La persona con discapacidad es usuario/a del Programa CONTIGO?"),
+                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta a la persona con discapacidad o cuidador/a.\n"
+                        "●Finalizar la encuesta si la persona señala que no es usuario/a del programa.",
+                        controller: _tip10),
+                    HelpersViewLetrasSubs.formItemsDesign( "10) ¿La persona con discapacidad es usuario/a del Programa CONTIGO?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -1950,10 +2001,13 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
 
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+
+                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
                                   "●	Miembro del hogar: Es la persona pariente o no que reside en la vivienda, comparten al menos las comidas principales y/o "
-                                  "tienen en común otras necesidades básicas, con cargo a un presupuesto común (comen de una misma olla)."),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿El/la usuario/a del programa es miembro del hogar?"),
+                                  "tienen en común otras necesidades básicas, con cargo a un presupuesto común (comen de una misma olla).",
+                                  controller: _tip11),
+
+                              HelpersViewLetrasSubs.formItemsDesign( "11) ¿El/la usuario/a del programa es miembro del hogar?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -1990,8 +2044,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
 
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a."),
-                              HelpersViewLetrasSubs.formItemsDesign( "El/la usuario/a del programa ¿Qué edad tiene en años cumplidos?"),
+                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
+                                  controller: _tip12),
+                              HelpersViewLetrasSubs.formItemsDesign( "12) El/la usuario/a del programa ¿Qué edad tiene en años cumplidos?"),
 
                               Row(
                                 children: [
@@ -2020,8 +2075,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
 
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Registrar por observación. De ser el caso realizar la pregunta al usuario/a o cuidador/a. "),
-                              HelpersViewLetrasSubs.formItemsDesign( "Sexo del usuario/a del programa"),
+                              HelpersViewLetrasToolTip(message: "●	Registrar por observación. De ser el caso realizar la pregunta al usuario/a o cuidador/a. ",
+                                  controller: _tip13),
+                              HelpersViewLetrasSubs.formItemsDesign( "13) Sexo del usuario/a del programa"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -2058,8 +2114,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
 
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a."),
-                              HelpersViewLetrasSubs.formItemsDesign( "Actualmente ¿Cuenta con DNI?"),
+                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
+                                  controller: _tip14),
+                              HelpersViewLetrasSubs.formItemsDesign( "14) Actualmente ¿Cuenta con DNI?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -2100,8 +2157,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               HelpersViewLetrasRojas.formItemsDesign( "Datos del cuidador"),
 
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a."),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿La persona con discapacidad tiene cuidador?"),
+                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
+                                  controller: _tip15),
+                              HelpersViewLetrasSubs.formItemsDesign( "15) ¿La persona con discapacidad tiene cuidador?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -2139,9 +2197,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
 
                               const SizedBox(height: 16.0),
-
-                              HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas."),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Cuál es la relación de parentesco del/de la cuidador/a con e/la usuario/a del Programa CONTIGO?"),
+                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas.",
+                                  controller: _tip16),
+                              HelpersViewLetrasSubs.formItemsDesign( "16) ¿Cuál es la relación de parentesco del/de la cuidador/a con e/la usuario/a del Programa CONTIGO?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -2382,12 +2440,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                   )),
 
                               const SizedBox(height: 16.0),
-
-                              HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a\n"
+                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a\n"
                                   "●	Miembro del hogar: Es la persona pariente o no que reside en la vivienda, comparten al menos "
-                                  "las comidas principales y/o tienen en común otras necesidades básicas, con cargo a un presupuesto común (comen de una misma olla)."
-                              ),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿El/la cuidador/a es miembro del hogar?"),
+                                  "las comidas principales y/o tienen en común otras necesidades básicas, con cargo a un presupuesto común (comen de una misma olla).",
+                                  controller: _tip17),
+                              HelpersViewLetrasSubs.formItemsDesign( "17) ¿El/la cuidador/a es miembro del hogar?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -2426,11 +2483,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
 
                               const SizedBox(height: 16.0),
-
-                              HelpersViewLetrasSubs.formItemsDesignBLUE( "● Realizar la pregunta al usuario/a o cuidador/a. \n"
+                              HelpersViewLetrasToolTip(message: "● Realizar la pregunta al usuario/a o cuidador/a. \n"
                                   "●	Si el usuario/a indica que él solo realiza el cobro, marcar la opción 2. Recordar que el cuidador/a no necesariamente es la persona autorizada para el cobro. "
-                              ),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿El/la cuidador/a es el autorizado para realizar el cobro del dinero del Programa CONTIGO?"),
+                                  ,
+                                  controller: _tip18),
+                              HelpersViewLetrasSubs.formItemsDesign( "18) ¿El/la cuidador/a es el autorizado para realizar el cobro del dinero del Programa CONTIGO?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -2469,9 +2526,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
 
                               const SizedBox(height: 16.0),
-
-                              HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a."),
-                              HelpersViewLetrasSubs.formItemsDesign( "El/la cuidador/a ¿Qué edad tiene en años cumplidos?"),
+                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
+                                  controller: _tip19),
+                              HelpersViewLetrasSubs.formItemsDesign( "19) El/la cuidador/a ¿Qué edad tiene en años cumplidos?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -2501,9 +2558,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
 
                               const SizedBox(height: 16.0),
-
-                              HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Registrar por observación, de ser el caso realizar la pregunta al usuario/a o cuidador/a. "),
-                              HelpersViewLetrasSubs.formItemsDesign( "Sexo del cuidador/a"),
+                              HelpersViewLetrasToolTip(message: "●	Registrar por observación, de ser el caso realizar la pregunta al usuario/a o cuidador/a. ",
+                                  controller: _tip20),
+                              HelpersViewLetrasSubs.formItemsDesign( "20) Sexo del cuidador/a"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -2540,9 +2597,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
 
                               const SizedBox(height: 16.0),
-
-                              HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a."),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿El cuidador ha recibido capacitación en prácticas de cuidado, atención y trato adecuado a las personas con discapacidad?"),
+                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
+                                  controller: _tip21),
+                              HelpersViewLetrasSubs.formItemsDesign( "21) ¿El cuidador ha recibido capacitación en prácticas de cuidado, atención y trato adecuado a las personas con discapacidad?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -2581,9 +2638,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
 
                               const SizedBox(height: 16.0),
-
-                              HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a."),
-                              HelpersViewLetrasSubs.formItemsDesign("¿De quién recibió la capacitación?"),
+                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
+                                  controller: _tip22),
+                              HelpersViewLetrasSubs.formItemsDesign("22) ¿De quién recibió la capacitación?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -2821,10 +2878,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     HelpersViewLetrasRojas.formItemsDesign( "III) Características del Hogar"),
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas.\n"
+                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas.\n"
                         "●	Jefe del hogar: Es la persona, a quien los miembros del hogar reconocen como tal y reside habitualmente en la vivienda, usualmente es la persona mayor de 18 años,"
-                        " sostén económico del hogar y/o responsable de las decisiones y administración de este."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Cuál es la relación de parentesco del usuario/a del Programa CONTIGO con el jefe o jefa del hogar?"),
+                        " sostén económico del hogar y/o responsable de las decisiones y administración de este.",
+                        controller: _tip23),
+                    HelpersViewLetrasSubs.formItemsDesign( "23) ¿Cuál es la relación de parentesco del usuario/a del Programa CONTIGO con el jefe o jefa del hogar?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -3011,8 +3069,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         )),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. "),
-                    HelpersViewLetrasSubs.formItemsDesign( "Sexo del jefe/a del hogar"),
+                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. ",
+                        controller: _tip24),
+                    HelpersViewLetrasSubs.formItemsDesign( "24) Sexo del jefe/a del hogar"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -3052,7 +3111,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     const SizedBox(height: 16.0),
                     //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. "),
-                    HelpersViewLetrasSubs.formItemsDesign( "En los últimos 6 meses ¿Con quién vive el usuario/a del Programa CONTIGO?"),
+                    HelpersViewLetrasSubs.formItemsDesign( "25) En los últimos 6 meses ¿Con quién vive el usuario/a del Programa CONTIGO?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -3288,11 +3347,10 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     HelpersViewLetrasRojas.formItemsDesign( "III) Perceción de la calidad de vida"),
                     const SizedBox(height: 16.0),
-
-
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario: Calidad de vida es …\n"
-                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Cómo crees que ha sido tu calidad de vida   en los últimos 30 días?"),
+                    HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario: Calidad de vida es …\n"
+                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5.",
+                        controller: _tip28),
+                    HelpersViewLetrasSubs.formItemsDesign( "28) ¿Cómo crees que ha sido tu calidad de vida   en los últimos 30 días?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -3385,11 +3443,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                       ],
                     ),
                     const SizedBox(height: 16.0),
-
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
+                    HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
                         "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.\n"
-                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5."),
-                    HelpersViewLetrasSubs.formItemsDesign( "En la actualidad, dirías que tu salud es …"),
+                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5.",
+                        controller: _tip29),
+                    HelpersViewLetrasSubs.formItemsDesign( "29) En la actualidad, dirías que tu salud es …"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -4354,10 +4412,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     //FIN DE LOS QUE NO ENTIENDO BIEN
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente "
+                    HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente "
                         "enunciado al Usuario:“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.\n"
-                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Qué tan satisfecho/a estás con el apoyo que tienes de tus familiares?"),
+                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5.",
+                        controller: _tip34),
+                    HelpersViewLetrasSubs.formItemsDesign( "34) ¿Qué tan satisfecho/a estás con el apoyo que tienes de tus familiares?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -4451,10 +4510,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
                         "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
-                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Tiene amigos que lo visitan en su casa?"),
+                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.",
+                        controller: _tip35),
+                    HelpersViewLetrasSubs.formItemsDesign( "35) ¿Tiene amigos que lo visitan en su casa?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -4530,10 +4590,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
                         "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
-                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Sientes que tienes alguna persona que te exprese afecto y ánimo?"),
+                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.",
+                        controller: _tip36),
+                    HelpersViewLetrasSubs.formItemsDesign( "36) ¿Sientes que tienes alguna persona que te exprese afecto y ánimo?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -4609,10 +4670,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
                         "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
-                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Sientes que tienes alguna persona que te aliente a expresar tus ideas y pensamientos?"),
+                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.",
+                        controller: _tip37),
+                    HelpersViewLetrasSubs.formItemsDesign( "37) ¿Sientes que tienes alguna persona que te aliente a expresar tus ideas y pensamientos?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -4688,10 +4750,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
                         "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
-                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Sientes que tienes alguna persona que te pueda prestar ayuda económica?"),
+                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.",
+                        controller: _tip38),
+                    HelpersViewLetrasSubs.formItemsDesign( "38) ¿Sientes que tienes alguna persona que te pueda prestar ayuda económica?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -4767,10 +4830,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
                         "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
-                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Sientes que tienes alguna persona a la cual le puedas contarle tus problemas?"),
+                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.",
+                        controller: _tip39),
+                    HelpersViewLetrasSubs.formItemsDesign( "39) ¿Sientes que tienes alguna persona a la cual le puedas contarle tus problemas?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -4846,11 +4910,12 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                    HelpersViewLetrasToolTip(message:"●	Realizar la pregunta al usuario/a o cuidador/a.\n"
                         "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
                         "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.\n"
-                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Qué tan satisfecho/a estás contigo mismo(a)?"),
+                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5.",
+                        controller: _tip40),
+                    HelpersViewLetrasSubs.formItemsDesign( "40) ¿Qué tan satisfecho/a estás contigo mismo(a)?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -4944,10 +5009,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "● Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
+                    HelpersViewLetrasToolTip(message: "● Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
                         "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.\n"
-                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 3. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 4."),
-                    HelpersViewLetrasSubs.formItemsDesign( "Desde que estás en el Programa CONTIGO, consideras que tu situación económica"),
+                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 3. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 4.",
+                        controller: _tip41),
+                    HelpersViewLetrasSubs.formItemsDesign( "41) Desde que estás en el Programa CONTIGO, consideras que tu situación económica"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -4993,7 +5059,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Radio<P41Perc>(
-                            value: P41Perc.hamejorado,
+                            value: P41Perc.haempeorado,
                             groupValue: _P41Perc,
                             onChanged: (P41Perc? value) {
                               setState(() {
@@ -5011,7 +5077,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Radio<P41Perc>(
-                            value: P41Perc.hamejorado,
+                            value: P41Perc.nosabe,
                             groupValue: _P41Perc,
                             onChanged: (P41Perc? value) {
                               setState(() {
@@ -5023,14 +5089,15 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Dejar que el Usuario se tome su tiempo para pensar en la respuesta y de ser "
+                    HelpersViewLetrasToolTip(message: "●	Dejar que el Usuario se tome su tiempo para pensar en la respuesta y de ser "
                         "necesario repetirle la pregunta. Recuerde que no debe leer las alternativas.\n"
                         "●	No debe de inducir o sugerir respuestas a la pregunta formulada, como darle ejemplos. Solo si es necesario podría precisar al usuario/a que se le pregunta"
                         " sobre el principal problema en su hogar que lo ha tenido preocupado en este año.\n"
                         "● Si la respuesta es distinta a las presentadas, seleccione “Otro” (Especifique) y registre la información correspondiente.\n"
                         "●	Se debe indagar en la respuesta brindada y de acuerdo a orden de importancia marcar las tres principales preocupaciones.\n"
-                        "●	Puede haber 3, 2, 1 o ninguna preocupación. "),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Cuáles han sido las mayores preocupaciones que han afectado tu bienestar durante el transcurso de este año 2024?"),
+                        "●	Puede haber 3, 2, 1 o ninguna preocupación. ",
+                        controller: _tip42),
+                    HelpersViewLetrasSubs.formItemsDesign( "42) ¿Cuáles han sido las mayores preocupaciones que han afectado tu bienestar durante el transcurso de este año 2024?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     //BOTON DE SUBIR
@@ -5083,10 +5150,10 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     //MODULO IV
 
                     HelpersViewLetrasRojas.formItemsDesign( "IV) Acceso a la pensión no contributativa"),
-
+                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
+                        controller: _tip43),
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Conoce la última fecha de pago o cronograma de pagos de la pensión del Programa CONTIGO?"),
+                    HelpersViewLetrasSubs.formItemsDesign( "43) ¿Conoce la última fecha de pago o cronograma de pagos de la pensión del Programa CONTIGO?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAvisoNO),
 
                     Row(
@@ -5123,9 +5190,10 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
-                        "●	Indagar sobre la respuesta brindada y marcar la que más se asemeje."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Cómo se informó para saber la última fecha de pago o el cronograma de pagos de la Pensión del Programa CONTIGO?"),
+                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.\n"
+                        "●	Indagar sobre la respuesta brindada y marcar la que más se asemeje.",
+                        controller: _tip44),
+                    HelpersViewLetrasSubs.formItemsDesign( "44) ¿Cómo se informó para saber la última fecha de pago o el cronograma de pagos de la Pensión del Programa CONTIGO?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAvisoNO),
 
                     Row(
@@ -5276,11 +5344,12 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         )),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Si la respuesta del Usuario/a es diferente a las alternativas comprendidas entre el código 1 y el 4, "
+                    HelpersViewLetrasToolTip(message: "●	Si la respuesta del Usuario/a es diferente a las alternativas comprendidas entre el código 1 y el 4, "
                         "seleccione el código 5 “Otro” (Especifique) y registre la información correspondiente.\n"
                         "●	En el caso que el Usuario responda con el nombre de un mes en particular, marcar según la opción que corresponda.\n"
-                        "●	Recuerde realizar el cálculo (en meses) según la respuesta que brinde el usuario/a."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Cuándo fue la última vez que cobraste tu pensión del Programa CONTIGO?"),
+                        "●	Recuerde realizar el cálculo (en meses) según la respuesta que brinde el usuario/a.",
+                        controller: _tip45),
+                    HelpersViewLetrasSubs.formItemsDesign( "45) ¿Cuándo fue la última vez que cobraste tu pensión del Programa CONTIGO?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAvisoNO),
 
                     Row(
@@ -5395,9 +5464,10 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         )),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Si es necesario, al realizar la pregunta precisar que la última fecha de pago se refiere a los últimos 2 meses o menos.\n"
-                        "● Si la respuesta del Usuario es diferente a las alternativas comprendidas entre el código 1 y el 6, seleccione el código 7 “Otro” (Especifique) y registre la información correspondiente."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Por qué razón no cobraste tu pensión del Programa CONTIGO en la última fecha de pago?"),
+                    HelpersViewLetrasToolTip(message: "●	Si es necesario, al realizar la pregunta precisar que la última fecha de pago se refiere a los últimos 2 meses o menos.\n"
+                        "● Si la respuesta del Usuario es diferente a las alternativas comprendidas entre el código 1 y el 6, seleccione el código 7 “Otro” (Especifique) y registre la información correspondiente.",
+                        controller: _tip46),
+                    HelpersViewLetrasSubs.formItemsDesign( "46) ¿Por qué razón no cobraste tu pensión del Programa CONTIGO en la última fecha de pago?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAvisoNO),
 
                     Row(
@@ -5548,8 +5618,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         )),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro. \n"),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Quién realiza el cobro de su pensión del Programa CONTIGO?"),
+                    HelpersViewLetrasToolTip(message: "●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro.",
+                        controller: _tip47),
+                    HelpersViewLetrasSubs.formItemsDesign( "47) ¿Quién realiza el cobro de su pensión del Programa CONTIGO?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -5643,10 +5714,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Si en el último pago tuvo contratiempos (problemas en las vías u otro) deberá de repreguntar por el tiempo que suele "
+                    HelpersViewLetrasToolTip(message: "●	Si en el último pago tuvo contratiempos (problemas en las vías u otro) deberá de repreguntar por el tiempo que suele "
                         "demorarse normalmente, donde no se da dichos contratiempos.\n"
-                        "●	Sondear el tiempo y marcar la respuesta más idónea."),
-                    HelpersViewLetrasSubs.formItemsDesign( "La última vez que cobraste tu pensión del Programa, ya sea de manera personal o a través de tu "
+                        "●	Sondear el tiempo y marcar la respuesta más idónea.",
+                        controller: _tip48),
+                    HelpersViewLetrasSubs.formItemsDesign( "48) La última vez que cobraste tu pensión del Programa, ya sea de manera personal o a través de tu "
                         "familiar autorizado, o con el apoyo de otra persona ¿Cuánto tiempo demoró para llegar al lugar de pago?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAvisoIDA),
 
@@ -5723,12 +5795,13 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE("●	De mencionar el usuario dos o más medios de movilización, deberá precisar que responda solo el "
+                    HelpersViewLetrasToolTip(message: "●	De mencionar el usuario dos o más medios de movilización, deberá precisar que responda solo el "
                         "medio de transporte donde viaja más tiempo. "
                         "●	Si la respuesta del Usuario es diferente a las alternativas comprendidas entre el código 1 y el 10, seleccione el código 11 “Otro” "
                         "(Especifique) y registre la información correspondiente.\n"
-                        "●	Sondear el tiempo y marcar la respuesta más idónea."),
-                    HelpersViewLetrasSubs.formItemsDesign( "La última vez que cobraste tu pensión del Programa ya sea de manera "
+                        "●	Sondear el tiempo y marcar la respuesta más idónea.",
+                        controller: _tip49),
+                    HelpersViewLetrasSubs.formItemsDesign( "49) La última vez que cobraste tu pensión del Programa ya sea de manera "
                         "personal o a través de tu familiar autorizado, o con el apoyo de otra persona, "
                         "¿Cómo te movilizaste o cómo se movilizó tu familiar o cómo se movilizaron para llegar al lugar de pago? "),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAvisoMEDIO),
@@ -5935,12 +6008,13 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         )),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE("●	Considerar todos los medios de transporte que tuvieron algún costo "
+                    HelpersViewLetrasToolTip(message: "●	Considerar todos los medios de transporte que tuvieron algún costo "
                         "para el Usuario/a, tanto de ida como de retorno a su vivienda.\n"
                         "●	Recuerde registrar: Si no realiza gasto alguno anote en la respuesta cero “0”. "
                         "Si no recuerda el monto gastado en la última vez registre “9999”.\n"
-                        "●	Si la persona va a pie al lugar de pago, debe registrar cero “0”."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Cuánto gastaste o cuanto gastó tu familiar o cuánto gastaron en transporte de manera conjunta la última vez que "
+                        "●	Si la persona va a pie al lugar de pago, debe registrar cero “0”.",
+                        controller: _tip50),
+                    HelpersViewLetrasSubs.formItemsDesign( "50) ¿Cuánto gastaste o cuanto gastó tu familiar o cuánto gastaron en transporte de manera conjunta la última vez que "
                         "acudieron a cobrar el dinero del Programa?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAvisoPasaje),
 
@@ -5965,8 +6039,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE("●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro."),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Bajo qué modalidad cobró la última vez el dinero otorgado por el Programa?"),
+                    HelpersViewLetrasToolTip(message: "●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro.",
+                        controller: _tip51),
+                    HelpersViewLetrasSubs.formItemsDesign( "51) ¿Bajo qué modalidad cobró la última vez el dinero otorgado por el Programa?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
 
                     Row(
@@ -6060,13 +6135,13 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE("●	Dejar que el Usuario se tome su tiempo para pensar en la respuesta y de ser "
+                    HelpersViewLetrasToolTip(message: "●	Dejar que el Usuario se tome su tiempo para pensar en la respuesta y de ser "
                         "necesario repetirle la pregunta. Recuerde que no debe leer las alternativas.\n"
                         "●	No debe de inducir o sugerir respuestas a la pregunta formulada, ni brindarle algunas alternativas como ejemplo.\n"
                         "●	Si la respuesta del Usuario es diferente a las alternativas comprendidas entre el código 1 y el 11, seleccione el código 12 "
-                        "“Otro” (Especifique) y registre la información correspondiente."),
-
-                    HelpersViewLetrasSubs.formItemsDesign( "De acuerdo a la modalidad que cobra el dinero del Programa, actualmente, "
+                        "“Otro” (Especifique) y registre la información correspondiente.",
+                        controller: _tip52),
+                    HelpersViewLetrasSubs.formItemsDesign( "52) De acuerdo a la modalidad que cobra el dinero del Programa, actualmente, "
                         "¿Se presenta algún problema cada vez que cobra su pensión?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAvisoNo),
 
@@ -6309,9 +6384,10 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE("●	La respuesta la puede brindar el usuario del programa, "
-                        "su cuidador o familiar autorizado para el cobro."),
-                    HelpersViewLetrasSubs.formItemsDesign( "Cada vez que vas a cobrar tu dinero del Programa, ¿Se te hace difícil, o "
+                    HelpersViewLetrasToolTip(message: "●	La respuesta la puede brindar el usuario del programa, "
+                        "su cuidador o familiar autorizado para el cobro.",
+                        controller: _tip53),
+                    HelpersViewLetrasSubs.formItemsDesign( "53) Cada vez que vas a cobrar tu dinero del Programa, ¿Se te hace difícil, o "
                         "se le hace difícil a tu familiar, o se les hace difícil llegar al lugar de pago?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
@@ -6349,17 +6425,15 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE("●	Dejar que el Usuario se tome su tiempo para pensar en la respuesta y de ser "
+                    HelpersViewLetrasToolTip(message: "●	Dejar que el Usuario se tome su tiempo para pensar en la respuesta y de ser "
                         "necesario repetirle la pregunta. Recuerde que no debe leer las alternativas.\n"
                         "●	Si la respuesta es distinta a las presentadas, seleccione “Otro” (Especifique) y registre la información correspondiente.\n"
                         "●	Se debe indagar en la respuesta brindada y de acuerdo a orden de importancia marcar los tres principales motivos.\n"
                         "●	Precisar que la dificultad debe estar referida al traslado del usuario/a al lugar de pago.\n"
-                        "●	Puede haber 3, 2, 1 o ninguna preocupación.\n"),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Cuáles son los tres principales motivos por los que se le hace difícil llegar al lugar de pago?"),
+                        "●	Puede haber 3, 2, 1 o ninguna preocupación.",
+                        controller: _tip54),
+                    HelpersViewLetrasSubs.formItemsDesign( "54) ¿Cuáles son los tres principales motivos por los que se le hace difícil llegar al lugar de pago?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
-
-
-
 
 
                     GestureDetector(
@@ -6410,10 +6484,10 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                   children: <Widget>[
 
                     HelpersViewLetrasRojas.formItemsDesign( "V) Módulo del dinero"),
-
+                    HelpersViewLetrasToolTip(message: "●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro.",
+                        controller: _tip55),
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE("●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro."),
-                    HelpersViewLetrasSubs.formItemsDesign( "Normalmente, usted (usuario del Programa) decide sobre el uso o destino del cobro del dinero del Programa"),
+                    HelpersViewLetrasSubs.formItemsDesign( "55) Normalmente, usted (usuario del Programa) decide sobre el uso o destino del cobro del dinero del Programa"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -6450,8 +6524,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE("●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro."),
-                    HelpersViewLetrasSubs.formItemsDesign( "En caso que usted no administre ni participa en el uso del dinero ¿Quién lo realiza?"),
+                    HelpersViewLetrasToolTip(message: "●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro.",
+                        controller: _tip56),
+                    HelpersViewLetrasSubs.formItemsDesign( "56) En caso que usted no administre ni participa en el uso del dinero ¿Quién lo realiza?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -6488,13 +6563,14 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     ),
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasSubs.formItemsDesignBLUE("●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro.\n"
+                    HelpersViewLetrasToolTip(message: "●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro.\n"
                         "●	Es importante recalcar al Usuario/a que la pregunta se refiere al gasto que normalmente realiza con la pensión que cobró.\n"
                         "●	Si la respuesta del Usuario es diferente a las alternativas comprendidas entre el código 1 y el 9, "
                         "seleccione el código 10 “Otro” (Especifique) y registre la información correspondiente.\n"
                         "●	La alternativa de “Invierte en negocio / activos productivos” considera el inicio de un "
-                        "emprendimiento o la compra de herramientas, semillas o animales que le sirva de insumos para una actividad productiva."),
-                    HelpersViewLetrasSubs.formItemsDesign( "Normalmente, ¿En qué se gasta principalmente el dinero que recibes del Programa?"),
+                        "emprendimiento o la compra de herramientas, semillas o animales que le sirva de insumos para una actividad productiva.",
+                        controller: _tip57),
+                    HelpersViewLetrasSubs.formItemsDesign( "57) Normalmente, ¿En qué se gasta principalmente el dinero que recibes del Programa?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAvisoPrincipal),
 
                     Row(
