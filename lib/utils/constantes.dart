@@ -10,6 +10,7 @@ class Constants {
   //MENSAJES
   static const String faltanCampos = "Termine de seleccionar los campos obligatorios";
   static const String circleAviso = "(Leer las alternativas) (marcar solo una alternativa)";
+  static const String circleAvisoVarios = "(Leer alternativas) (Puede marcar más de una)";
   static const String circleAvisoPrincipal = "(Leer las alternativas) (marcar solo una alternativa)";
   static const String circleAvisoNO = "(Leer las alternativas) (marcar solo una alternativa)";
   static const String checkAviso = "(Leer las alternativas) (puede escribir en más de una alternativa) ";

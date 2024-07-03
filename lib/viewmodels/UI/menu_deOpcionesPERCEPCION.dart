@@ -92,6 +92,11 @@ class MenudeOpcionesPercepcion extends StatefulWidget {
   TextEditingController P57EspecificarPerc = TextEditingController();
   final ParamP57EspecificarPerc = List.filled(3, "", growable: false);
 
+  TextEditingController P42EspecificarPerc = TextEditingController();
+  final ParamP42EspecificarPerc = List.filled(3, "", growable: false);
+  TextEditingController P54EspecificarPerc = TextEditingController();
+  final ParamP54EspecificarPerc = List.filled(3, "", growable: false);
+
   //BACKUP
   bool backup = false;
 
@@ -382,6 +387,32 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
   P51Perc? _P51Perc;
 
+  bool P42Perc01Salud = false;
+  bool P42Perc02Salud = false;
+  bool P42Perc03Salud = false;
+  bool P42Perc01SaludF = false;
+  bool P42Perc02SaludF = false;
+  bool P42Perc03SaludF = false;
+  bool P42Perc01Dinero = false;
+  bool P42Perc02Dinero = false;
+  bool P42Perc03Dinero = false;
+  bool P42Perc01ProblemasF = false;
+  bool P42Perc02ProblemasF = false;
+  bool P42Perc03ProblemasF = false;
+  bool P42Perc01Falta = false;
+  bool P42Perc02Falta = false;
+  bool P42Perc03Falta = false;
+  bool P42Perc01ProblemasV = false;
+  bool P42Perc02ProblemasV = false;
+  bool P42Perc03ProblemasV = false;
+  bool P42Perc01Estudio= false;
+  bool P42Perc02Estudio= false;
+  bool P42Perc03Estudio= false;
+  bool P42Perc01Otro= false;
+  bool P42Perc02Otro= false;
+  bool P42Perc03Otro= false;
+  bool P42Perc03SinPreocupaciones= false;
+
   //P52Perc? _P52Perc; ES CHECK
   bool P52Perc01 = false;
   bool P52Perc02 = false;
@@ -398,6 +429,28 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
 
   P53Perc? _P53Perc;
+
+  bool P54Perc01Distancia = false;
+  bool P54Perc02Distancia = false;
+  bool P54Perc03Distancia = false;
+  bool P54Perc01Fisico = false;
+  bool P54Perc02Fisico = false;
+  bool P54Perc03Fisico = false;
+  bool P54Perc01Ausencia= false;
+  bool P54Perc02Ausencia= false;
+  bool P54Perc03Ausencia= false;
+  bool P54Perc01Requiere = false;
+  bool P54Perc02Requiere = false;
+  bool P54Perc03Requiere = false;
+  bool P54Perc01Clima = false;
+  bool P54Perc02Clima = false;
+  bool P54Perc03Clima = false;
+  bool P54Perc01Terreno = false;
+  bool P54Perc02Terreno = false;
+  bool P54Perc03Terreno = false;
+  bool P54Perc01Otro = false;
+  bool P54Perc02Otro = false;
+  bool P54Perc03Otro = false;
 
   P55Perc? _P55Perc;
   P56Perc? _P56Perc;
@@ -3216,7 +3269,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                               const SizedBox(height: 16.0),
                               //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. "),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Vive con otros familiares (como tío/as, primo/as, etc.)?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "26) ¿Vive con otros familiares (como tío/as, primo/as, etc.)?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -3254,7 +3307,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                               const SizedBox(height: 16.0),
                               //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. "),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Vive con otros familiares y/u otras personas que nos son parte de su familia (como hermanastro/as, madrina, etc.)?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "27) ¿Vive con otros familiares y/u otras personas que nos son parte de su familia (como hermanastro/as, madrina, etc.)?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -5098,7 +5151,477 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         "●	Puede haber 3, 2, 1 o ninguna preocupación. ",
                         controller: _tip42),
                     HelpersViewLetrasSubs.formItemsDesign( "42) ¿Cuáles han sido las mayores preocupaciones que han afectado tu bienestar durante el transcurso de este año 2024?"),
-                    HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+                    HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAvisoVarios),
+                    HelpersViewLetrasSubs.formItemsDesign("Mi estado de salud (física, psicológica)"),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc01Salud ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Salud  = false;
+                              P42Perc02Salud  = false;
+                              P42Perc01Salud =  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc02Salud ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Salud  = false;
+                              P42Perc02Salud  = value!;
+                              P42Perc01Salud =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc03Salud ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Salud  = value!;
+                              P42Perc02Salud  = true;
+                              P42Perc01Salud  = true;
+                            });
+                          },
+                        ),
+                        ],
+                    ),
+
+                    HelpersViewLetrasSubs.formItemsDesign("La salud de mis familiares"),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc01SaludF ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03SaludF  = false;
+                              P42Perc02SaludF  = false;
+                              P42Perc01SaludF =  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc02SaludF ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03SaludF  = false;
+                              P42Perc02SaludF  = value!;
+                              P42Perc01SaludF =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc03SaludF ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03SaludF  = value!;
+                              P42Perc02SaludF  = true;
+                              P42Perc01SaludF  = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+
+                    HelpersViewLetrasSubs.formItemsDesign("No tener el suficiente dinero los alimentos de mi hogar"),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc01Dinero ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Dinero  = false;
+                              P42Perc02Dinero  = false;
+                              P42Perc01Dinero =  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc02Dinero ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Dinero  = false;
+                              P42Perc02Dinero  = value!;
+                              P42Perc01Dinero =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc03Dinero ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Dinero  = value!;
+                              P42Perc02Dinero  = true;
+                              P42Perc01Dinero  = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+
+                    HelpersViewLetrasSubs.formItemsDesign("Los problemas familiares"),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc01ProblemasF ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03ProblemasF  = false;
+                              P42Perc02ProblemasF  = false;
+                              P42Perc01ProblemasF =  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc02ProblemasF ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03ProblemasF  = false;
+                              P42Perc02ProblemasF  = value!;
+                              P42Perc01ProblemasF =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc03ProblemasF ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03ProblemasF  = value!;
+                              P42Perc02ProblemasF  = true;
+                              P42Perc01ProblemasF  = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+
+                    HelpersViewLetrasSubs.formItemsDesign("La falta de trabajo o negocio"),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc01Falta ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Falta  = false;
+                              P42Perc02Falta  = false;
+                              P42Perc01Falta =  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc02Falta ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Falta  = false;
+                              P42Perc02Falta  = value!;
+                              P42Perc01Falta =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc03Falta ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Falta  = value!;
+                              P42Perc02Falta  = true;
+                              P42Perc01Falta  = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+
+                    HelpersViewLetrasSubs.formItemsDesign("Problemas con mis vecinos/comunidad"),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc01ProblemasV ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03ProblemasV  = false;
+                              P42Perc02ProblemasV  = false;
+                              P42Perc01ProblemasV =  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc02ProblemasV ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03ProblemasV  = false;
+                              P42Perc02ProblemasV  = value!;
+                              P42Perc01ProblemasV =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc03ProblemasV ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03ProblemasV  = value!;
+                              P42Perc02ProblemasV  = true;
+                              P42Perc01ProblemasV  = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+
+                    HelpersViewLetrasSubs.formItemsDesign("No estudiar (en el colegio, instituto o universidad)"),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc01Estudio ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Estudio = false;
+                              P42Perc02Estudio = false;
+                              P42Perc01Estudio=  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc02Estudio ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Estudio  = false;
+                              P42Perc02Estudio  = value!;
+                              P42Perc01Estudio =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc03Estudio ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Estudio  = value!;
+                              P42Perc02Estudio  = true;
+                              P42Perc01Estudio  = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+
+                    HelpersViewLetrasSubs.formItemsDesign("Otro (especifique): "),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc01Otro ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Otro = false;
+                              P42Perc02Otro = false;
+                              P42Perc01Otro=  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc02Otro ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Otro  = false;
+                              P42Perc02Otro  = value!;
+                              P42Perc01Otro =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc03Otro ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03Otro  = value!;
+                              P42Perc02Otro  = true;
+                              P42Perc01Otro  = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    Visibility(
+                        visible: (P42Perc01Otro || P42Perc02Otro || P42Perc03Otro),
+                        child:Column(
+                            children: <Widget>[
+                              HelpersViewBlancoIcon.formItemsDesign(
+                                  Icons.pending_actions,
+                                  TextFormField(
+                                    controller: widget.P42EspecificarPerc ,
+                                    decoration: const InputDecoration(
+                                      labelText: 'Especifique',
+                                    ),
+                                    validator: (value) {
+                                      return HelpersViewBlancoIcon.validateField(
+                                          value!, widget.ParamP42EspecificarPerc );
+                                    },
+                                    maxLength: 100,
+                                  ), context),
+                            ]
+                        )),
+
+                    HelpersViewLetrasSubs.formItemsDesign("No tengo preocupaciones, todo me ha ido bien"),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P42Perc03SinPreocupaciones ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P42Perc03SinPreocupaciones=  value!;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
 
                     //BOTON DE SUBIR
                     GestureDetector(
@@ -6435,6 +6958,397 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     HelpersViewLetrasSubs.formItemsDesign( "54) ¿Cuáles son los tres principales motivos por los que se le hace difícil llegar al lugar de pago?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
 
+                    HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAvisoVarios),
+                    HelpersViewLetrasSubs.formItemsDesign("Por la distancia y/o tiempo de traslado"),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc01Distancia  ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Distancia = false;
+                              P54Perc02Distancia = false;
+                              P54Perc01Distancia=  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc02Distancia ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Distancia  = false;
+                              P54Perc02Distancia  = value!;
+                              P54Perc01Distancia =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc03Distancia ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Distancia  = value!;
+                              P54Perc02Distancia  = true;
+                              P54Perc01Distancia  = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    HelpersViewLetrasSubs.formItemsDesign("Por su estado físico o enfermedad "),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc01Fisico  ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Fisico = false;
+                              P54Perc02Fisico = false;
+                              P54Perc01Fisico=  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc02Fisico ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Fisico  = false;
+                              P54Perc02Fisico  = value!;
+                              P54Perc01Fisico =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc03Fisico ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Fisico  = value!;
+                              P54Perc02Fisico  = true;
+                              P54Perc01Fisico  = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    HelpersViewLetrasSubs.formItemsDesign("Por la ausencia de medios de transporte"),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc01Ausencia  ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Ausencia = false;
+                              P54Perc02Ausencia = false;
+                              P54Perc01Ausencia=  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc02Ausencia ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Ausencia  = false;
+                              P54Perc02Ausencia  = value!;
+                              P54Perc01Ausencia =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc03Ausencia ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Ausencia  = value!;
+                              P54Perc02Ausencia  = true;
+                              P54Perc01Ausencia  = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    HelpersViewLetrasSubs.formItemsDesign("Porque requiere que alguien lo acompañe"),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc01Requiere  ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Requiere = false;
+                              P54Perc02Requiere = false;
+                              P54Perc01Requiere=  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc02Requiere ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Requiere  = false;
+                              P54Perc02Requiere  = value!;
+                              P54Perc01Requiere =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc03Requiere ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Requiere = value!;
+                              P54Perc02Requiere = true;
+                              P54Perc01Requiere = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    HelpersViewLetrasSubs.formItemsDesign("Por el clima / ambiente"),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc01Clima  ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Clima = false;
+                              P54Perc02Clima = false;
+                              P54Perc01Clima=  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc02Clima ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Clima  = false;
+                              P54Perc02Clima  = value!;
+                              P54Perc01Clima =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc03Clima ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Clima = value!;
+                              P54Perc02Clima = true;
+                              P54Perc01Clima = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    HelpersViewLetrasSubs.formItemsDesign("Por el terreno / accesibilidad"),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc01Terreno  ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Terreno = false;
+                              P54Perc02Terreno = false;
+                              P54Perc01Terreno=  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc02Terreno ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Terreno  = false;
+                              P54Perc02Terreno  = value!;
+                              P54Perc01Terreno =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc03Terreno ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Terreno = value!;
+                              P54Perc02Terreno = true;
+                              P54Perc01Terreno = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    HelpersViewLetrasSubs.formItemsDesign("Otro (especifique): "),
+                    Row(
+                      children: [
+                        const Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc01Otro  ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Otro = false;
+                              P54Perc02Otro = false;
+                              P54Perc01Otro=  value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc02Otro ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Otro  = false;
+                              P54Perc02Otro  = value!;
+                              P54Perc01Otro =  true;
+                            });
+                          },
+                        ),
+                        const Text(
+                          '3',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                          ),
+                        ),
+                        Checkbox(
+                          value: P54Perc03Otro ,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              P54Perc03Otro = value!;
+                              P54Perc02Otro = true;
+                              P54Perc01Otro = true;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    Visibility(
+                        visible: (P54Perc01Otro || P54Perc02Otro || P54Perc03Otro),
+                        child:Column(
+                            children: <Widget>[
+                              HelpersViewBlancoIcon.formItemsDesign(
+                                  Icons.pending_actions,
+                                  TextFormField(
+                                    controller: widget.P54EspecificarPerc ,
+                                    decoration: const InputDecoration(
+                                      labelText: 'Especifique',
+                                    ),
+                                    validator: (value) {
+                                      return HelpersViewBlancoIcon.validateField(
+                                          value!, widget.ParamP54EspecificarPerc );
+                                    },
+                                    maxLength: 100,
+                                  ), context),
+                            ]
+                        )),
 
                     GestureDetector(
                         onTap: ()  async {
@@ -6547,7 +7461,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                           },
                         ),
                         const Text(
-                          'Persona autorizada para el cobro',
+                          'Persona autorizada\npara el cobro',
                           style: TextStyle(
                             fontSize: 14.0,
                           ),
