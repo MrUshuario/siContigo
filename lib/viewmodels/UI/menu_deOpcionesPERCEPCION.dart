@@ -1944,107 +1944,127 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     HelpersViewLetrasRojas.formItemsDesign( "Datos de la persona con discapacidad"),
                     const SizedBox(height: 16.0),
 
-                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al informante del hogar y solicitar entrevistar a la persona con discapacidad, consultar si la está en condiciones de responder, caso contrario solicitar que esté presente el cuidador/a para apoyar en la entrevista.",
-                        controller: _tip09),
-                    HelpersViewLetrasSubs.formItemsDesign( "09) ¿Hay alguna persona con discapacidad en este hogar?"),
-                    HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
-                    Row(
-                      children: [
-                        const Text(
-                          'Sí',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Radio<P09Perc>(
-                          value: P09Perc.Si,
-                          groupValue: _P09Perc,
-                          onChanged: (P09Perc? value) {
-                            setState(() {
-                              _P09Perc = value;
-                            });
-                          },
-                        ),
-                        const Text(
-                          'No',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Radio<P09Perc>(
-                          value: P09Perc.No,
-                          groupValue: _P09Perc,
-                          onChanged: (P09Perc? value) {
-                            setState(() {
-                              _P09Perc = value;
-                              _P11Perc = null;
-                              widget.P12EspecificarPerc!.clear();
-                              _P13Perc = null;
-                              _P14Perc = null;
-                              _P15Perc = null;
-                              _P16Perc = null;
-                              _P17Perc = null;
-                              _P18Perc = null;
-                              widget.P19EspecificarPerc!.clear();
-                              _P20Perc = null;
-                              _P21Perc = null;
-                              _P22Perc = null;
-                            });
-                          },),],
-                    ),
+
+                    //OCULTAR
+                    Visibility(
+                        visible: ( (_P10Perc == P10Perc.Si || _P10Perc == null) ),
+                        child:Column(
+                            children: <Widget>[
+
+                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al informante del hogar y solicitar entrevistar a la persona con discapacidad, consultar si la está en condiciones de responder, caso contrario solicitar que esté presente el cuidador/a para apoyar en la entrevista.",
+                                  controller: _tip09),
+                              HelpersViewLetrasSubs.formItemsDesign( "09) ¿Hay alguna persona con discapacidad en este hogar?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Sí',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P09Perc>(
+                                    value: P09Perc.Si,
+                                    groupValue: _P09Perc,
+                                    onChanged: (P09Perc? value) {
+                                      setState(() {
+                                        _P09Perc = value;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    'No',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P09Perc>(
+                                    value: P09Perc.No,
+                                    groupValue: _P09Perc,
+                                    onChanged: (P09Perc? value) {
+                                      setState(() {
+                                        _P09Perc = value;
+                                        _P11Perc = null;
+                                        widget.P12EspecificarPerc!.clear();
+                                        _P13Perc = null;
+                                        _P14Perc = null;
+                                        _P15Perc = null;
+                                        _P16Perc = null;
+                                        _P17Perc = null;
+                                        _P18Perc = null;
+                                        widget.P19EspecificarPerc!.clear();
+                                        _P20Perc = null;
+                                        _P21Perc = null;
+                                        _P22Perc = null;
+                                      });
+                                    },),],
+                              ),
+                            ] )),
+
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta a la persona con discapacidad o cuidador/a.\n"
-                        "●Finalizar la encuesta si la persona señala que no es usuario/a del programa.",
-                        controller: _tip10),
-                    HelpersViewLetrasSubs.formItemsDesign( "10) ¿La persona con discapacidad es usuario/a del Programa CONTIGO?"),
-                    HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
-                    Row(
-                      children: [
-                        const Text(
-                          'Sí',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Radio<P10Perc>(
-                          value: P10Perc.Si,
-                          groupValue: _P10Perc,
-                          onChanged: (P10Perc? value) {
-                            setState(() {
-                              _P10Perc = value;
-                            });
-                          },
-                        ),
-                        const Text(
-                          'No',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Radio<P10Perc>(
-                          value: P10Perc.No,
-                          groupValue: _P10Perc,
-                          onChanged: (P10Perc? value) {
-                            setState(() {
-                              _P10Perc = value;
-                              _P11Perc = null;
-                              widget.P12EspecificarPerc!.clear();
-                              _P13Perc = null;
-                              _P14Perc = null;
-                              _P15Perc = null;
-                              _P16Perc = null;
-                              _P17Perc = null;
-                              _P18Perc = null;
-                              widget.P19EspecificarPerc!.clear();
-                              _P20Perc = null;
-                              _P21Perc = null;
-                              _P22Perc = null;
-                            });
-                          },),],
-                    ),
+
+                    Visibility(
+                        visible: ( (_P09Perc == P09Perc.Si || _P09Perc == null) ),
+                        child:Column(
+                            children: <Widget>[
+                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta a la persona con discapacidad o cuidador/a.\n"
+                                  "●Finalizar la encuesta si la persona señala que no es usuario/a del programa.",
+                                  controller: _tip10),
+                              HelpersViewLetrasSubs.formItemsDesign( "10) ¿La persona con discapacidad es usuario/a del Programa CONTIGO?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Sí',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P10Perc>(
+                                    value: P10Perc.Si,
+                                    groupValue: _P10Perc,
+                                    onChanged: (P10Perc? value) {
+                                      setState(() {
+                                        _P10Perc = value;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    'No',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P10Perc>(
+                                    value: P10Perc.No,
+                                    groupValue: _P10Perc,
+                                    onChanged: (P10Perc? value) {
+                                      setState(() {
+                                        _P10Perc = value;
+                                        _P11Perc = null;
+                                        widget.P12EspecificarPerc!.clear();
+                                        _P13Perc = null;
+                                        _P14Perc = null;
+                                        _P15Perc = null;
+                                        _P16Perc = null;
+                                        _P17Perc = null;
+                                        _P18Perc = null;
+                                        widget.P19EspecificarPerc!.clear();
+                                        _P20Perc = null;
+                                        _P21Perc = null;
+                                        _P22Perc = null;
+                                      });
+                                    },),],
+                              ),
+                            ] )),
+
+
 
                     Visibility(
                         visible: ( (_P09Perc == P09Perc.Si || _P09Perc == null) && (_P10Perc == P10Perc.Si || _P10Perc == null) ),

@@ -21,6 +21,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/resources_apis.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_login.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/viewmodels/form_viewsmodel_formulario.dart';
+import 'package:super_tooltip/super_tooltip.dart';
 import '../../infraestructure/dao/formdatamodeldao_padron.dart';
 import '../../model/t_insertarEncuestaRSPTA.dart';
 import '../../model/t_padron.dart';
@@ -31,6 +32,7 @@ import '../../utils/helpersviewBlancoIcon.dart';
 import '../../utils/helpersviewBlancoSelect.dart';
 import '../../utils/helpersviewLetrasRojas.dart';
 import '../../utils/helpersviewLetrasSubs.dart';
+import '../../utils/helpersviewLetrasToolTip.dart';
 import '../../utils/helperviewCabecera.dart';
 import 'menu_deOpcionesLISTADO.dart';
 
@@ -525,6 +527,24 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
     // TODO: implement initState
     super.initState();
   }
+  final _tip01 = SuperTooltipController();
+  final _tip02 = SuperTooltipController();
+  final _tip03 = SuperTooltipController();
+  final _tip04 = SuperTooltipController();
+  final _tip05 = SuperTooltipController();
+  final _tip06 = SuperTooltipController();
+  final _tip07 = SuperTooltipController();
+  final _tip08 = SuperTooltipController();
+  final _tip09 = SuperTooltipController();
+  final _tip10 = SuperTooltipController();
+  final _tip11 = SuperTooltipController();
+  final _tip12 = SuperTooltipController();
+  final _tip13 = SuperTooltipController();
+  final _tip14 = SuperTooltipController();
+  final _tip15 = SuperTooltipController();
+  final _tip16 = SuperTooltipController();
+  final _tip17 = SuperTooltipController();
+  final _tip18 = SuperTooltipController();
 
   bool isSatelliteGreen=false;
 
@@ -1505,7 +1525,11 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
                 HelpersViewLetrasRojas.formItemsDesign( "Formulario (* Obligatorio)"),
                 const SizedBox(height: 16.0),
 
-                HelpersViewLetrasSubs.formItemsDesign( "¿Usted ha realizado el cobro correspondiente al último padrón *"),
+                HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta el gestor social estará informado sobre el cronograma de pago y el periodo que comprende a la visita que se está realizando.\n"
+                    "●  Si la respuesta es NO, el gestor social o quien haga sus veces, reportará esta situación al especialista temático.\n"
+                    "●  El gestor social o quien haga sus veces seguirá desarrollando las otras preguntas",
+                    controller: _tip01),
+                HelpersViewLetrasSubs.formItemsDesign( "01) ¿Usted ha realizado el cobro correspondiente al último padrón *"),
                 HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
                 Row(
                   children: [
@@ -1542,7 +1566,9 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
 
                 const SizedBox(height: 16.0),
 
-                HelpersViewLetrasSubs.formItemsDesign( "Usualmente ¿Cada cuánto tiempo cobra la pensión? *"),
+                HelpersViewLetrasToolTip(message: "●	Solo si responde la alternativa 1) saltar a la pregunta P03, de lo contrario pasar a la pregunta P04.\n",
+                    controller: _tip02),
+                HelpersViewLetrasSubs.formItemsDesign( "02) Usualmente ¿Cada cuánto tiempo cobra la pensión? *"),
                 HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
                 Row(
                   children: [
@@ -1614,7 +1640,10 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
                   visible: PregCada2meses,
                   child:Column(
                     children: <Widget>[
-                      HelpersViewLetrasSubs.formItemsDesign( "Normalmente, de los 300 soles de la pensión que recibe ¿Cómo gasta el dinero? *"),
+                      HelpersViewLetrasToolTip(message: "●	Si la respuesta de la persona usuaria es la alternativa 6) registre la información correspondiente.\n"
+                          "●	Recuerde explicar a la persona usuaria que puede brindar más de una respuesta y dar el tiempo para que recuerde las dificultades presentadas.",
+                          controller: _tip03),
+                      HelpersViewLetrasSubs.formItemsDesign( "03)  Normalmente, de los 300 soles de la pensión que recibe ¿Cómo gasta el dinero? *"),
                       HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
 
                   Row(
@@ -1865,7 +1894,11 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
                   visible: PregCada3meses,
                   child:Column(
                     children: <Widget>[
-                      HelpersViewLetrasSubs.formItemsDesign( "¿Por qué no cobra la pensión, cada dos meses? *"),
+                      HelpersViewLetrasToolTip(message: "●	La suma de todas las alternativas escritas debe sumar 300 soles.\n"
+                          "●	Recuerda darle tiempo a la persona usuaria en reflexionar para dar los montos de acuerdo a cada alternativa.\n"
+                          "●	Esta pregunta es muy importante, debido a que, se registra el uso que le dan a la pensión",
+                          controller: _tip04),
+                      HelpersViewLetrasSubs.formItemsDesign( "04) ¿Por qué no cobra la pensión, cada dos meses? *"),
                       HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
                       Row(
                         children: [
@@ -2007,8 +2040,9 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
                     ],),
                 ),
 
-
-                HelpersViewLetrasSubs.formItemsDesign( "¿La pensión que recibe el usuario, está destinada a sus necesidades: *"),
+                HelpersViewLetrasToolTip(message: "●	Remarcar que la pregunta se refiere al uso de la pensión que va destinada al usuario.\n",
+                    controller: _tip05),
+                HelpersViewLetrasSubs.formItemsDesign( "05) ¿La pensión que recibe el usuario, está destinada a sus necesidades: *"),
                 HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
                 Row(
                   children: [
@@ -2125,7 +2159,9 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
 
                 HelpersViewLetrasRojas.formItemsDesign( "SALUD"),
                 const SizedBox(height: 16.0),
-                HelpersViewLetrasSubs.formItemsDesign( "Actualmente. ¿A qué tipo de establecimiento de Salud, acude con frecuencia? *"),
+                HelpersViewLetrasToolTip(message: "●  Recuerda que según la respuesta del usuario/a en la alternativa 7) tienen que especificar la información y registrar.",
+                    controller: _tip06),
+                HelpersViewLetrasSubs.formItemsDesign( "06) Actualmente. ¿A qué tipo de establecimiento de Salud, acude con frecuencia? *"),
                 HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
@@ -2279,7 +2315,9 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
 
                 const SizedBox(height: 16.0),
 
-                HelpersViewLetrasSubs.formItemsDesign( "¿Se ha atendido en algún centro de salud/ puesto de salud/posta médica u hospital? *"),
+                HelpersViewLetrasToolTip(message: "●  Darle tiempo al usuario/a (a) para que reflexione su respuesta.",
+                    controller: _tip07),
+                HelpersViewLetrasSubs.formItemsDesign( "07) ¿Se ha atendido en algún centro de salud/ puesto de salud/posta médica u hospital? *"),
                 HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
                 Row(
                   children: [
@@ -2351,7 +2389,9 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
                     child:Column(
                         children: <Widget>[
                           const SizedBox(height: 16.0),
-                          HelpersViewLetrasSubs.formItemsDesign( "¿Por qué no se atendió en algún centro de salud, puesto de salud/posta médica u hospital? *"),
+                          HelpersViewLetrasToolTip(message: "●  Dejar al usuario (a) se tome el tiempo para recordar y marcar la alternativa que indique el usuario. Pueden marcar más de 2 alternativas.",
+                              controller: _tip08),
+                          HelpersViewLetrasSubs.formItemsDesign( "08) ¿Por qué no se atendió en algún centro de salud, puesto de salud/posta médica u hospital? *"),
                           HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
 
                           Row(
@@ -2508,7 +2548,10 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
                     child:Column(
                         children: <Widget>[
                           const SizedBox(height: 16.0),
-                          HelpersViewLetrasSubs.formItemsDesign( "¿Cuáles son los servicios a los que accede con mayor frecuencia, cuando se atiende en el centro de salud, puesto de salud/posta médica u hospital? *"),
+                          HelpersViewLetrasToolTip(message: "●	Dejar al usuario (a) se tome el tiempo para recordar y marcar la alternativa que indique. Pueden ser más de 2 alternativas.\n"
+                              "●	Recuerde que tiene que ser en orden de prioridad que el usuario indique.\n",
+                              controller: _tip09),
+                          HelpersViewLetrasSubs.formItemsDesign( "09) ¿Cuáles son los servicios a los que accede con mayor frecuencia, cuando se atiende en el centro de salud, puesto de salud/posta médica u hospital? *"),
                           HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
 
                           Row(
@@ -2662,7 +2705,9 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
 
                 const SizedBox(height: 16.0),
 
-                HelpersViewLetrasSubs.formItemsDesign( "¿Con qué frecuencia se atiende en el centro de salud, puesto de salud/posta médica u hospital?"),
+                HelpersViewLetrasToolTip(message: "●  Dejar al usuario (a) se tome el tiempo para recordar y marcar la alternativa que se indique, recuerde que puede marcar solo una alternativa, la que mas se aproxime a la frecuencia de su atención.",
+                    controller: _tip10),
+                HelpersViewLetrasSubs.formItemsDesign( "10) ¿Con qué frecuencia se atiende en el centro de salud, puesto de salud/posta médica u hospital?"),
                 HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
@@ -2792,7 +2837,10 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
                 HelpersViewLetrasRojas.formItemsDesign( "VALORACION SOCIO FAMILIAR - OBSERVACION DEL GESTOR"),
                 const SizedBox(height: 16.0),
 
-                HelpersViewLetrasSubs.formItemsDesign( "¿Con quién vive usted? *"),
+                HelpersViewLetrasToolTip(message: "●	Estas preguntas son aplicadas por el gestor social o quien haga sus veces preguntando a la persona usuaria y observando el contexto, ponga énfasis en las preguntas que están resaltadas en negrita, la calificación del 01 al 05 es a “CRITERIO” del gestor social o quien haga sus veces.\n"
+                    "●	La respuesta obtenida en la escala del 01 al 05 será la que mejor refleje la realidad de la persona usuaria. Recuerde que de acuerdo a la escala de valoración TSO cada item de las alternativas de respuestas de la a) a la e) son descriptores de la situación.",
+                    controller: _tip11),
+                HelpersViewLetrasSubs.formItemsDesign( "11) ¿Con quién vive usted? *"),
                 HelpersViewLetrasSubs.formItemsDesignGris("Haga la pregunta directa, OBSERVE, detenidamente el contexto, solo puede marcar una alternativa"
                     ", según la percepción del gestor social"),
 
@@ -2887,8 +2935,9 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
                   ],
                 ),
 
-
-                HelpersViewLetrasSubs.formItemsDesign( "¿Usted tiene amigos, familiares, vecinos a los que suele visitar? *"),
+                HelpersViewLetrasToolTip(message: "●	Se recomienda al gestor social o quien haga sus veces, estar atento a las alternativas 1 y 2 y seguidamente pasar a las opciones que se indica, recuerde que tiene que dar el tiempo para que la persona usuaria manifieste su respuesta.\n",
+                    controller: _tip12),
+                HelpersViewLetrasSubs.formItemsDesign( "12) ¿Usted tiene amigos, familiares, vecinos a los que suele visitar? *"),
                 HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
@@ -3049,7 +3098,9 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
 
                 const SizedBox(height: 16.0),
 
-                HelpersViewLetrasSubs.formItemsDesign( "¿Recibe ayuda en las actividades diarias? *"),
+                HelpersViewLetrasToolTip(message: "●	El gestor social, debe marcar las alternativas 1) No requiere ayuda, la persona usuaria es independiente y no necesita de nada ni de nadie en la realización de sus actividades, la alternativa 2) precisa que la persona usuaria no es completamente independiente en su vida cotidiana, necesita de un cuidador para la realización de sus actividades o de una red informal unidad de vida social que agrupa a personas enlazadas por lazos familiares, o de una red formal que agrupa a personas enlazadas por lazos familiares, sociales.\n",
+                    controller: _tip13),
+                HelpersViewLetrasSubs.formItemsDesign( "13) ¿Recibe ayuda en las actividades diarias? *"),
                 HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
@@ -3172,7 +3223,10 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
 
                   ])),
                 const SizedBox(height: 16.0),
-                HelpersViewLetrasSubs.formItemsDesign( "¿Cual es el ingreso economico en su hogar? *"),
+
+                HelpersViewLetrasToolTip(message: "●	Valorar en que rango de ingresos recibe el hogar en su conjunto, en base al salario mínimo 2024 (S/1025)\n",
+                    controller: _tip14),
+                HelpersViewLetrasSubs.formItemsDesign( "014) ¿Cual es el ingreso economico en su hogar? *"),
                 HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
 
@@ -3323,7 +3377,14 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
                 HelpersViewLetrasRojas.formItemsDesign( "Tipo de Vivienda"),
                 const SizedBox(height: 16.0),
 
-                HelpersViewLetrasSubs.formItemsDesign( "¿Que tipo de vivienda tienes? *"),
+                HelpersViewLetrasToolTip(message: "●	Para registrar esta pregunta y valorarla el gestor social, tendría que considerar las siguientes precisiones:\n"
+                    "1) Adecuada dispone de todos los suministros(agua, luz y gas o forma de cocción alternativa), equipamientos y adaptaciones para las barreras arquitectónicas internas y/o externas.\n"
+                    "2) Inadecuadas Barreras arquitectónicas externas y/o falta algún equipamiento de la lista anterior.\n"
+                    "a) Barreras arquitectónicas internas en el domicilio.\n"
+                    "b) vivienda (humedades, descuido, falta de higiene.\n"
+                    "c) Ausencia de vivienda, infravivienda (chabola, vivienda en ruinas) o pérdida inminente de la vivienda.\n",
+                    controller: _tip15),
+                HelpersViewLetrasSubs.formItemsDesign( "15) ¿Que tipo de vivienda tienes? *"),
                 HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
@@ -3428,7 +3489,9 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
 
                 const SizedBox(height: 16.0),
 
-                HelpersViewLetrasSubs.formItemsDesign( "¿El gestor social, ha identificado alguna situación de riesgo? *"),
+                HelpersViewLetrasToolTip(message: "●	Si la respuesta es SI, se deriva en la opción a) al especialista temático y si la opción es b) se deriva al especialista en salud mental, para activar el protocolo.\n",
+                    controller: _tip16),
+                HelpersViewLetrasSubs.formItemsDesign( "16) ¿El gestor social, ha identificado alguna situación de riesgo? *"),
                 HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
@@ -3516,7 +3579,9 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
 
                 const SizedBox(height: 16.0),
 
-                HelpersViewLetrasSubs.formItemsDesign( "¿De qué temas le interesaría, informase en las siguientes visitas? *"),
+                HelpersViewLetrasToolTip(message: "●	Esta pregunta corresponde ser llenada solo por el gestor social o quien corresponda.\n",
+                    controller: _tip17),
+                HelpersViewLetrasSubs.formItemsDesign( "17) ¿De qué temas le interesaría, informase en las siguientes visitas? *"),
                 HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
 
                 Row(
@@ -3613,7 +3678,9 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
 
                 const SizedBox(height: 16.0),
 
-                HelpersViewLetrasSubs.formItemsDesign( "A la fecha, la persona usuaria, desarrolla algún tipo de emprendimiento *"),
+                HelpersViewLetrasToolTip(message: "●	Esta pregunta corresponde ser llenada solo por el gestor social o quien corresponda.\n",
+                    controller: _tip18),
+                HelpersViewLetrasSubs.formItemsDesign( "18) A la fecha, la persona usuaria, desarrolla algún tipo de emprendimiento *"),
                 HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                 Row(
