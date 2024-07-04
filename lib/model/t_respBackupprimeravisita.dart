@@ -1,7 +1,7 @@
 import 'package:floor/floor.dart';
 
 @entity
-class RespuestaBACKUP {
+class RespuestaBACKUPprimeravisita {
   @PrimaryKey(autoGenerate: true)
   int? cod;
   int? idformato;
@@ -42,7 +42,7 @@ class RespuestaBACKUP {
   int? p18Emprendimiento;
 
 
-  RespuestaBACKUP({
+  RespuestaBACKUPprimeravisita({
     this.cod, this.idformato, this.id_usuario, this.fecha,
     this.respuestas, this.puntaje, this.longitud, this.latitud,this.id_gestor,
     this.p01CobroPension, this.p02TipoMeses, this.p03Check, this.p03CheckEspecificar, this.p04Check, this.p05pension,
@@ -52,8 +52,8 @@ class RespuestaBACKUP {
     this.p18Emprendimiento
   });
 
-  factory RespuestaBACKUP.fromJson(dynamic json) {
-    return RespuestaBACKUP(
+  factory RespuestaBACKUPprimeravisita.fromJson(dynamic json) {
+    return RespuestaBACKUPprimeravisita(
       cod: json['cod'] as int?,
       idformato: json['idformato'] as int?,
       id_usuario: json['id_usuario'] as int?,
@@ -93,10 +93,10 @@ class RespuestaBACKUP {
     );
   }
 
-  static List<RespuestaBACKUP> listFromJson(dynamic json) {
+  static List<RespuestaBACKUPprimeravisita> listFromJson(dynamic json) {
     var bienvenidaList = json as List;
-    List<RespuestaBACKUP> items =
-    bienvenidaList.map((e) => RespuestaBACKUP.fromJson(e)).toList();
+    List<RespuestaBACKUPprimeravisita> items =
+    bienvenidaList.map((e) => RespuestaBACKUPprimeravisita.fromJson(e)).toList();
     return items ?? [];
   }
 

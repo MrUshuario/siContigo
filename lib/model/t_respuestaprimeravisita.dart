@@ -1,7 +1,7 @@
 import 'package:floor/floor.dart';
 
 @entity
-class Respuesta {
+class RespuestaPrimeraVisita {
   @PrimaryKey(autoGenerate: true)
   int? cod;
   int? idformato;
@@ -43,7 +43,7 @@ class Respuesta {
   int? p18Emprendimiento;
 
 
-  Respuesta({
+  RespuestaPrimeraVisita({
     this.cod, this.idformato, this.id_usuario, this.fecha,
     this.respuestas, this.puntaje, this.longitud, this.latitud, this.id_gestor,
     this.p01CobroPension, this.p02TipoMeses, this.p03Check, this.p03CheckEspecificar, this.p04Check, this.p05pension,
@@ -53,8 +53,8 @@ class Respuesta {
     this.p18Emprendimiento
   });
 
-  factory Respuesta.fromJson(dynamic json) {
-    return Respuesta(
+  factory RespuestaPrimeraVisita.fromJson(dynamic json) {
+    return RespuestaPrimeraVisita(
       cod: json['cod'] as int?,
       idformato: json['idformato'] as int?,
       id_usuario: json['id_usuario'] as int?,
@@ -95,10 +95,10 @@ class Respuesta {
     );
   }
 
-  static List<Respuesta> listFromJson(dynamic json) {
+  static List<RespuestaPrimeraVisita> listFromJson(dynamic json) {
     var bienvenidaList = json as List;
-    List<Respuesta> items =
-    bienvenidaList.map((e) => Respuesta.fromJson(e)).toList();
+    List<RespuestaPrimeraVisita> items =
+    bienvenidaList.map((e) => RespuestaPrimeraVisita.fromJson(e)).toList();
     return items ?? [];
   }
 

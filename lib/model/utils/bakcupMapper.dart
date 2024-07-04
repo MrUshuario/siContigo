@@ -1,15 +1,15 @@
 
 
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respBackup.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuesta.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respBackupprimeravisita.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaprimeravisita.dart';
 
 class BackupMapper {
 
   BackupMapper._();
   static BackupMapper get instance => BackupMapper._();
 
-  Respuesta backuptoResp(RespuestaBACKUP rpta) {
-    var rptabck = Respuesta();
+  RespuestaPrimeraVisita backuptoResp(RespuestaBACKUPprimeravisita rpta) {
+    var rptabck = RespuestaPrimeraVisita();
     rptabck.p01CobroPension = rpta.p01CobroPension;
     rptabck.p02TipoMeses = rpta.p02TipoMeses;
     rptabck.p03Check = rpta.p03Check;
@@ -41,7 +41,7 @@ class BackupMapper {
     return rptabck;
   }
 
-  List<Respuesta> listRespuestaToRespuestaENVIO(List<RespuestaBACKUP> listVisitas) {
+  List<RespuestaPrimeraVisita> listRespuestaToRespuestaENVIO(List<RespuestaBACKUPprimeravisita> listVisitas) {
     return listVisitas.map((e) => backuptoResp(e)).toList();
   }
 }

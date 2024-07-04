@@ -50,87 +50,17 @@ class Resources {
   static const String backgroundAzul = 'assets/bg2.png';
 
   //SERVICIOS LISTA
-  static const String tayta_Visita_Presencial = 'assets/icono_tayta_visita_presencial.png';
-  static const String titulo_Visita_Presencial = "Visita Presencial";
-  static const int valor_Visita_Presencial = 3;
+  static const String siContigo_icono_generico = 'assets/icono_tayta_visita_remota.png';
+  static const String titulo_primera_Visita = "Primera Visita";
+  static const int valor_primeraVisita= 1;
 
-  static const String tayta_Verificacion_Remota = 'assets/icono_tayta_visita_remota.png';
-  static const String titulo_Verificacion_Remota = "Verificación Remota";
-  static const int valor_Verificacion_Remota = 26;
+  static const String titulo_segunda_Visita = "Segunda Visita";
+  static const int valor_segundaVisita = 2;
 
-  static const String tayta_Visita_Colectiva = 'assets/icono_tayta_visita_colectiva.png';
-  static const String titulo_Visita_Colectiva =  "Visita Colectiva";
-  static const int valor_Visita_Colectiva = 25;
+  static const String titulo_tercera_Visita = "Tercera Visita";
+  static const int valor_terceraVisita = 3;
 
-  static const String tayta_Asistencia_Tecnica = 'assets/icono_tayta_asistencia_tecnica.png';
-  static const String titulo_Asistencia_Tecnica =  "Asistencia Técnica";
-  static const int valor_Asistencia_Tecnica = 1;
 
-  static const String tayta_Campana_de_Salud = 'assets/icono_tayta_campana_salud.png';
-  static const String titulo_Campana_de_Salud = "Campaña de Salud";
-  static const int valor_Campana_de_Salud = 4;
-
-  static const String tayta_Encuentro_Magico = 'assets/icono_tayta_encuentro_magico.png';
-  static const String titulo_Encuentro_Magico = "Encuentro Mágico";
-  static const int valor_Encuentro_Magico = 8;
-
-  static const String tayta_Punto_de_Pago = 'assets/icono_tayta_punto_pago.png';
-  static const String titulo_Punto_de_Pago = "Punto de Pago";
-  static const int valor_Punto_de_Pago = 5;
-
-  static const String tayta_Reporte_Consolidado_Individual = 'assets/icono_tayta_reporte_consolidado_individual.png';
-  static const String titulo_Reporte_Consolidado_Individual =  "Reporte Consolidado Individual";
-  static const int valor_Reporte_Consolidado_Individual = 10;
-
-  static const String tayta_Procesar_Padron = 'assets/icono_tayta_procesar_padron.png';
-  static const String titulo_Procesar_Padron = "Procesar Padrón";
-  static const int valor_Procesar_Padron = 11;
-
-  static const String tayta_Reporte_Usuarios = 'assets/icono_tayta_reporte_usuarios.png';
-  static const String titulo_Reporte_Usuarios =  "Reporte de Usuarios";
-  static const Null valor_Reporte_Usuarios = null;
-
-  static const String tayta_Dialogos_de_Saberes = 'assets/icono_tayta_dialogo_saberes.png';
-  static const String titulo_Dialogos_de_Saberes = "Diálogos de Saberes";
-  static const int valor_Dialogos_de_Saberes = 13;
-
-  static const String tayta_Transmision_Interegeneracional = 'assets/icono_tayta_transmision_intergeneracional.png';
-  static const String titulo_Transmision_Interegeneracional = "Transmisión Interegeneracional";
-  static const int valor_Transmision_Interegeneracional = 14;
-
-  static const String tayta_Encuentro_de_Saberes = 'assets/icono_tayta_encuentro_saberes.png';
-  static const String titulo_Encuentro_de_Saberes = "Encuentro de Saberes";
-  static const int valor_Encuentro_de_Saberes = 27;
-
-  static const String tayta_Registro_de_Saberes = 'assets/icono_tayta_registro_saberes.png';
-  static const String titulo_Registro_de_Saberes = "Registro de Saberes";
-  static const int valor_Registro_de_Saberes = 15;
-
-  static const String tayta_Contacto_Referencia = 'assets/icono_tayta_contacto_referencia.png';
-  static const String titulo_Contacto_Referencia = "Contacto Referencia";
-  static const int valor_Contacto_Referencia = 19;
-
-  static const String tayta_Situaciones_de_Riesgo = 'assets/icono_tayta_situaciones_riesgo.png';
-  static const String titulo_Casos_de_Violencia = "Casos de Violencia";
-  static const int valor_Situaciones_de_Riesgo = 20;
-
-  static const String tayta_Inicio_Fin_de_Actividades = 'assets/icono_tayta_inicio_fin_actividades.png';
-  static const String titulo_Inicio_Fin_de_Actividades = "Inicio/Fin de Actividades";
-  static const int valor_Inicio_Fin_de_Actividades = 6;
-
-  static const String tayta_Bitacora= 'assets/icono_bitacora.png';
-  static const String titulo_Bitacora = "Bitácora";
-  static const int valor_Bitacora = 2;
-
-  static const String tayta_Tarjetizacion_Capacitacion= 'assets/icono_tayta_capacitacion.png';
-  static const String titulo_Tarjetizacion_Capacitacion = "Modernización del Cobro";
-  static const int valor_Tarjetizacion_Capacitacion = 99;
-
-  static const String titulo_Cobro_Tarjetizacion = "Modernización Cobro (Tarjetización)";
-  static const int valor_Cobro_Tarjetizacion = 100;
-
-  static const String titulo_Cobro_Capacitacion = "Modernización Cobro (Capacitación)";
-  static const int valor_Cobro_Capacitacion = 101;
 
   //STRINGS
   static const String SELECCIONAR_VISITA01                = "Seleccionar Condición del Beneficiario";

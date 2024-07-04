@@ -2,12 +2,12 @@ import 'package:Sicontigo_Visita_Domiciliaria/model/responseinciofinactividad.da
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/model/t_formulario.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaBACKUP.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaEnvioGenerico.dart';
 import 'dart:convert';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/resources_apis.dart';
 
 import '../../../model/t_insertarEncuestaRSPTA.dart';
-import '../../../model/t_respuesta.dart';
+import '../../../model/t_respuestaprimeravisita.dart';
 
 class apiprovider_formulario {
 

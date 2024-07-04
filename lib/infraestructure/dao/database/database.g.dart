@@ -65,9 +65,10 @@ class _$AppDatabase extends AppDatabase {
 
   FormDataModelDaoFormulario? _formDataModelDaoFormularioInstance;
 
-  FormDataModelDaoRespuesta? _formDataModelDaoRespuestaInstance;
+  FormDataModelDaoRespuestaunovisita? _formDataModelDaoRespuestaInstance;
 
-  FormDataModelDaoRespuestaBACKUP? _formDataModelDaoRespuestaBACKUPInstance;
+  FormDataModelDaoRespuestaBACKUPunovisita?
+      _formDataModelDaoRespuestaBACKUPInstance;
 
   FormDataModelDaoPadron? _formDataModelDaoPadronInstance;
 
@@ -99,11 +100,11 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Formulario` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `pregunta` TEXT, `tipoOpcion` TEXT, `puntaje` TEXT, `tipoRepuesta` INTEGER, `id` INTEGER, `idformato` INTEGER, `texto` TEXT, `titulo` TEXT, `idseccion` INTEGER, `descripcion` TEXT, `id_tipo_respuesta` INTEGER, `id_seccion` INTEGER)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Respuesta` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `RespuestaPrimeraVisita` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `RespuestaENVIO` (`idformato` INTEGER PRIMARY KEY AUTOINCREMENT, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUP` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUPprimeravisita` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Padron` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `fechaCorte` TEXT, `hogarUbigeo` TEXT, `hogarDepartamento` TEXT, `hogarRegion` TEXT, `hogarProvincia` TEXT, `hogarDistrito` TEXT, `hogarNombreCcpp` TEXT, `hogarDireccionDescripcion` TEXT, `area` TEXT, `comunidadNativa` TEXT, `puebloIndigena` TEXT, `saldoCuenta` TEXT, `estadoCuenta` TEXT, `tarjetizacion` TEXT, `tipoDoc` TEXT, `dniCe` TEXT, `apPaterno` TEXT, `apMaterno` TEXT, `nombre` TEXT, `fechaNacimiento` TEXT, `edadPadron` TEXT, `sexo` TEXT, `telefonoUsuario` TEXT, `cse` TEXT, `vigenciaCse` TEXT, `condicionEdad` TEXT, `rangoEdad` TEXT, `estadoActivo` TEXT, `estadoDetalle` TEXT, `ingreso` TEXT, `ultimoPadronAfiliado` TEXT, `motivoDesafiliacionSuspencion` TEXT, `detalleDesafiliacionSuspencion` TEXT, `alertaGeneral` TEXT, `recomendacion` TEXT, `tieneAutorizacion` TEXT, `estadoAutorizacion` TEXT, `detalleObservacion` TEXT, `rde` TEXT, `fechaRde` TEXT, `parentezco` TEXT, `nombreAutorizado` TEXT, `tipoDocAutorizado` TEXT, `dniAutorizado` TEXT, `autorizadoSexo` TEXT, `telefonoAutorizado` TEXT, `correoAutorizado` TEXT, `prioridad` TEXT, `tipoDistrito` TEXT)');
         await database.execute(
@@ -128,15 +129,15 @@ class _$AppDatabase extends AppDatabase {
   }
 
   @override
-  FormDataModelDaoRespuesta get formDataModelDaoRespuesta {
+  FormDataModelDaoRespuestaunovisita get formDataModelDaoRespuesta {
     return _formDataModelDaoRespuestaInstance ??=
-        _$FormDataModelDaoRespuesta(database, changeListener);
+        _$FormDataModelDaoRespuestaunovisita(database, changeListener);
   }
 
   @override
-  FormDataModelDaoRespuestaBACKUP get formDataModelDaoRespuestaBACKUP {
+  FormDataModelDaoRespuestaBACKUPunovisita get formDataModelDaoRespuestaBACKUP {
     return _formDataModelDaoRespuestaBACKUPInstance ??=
-        _$FormDataModelDaoRespuestaBACKUP(database, changeListener);
+        _$FormDataModelDaoRespuestaBACKUPunovisita(database, changeListener);
   }
 
   @override
@@ -419,15 +420,16 @@ class _$FormDataModelDaoFormulario extends FormDataModelDaoFormulario {
   }
 }
 
-class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
-  _$FormDataModelDaoRespuesta(
+class _$FormDataModelDaoRespuestaunovisita
+    extends FormDataModelDaoRespuestaunovisita {
+  _$FormDataModelDaoRespuestaunovisita(
     this.database,
     this.changeListener,
   )   : _queryAdapter = QueryAdapter(database),
-        _respuestaInsertionAdapter = InsertionAdapter(
+        _respuestaPrimeraVisitaInsertionAdapter = InsertionAdapter(
             database,
-            'Respuesta',
-            (Respuesta item) => <String, Object?>{
+            'RespuestaPrimeraVisita',
+            (RespuestaPrimeraVisita item) => <String, Object?>{
                   'cod': item.cod,
                   'idformato': item.idformato,
                   'id_usuario': item.id_usuario,
@@ -473,15 +475,17 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
 
   final QueryAdapter _queryAdapter;
 
-  final InsertionAdapter<Respuesta> _respuestaInsertionAdapter;
+  final InsertionAdapter<RespuestaPrimeraVisita>
+      _respuestaPrimeraVisitaInsertionAdapter;
 
   @override
-  Future<List<Respuesta>> findFormDataModel(
+  Future<List<RespuestaPrimeraVisita>> findFormDataModel(
     int offset,
     int perPage,
   ) async {
-    return _queryAdapter.queryList('SELECT * FROM Respuesta LIMIT ?2 OFFSET ?1',
-        mapper: (Map<String, Object?> row) => Respuesta(
+    return _queryAdapter.queryList(
+        'SELECT * FROM RespuestaPrimeraVisita LIMIT ?2 OFFSET ?1',
+        mapper: (Map<String, Object?> row) => RespuestaPrimeraVisita(
             cod: row['cod'] as int?,
             idformato: row['idformato'] as int?,
             id_usuario: row['id_usuario'] as int?,
@@ -523,9 +527,9 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
   }
 
   @override
-  Future<List<Respuesta>> findAllRespuesta() async {
-    return _queryAdapter.queryList('SELECT * FROM Respuesta',
-        mapper: (Map<String, Object?> row) => Respuesta(
+  Future<List<RespuestaPrimeraVisita>> findAllRespuesta() async {
+    return _queryAdapter.queryList('SELECT * FROM RespuestaPrimeraVisita',
+        mapper: (Map<String, Object?> row) => RespuestaPrimeraVisita(
             cod: row['cod'] as int?,
             idformato: row['idformato'] as int?,
             id_usuario: row['id_usuario'] as int?,
@@ -568,47 +572,48 @@ class _$FormDataModelDaoRespuesta extends FormDataModelDaoRespuesta {
   @override
   Future<String?> findAllRespuestaID(int cod) async {
     return _queryAdapter.query(
-        'SELECT Respuestacodigo FROM Respuesta WHERE cod = ?1',
+        'SELECT Respuestacodigo FROM RespuestaPrimeraVisita WHERE cod = ?1',
         mapper: (Map<String, Object?> row) => row.values.first as String,
         arguments: [cod]);
   }
 
   @override
   Future<int?> totalFormDataModels() async {
-    return _queryAdapter.query('SELECT COUNT(*) FROM Respuesta',
+    return _queryAdapter.query('SELECT COUNT(*) FROM RespuestaPrimeraVisita',
         mapper: (Map<String, Object?> row) => row.values.first as int);
   }
 
   @override
   Future<int?> BorrarFormDataModels(int cod) async {
-    return _queryAdapter.query('DELETE FROM Respuesta WHERE cod = ?1',
+    return _queryAdapter.query(
+        'DELETE FROM RespuestaPrimeraVisita WHERE cod = ?1',
         mapper: (Map<String, Object?> row) => row.values.first as int,
         arguments: [cod]);
   }
 
   @override
   Future<int?> BorrarTodo() async {
-    return _queryAdapter.query('DELETE FROM Respuesta',
+    return _queryAdapter.query('DELETE FROM RespuestaPrimeraVisita',
         mapper: (Map<String, Object?> row) => row.values.first as int);
   }
 
   @override
-  Future<void> insertFormDataModel(Respuesta formDataModel) async {
-    await _respuestaInsertionAdapter.insert(
+  Future<void> insertFormDataModel(RespuestaPrimeraVisita formDataModel) async {
+    await _respuestaPrimeraVisitaInsertionAdapter.insert(
         formDataModel, OnConflictStrategy.replace);
   }
 }
 
-class _$FormDataModelDaoRespuestaBACKUP
-    extends FormDataModelDaoRespuestaBACKUP {
-  _$FormDataModelDaoRespuestaBACKUP(
+class _$FormDataModelDaoRespuestaBACKUPunovisita
+    extends FormDataModelDaoRespuestaBACKUPunovisita {
+  _$FormDataModelDaoRespuestaBACKUPunovisita(
     this.database,
     this.changeListener,
   )   : _queryAdapter = QueryAdapter(database),
-        _respuestaBACKUPInsertionAdapter = InsertionAdapter(
+        _respuestaBACKUPprimeravisitaInsertionAdapter = InsertionAdapter(
             database,
-            'RespuestaBACKUP',
-            (RespuestaBACKUP item) => <String, Object?>{
+            'RespuestaBACKUPprimeravisita',
+            (RespuestaBACKUPprimeravisita item) => <String, Object?>{
                   'cod': item.cod,
                   'idformato': item.idformato,
                   'id_usuario': item.id_usuario,
@@ -654,12 +659,13 @@ class _$FormDataModelDaoRespuestaBACKUP
 
   final QueryAdapter _queryAdapter;
 
-  final InsertionAdapter<RespuestaBACKUP> _respuestaBACKUPInsertionAdapter;
+  final InsertionAdapter<RespuestaBACKUPprimeravisita>
+      _respuestaBACKUPprimeravisitaInsertionAdapter;
 
   @override
-  Future<List<RespuestaBACKUP>> findAllRespuesta() async {
-    return _queryAdapter.queryList('SELECT * FROM RespuestaBACKUP',
-        mapper: (Map<String, Object?> row) => RespuestaBACKUP(
+  Future<List<RespuestaBACKUPprimeravisita>> findAllRespuesta() async {
+    return _queryAdapter.queryList('SELECT * FROM RespuestaBACKUPprimeravisita',
+        mapper: (Map<String, Object?> row) => RespuestaBACKUPprimeravisita(
             cod: row['cod'] as int?,
             idformato: row['idformato'] as int?,
             id_usuario: row['id_usuario'] as int?,
@@ -701,19 +707,21 @@ class _$FormDataModelDaoRespuestaBACKUP
 
   @override
   Future<int?> totalFormDataModels() async {
-    return _queryAdapter.query('SELECT COUNT(*) FROM RespuestaBACKUP',
+    return _queryAdapter.query(
+        'SELECT COUNT(*) FROM RespuestaBACKUPprimeravisita',
         mapper: (Map<String, Object?> row) => row.values.first as int);
   }
 
   @override
   Future<int?> BorrarTodo() async {
-    return _queryAdapter.query('DELETE FROM RespuestaBACKUP',
+    return _queryAdapter.query('DELETE FROM RespuestaBACKUPprimeravisita',
         mapper: (Map<String, Object?> row) => row.values.first as int);
   }
 
   @override
-  Future<void> insertFormDataModel(RespuestaBACKUP formDataModel) async {
-    await _respuestaBACKUPInsertionAdapter.insert(
+  Future<void> insertFormDataModel(
+      RespuestaBACKUPprimeravisita formDataModel) async {
+    await _respuestaBACKUPprimeravisitaInsertionAdapter.insert(
         formDataModel, OnConflictStrategy.replace);
   }
 }

@@ -5,11 +5,11 @@ import 'package:intl/intl.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/apis/apiprovider_formulario.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/database/database.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_formulario.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_respuesta.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_respuestaBACKUP.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_respuestaunovisita.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_respuestaBACKUPunovisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/model/t_formulario.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respBackup.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuesta.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respBackupprimeravisita.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaprimeravisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/constantes.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewAlertMensajeTitutlo.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewLetrasSubsGris.dart';
@@ -39,8 +39,8 @@ import 'menu_deOpcionesLISTADO.dart';
 
 class MenudeOpcionesPercepcion extends StatefulWidget {
   final _appDatabase = GetIt.I.get<AppDatabase>();
-  FormDataModelDaoRespuesta get formDataModelDao => _appDatabase.formDataModelDaoRespuesta;
-  FormDataModelDaoRespuestaBACKUP get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
+  FormDataModelDaoRespuestaunovisita get formDataModelDao => _appDatabase.formDataModelDaoRespuesta;
+  FormDataModelDaoRespuestaBACKUPunovisita get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
 
   //PADRON
   FormDataModelDaoPadron get padronsql => _appDatabase.formDataModelDaoPadron;
@@ -109,8 +109,8 @@ class MenudeOpcionesPercepcion extends StatefulWidget {
 
   //ENVIAR LA DATA
   apiprovider_formulario apiForm = apiprovider_formulario();
-  Respuesta? formData;
-  RespuestaBACKUP? formDataBACKUP = RespuestaBACKUP();
+  RespuestaPrimeraVisita? formData;
+  RespuestaBACKUPprimeravisita? formDataBACKUP = RespuestaBACKUPprimeravisita();
   MenudeOpcionesPercepcion(this.formData, {super.key});
 
   @override
@@ -301,7 +301,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
   int puntaje = 0;
 
   //BACKUP
-  List <RespuestaBACKUP> listBackup = List.empty();
+  List <RespuestaBACKUPprimeravisita> listBackup = List.empty();
 
   Future<void> conseguirVersion() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -1435,7 +1435,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     widget.formNombreUsuario!.clear();
 
 
-    widget.formData = Respuesta(); ////
+    widget.formData = RespuestaPrimeraVisita(); ////
 
 
     setState(() {

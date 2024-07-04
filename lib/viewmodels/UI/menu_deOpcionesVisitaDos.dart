@@ -28,18 +28,18 @@ import '../../utils/helpersviewAlertFaltaMSG.dart';
 import '../../utils/helpersviewAlertMensajeFOTO.dart';
 import '../../utils/helpersviewAlertProgressCircle.dart';
 import '../../utils/helpersviewBlancoIcon.dart';
+import '../../utils/helpersviewBlancoSelect.dart';
 import '../../utils/helpersviewLetrasRojas.dart';
 import '../../utils/helpersviewLetrasSubs.dart';
 import '../../utils/helperviewCabecera.dart';
 import 'menu_deOpcionesLISTADO.dart';
 
 
-class MenudeOpcionesDinamico extends StatefulWidget {
-  //final viewModel = FormDataModelViewModel();
+class MenudeOpcionesVisitaDos extends StatefulWidget {
+
   final _appDatabase = GetIt.I.get<AppDatabase>();
   FormDataModelDaoRespuestaunovisita get formDataModelDao => _appDatabase.formDataModelDaoRespuesta;
   FormDataModelDaoRespuestaBACKUPunovisita get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
-  FormDataModelDaoFormulario get formDataModelDaoFormulario => _appDatabase.formDataModelDaoFormulario;
 
   //PADRON
   FormDataModelDaoPadron get padronsql => _appDatabase.formDataModelDaoPadron;
@@ -49,55 +49,48 @@ class MenudeOpcionesDinamico extends StatefulWidget {
   TextEditingController formIdUsuario = TextEditingController();
   TextEditingController formNombreUsuario = TextEditingController();
 
-  final scrollControllerOPTIONS = ScrollController();
+  //P03
+  TextEditingController formP03EspecificarCtrl = TextEditingController();
+  final ParamP03EspecificarCtrl = List.filled(3, "", growable: false);
+
+  TextEditingController formP06EspecificarCtrl = TextEditingController();
+  final ParamP06EspecificarCtrl = List.filled(3, "", growable: false);
+
+  TextEditingController formP08EspecificarCtrl = TextEditingController();
+  final ParamP08EspecificarCtrl = List.filled(3, "", growable: false);
+
+  TextEditingController formP09EspecificarCtrl = TextEditingController();
+  final ParamP09EspecificarCtrl = List.filled(3, "", growable: false);
+
+  TextEditingController formP17EspecificarCtrl = TextEditingController();
+  final ParamP17EspecificarCtrl = List.filled(3, "", growable: false);
 
   //BACKUP
   bool backup = false;
 
-  //FORMULARIOS DINAMCIOS
-  int sumatoriacheck = 0; //GUARDA LO QUE SE SUMARA
-  int auxsumatoriacheck = 0;  //AYUDA A MANTENER LOS ID
 
-  int idbutton = 1;
-  int? IDSECCION = 0;
-  int? totalFase2 = 0;
-  List<Formulario> listFormulario = List.empty(growable: true);
+
+  //SIGUIENTE
 
   final ParamGestor = List.filled(3, "", growable: false);
+
 
   //ENVIAR LA DATA
   apiprovider_formulario apiForm = apiprovider_formulario();
   RespuestaPrimeraVisita? formData;
   RespuestaBACKUPprimeravisita? formDataBACKUP = RespuestaBACKUPprimeravisita();
-  MenudeOpcionesDinamico(this.formData, {super.key});
-
+  MenudeOpcionesVisitaDos(this.formData, {super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return _MenudeOpcionesDinamico();
+    return _MenudeOpcionesVisitaDos();
   }
 
 }
 
-//DINAMISMO
-class RadioButtonsDinamic {
-  final int name;
-  final bool bol;
-  final int puntaje;
-  RadioButtonsDinamic(this.name,  this.bol,  this.puntaje);
 
-  static List<RadioButtonsDinamic> generateData(int count) {
-    List<RadioButtonsDinamic> data = [];
-    for (int i = 0; i < count; i++) {
-      data.add(RadioButtonsDinamic(i+1, true, 0)); // Adjust 'si' value as needed
-    }
-    return data;
-  }
-}
 
-enum idDinamico { a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, x, y, z, noRpta } //SOLO SIRVE PARA MOSTRAR NO SE GUARDA
-
-class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
+class _MenudeOpcionesVisitaDos extends State<MenudeOpcionesVisitaDos> {
 
   //ANTES TENIAN LATE
   String? PREFname;
@@ -113,6 +106,24 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
   String? GPSlongitude = "";
   String? GPSaltitude = "";
 
+  String rpstP01 = "P01 ";
+  String rpstP02 = " P02 ";
+  String rpstP03 = " P03 ";
+  String rpstP04 = " P04 ";
+  String rpstP05 = " P05 ";
+  String rpstP06 = " P06 ";
+  String rpstP07 = " P07 ";
+  String rpstP08 = " P08 ";
+  String rpstP09 = " P09 ";
+  String rpstP10 = " P10 ";
+  String rpstP11 = " P11 ";
+  String rpstP12 = " P12 ";
+  String rpstP13 = " P13 ";
+  String rpstP14 = " P14 ";
+  String rpstP15 = " P15 ";
+  String rpstP16 = " P16 ";
+  String rpstP17 = " P17 ";
+  String rpstP18 = " P18 ";
   int puntaje = 0;
 
   //BACKUP
@@ -145,39 +156,19 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
   }
 
 
+
   @override
   void initState() {
     conseguirVersion();
     revisarBackup();
-    //widget.viewModel
-    //  ..listen()
-    //  ..getPaginationList();
-    loadTotalRegister();
-    listarVisitasRetro();
-
     if(widget.formData != null) {
-      if (widget.formData!.id_gestor != null) {
-        setState(() {
-          widget.formIdUsuario!.text = widget.formData!.id_usuario!.toString();
-        });
-      }
+
+
     }
+
     // TODO: implement initState
     super.initState();
   }
-
-  //idDinamico? _idDinamico = null;
-  List<idDinamico> _idDinamicoListInput = [];
-  List<idDinamico> _idDinamicoListCircle = [];
-  List<bool> _idDinamicoListCheck = [];
-
-
-/*
-  @override
-  void dispose() {
-    widget.viewModel.dispose();
-    super.dispose();
-  } */
 
   bool isSatelliteGreen=false;
 
@@ -200,6 +191,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
     setState(() {
       if(listBackup.isNotEmpty){
         widget.backup = true;
+        //objBackup = listBackup[0];
       } else {
         widget.backup = false;
       }
@@ -220,23 +212,31 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
   }
 
   Future<void> guardadoFase1() async{
+
     widget.formData?.id_usuario =  int.parse(widget.formIdUsuario!.text);
+    widget.formDataBACKUP?.id_usuario = int.parse(widget.formIdUsuario!.text);
+    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
+
   Future<void> guardadoFase2() async{
-    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+
+    //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase3() async{
-    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+
+    //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase4() async{
-    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+
+    //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase5() async{
-    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+
+    //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   void PedirPermiso(){
@@ -350,57 +350,6 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
     );
   }
 
-  //FORMULARIOS
-  Future<void> loadTotalRegister() async {
-    //var res = await widget.formDataModelDaoFormulario.totalFormDataModels();
-    var res = await widget.formDataModelDaoFormulario.totalFormDataModelsSECCION(widget.IDSECCION!);
-
-    //findFormDataModelSECCION; AGREGAR LA SEPARACION POR SECCIONES
-
-
-    var resRADIO = await widget.formDataModelDaoFormulario.totalFormDataModelsCIRCLE();
-    //PARA RADIOBUTTON
-    if(resRADIO!>0){
-      for (int i = 0; i < resRADIO!; i++) {
-        _idDinamicoListCircle .add(idDinamico.noRpta);
-      }}
-
-    var resCHECK = await widget.formDataModelDaoFormulario.totalFormDataModelsCHECKS();
-    List<Formulario> listcheck = await widget.formDataModelDaoFormulario.findAllFormularioCHECK();
-    //PARA CHECKBOX
-      if(listcheck.isNotEmpty){
-        for (int i = 0; i < listcheck.length; i++) {
-          List<String>? OpcionCHECKcount;
-          OpcionCHECKcount = listcheck[i].tipoOpcion!.split(';');
-            for (int i = 0; i < OpcionCHECKcount.length; i++) {
-              _idDinamicoListCheck .add(false);
-            }
-        }}
-
-    var resINPUT = await widget.formDataModelDaoFormulario.totalFormDataModelsINPUT();
-    //PARA INPUT
-        if(resINPUT!>0){
-          for (int i = 0; i < resINPUT!; i++) {
-            _idDinamicoListInput .add(idDinamico.noRpta);
-          }}
-
-
-    setState(() {});
-  }
-
-  Future<void> listarVisitasRetro() async {
-
-    widget.listFormulario = await widget.formDataModelDaoFormulario.findFormDataModelORIGINAL();
-    //TALVEZ VALAL TALVEZ NO
-    /*
-    widget.viewModel
-      ..listen()
-      ..getPaginationList(); */
-    setState(() {});
-  }
-
-
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -489,6 +438,19 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
 
                   String respuestas = "";
 
+
+                  respuestas = ''
+                      'Respuestas:'
+                      '$rpstP01$rpstP02$rpstP03$rpstP04$rpstP05$rpstP06$rpstP07'
+                      '$rpstP08$rpstP09$rpstP10$rpstP11$rpstP12$rpstP13$rpstP14'
+                      '$rpstP15$rpstP16$rpstP17$rpstP18'
+                      '- Nombre:$PREFname,'
+                      '- Appaterno:$PREFapPaterno,'
+                      '- MatMaterno:$PREFapMaterno,'
+                      '- DNI:$PREFnroDoc,'
+                      '- TipoUsuario:$PREFtypeUser,'
+                  ;
+
                   //RELLENANDO
                   widget.formData?.idformato = apisResources.api_idFormato;
                   widget.formData?.id_gestor = int.parse(PREFnroDoc!);
@@ -498,6 +460,12 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                   widget.formData?.longitud = GPSlongitude;
                   widget.formData?.latitud = GPSlatitude;
                   widget.formData?.id_usuario = int.parse(widget.formIdUsuario.text);
+                  //GPSlatitude
+
+                  //FUNCION PARA SINCRONIZAR
+                  //insertarEncuestaRSPTA rpta = await widget.apiForm.post_EnviarRspt(widget.formData!, PREFtoken);
+
+                  //await GuardarFormulario();
 
                     await widget.formDataModelDaoBackup.BorrarTodo();
 
@@ -551,7 +519,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
               maxWidth: double.infinity, // Set your maximum width here
             ),
             child: Container(
-              margin: const EdgeInsets.all(22.0),
+              margin: const EdgeInsets.all(41.0),
               child: Form(
                 //key: widget.keyForm,
                 child: formUI(scrollController),
@@ -609,14 +577,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
 
   void cleanForm() {
 
-
     setState(() {
-      Fase1 = true;
-      Fase2 = false;
-      Fase3 = false;
-      Fase4 = false;
-      Fase5 = false;
-      Fase6 = false;
 
     });
 
@@ -716,12 +677,13 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                           NoEncontradoDNI(context);
                         }
 
-
                       },
                     ),
 
                   ],
                 ),
+
+
 
                 HelpersViewBlancoIcon.formItemsDesign(
                     Icons.person,
@@ -774,6 +736,9 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                               fontSize: 18,
                               fontWeight: FontWeight.w500)),
                     )),
+
+
+
               ],),
           ),
 
@@ -781,286 +746,48 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
           Visibility(
             visible: Fase2,
             child:Column(
-
               children: <Widget>[
 
-                HelpersViewLetrasRojas.formItemsDesign( "Módulo II: USUARIO Y CUIDADOR"),
-                const SizedBox(height: 10.0),
+                //BOTON PARA PRESEGUIR
 
-                //HelpersViewLetrasSubs.formItemsDesign( "INSERTAR SUB *"),
-                //HelpersViewLetrasSubs.formItemsDesign(Constants.circleAviso),
+                GestureDetector(
+                    onTap: ()  async {
 
-                /*  AnimatedInfiniteScrollView<Formulario>( //CAMBIAR LA LISTA POR ITEM
-                    viewModel: widget.viewModel,
-                    itemBuilder: (context, index, item) {*/
+                      if( 1 == 2
+                      ){
+                        showDialogValidFields(Constants.faltanCampos);
+                      } else {
+                        await guardadoFase2();
+                        setState(() {
+                          Fase2 = false;
+                          Fase3 = true;
+                        });
+                      }
 
-            Container(  // Container with border around the Row
-              decoration: const BoxDecoration(
-                border: Border(
-                  right: BorderSide( // Border for all sides
-                  color: Colors.red, // Change color as desired
-                  width: 2.0, // Adjust border width
-                ),),
-              ),
-            child:
-            Row(
-              children: [
-                SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.8, // Adjust width as needed
-                    child: widget.listFormulario.isNotEmpty
-                        ? ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: widget.listFormulario!.length,
-                        itemBuilder: (context, index) {
+                      scrollController.animateTo(
+                        0.0,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                      );
 
 
-                        String? ipregunta = "";
-                        String? itexto = "";
-                        String? idescripcion = "";
-                        String? ititulo = "";
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+                      alignment: Alignment.center,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        color: Color.fromARGB(255, 27, 65, 187),
+                      ),
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: const Text("Continuar",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500)),
+                    )),
 
-                        List<String>? tipoOpcionList;
-                        List<String>? tipoOpcionPuntaje;
-                        List<RadioButtonsDinamic> idOpciones = List.empty();
-                        int indexPregunta =0;
-
-
-                        widget.sumatoriacheck = widget.sumatoriacheck + widget.auxsumatoriacheck;
-
-
-                        if( !(widget.listFormulario![index].pregunta == null)){ ipregunta = widget.listFormulario![index].pregunta!;}
-                        if( !(widget.listFormulario![index].texto == null)){ itexto = widget.listFormulario![index].texto!;}
-                        if( !(widget.listFormulario![index].descripcion == null)){ idescripcion = widget.listFormulario![index].descripcion!;}
-                        if( !(widget.listFormulario![index].titulo == null)){ ititulo = widget.listFormulario![index].titulo!;}
-
-                        if (widget.listFormulario![index].tipoRepuesta == 2 || //CIRCLE OPCION
-                            widget.listFormulario![index].tipoRepuesta == 4) { //CHECKBOX
-                          tipoOpcionList = widget.listFormulario![index].tipoOpcion!.split(';'); //ENUNCIADO
-                          tipoOpcionPuntaje = widget.listFormulario![index].puntaje!.split(';'); //PUNTAJE
-                          indexPregunta = index;
-                          //idOpciones = RadioButtonsDinamic.generateData(tipoOpcionList.length); //GENERA ID
-
-                          if(widget.listFormulario![index].tipoRepuesta == 4){ //CHECBOX
-                            widget.auxsumatoriacheck = tipoOpcionList.length;
-                            return Column(
-                              children: [
-
-                                //TODAS LAS PREGUNTAS ENUNCIADOS
-                                HelpersViewLetrasRojas.formItemsPREGUNTA(index, ipregunta!, itexto!, idescripcion!,  context),
-
-                                //OPCIONES CHECK
-                                SizedBox(
-                                  child: ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: tipoOpcionList?.length ?? 0,
-                                    itemBuilder: (context, index) {
-
-                                      return Container(
-                                        decoration: const BoxDecoration(
-                                          border: Border(
-                                            bottom: BorderSide( // Apply color and width to the bottom side
-                                              color: Colors.red, // Change this to your desired color
-                                              width: 1.0,      // Adjust border width here
-                                            ),
-                                          ),
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              flex: 5,
-                                              child: Padding(
-                                                padding: EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  "${index+1}) ${tipoOpcionList?[index]}",
-                                                  style: TextStyle(
-                                                    fontSize: 14.0,
-                                                    //color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-
-                                            const Spacer(),
-                                            //EN LA SGTE PREGUNTA AGARRA EL INDEX DE ARRIBA HACER SUMATORIA
-                                            Checkbox(
-                                              //value: _idDinamicoListCheck[index + widget.sumatoriacheck],
-                                              value: _idDinamicoListCheck[index],
-                                              onChanged: (bool? value) {
-                                                setState(() {
-                                                  //_idDinamicoListCheck[index + widget.sumatoriacheck] = value!;
-                                                  _idDinamicoListCheck[index] = value!;
-                                                });
-                                              },
-                                            ),
-
-                                            SizedBox(
-                                              height: MediaQuery.of(context).size.height * 0.005,
-                                            ),
-
-                                          ],
-                                        ),
-                                      );
-
-                                    },
-                                  ),
-                                ),
-
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height * 0.020,
-                                ),
-                                Text(
-                                  "${ititulo ?? ""}", // Example,
-                                  textAlign: TextAlign.left,
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
-                                  ),
-                                ),
-
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height * 0.020,
-                                ),
-                              ],
-                            );
-
-                          } else if (widget.listFormulario![index].tipoRepuesta == 2){ //CIRCLE
-
-                            return Column(
-                              children: [
-
-                                //TODAS LAS PREGUNTAS ENUNCIADOS
-                                HelpersViewLetrasRojas.formItemsPREGUNTA(index, ipregunta!, itexto!, idescripcion!,  context),
-
-                                //OPCIONES CIRCLE
-                                SizedBox(
-                                  child: ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: tipoOpcionList?.length ?? 0,
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                        decoration: const BoxDecoration(
-                                          border: Border(
-                                            bottom: BorderSide( // Apply color and width to the bottom side
-                                              color: Colors.red, // Change this to your desired color
-                                              width: 1.0,      // Adjust border width here
-                                            ),
-                                          ),
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              flex: 5,
-                                              child: Padding(
-                                                padding: EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  "${index+1}) ${tipoOpcionList?[index]}",
-                                                  style: TextStyle(
-                                                    fontSize: 14.0,
-                                                    //color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-
-                                            const Spacer(),
-
-                                            Radio<idDinamico>(
-                                              value: idDinamico.values[index],
-                                              groupValue: _idDinamicoListCircle[indexPregunta], //
-                                              onChanged: (idDinamico? value) {
-                                                setState(() {
-                                                  _idDinamicoListCircle[indexPregunta] = value!;
-                                                });
-                                              },
-                                            ),
-
-                                            SizedBox(
-                                              height: MediaQuery.of(context).size.height * 0.005,
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height * 0.020,
-                                ),
-                                Text(
-                                  "${ititulo ?? ""}", // Example,
-                                  textAlign: TextAlign.left,
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
-                                  ),
-                                ),
-
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height * 0.020,
-                                ),
-                              ],
-                            );
-
-                          }
-
-                        } else {
-                          //MOSTRAR INPUT
-                          return  Column(
-                            children: [
-
-                              //TODAS LAS PREGUNTAS ENUNCIADOS
-                              HelpersViewLetrasRojas.formItemsPREGUNTA(index, ipregunta!, itexto!, idescripcion!,  context),
-
-                              //INPUT TEXT
-                              HelpersViewBlancoIcon.formItemsDesign(
-                                Icons.question_mark,
-                                TextFormField(
-                                  // Access item data here
-                                  decoration: InputDecoration(
-                                    //labelText:"${item.tipoRepuesta}",
-                                    labelText:"Ingresar respuesta única",
-                                  ),
-                                ),
-                                context,
-                              ),
-
-
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height * 0.020,
-                              ),
-                              Text(
-                                "${ititulo ?? ""}", // Example,
-                                textAlign: TextAlign.left,
-                                style: const TextStyle(
-                                  fontSize: 16.0,
-                                ),
-                              ),
-
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height * 0.020,
-                              ),
-                            ],
-                          );
-                        }
-
-                        return Column(
-                          children: [
-                            SizedBox(height: MediaQuery.of(context).size.height * 0.020,),
-                          ],
-                        );
-
-                      },
-                    )
-                        : const Text('Aún no hay data para mostrar')
-                ),
-                Spacer(),
-              ]),),
-
-
-
-                //BOTON PARA CONTINUAR
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.01,
-                ),
 
 
               ],),
@@ -1072,20 +799,10 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
             child:Column(
               children: <Widget>[
 
-                HelpersViewLetrasRojas.formItemsDesign( "SALUD"),
-                const SizedBox(height: 16.0),
-                HelpersViewLetrasSubs.formItemsDesign( "Actualmente. ¿A qué tipo de establecimiento de Salud, acude con frecuencia? *"),
-                HelpersViewLetrasSubs.formItemsDesign(Constants.circleAviso),
 
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.01,
-                ),
                 GestureDetector(
                     onTap: ()  async {
-                      if(
-                      (1 == 1) ||
-                      (1 == 1)
-                      ){
+                      if( 1 == 2){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {
                         await guardadoFase3();
@@ -1130,11 +847,43 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
             child:Column(
               children: <Widget>[
 
-                HelpersViewLetrasRojas.formItemsDesign( "VALORACION SOCIO FAMILIAR - OBSERVACION DEL GESTOR"),
-                const SizedBox(height: 16.0),
 
-                HelpersViewLetrasSubs.formItemsDesign( "¿Con quién vive usted? *"),
-                HelpersViewLetrasSubs.formItemsDesign(Constants.circleAviso),
+                //BOTON DE SUBIR
+                GestureDetector(
+                    onTap: ()  async {
+                      if( 1 == 2
+                      ){
+                        showDialogValidFields(Constants.faltanCampos);
+                      } else {
+                        await guardadoFase4();
+                        setState(() {
+                          Fase4 = false;
+                          Fase5 = true;
+                        });
+                      }
+
+                      scrollController.animateTo(
+                        0.0,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                      );
+
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+                      alignment: Alignment.center,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        color: Color.fromARGB(255, 27, 65, 187),
+                      ),
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: const Text("Continuar",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500)),
+                    )),
 
 
               ],),
@@ -1145,20 +894,9 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
             child:Column(
               children: <Widget>[
 
-                HelpersViewLetrasRojas.formItemsDesign( "Tipo de Vivienda"),
-                const SizedBox(height: 16.0),
-
-                HelpersViewLetrasSubs.formItemsDesign( "¿Que tipo de vivienda tienes? *"),
-                HelpersViewLetrasSubs.formItemsDesign(Constants.circleAviso),
-
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.01,
-                ),
                 GestureDetector(
                     onTap: ()  async {
-                      if(
-                      (1 == 1) ||
-                          (1 == 1)
+                      if( 1 == 2
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {

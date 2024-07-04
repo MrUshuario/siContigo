@@ -5,7 +5,7 @@ import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/apis/apiprovid
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/database/database.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/model/responseinciofinactividad.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/model/t_padron.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuesta.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaprimeravisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/constantes.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewAlertMensajeTitutlo.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewBlancoTexto.dart';
@@ -19,7 +19,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:device_imei/device_imei.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_deOpcionesOFFLINE.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_deOpcionesVisitaUno.dart';
 
 import '../../utils/helpersviewAlertProgressCircle.dart';
 import '../../utils/helpersviewAlertProgressCircleLOGIN.dart';
@@ -430,7 +430,7 @@ class _login extends State<login> {
         GestureDetector(
             onTap: () async {
 
-              Widget ContactoRefererencia = MenudeOpcionesOffline(Respuesta());
+              Widget ContactoRefererencia = MenudeOpcionesVisitaUno(RespuestaPrimeraVisita());
               Navigator.push(
                 context,
                 //MaterialPageRoute(builder: (context) =>  MenudeOpciones()),

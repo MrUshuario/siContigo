@@ -1,7 +1,7 @@
 
 
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuesta.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaBACKUP.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaprimeravisita.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaEnvioGenerico.dart';
 
 class RespuestaMapper {
 
@@ -10,7 +10,7 @@ class RespuestaMapper {
 
 
 
-  RespuestaENVIO visitaToVisitaApi(Respuesta rpta) {
+  RespuestaENVIO visitaToVisitaApi(RespuestaPrimeraVisita rpta) {
     var rptaApi = RespuestaENVIO();
     rptaApi.idformato = rpta.idformato;
     rptaApi.id_usuario = rpta.id_usuario;
@@ -24,7 +24,7 @@ class RespuestaMapper {
     return rptaApi;
   }
 
-  List<RespuestaENVIO> listRespuestaToRespuestaENVIO(List<Respuesta> listVisitas) {
+  List<RespuestaENVIO> listRespuestaToRespuestaENVIO(List<RespuestaPrimeraVisita> listVisitas) {
     return listVisitas.map((e) => visitaToVisitaApi(e)).toList();
   }
 }
