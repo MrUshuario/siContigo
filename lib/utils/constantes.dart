@@ -3,6 +3,7 @@ class Constants {
 
   static const String tituloPermisos = "Permisos";
   static const String tituloMenudeOpciones = "ENCUESTA 1ra VISITA";
+  static const String tituloMenudeOpcionesdos = "2da VISITA";
   static const String tituloPercepciones = "ENCUESTA PERCEPCIÓN";
   static const String tituloMenudeOpcionesListado = "Vista de envios";
   static const String tituloMenuLogin = "Autentificación";

@@ -1010,7 +1010,7 @@ class _MenudeOpcionesVisitaDos extends State<MenudeOpcionesVisitaDos> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
-          Constants.tituloMenudeOpciones,
+          Constants.tituloMenudeOpcionesdos,
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 27, 65, 187),

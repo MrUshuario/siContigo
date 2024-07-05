@@ -27,6 +27,9 @@ https://youtu.be/AN6bExi_mco
   "nroDoc": "00100576",
   "password": "CAMILITA"
 }
+00003429
+
+
 
 VALIDACION PARA EL ADMIN, si es tipo usuario admin.
 CAMILITO ADMIN,
