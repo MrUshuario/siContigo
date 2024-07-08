@@ -3717,7 +3717,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
-                        visible: (_P31Perc01 != P31Perc01.familiar),
+                        visible: (_P31Perc01 == P31Perc01.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
@@ -3841,7 +3841,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
-                        visible: (_P31Perc02 != P31Perc02.familiar),
+                        visible: (_P31Perc02 == P31Perc02.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
@@ -3963,7 +3963,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
-                        visible: (_P31Perc03 != P31Perc03.familiar),
+                        visible: (_P31Perc03 == P31Perc03.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
@@ -4085,7 +4085,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
-                        visible: (_P31Perc04 != P31Perc04.familiar),
+                        visible: (_P31Perc04 == P31Perc04.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
@@ -4371,7 +4371,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
-                        visible: (_P31Perc06 != P31Perc06.familiar),
+                        visible: (_P31Perc06 == P31Perc06.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
@@ -4535,7 +4535,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
-                        visible: (_P31Perc07 != P31Perc07.familiar),
+                        visible: (_P31Perc07 == P31Perc07.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
@@ -4699,7 +4699,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
-                        visible: (_P31Perc08 != P31Perc08.familiar),
+                        visible: (_P31Perc08 == P31Perc08.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
@@ -4863,7 +4863,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
-                        visible: (_P31Perc09 != P31Perc09.familiar),
+                        visible: (_P31Perc09 == P31Perc09.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
@@ -5027,7 +5027,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
-                        visible: (_P31Perc10 != P31Perc10.familiar),
+                        visible: (_P31Perc10 == P31Perc10.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
@@ -5149,7 +5149,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
-                        visible: (_P31Perc11 != P31Perc11.familiar),
+                        visible: (_P31Perc11 == P31Perc11.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
@@ -5271,7 +5271,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
-                        visible: (_P31Perc12 != P31Perc12.familiar),
+                        visible: (_P31Perc12 == P31Perc12.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
@@ -5393,7 +5393,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
-                        visible: (_P31Perc13 != P31Perc13.familiar),
+                        visible: (_P31Perc13 == P31Perc13.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
@@ -5515,7 +5515,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
-                        visible: (_P31Perc11 != P31Perc11.familiar),
+                        visible: (_P31Perc14 == P31Perc14.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),

@@ -1357,6 +1357,7 @@ late final _appDatabase;
                   child:  GestureDetector(
                       onTap: () async {
 
+                        /*
                         if(widget.backup){
                           await widget.formDataModelDaoBackup.BorrarTodo();
                         }
@@ -1365,7 +1366,8 @@ late final _appDatabase;
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
-                        );
+                        );*/
+
                       },
                       child: Container(
                         margin: const EdgeInsets.all(10.0),
