@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respBackupprimeravisita.dart';
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -8,8 +9,7 @@ import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeld
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_respuestaunovisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_respuestaBACKUPunovisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/model/t_formulario.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respBackupprimeravisita.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaprimeravisita.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respuestaprimeravisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/constantes.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewAlertMensajeTitutlo.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewLetrasSubsGris.dart';

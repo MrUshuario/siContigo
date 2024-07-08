@@ -7,7 +7,7 @@ import 'dart:convert';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/resources_apis.dart';
 
 import '../../../model/t_insertarEncuestaRSPTA.dart';
-import '../../../model/t_respuestaprimeravisita.dart';
+import '../../../model/visitaDomiciliaria/t_respuestaprimeravisita.dart';
 
 class apiprovider_formulario {
 

@@ -8,8 +8,8 @@ import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeld
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_respuestaunovisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_respuestaBACKUPunovisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/model/t_formulario.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respBackupprimeravisita.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaprimeravisita.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respuestaprimeravisita.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respuestaprimeravisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/constantes.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewAlertMensajeTitutlo.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewLetrasSubsGris.dart';
@@ -25,6 +25,7 @@ import 'package:super_tooltip/super_tooltip.dart';
 import '../../infraestructure/dao/formdatamodeldao_padron.dart';
 import '../../model/t_insertarEncuestaRSPTA.dart';
 import '../../model/t_padron.dart';
+import '../../model/visitaDomiciliaria/t_respBackupprimeravisita.dart';
 import '../../utils/helpersviewAlertFaltaMSG.dart';
 import '../../utils/helpersviewAlertMensajeFOTO.dart';
 import '../../utils/helpersviewAlertProgressCircle.dart';
@@ -365,6 +366,49 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
   P31Perc03? _P31Perc03;
   P31Perc02? _P31Perc02;
   P31Perc01? _P31Perc01;
+
+  bool P33Perc01Opcion01 = false;
+  bool P33Perc02Opcion01 = false;
+  bool P33Perc03Opcion01 = false;
+  bool P33Perc01Opcion02 = false;
+  bool P33Perc02Opcion02 = false;
+  bool P33Perc03Opcion02 = false;
+  bool P33Perc01Opcion03 = false;
+  bool P33Perc02Opcion03 = false;
+  bool P33Perc03Opcion03 = false;
+  bool P33Perc01Opcion04 = false;
+  bool P33Perc02Opcion04 = false;
+  bool P33Perc03Opcion04 = false;
+  bool P33Perc01Opcion05 = false;
+  bool P33Perc02Opcion05 = false;
+  bool P33Perc03Opcion05 = false;
+  bool P33Perc01Opcion06 = false;
+  bool P33Perc02Opcion06 = false;
+  bool P33Perc03Opcion06 = false;
+  bool P33Perc01Opcion07 = false;
+  bool P33Perc02Opcion07 = false;
+  bool P33Perc03Opcion07 = false;
+  bool P33Perc01Opcion08 = false;
+  bool P33Perc02Opcion08 = false;
+  bool P33Perc03Opcion08 = false;
+  bool P33Perc01Opcion09 = false;
+  bool P33Perc02Opcion09 = false;
+  bool P33Perc03Opcion09 = false;
+  bool P33Perc01Opcion10 = false;
+  bool P33Perc02Opcion10 = false;
+  bool P33Perc03Opcion10 = false;
+  bool P33Perc01Opcion11 = false;
+  bool P33Perc02Opcion11 = false;
+  bool P33Perc03Opcion11 = false;
+  bool P33Perc01Opcion12 = false;
+  bool P33Perc02Opcion12 = false;
+  bool P33Perc03Opcion12 = false;
+  bool P33Perc01Opcion13 = false;
+  bool P33Perc02Opcion13 = false;
+  bool P33Perc03Opcion13 = false;
+  bool P33Perc01Opcion14 = false;
+  bool P33Perc02Opcion14 = false;
+  bool P33Perc03Opcion14 = false;
 
   P34Perc? _P34Perc;
 
@@ -799,14 +843,24 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     }
 
     if (_P24Perc == P24Perc.hombre) {
-      PercP24 = "${PercP24}hombre-A;";
+      PercP24 = "${PercP24}Hombre-A;";
     }
     if (_P24Perc == P24Perc.mujer) {
-      PercP24 = "${PercP24}mujer-B;";
+      PercP24 = "${PercP24}Mujer-B;";
     }
 
     //25, 26 y 27
+    if (_P25Perc == P25Perc.solo) {PercP25 = "${PercP25}Solo-A;";}
+    if (_P25Perc == P25Perc.esposohijos) {PercP25 = "${PercP25}Esposo e Hijos-B;";}
+    if (_P25Perc == P25Perc.esposo) {PercP25 = "${PercP25}Esposo-C;";}
+    if (_P25Perc == P25Perc.padreshermanos) {PercP25 = "${PercP25}Padres y Hermanos-D;";}
+    if (_P25Perc == P25Perc.padres) {PercP25 = "${PercP25}Padres-E;";}
 
+    if (_P26Perc == P26Perc.Si) {PercP26 = "${PercP26}Sí-A;";}
+    if (_P26Perc == P26Perc.No) {PercP26 = "${PercP26}No-B;";}
+
+    if (_P27Perc == P27Perc.Si) {PercP27 = "${PercP27}Sí-A;";}
+    if (_P27Perc == P27Perc.No) {PercP27 = "${PercP27}No-B;";}
 
     //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
@@ -847,6 +901,93 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     }
 
     //30,31,32,33
+    if(isCheckedP30Opcion01){PercP30 = "${PercP30}A,";}
+    if(isCheckedP30Opcion02){PercP30 = "${PercP30}B,";}
+    if(isCheckedP30Opcion03){PercP30 = "${PercP30}C,";}
+    if(isCheckedP30Opcion04){PercP30 = "${PercP30}D,";}
+    if(isCheckedP30Opcion05){PercP30 = "${PercP30}E,";}
+    if(isCheckedP30Opcion06){PercP30 = "${PercP30}F,";}
+    if(isCheckedP30Opcion07){PercP30 = "${PercP30}G,";}
+    if(isCheckedP30Opcion08){PercP30 = "${PercP30}H,";}
+    if(isCheckedP30Opcion09){PercP30 = "${PercP30}I,";}
+    if(isCheckedP30Opcion10){PercP30 = "${PercP30}J,";}
+    if(isCheckedP30Opcion11){PercP30 = "${PercP30}K,";}
+    if(isCheckedP30Opcion12){PercP30 = "${PercP30}L,";}
+    if(isCheckedP30Opcion13){PercP30 = "${PercP30}M,";}
+    if(isCheckedP30Opcion14){PercP30 = "${PercP30}N,";}
+    PercP30 = "${PercP30};";
+
+    if (_P31Perc01 == P31Perc01.cuidador) {PercP31 = "${PercP31}01-Cuidador,";}
+    if (_P31Perc01 == P31Perc01.familiar) {PercP31 = "${PercP31}01-Familiar,";}
+    if (_P31Perc02 == P31Perc02.cuidador) {PercP31 = "${PercP31}02-Cuidador,";}
+    if (_P31Perc02 == P31Perc02.familiar) {PercP31 = "${PercP31}02-Familiar,";}
+    if (_P31Perc03 == P31Perc03.cuidador) {PercP31 = "${PercP31}03-Cuidador,";}
+    if (_P31Perc03 == P31Perc03.familiar) {PercP31 = "${PercP31}03-Familiar,";}
+    if (_P31Perc04 == P31Perc04.cuidador) {PercP31 = "${PercP31}04-Cuidador,";}
+    if (_P31Perc04 == P31Perc04.familiar) {PercP31 = "${PercP31}04-Familiar,";}
+    if (_P31Perc05 == P31Perc05.cuidador) {PercP31 = "${PercP31}05-Cuidador,";}
+    if (_P31Perc05 == P31Perc05.familiar) {PercP31 = "${PercP31}05-Familiar,";}
+    if (_P31Perc06 == P31Perc06.cuidador) {PercP31 = "${PercP31}06-Cuidador,";}
+    if (_P31Perc06 == P31Perc06.familiar) {PercP31 = "${PercP31}06-Familiar,";}
+    if (_P31Perc07 == P31Perc07.cuidador) {PercP31 = "${PercP31}07-Cuidador,";}
+    if (_P31Perc07 == P31Perc07.familiar) {PercP31 = "${PercP31}07-Familiar,";}
+    if (_P31Perc08 == P31Perc08.cuidador) {PercP31 = "${PercP31}08-Cuidador,";}
+    if (_P31Perc08 == P31Perc08.familiar) {PercP31 = "${PercP31}08-Familiar,";}
+    if (_P31Perc09 == P31Perc09.cuidador) {PercP31 = "${PercP31}09-Cuidador,";}
+    if (_P31Perc09 == P31Perc09.familiar) {PercP31 = "${PercP31}09-Familiar,";}
+    if (_P31Perc10 == P31Perc10.cuidador) {PercP31 = "${PercP31}10-Cuidador,";}
+    if (_P31Perc10 == P31Perc10.familiar) {PercP31 = "${PercP31}10-Familiar,";}
+    if (_P31Perc11 == P31Perc11.cuidador) {PercP31 = "${PercP31}11-Cuidador,";}
+    if (_P31Perc11 == P31Perc11.familiar) {PercP31 = "${PercP31}11-Familiar,";}
+    if (_P31Perc12 == P31Perc12.cuidador) {PercP31 = "${PercP31}12-Cuidador,";}
+    if (_P31Perc12 == P31Perc12.familiar) {PercP31 = "${PercP31}12-Familiar,";}
+    if (_P31Perc13 == P31Perc13.cuidador) {PercP31 = "${PercP31}13-Cuidador,";}
+    if (_P31Perc13 == P31Perc13.familiar) {PercP31 = "${PercP31}13-Familiar,";}
+    if (_P31Perc14 == P31Perc14.cuidador) {PercP31 = "${PercP31}14-Cuidador,";}
+    if (_P31Perc14 == P31Perc14.familiar) {PercP31 = "${PercP31}14-Familiar,";}
+
+    if (P33Perc01Opcion01) {PercP33 = "${PercP33}1-A,";}
+    if (P33Perc02Opcion01) {PercP33 = "${PercP33}2-A,";}
+    if (P33Perc03Opcion01) {PercP33 = "${PercP33}3-A,";}
+    if (P33Perc01Opcion02) {PercP33 = "${PercP33}1-B,";}
+    if (P33Perc02Opcion02) {PercP33 = "${PercP33}2-B,";}
+    if (P33Perc03Opcion02) {PercP33 = "${PercP33}3-B,";}
+    if (P33Perc01Opcion03) {PercP33 = "${PercP33}1-C,";}
+    if (P33Perc02Opcion03) {PercP33 = "${PercP33}2-C,";}
+    if (P33Perc03Opcion03) {PercP33 = "${PercP33}3-C,";}
+    if (P33Perc01Opcion04) {PercP33 = "${PercP33}1-D,";}
+    if (P33Perc02Opcion04) {PercP33 = "${PercP33}2-D,";}
+    if (P33Perc03Opcion04) {PercP33 = "${PercP33}3-D,";}
+    if (P33Perc01Opcion05) {PercP33 = "${PercP33}1-E,";}
+    if (P33Perc02Opcion05) {PercP33 = "${PercP33}2-E,";}
+    if (P33Perc03Opcion05) {PercP33 = "${PercP33}3-E,";}
+    if (P33Perc01Opcion06) {PercP33 = "${PercP33}1-F,";}
+    if (P33Perc02Opcion06) {PercP33 = "${PercP33}2-F,";}
+    if (P33Perc03Opcion06) {PercP33 = "${PercP33}3-F,";}
+    if (P33Perc01Opcion07) {PercP33 = "${PercP33}1-G,";}
+    if (P33Perc02Opcion07) {PercP33 = "${PercP33}2-G,";}
+    if (P33Perc03Opcion07) {PercP33 = "${PercP33}3-G,";}
+    if (P33Perc01Opcion08) {PercP33 = "${PercP33}1-H,";}
+    if (P33Perc02Opcion08) {PercP33 = "${PercP33}2-H,";}
+    if (P33Perc03Opcion08) {PercP33 = "${PercP33}3-H,";}
+    if (P33Perc01Opcion09) {PercP33 = "${PercP33}1-I,";}
+    if (P33Perc02Opcion09) {PercP33 = "${PercP33}2-I,";}
+    if (P33Perc03Opcion09) {PercP33 = "${PercP33}3-I,";}
+    if (P33Perc01Opcion10) {PercP33 = "${PercP33}1-J,";}
+    if (P33Perc02Opcion10) {PercP33 = "${PercP33}2-J,";}
+    if (P33Perc03Opcion10) {PercP33 = "${PercP33}3-J,";}
+    if (P33Perc01Opcion11) {PercP33 = "${PercP33}1-K,";}
+    if (P33Perc02Opcion11) {PercP33 = "${PercP33}2-K,";}
+    if (P33Perc03Opcion11) {PercP33 = "${PercP33}3-K,";}
+    if (P33Perc01Opcion12) {PercP33 = "${PercP33}1-L,";}
+    if (P33Perc02Opcion12) {PercP33 = "${PercP33}2-L,";}
+    if (P33Perc03Opcion12) {PercP33 = "${PercP33}3-L,";}
+    if (P33Perc01Opcion13) {PercP33 = "${PercP33}1-M,";}
+    if (P33Perc02Opcion13) {PercP33 = "${PercP33}2-M,";}
+    if (P33Perc03Opcion13) {PercP33 = "${PercP33}3-M,";}
+    if (P33Perc01Opcion14) {PercP33 = "${PercP33}1-N,";}
+    if (P33Perc02Opcion14) {PercP33 = "${PercP33}2-N,";}
+    if (P33Perc03Opcion14) {PercP33 = "${PercP33}3-N,";}
 
     if (_P34Perc == P34Perc.muysatisfecho) {
       PercP34 = "${PercP34}Muy satisfecho/a-A;";
@@ -3615,7 +3756,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     const SizedBox(height: 16.0),
                     //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"),
-                    HelpersViewLetrasSubs.formItemsDesign( "Debido a tu condición de salud, ¿tiene dificultad para … sin ayuda o supervisión?"),
+                    HelpersViewLetrasSubs.formItemsDesign( "30) Debido a tu condición de salud, ¿tiene dificultad para … sin ayuda o supervisión?"),
                     //HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -3629,6 +3770,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion01  = value!;
+                                _P31Perc01 = null;
                               });
                             },
                           ),
@@ -3642,7 +3784,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -3657,6 +3799,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc01? value) {
                                       setState(() {
                                         _P31Perc01 = value;
+                                        P33Perc03Opcion01 = false;
+                                        P33Perc02Opcion01 = false;
+                                        P33Perc01Opcion01=  false;
                                       });
                                     },
                                   ),
@@ -3672,8 +3817,73 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc01? value) {
                                       setState(() {
                                         _P31Perc01 = value;
+                                        P33Perc03Opcion01 = false;
+                                        P33Perc02Opcion01 = false;
+                                        P33Perc01Opcion01=  false;
                                       });
                                     },),],
+                              ),
+                            ]
+                        )),
+
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc01 != P31Perc01.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion01  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion01 = false;
+                                        P33Perc02Opcion01 = false;
+                                        P33Perc01Opcion01=  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion01 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion01  = false;
+                                        P33Perc02Opcion01  = value!;
+                                        P33Perc01Opcion01 =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion01 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion01  = value!;
+                                        P33Perc02Opcion01  = true;
+                                        P33Perc01Opcion01  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
                               ),
                             ]
                         )),
@@ -3704,7 +3914,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -3740,6 +3950,68 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc02 != P31Perc02.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion02  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion02 = false;
+                                        P33Perc02Opcion02 = false;
+                                        P33Perc01Opcion02=  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion02 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion02  = false;
+                                        P33Perc02Opcion02  = value!;
+                                        P33Perc01Opcion02 =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion02 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion02  = value!;
+                                        P33Perc02Opcion02  = true;
+                                        P33Perc01Opcion02  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ]
+                        )),
+
                     Row(
                       children: [
                         HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vestirse."),
@@ -3764,7 +4036,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -3800,6 +4072,67 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc03 != P31Perc03.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion03  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion03 = false;
+                                        P33Perc02Opcion03 = false;
+                                        P33Perc01Opcion03=  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion03 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion03  = false;
+                                        P33Perc02Opcion03  = value!;
+                                        P33Perc01Opcion03 =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion03 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion03  = value!;
+                                        P33Perc02Opcion03  = true;
+                                        P33Perc01Opcion03  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ]
+                        )),
 
                     Row(
                       children: [
@@ -3825,7 +4158,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -3861,6 +4194,68 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc04 != P31Perc04.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion04  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion04 = false;
+                                        P33Perc02Opcion04 = false;
+                                        P33Perc01Opcion04 =  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion04 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion04  = false;
+                                        P33Perc02Opcion04  = value!;
+                                        P33Perc01Opcion04  =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion04 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion04  = value!;
+                                        P33Perc02Opcion04  = true;
+                                        P33Perc01Opcion04  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ]
+                        )),
+
                     Row(
                       children: [
                         HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Acostarse o levantarse (cama, sillón u otros)."),
@@ -3885,7 +4280,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -3921,6 +4316,68 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc05 != P31Perc05.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion05  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion05 = false;
+                                        P33Perc02Opcion05 = false;
+                                        P33Perc01Opcion05 =  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion05 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion05  = false;
+                                        P33Perc02Opcion05  = value!;
+                                        P33Perc01Opcion05  =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion05 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion05  = value!;
+                                        P33Perc02Opcion05  = true;
+                                        P33Perc01Opcion05  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ]
+                        )),
+
                     Row(
                       children: [
                         HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Alimentarse."),
@@ -3945,7 +4402,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -3981,6 +4438,110 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+                    //PREGUNTA SECUNDARIA
+                    Visibility(
+                        visible: (isCheckedP30Opcion05),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Cuidador',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P31Perc05>(
+                                    value: P31Perc05.cuidador,
+                                    groupValue: _P31Perc05,
+                                    onChanged: (P31Perc05? value) {
+                                      setState(() {
+                                        _P31Perc05 = value;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    'Familiar',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P31Perc05>(
+                                    value: P31Perc05.familiar,
+                                    groupValue: _P31Perc05,
+                                    onChanged: (P31Perc05? value) {
+                                      setState(() {
+                                        _P31Perc05 = value;
+                                      });
+                                    },),],
+                              ),
+                            ]
+                        )),
+
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc06 != P31Perc06.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion06  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion06 = false;
+                                        P33Perc02Opcion06 = false;
+                                        P33Perc01Opcion06 =  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion06 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion06  = false;
+                                        P33Perc02Opcion06  = value!;
+                                        P33Perc01Opcion06  =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion06 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion06  = value!;
+                                        P33Perc02Opcion06  = true;
+                                        P33Perc01Opcion06  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ]
+                        )),
+
                     Row(
                       children: [
                         HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Realizar compras del hogar."),
@@ -4005,7 +4566,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4041,6 +4602,109 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+                    //PREGUNTA SECUNDARIA
+                    Visibility(
+                        visible: (isCheckedP30Opcion05),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Cuidador',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P31Perc05>(
+                                    value: P31Perc05.cuidador,
+                                    groupValue: _P31Perc05,
+                                    onChanged: (P31Perc05? value) {
+                                      setState(() {
+                                        _P31Perc05 = value;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    'Familiar',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P31Perc05>(
+                                    value: P31Perc05.familiar,
+                                    groupValue: _P31Perc05,
+                                    onChanged: (P31Perc05? value) {
+                                      setState(() {
+                                        _P31Perc05 = value;
+                                      });
+                                    },),],
+                              ),
+                            ]
+                        )),
+
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc07 != P31Perc07.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion07  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion07 = false;
+                                        P33Perc02Opcion07 = false;
+                                        P33Perc01Opcion07 =  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion07 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion07  = false;
+                                        P33Perc02Opcion07  = value!;
+                                        P33Perc01Opcion07  =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion07 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion07  = value!;
+                                        P33Perc02Opcion07  = true;
+                                        P33Perc01Opcion07  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ]
+                        )),
 
                     Row(
                       children: [
@@ -4066,7 +4730,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4102,6 +4766,110 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+                    //PREGUNTA SECUNDARIA
+                    Visibility(
+                        visible: (isCheckedP30Opcion05),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Cuidador',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P31Perc05>(
+                                    value: P31Perc05.cuidador,
+                                    groupValue: _P31Perc05,
+                                    onChanged: (P31Perc05? value) {
+                                      setState(() {
+                                        _P31Perc05 = value;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    'Familiar',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P31Perc05>(
+                                    value: P31Perc05.familiar,
+                                    groupValue: _P31Perc05,
+                                    onChanged: (P31Perc05? value) {
+                                      setState(() {
+                                        _P31Perc05 = value;
+                                      });
+                                    },),],
+                              ),
+                            ]
+                        )),
+
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc08 != P31Perc08.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion08  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion08 = false;
+                                        P33Perc02Opcion08 = false;
+                                        P33Perc01Opcion08 =  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion08 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion08  = false;
+                                        P33Perc02Opcion08  = value!;
+                                        P33Perc01Opcion08  =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion08 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion08  = value!;
+                                        P33Perc02Opcion08  = true;
+                                        P33Perc01Opcion08  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ]
+                        )),
+
                     Row(
                       children: [
                         HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Utilizar teléfono."),
@@ -4126,7 +4894,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4162,7 +4930,109 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+                    //PREGUNTA SECUNDARIA
+                    Visibility(
+                        visible: (isCheckedP30Opcion05),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Cuidador',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P31Perc05>(
+                                    value: P31Perc05.cuidador,
+                                    groupValue: _P31Perc05,
+                                    onChanged: (P31Perc05? value) {
+                                      setState(() {
+                                        _P31Perc05 = value;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    'Familiar',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P31Perc05>(
+                                    value: P31Perc05.familiar,
+                                    groupValue: _P31Perc05,
+                                    onChanged: (P31Perc05? value) {
+                                      setState(() {
+                                        _P31Perc05 = value;
+                                      });
+                                    },),],
+                              ),
+                            ]
+                        )),
 
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc09 != P31Perc09.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion09  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion09 = false;
+                                        P33Perc02Opcion09 = false;
+                                        P33Perc01Opcion09 =  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion09 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion09  = false;
+                                        P33Perc02Opcion09  = value!;
+                                        P33Perc01Opcion09  =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion09 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion09  = value!;
+                                        P33Perc02Opcion09  = true;
+                                        P33Perc01Opcion09  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ]
+                        )),
 
                     Row(
                       children: [
@@ -4188,7 +5058,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4224,6 +5094,109 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+                    //PREGUNTA SECUNDARIA
+                    Visibility(
+                        visible: (isCheckedP30Opcion05),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Cuidador',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P31Perc05>(
+                                    value: P31Perc05.cuidador,
+                                    groupValue: _P31Perc05,
+                                    onChanged: (P31Perc05? value) {
+                                      setState(() {
+                                        _P31Perc05 = value;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    'Familiar',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P31Perc05>(
+                                    value: P31Perc05.familiar,
+                                    groupValue: _P31Perc05,
+                                    onChanged: (P31Perc05? value) {
+                                      setState(() {
+                                        _P31Perc05 = value;
+                                      });
+                                    },),],
+                              ),
+                            ]
+                        )),
+
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc10 != P31Perc10.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion10  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion10 = false;
+                                        P33Perc02Opcion10 = false;
+                                        P33Perc01Opcion10 =  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion10 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion10  = false;
+                                        P33Perc02Opcion10  = value!;
+                                        P33Perc01Opcion10  =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion10 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion10  = value!;
+                                        P33Perc02Opcion10  = true;
+                                        P33Perc01Opcion10  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ]
+                        )),
 
                     Row(
                       children: [
@@ -4249,7 +5222,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4285,6 +5258,67 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc11 != P31Perc11.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion11  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion11 = false;
+                                        P33Perc02Opcion11 = false;
+                                        P33Perc01Opcion11 =  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion11 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion11  = false;
+                                        P33Perc02Opcion11  = value!;
+                                        P33Perc01Opcion11  =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion11 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion11  = value!;
+                                        P33Perc02Opcion11  = true;
+                                        P33Perc01Opcion11  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ]
+                        )),
 
                     Row(
                       children: [
@@ -4310,7 +5344,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4346,8 +5380,67 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
-
-
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc12 != P31Perc12.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion12  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion12 = false;
+                                        P33Perc02Opcion12 = false;
+                                        P33Perc01Opcion12 =  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion12 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion12  = false;
+                                        P33Perc02Opcion12  = value!;
+                                        P33Perc01Opcion12  =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion12 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion12  = value!;
+                                        P33Perc02Opcion12  = true;
+                                        P33Perc01Opcion12  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ]
+                        )),
 
                     Row(
                       children: [
@@ -4373,7 +5466,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4409,6 +5502,68 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc13 != P31Perc13.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion13  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion13 = false;
+                                        P33Perc02Opcion13 = false;
+                                        P33Perc01Opcion13 =  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion13 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion13  = false;
+                                        P33Perc02Opcion13  = value!;
+                                        P33Perc01Opcion13  =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion13 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion13  = value!;
+                                        P33Perc02Opcion13  = true;
+                                        P33Perc01Opcion13  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ]
+                        )),
+
                     Row(
                       children: [
                         HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Manejar el dinero."),
@@ -4427,14 +5582,13 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                       ],
                     ),
 
-
                     //PREGUNTA SECUNDARIA
                     Visibility(
                         visible: (isCheckedP30Opcion14),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4470,19 +5624,67 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
-
-
-                    const SizedBox(height: 16.0),
-                    //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"),
-                    HelpersViewLetrasSubs.formItemsDesign( "Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
-                    HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
-
-                    const SizedBox(height: 16.0),
-                    //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"),
-                    HelpersViewLetrasSubs.formItemsDesign( "¿Con qué frecuencia recibe asistencia?"),
-                    HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
-
-                    //FIN DE LOS QUE NO ENTIENDO BIEN
+                    //PREGUNTA SECUNDARIA DE LA SECUNDARIA
+                    Visibility(
+                        visible: (_P31Perc11 != P31Perc11.familiar),
+                        child:Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc01Opcion14  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion14 = false;
+                                        P33Perc02Opcion14 = false;
+                                        P33Perc01Opcion14 =  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc02Opcion14 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion14  = false;
+                                        P33Perc02Opcion14  = value!;
+                                        P33Perc01Opcion14  =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P33Perc03Opcion14 ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P33Perc03Opcion14  = value!;
+                                        P33Perc02Opcion14  = true;
+                                        P33Perc01Opcion14  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ]
+                        )),
 
                     const SizedBox(height: 16.0),
                     HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente "

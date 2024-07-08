@@ -61,8 +61,6 @@ class _$AppDatabase extends AppDatabase {
     changeListener = listener ?? StreamController<String>.broadcast();
   }
 
-  FormDataModelDaoHTML? _formDataModelDaoHTMLInstance;
-
   FormDataModelDaoFormulario? _formDataModelDaoFormularioInstance;
 
   FormDataModelDaoRespuestaunovisita? _formDataModelDaoRespuestaInstance;
@@ -96,8 +94,6 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Html` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `htmlcodigo` TEXT)');
-        await database.execute(
             'CREATE TABLE IF NOT EXISTS `Formulario` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `pregunta` TEXT, `tipoOpcion` TEXT, `puntaje` TEXT, `tipoRepuesta` INTEGER, `id` INTEGER, `idformato` INTEGER, `texto` TEXT, `titulo` TEXT, `idseccion` INTEGER, `descripcion` TEXT, `id_tipo_respuesta` INTEGER, `id_seccion` INTEGER)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `RespuestaPrimeraVisita` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` INTEGER, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
@@ -114,12 +110,6 @@ class _$AppDatabase extends AppDatabase {
       },
     );
     return sqfliteDatabaseFactory.openDatabase(path, options: databaseOptions);
-  }
-
-  @override
-  FormDataModelDaoHTML get formDataModelDaoHTML {
-    return _formDataModelDaoHTMLInstance ??=
-        _$FormDataModelDaoHTML(database, changeListener);
   }
 
   @override
@@ -150,72 +140,6 @@ class _$AppDatabase extends AppDatabase {
   FormDataModelDaoPadronLogin get formDataModelDaoPadronLogin {
     return _formDataModelDaoPadronLoginInstance ??=
         _$FormDataModelDaoPadronLogin(database, changeListener);
-  }
-}
-
-class _$FormDataModelDaoHTML extends FormDataModelDaoHTML {
-  _$FormDataModelDaoHTML(
-    this.database,
-    this.changeListener,
-  )   : _queryAdapter = QueryAdapter(database),
-        _htmlInsertionAdapter = InsertionAdapter(
-            database,
-            'Html',
-            (Html item) => <String, Object?>{
-                  'id': item.id,
-                  'htmlcodigo': item.htmlcodigo
-                });
-
-  final sqflite.DatabaseExecutor database;
-
-  final StreamController<String> changeListener;
-
-  final QueryAdapter _queryAdapter;
-
-  final InsertionAdapter<Html> _htmlInsertionAdapter;
-
-  @override
-  Future<List<Html>> findFormDataModel(
-    int offset,
-    int perPage,
-  ) async {
-    return _queryAdapter.queryList('SELECT * FROM Html LIMIT ?2 OFFSET ?1',
-        mapper: (Map<String, Object?> row) => Html(
-            id: row['id'] as int?, htmlcodigo: row['htmlcodigo'] as String?),
-        arguments: [offset, perPage]);
-  }
-
-  @override
-  Future<List<Html>> findAllHtml() async {
-    return _queryAdapter.queryList('SELECT * FROM Html',
-        mapper: (Map<String, Object?> row) => Html(
-            id: row['id'] as int?, htmlcodigo: row['htmlcodigo'] as String?));
-  }
-
-  @override
-  Future<String?> findAllHtmlID(int id) async {
-    return _queryAdapter.query('SELECT htmlcodigo FROM Html WHERE id = ?1',
-        mapper: (Map<String, Object?> row) => row.values.first as String,
-        arguments: [id]);
-  }
-
-  @override
-  Future<int?> totalFormDataModels() async {
-    return _queryAdapter.query('SELECT COUNT(*) FROM Html',
-        mapper: (Map<String, Object?> row) => row.values.first as int);
-  }
-
-  @override
-  Future<int?> BorrarFormDataModels(int ID) async {
-    return _queryAdapter.query('DELETE FROM Html WHERE codigoVisita = ?1',
-        mapper: (Map<String, Object?> row) => row.values.first as int,
-        arguments: [ID]);
-  }
-
-  @override
-  Future<void> insertFormDataModel(Html formDataModel) async {
-    await _htmlInsertionAdapter.insert(
-        formDataModel, OnConflictStrategy.replace);
   }
 }
 

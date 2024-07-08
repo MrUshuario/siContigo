@@ -5,7 +5,7 @@ import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/apis/apiprovid
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/database/database.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/model/responseinciofinactividad.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/model/t_padron.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaprimeravisita.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respuestaprimeravisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/constantes.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewAlertMensajeTitutlo.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewBlancoTexto.dart';

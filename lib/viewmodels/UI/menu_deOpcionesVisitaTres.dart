@@ -8,8 +8,7 @@ import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeld
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_respuestaunovisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_respuestaBACKUPunovisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/model/t_formulario.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respBackupprimeravisita.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaprimeravisita.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respuestaprimeravisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/constantes.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewAlertMensajeTitutlo.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/helpersviewLetrasSubsGris.dart';
@@ -24,6 +23,7 @@ import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/viewmodels/form_view
 import '../../infraestructure/dao/formdatamodeldao_padron.dart';
 import '../../model/t_insertarEncuestaRSPTA.dart';
 import '../../model/t_padron.dart';
+import '../../model/visitaDomiciliaria/t_respBackupprimeravisita.dart';
 import '../../utils/helpersviewAlertFaltaMSG.dart';
 import '../../utils/helpersviewAlertMensajeFOTO.dart';
 import '../../utils/helpersviewAlertProgressCircle.dart';

@@ -1,6 +1,6 @@
 
 
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaprimeravisita.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respuestaprimeravisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaEnvioGenerico.dart';
 
 class RespuestaMapper {

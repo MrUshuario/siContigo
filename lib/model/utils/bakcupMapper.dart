@@ -1,7 +1,9 @@
 
 
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respBackupprimeravisita.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaprimeravisita.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respuestaprimeravisita.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respuestaprimeravisita.dart';
+
+import '../visitaDomiciliaria/t_respBackupprimeravisita.dart';
 
 class BackupMapper {
 

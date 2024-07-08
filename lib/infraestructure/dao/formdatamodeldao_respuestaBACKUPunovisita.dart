@@ -1,6 +1,8 @@
 
 import 'package:floor/floor.dart';
-import 'package:Sicontigo_Visita_Domiciliaria/model/t_respBackupprimeravisita.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respuestaprimeravisita.dart';
+
+import '../../model/visitaDomiciliaria/t_respBackupprimeravisita.dart';
 
 @dao
 abstract class FormDataModelDaoRespuestaBACKUPunovisita {
