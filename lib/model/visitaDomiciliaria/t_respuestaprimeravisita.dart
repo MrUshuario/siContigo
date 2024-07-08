@@ -69,6 +69,7 @@ class RespuestaPrimeraVisita {
   int? p22percepcion;
   String? p22percepcionEspecificar;
   int? p23percepcion;
+  String? p23percepcionEspecificar;
   int? p24percepcion;
   int? p25percepcion;
   int? p26percepcion;
@@ -90,16 +91,21 @@ class RespuestaPrimeraVisita {
   String? p42percepcion;
   int? p43percepcion;
   int? p44percepcion;
+  String? p44percepcionEspecificar;
   int? p45percepcion;
+  String? p45percepcionEspecificar;
   int? p46percepcion;
+  String? p46percepcionEspecificar;
   int? p47percepcion;
   int? p48percepcion;
   int? p49percepcion;
-  int? p50percepcion;
+  String? p49percepcionEspecificar;
+  String? p50percepcion;
   int? p51percepcion;
-  int? p52percepcion;
+  String? p52percepcion;
+  String? p52percepcionEspecificar;
   int? p53percepcion;
-  int? p54percepcion;
+  String? p54percepcion;
   int? p55percepcion;
   int? p56percepcion;
   int? p57percepcion;
@@ -125,7 +131,10 @@ class RespuestaPrimeraVisita {
     this.p41percepcion,this.p42percepcion,this.p43percepcion,this.p44percepcion,this.p45percepcion,
     this.p46percepcion,this.p47percepcion,this.p48percepcion,this.p49percepcion,this.p50percepcion,
     this.p51percepcion,this.p52percepcion,this.p53percepcion,this.p54percepcion,this.p55percepcion,
-    this.p56percepcion,this.p57percepcion, this.p22percepcionEspecificar
+    this.p56percepcion,this.p57percepcion,
+    this.p22percepcionEspecificar, this.p23percepcionEspecificar, this.p44percepcionEspecificar,
+    this.p45percepcionEspecificar, this.p46percepcionEspecificar, this.p49percepcionEspecificar,
+    this.p52percepcionEspecificar
 
   });
 
@@ -218,15 +227,21 @@ class RespuestaPrimeraVisita {
       p47percepcion: json['p47percepcion'] as int?,
       p48percepcion: json['p48percepcion'] as int?,
       p49percepcion: json['p49percepcion'] as int?,
-      p50percepcion: json['p50percepcion'] as int?,
+      p50percepcion: json['p50percepcion'] as String?,
       p51percepcion: json['p51percepcion'] as int?,
-      p52percepcion: json['p52percepcion'] as int?,
+      p52percepcion: json['p52percepcion'] as String?,
       p53percepcion: json['p53percepcion'] as int?,
-      p54percepcion: json['p54percepcion'] as int?,
+      p54percepcion: json['p54percepcion'] as String?,
       p55percepcion: json['p55percepcion'] as int?,
       p56percepcion: json['p56percepcion'] as int?,
       p57percepcion: json['p57percepcion'] as int?,
       p22percepcionEspecificar: json['p22percepcionEspecificar'] as String?,
+      p23percepcionEspecificar: json['p23percepcionEspecificar'] as String?,
+      p44percepcionEspecificar: json['p44percepcionEspecificar'] as String?,
+      p45percepcionEspecificar: json['p45percepcionEspecificar'] as String?,
+      p46percepcionEspecificar: json['p46percepcionEspecificar'] as String?,
+      p49percepcionEspecificar: json['p49percepcionEspecificar'] as String?,
+      p52percepcionEspecificar: json['p52percepcionEspecificar'] as String?
 
     );
   }
@@ -336,6 +351,12 @@ class RespuestaPrimeraVisita {
       "p56percepcion":p56percepcion,
       "p57percepcion":p57percepcion,
       "p22percepcionEspecificar": p22percepcionEspecificar,
+      "p23percepcionEspecificar": p23percepcionEspecificar,
+      "p44percepcionEspecificar": p44percepcionEspecificar,
+      "p45percepcionEspecificar": p45percepcionEspecificar,
+      "p46percepcionEspecificar": p46percepcionEspecificar,
+      "p49percepcionEspecificar": p49percepcionEspecificar,
+      "p52percepcionEspecificar": p52percepcionEspecificar,
     };
   }
 

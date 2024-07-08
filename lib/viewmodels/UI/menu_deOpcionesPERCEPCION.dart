@@ -180,7 +180,6 @@ enum P44Perc { omadep, familaires, medios, personal, banco, yo, otro}
 enum P45Perc {dosmeses, masdosmeses, seismeses, nosabe, otro}
 enum P46Perc {nosabiausuario, nosabiafecha, enfermo, guarde, movilidad, nosabe, otro}
 enum P47Perc {independiente, cuidador, familiar, municipalidad, cobro}
-
 enum P48Perc {mediahora, masmediahora, unoadoshoras, masdoshoras}
 enum P49Perc {apie, bicicletas, caballo, mototaxi, motocicleta, automovil, taxi, colectivo, camion, otro}
 //enum P50Perc MONTO EN SOLES
@@ -785,6 +784,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P23Perc == P23Perc.otropariente) {PercP23 = "${PercP23}Otro/a pariente-I:${widget.P23EspecificarPerc!.text};";}
     widget.formData?.p23percepcion = _P23Perc?.index;
     //widget.formDataBACKUP?.p23percepcion = _P23Perc?.index;
+    widget.formData?.p23percepcionEspecificar =widget.P23EspecificarPerc!.text;
+    //widget.formDataBACKUP?.p23percepcionEspecificar =widget.P23EspecificarPerc!.text;
 
     if (_P24Perc == P24Perc.hombre) {PercP24 = "${PercP24}Hombre-A;";}
     if (_P24Perc == P24Perc.mujer) {PercP24 = "${PercP24}Mujer-B;";}
@@ -981,46 +982,174 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
     //42
     String PercP42Check="";
-    if (P42Perc03Salud) {PercP42 = "${PercP42}tres;"; PercP42Check = "tres";}
-    else if (P42Perc02Salud) {PercP42 = "${PercP42}dos;"; PercP42Check = "dos";}
-    else if (P42Perc01Salud) {PercP42 = "${PercP42}uno;"; PercP42Check = "uno";}
+    if (P42Perc03Salud) {PercP42 = "${PercP42}tres-A,"; PercP42Check = "A3,";}
+    else if (P42Perc02Salud) {PercP42 = "${PercP42}dos-A,"; PercP42Check = "A2,";}
+    else if (P42Perc01Salud) {PercP42 = "${PercP42}uno-A,"; PercP42Check = "A1,";}
+    if (P42Perc03SaludF) {PercP42 = "${PercP42}tres-B,"; PercP42Check = "B3,";}
+    else if (P42Perc02SaludF) {PercP42 = "${PercP42}dos-B,"; PercP42Check = "B2,";}
+    else if (P42Perc01SaludF) {PercP42 = "${PercP42}uno-B,"; PercP42Check = "B1,";}
+    PercP42 = "${PercP42};";
     widget.formData?.p42percepcion = PercP42Check;
     //widget.formDataBACKUP?.p42percepcion = PercP42Check;
+
+    /*
+    bool P42Perc01Dinero = false;
+    bool P42Perc02Dinero = false;
+    bool P42Perc03Dinero = false;
+    bool P42Perc01ProblemasF = false;
+    bool P42Perc02ProblemasF = false;
+    bool P42Perc03ProblemasF = false;
+    bool P42Perc01Falta = false;
+    bool P42Perc02Falta = false;
+    bool P42Perc03Falta = false;
+    bool P42Perc01ProblemasV = false;
+    bool P42Perc02ProblemasV = false;
+    bool P42Perc03ProblemasV = false;
+    bool P42Perc01Estudio= false;
+    bool P42Perc02Estudio= false;
+    bool P42Perc03Estudio= false;
+    bool P42Perc01Otro= false;
+    bool P42Perc02Otro= false;
+    bool P42Perc03Otro= false;
+    bool P42Perc03SinPreocupaciones= false;*/
 
     // await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase5() async {
     //P15 - P18
-    if (_P43Perc == P43Perc.Si) {
-      PercP43 = "${PercP43}Sí-A;";
-    }
-    if (_P43Perc == P43Perc.No) {
-      PercP43 = "${PercP43}No-B;";
-    }
+    if (_P43Perc == P43Perc.Si) {PercP43 = "${PercP43}Sí-A;";}
+    if (_P43Perc == P43Perc.No) {PercP43 = "${PercP43}No-B;";}
+    widget.formData?.p43percepcion = _P43Perc?.index;
+    //widget.formDataBACKUP?.p43percepcion = _P43Perc?.index;
 
-    if (_P44Perc == P44Perc.omadep) {
-      PercP44 = "${PercP44}OMAPED-A;";
-    }
-    if (_P44Perc == P44Perc.familaires) {
-      PercP44 = "${PercP44}Familiares / Vecinos / Amigos-B;";
-    }
-    if (_P44Perc == P44Perc.medios) {
-      PercP44 =
-      "${PercP44}Medios de comunicación (radio, televisión, perifoneo, etc.)-C;";
-    }
-    if (_P44Perc == P44Perc.personal) {
-      PercP44 = "${PercP44}Personal del Programa CONTIGO-D;";
-    }
-    if (_P44Perc == P44Perc.banco) {
-      PercP44 = "${PercP44}Banco de la Nación-E;";
-    }
-    if (_P44Perc == P44Perc.yo) {
-      PercP44 = "${PercP44}Yo mismo buscando en internet-F;";
-    }
-    if (_P44Perc == P44Perc.otro) {
-      PercP44 = "${PercP44}Otro-G:${widget.P44EspecificarPerc!.text};";
-    }
+    if (_P44Perc == P44Perc.omadep) {PercP44 = "${PercP44}OMAPED-A;";}
+    if (_P44Perc == P44Perc.familaires) {PercP44 = "${PercP44}Familiares / Vecinos / Amigos-B;";}
+    if (_P44Perc == P44Perc.medios) {PercP44 = "${PercP44}Medios de comunicación (radio, televisión, perifoneo, etc.)-C;";}
+    if (_P44Perc == P44Perc.personal) {PercP44 = "${PercP44}Personal del Programa CONTIGO-D;";}
+    if (_P44Perc == P44Perc.banco) {PercP44 = "${PercP44}Banco de la Nación-E;";}
+    if (_P44Perc == P44Perc.yo) {PercP44 = "${PercP44}Yo mismo buscando en internet-F;";}
+    if (_P44Perc == P44Perc.otro) {PercP44 = "${PercP44}Otro-G:${widget.P44EspecificarPerc!.text};";}
+    widget.formData?.p44percepcion = _P44Perc?.index;
+    //widget.formDataBACKUP?.p44percepcion = _P44Perc?.index;
+    widget.formData?.p44percepcionEspecificar =widget.P44EspecificarPerc!.text;
+    //widget.formDataBACKUP?.p44percepcionEspecificar =widget.P44EspecificarPerc!.text;
+
+    if (_P45Perc == P45Perc.dosmeses) {PercP45 = "${PercP45}Hace 2 meses o menos-A;";}
+    if (_P45Perc == P45Perc.masdosmeses) {PercP45 = "${PercP45}Hace más de 2 a 6 meses-B;";}
+    if (_P45Perc == P45Perc.seismeses) {PercP45 = "${PercP45}Hace 6 meses o más-C;";}
+    if (_P45Perc == P45Perc.nosabe) {PercP45 = "${PercP45}No sabe / No responde-D;";}
+    if (_P45Perc == P45Perc.otro) {PercP45 = "${PercP45}Otro-E:${widget.P45EspecificarPerc!.text};";}
+    widget.formData?.p45percepcion = _P45Perc?.index;
+    //widget.formDataBACKUP?.p45percepcion = _P45Perc?.index;
+    widget.formData?.p44percepcionEspecificar =widget.P44EspecificarPerc!.text;
+    //widget.formDataBACKUP?.p44percepcionEspecificar =widget.P44EspecificarPerc!.text;
+
+    if (_P46Perc == P46Perc.nosabiausuario) {PercP46 = "${PercP46}No sabía que era usuario del Programa-A;";}
+    if (_P46Perc == P46Perc.nosabiafecha)   {PercP46 = "${PercP46}No sabía de la fecha de pago-B;";}
+    if (_P46Perc == P46Perc.enfermo)        {PercP46 = "${PercP46}Estuve enfermo-C;";}
+    if (_P46Perc == P46Perc.guarde)         {PercP46 = "${PercP46}Guardé/junte pensiones para luego hacer el cobro-D;";}
+    if (_P46Perc == P46Perc.movilidad)      {PercP46 = "${PercP46}Por la falta de movilidad-E;";}
+    if (_P46Perc == P46Perc.nosabe)         {PercP46 = "${PercP46}No sabe / No responde -F;";}
+    if (_P46Perc == P46Perc.otro)           {PercP46 = "${PercP46}Otro-G:${widget.P46EspecificarPerc!.text};";}
+    widget.formData?.p46percepcion = _P46Perc?.index;
+    //widget.formDataBACKUP?.p46percepcion = _P46Perc?.index;
+    widget.formData?.p46percepcionEspecificar =widget.P46EspecificarPerc!.text;
+    //widget.formDataBACKUP?.p46percepcionEspecificar =widget.P46EspecificarPerc!.text;
+
+    if (_P47Perc == P47Perc.independiente)  {PercP47 = "${PercP47}Yo, de manera independiente-A;";}
+    if (_P47Perc == P47Perc.cuidador)       {PercP47 = "${PercP47}Yo, acompañado de cuidador-B;";}
+    if (_P47Perc == P47Perc.familiar)       {PercP47 = "${PercP47}Yo, acompañado de familiar-C;";}
+    if (_P47Perc == P47Perc.municipalidad)  {PercP47 = "${PercP47}Yo, con apoyo del personal de la Municipalidad-D;";}
+    if (_P47Perc == P47Perc.cobro)          {PercP47 = "${PercP47}Persona autorizada para el cobro-E;";}
+    widget.formData?.p47percepcion = _P47Perc?.index;
+    //widget.formDataBACKUP?.p47percepcion = _P47Perc?.index;
+
+    if (_P48Perc == P48Perc.mediahora)  {PercP48 = "${PercP48}Media hora o menos-A;";}
+    if (_P48Perc == P48Perc.masmediahora)       {PercP48 = "${PercP48}Más de media hora, pero menos de 1 hora-B;";}
+    if (_P48Perc == P48Perc.unoadoshoras)       {PercP48 = "${PercP48}De 1 a 2 horas-C;";}
+    if (_P48Perc == P48Perc.masdoshoras)  {PercP48 = "${PercP48}Más de 2 horas-D;";}
+    widget.formData?.p48percepcion = _P48Perc?.index;
+    //widget.formDataBACKUP?.p48percepcion = _P48Perc?.index;
+
+    if (_P49Perc == P49Perc.apie) {PercP49 = "${PercP49}A pie-A;";}
+    if (_P49Perc == P49Perc.bicicletas)   {PercP49 = "${PercP49}Bicicleta-B;";}
+    if (_P49Perc == P49Perc.caballo)        {PercP49 = "${PercP49}Caballo / Acémila-C;";}
+    if (_P49Perc == P49Perc.mototaxi)         {PercP49 = "${PercP49}Mototaxi-D;";}
+    if (_P49Perc == P49Perc.motocicleta)      {PercP49 = "${PercP49}Motocicleta-E;";}
+    if (_P49Perc == P49Perc.automovil)         {PercP49 = "${PercP49}Automóvil / Camioneta-F;";}
+    if (_P49Perc == P49Perc.taxi)         {PercP49 = "${PercP49}Taxi-G;";}
+    if (_P49Perc == P49Perc.colectivo)         {PercP49 = "${PercP49}Colectivo/Microbús/Coaster-H;";}
+    if (_P49Perc == P49Perc.camion)         {PercP49 = "${PercP49}Camión-I;";}
+    if (_P49Perc == P49Perc.otro)           {PercP49 = "${PercP49}Otro-J:${widget.P49EspecificarPerc!.text};";}
+    widget.formData?.p49percepcion = _P49Perc?.index;
+    //widget.formDataBACKUP?.p49percepcion = _P49Perc?.index;
+    widget.formData?.p49percepcionEspecificar =widget.P49EspecificarPerc!.text;
+    //widget.formDataBACKUP?.p49percepcionEspecificar =widget.P49EspecificarPerc!.text;
+
+    PercP50 = "${PercP50}${widget.P50EspecificarPerc!.text};";
+    widget.formData?.p50percepcion =widget.P50EspecificarPerc!.text;
+    //widget.formDataBACKUP?.p50percepcion =widget.P50EspecificarPerc!.text;
+
+    if (_P51Perc == P51Perc.banco)    {PercP51 = "${PercP51}Cobro por ventanilla del Banco de la Nación-A;";}
+    if (_P51Perc == P51Perc.debito) {PercP51 = "${PercP51}Cobro con tarjeta de débito (cobro por cajero)-B;";}
+    if (_P51Perc == P51Perc.agente) {PercP51 = "${PercP51}Cobro por agente-C;";}
+    if (_P51Perc == P51Perc.pagador)  {PercP51 = "${PercP51}Carrito pagador-D;";}
+    if (_P51Perc == P51Perc.pias)  {PercP51 = "${PercP51}Plataformas itinerantes de acción social (PIAS)-E;";}
+    widget.formData?.p51percepcion = _P51Perc?.index;
+    //widget.formDataBACKUP?.p51percepcion = _P51Perc?.index;
+
+    String p52check = ""; //POR EL ESPECIFICA
+    if (P52Perc01)     {PercP52 = "${PercP52}A,"; p52check ="${p52check}A";}
+    if (P52Perc02)     {PercP52 = "${PercP52}B,"; p52check ="${p52check}B";}
+    if (P52Perc03)     {PercP52 = "${PercP52}C,"; p52check ="${p52check}C";}
+    if (P52Perc04)     {PercP52 = "${PercP52}D,"; p52check ="${p52check}D";}
+    if (P52Perc05)     {PercP52 = "${PercP52}E,"; p52check ="${p52check}E";}
+    if (P52Perc06)     {PercP52 = "${PercP52}F,"; p52check ="${p52check}F";}
+    if (P52Perc07)     {PercP52 = "${PercP52}G,"; p52check ="${p52check}G";}
+    if (P52Perc08)     {PercP52 = "${PercP52}H,"; p52check ="${p52check}H";}
+    if (P52Perc09)     {PercP52 = "${PercP52}I,"; p52check ="${p52check}I";}
+    if (P52Perc10)     {PercP52 = "${PercP52}J,"; p52check ="${p52check}J";}
+    if (P52Perc11)     {PercP52 = "${PercP52}K,"; p52check ="${p52check}K";}
+    if (P52Perc12)     {PercP52 = "${PercP52}L:${widget.P52EspecificarPerc!.text}";p52check ="${p52check}L";}
+    PercP52 = "${PercP52};";
+    widget.formData?.p52percepcion = p52check;
+    //widget.formDataBACKUP?.p52percepcion = p52check;
+    widget.formData?.p52percepcionEspecificar =widget.P52EspecificarPerc!.text;
+    //widget.formDataBACKUP?.p52percepcionEspecificar =widget.P52EspecificarPerc!.text;
+
+    if (_P53Perc == P53Perc.Si) {PercP53 = "${PercP53}Sí-A;";}
+    if (_P53Perc == P53Perc.No) {PercP53 = "${PercP53}No-B;";}
+    widget.formData?.p53percepcion = _P53Perc?.index;
+    //widget.formDataBACKUP?.p53percepcion = _P53Perc?.index;
+
+    String PercP54Check="";
+    if      (P54Perc01Distancia) {PercP54 = "${PercP54}tres-A,";  PercP54Check = "A3,";}
+    else if (P54Perc02Distancia) {PercP54 = "${PercP54}dos-A,";   PercP54Check = "A2,";}
+    else if (P54Perc03Distancia) {PercP54 = "${PercP54}uno-A,";   PercP54Check = "A1,";}
+    if      (P54Perc01Fisico) {PercP54 = "${PercP54}tres-B,";  PercP54Check = "B3,";}
+    else if (P54Perc02Fisico) {PercP54 = "${PercP54}dos-B,";   PercP54Check = "B2,";}
+    else if (P54Perc03Fisico) {PercP54 = "${PercP54}uno-B,";   PercP54Check = "B1,";}
+    if      (P54Perc01Ausencia) {PercP54 = "${PercP54}tres-C,";  PercP54Check = "C3,";}
+    else if (P54Perc02Ausencia) {PercP54 = "${PercP54}dos-C,";   PercP54Check = "C2,";}
+    else if (P54Perc03Ausencia) {PercP54 = "${PercP54}uno-C,";   PercP54Check = "C1,";}
+    if      (P54Perc01Requiere) {PercP54 = "${PercP54}tres-D,";  PercP54Check = "D3,";}
+    else if (P54Perc02Requiere) {PercP54 = "${PercP54}dos-D,";   PercP54Check = "D2,";}
+    else if (P54Perc03Requiere) {PercP54 = "${PercP54}uno-D,";   PercP54Check = "D1,";}
+    if      (P54Perc01Clima) {PercP54 = "${PercP54}tres-E,";  PercP54Check = "E3,";}
+    else if (P54Perc02Clima) {PercP54 = "${PercP54}dos-E,";   PercP54Check = "E2,";}
+    else if (P54Perc03Clima) {PercP54 = "${PercP54}uno-E,";   PercP54Check = "E1,";}
+    if      (P54Perc01Terreno) {PercP54 = "${PercP54}tres-F,";  PercP54Check = "F3,";}
+    else if (P54Perc02Terreno) {PercP54 = "${PercP54}dos-F,";   PercP54Check = "F2,";}
+    else if (P54Perc03Terreno) {PercP54 = "${PercP54}uno-F,";   PercP54Check = "F1,";}
+    if      (P54Perc01Otro) {PercP54 = "${PercP54}tres-G,";  PercP54Check = "G3,";}
+    else if (P54Perc02Otro) {PercP54 = "${PercP54}dos-G,";   PercP54Check = "G2,";}
+    else if (P54Perc03Otro) {PercP54 = "${PercP54}uno-G,";   PercP54Check = "G1,";}
+    PercP54="${PercP54};";
+    widget.formData?.p54percepcion = PercP54Check;
+    //widget.formDataBACKUP?.p54percepcion = PercP54Check;
+
+
     //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
