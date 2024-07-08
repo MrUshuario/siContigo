@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_respuestaBACKUPpercepcion.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respBackuppercepciones.dart';
 import 'package:animated_infinite_scroll_pagination/animated_infinite_scroll_pagination.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -41,7 +43,7 @@ import 'menu_deOpcionesLISTADO.dart';
 class MenudeOpcionesPercepcion extends StatefulWidget {
   final _appDatabase = GetIt.I.get<AppDatabase>();
   FormDataModelDaoRespuestaunovisita get formDataModelDao => _appDatabase.formDataModelDaoRespuesta;
-  FormDataModelDaoRespuestaBACKUPunovisita get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
+  FormDataModelDaoRespuestaBACKUpercepcion get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUpercepcion;
 
   //PADRON
   FormDataModelDaoPadron get padronsql => _appDatabase.formDataModelDaoPadron;
@@ -111,7 +113,7 @@ class MenudeOpcionesPercepcion extends StatefulWidget {
   //ENVIAR LA DATA
   apiprovider_formulario apiForm = apiprovider_formulario();
   RespuestaPrimeraVisita? formData;
-  RespuestaBACKUPprimeravisita? formDataBACKUP = RespuestaBACKUPprimeravisita();
+  RespuestaBACKUPpercepcion? formDataBACKUP = RespuestaBACKUPpercepcion();
   MenudeOpcionesPercepcion(this.formData, {super.key});
 
   @override
@@ -301,7 +303,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
   int puntaje = 0;
 
   //BACKUP
-  List <RespuestaBACKUPprimeravisita> listBackup = List.empty();
+  List <RespuestaBACKUPpercepcion> listBackup = List.empty();
 
   Future<void> conseguirVersion() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -641,19 +643,19 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
     PercP01 = "${PercP01}${widget.P01EspecificarPerc!.text};";
     widget.formData?.p01percepcion =widget.P01EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p01percepcion =widget.P01EspecificarPerc!.text;
+    widget.formDataBACKUP?.p01percepcion =widget.P01EspecificarPerc!.text;
 
     PercP02 = "${PercP02}${widget.P02EspecificarPerc!.text};";
     widget.formData?.p02percepcion =widget.P02EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p02percepcion =widget.P02EspecificarPerc!.text;
+    widget.formDataBACKUP?.p02percepcion =widget.P02EspecificarPerc!.text;
 
     PercP03 = "${PercP03}${widget.P03EspecificarPerc!.text};";
     widget.formData?.p03percepcion =widget.P03EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p03percepcion =widget.P03EspecificarPerc!.text;
+    widget.formDataBACKUP?.p03percepcion =widget.P03EspecificarPerc!.text;
 
     PercP04 = "${PercP04}${widget.P04EspecificarPerc!.text};";
     widget.formData?.p04percepcion =widget.P04EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p04percepcion =widget.P04EspecificarPerc!.text;
+    widget.formDataBACKUP?.p04percepcion =widget.P04EspecificarPerc!.text;
 
 
     if (_P05Perc == P05Perc.avenida) {PercP05 = "${PercP05}Avenida-A;";}
@@ -664,21 +666,21 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P05Perc == P05Perc.otro) {PercP05 = "${PercP05}Otro-F;";}
 
     widget.formData?.p05percepcion = _P05Perc?.index;
-    //widget.formDataBACKUP?.p05percepcion = _P05Perc?.index;
+    widget.formDataBACKUP?.p05percepcion = _P05Perc?.index;
 
     PercP06 = "${PercP06}${widget.P06EspecificarPerc!.text};";
     widget.formData?.p06percepcion =widget.P06EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p06percepcion =widget.P06EspecificarPerc!.text;
+    widget.formDataBACKUP?.p06percepcion =widget.P06EspecificarPerc!.text;
 
     PercP07 = "${PercP07}${widget.P07EspecificarPerc!.text};";
     widget.formData?.p07percepcion =widget.P07EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p07percepcion =widget.P04EspecificarPerc!.text;
+    widget.formDataBACKUP?.p07percepcion =widget.P04EspecificarPerc!.text;
 
     PercP08 = "${PercP08}${widget.P08EspecificarPerc!.text};";
     widget.formData?.p08percepcion =widget.P08EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p08percepcion =widget.P08EspecificarPerc!.text;
+    widget.formDataBACKUP?.p08percepcion =widget.P08EspecificarPerc!.text;
 
-    //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
 
@@ -688,36 +690,36 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P09Perc == P09Perc.Si) {PercP05 = "${PercP09}Sí-A;";}
     if (_P09Perc == P09Perc.No) {PercP05 = "${PercP09}No-B;";}
     widget.formData?.p09percepcion = _P09Perc?.index;
-    //widget.formDataBACKUP?.p09percepcion = _P09Perc?.index;
+    widget.formDataBACKUP?.p09percepcion = _P09Perc?.index;
 
     if (_P10Perc == P10Perc.Si) {PercP10 = "${PercP10}Sí-A;";}
     if (_P10Perc == P10Perc.No) {PercP10 = "${PercP10}No-B;";}
     widget.formData?.p10percepcion = _P10Perc?.index;
-    //widget.formDataBACKUP?.p10percepcion = _P10Perc?.index;
+    widget.formDataBACKUP?.p10percepcion = _P10Perc?.index;
 
     if (_P11Perc == P11Perc.Si) {PercP11 = "${PercP11}Sí-A;";}
     if (_P11Perc == P11Perc.No) {PercP11 = "${PercP11}No-B;";}
     widget.formData?.p11percepcion = _P11Perc?.index;
-    //widget.formDataBACKUP?.p11percepcion = _P11Perc?.index;
+    widget.formDataBACKUP?.p11percepcion = _P11Perc?.index;
 
     PercP12 = "${PercP12}${widget.P12EspecificarPerc!.text};";
     widget.formData?.p12percepcion =widget.P12EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p12percepcion =widget.P12EspecificarPerc!.text;
+    widget.formDataBACKUP?.p12percepcion =widget.P12EspecificarPerc!.text;
 
     if (_P13Perc == P13Perc.hombre) {PercP13 = "${PercP13}Hombre-A;";}
     if (_P13Perc == P13Perc.mujer) {PercP13 = "${PercP13}Mujer-B;";}
     widget.formData?.p13percepcion = _P13Perc?.index;
-    //widget.formDataBACKUP?.p13percepcion = _P13Perc?.index;
+    widget.formDataBACKUP?.p13percepcion = _P13Perc?.index;
 
     if (_P14Perc == P14Perc.Si) {PercP14 = "${PercP14}Sí-A;";}
     if (_P14Perc == P14Perc.No) {PercP14 = "${PercP14}No-B;";}
     widget.formData?.p14percepcion = _P14Perc?.index;
-    //widget.formDataBACKUP?.p14percepcion = _P14Perc?.index;
+    widget.formDataBACKUP?.p14percepcion = _P14Perc?.index;
 
     if (_P15Perc == P15Perc.Si) {PercP15 = "${PercP15}Sí-A;";}
     if (_P15Perc == P15Perc.No) {PercP15 = "${PercP15}No-B;";}
     widget.formData?.p15percepcion = _P15Perc?.index;
-    //widget.formDataBACKUP?.p15percepcion = _P15Perc?.index;
+    widget.formDataBACKUP?.p15percepcion = _P15Perc?.index;
 
     if (_P16Perc == P16Perc.esposa) {PercP16 = "${PercP16}Esposa/o-A;";}
     if (_P16Perc == P16Perc.conviviente) {PercP16 = "${PercP16}Conviviente-B;";}
@@ -732,31 +734,31 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P16Perc == P16Perc.otropariente) {PercP16 = "${PercP16}Otro/a pariente-K:${widget.P16EspecificarPerc!.text};";}
     if (_P16Perc == P16Perc.otronopariente) {PercP16 = "${PercP16}Otro/a no pariente-L:${widget.P16EspecificarPerc!.text};";}
     widget.formData?.p16percepcion = _P16Perc?.index;
-    //widget.formDataBACKUP?.p16percepcion = _P16Perc?.index;
+    widget.formDataBACKUP?.p16percepcion = _P16Perc?.index;
 
     if (_P17Perc == P17Perc.Si) {PercP17 = "${PercP17}Sí-A;";}
     if (_P17Perc == P17Perc.No) {PercP17 = "${PercP17}No-B;";}
     widget.formData?.p17percepcion = _P17Perc?.index;
-    //widget.formDataBACKUP?.p17percepcion = _P17Perc?.index;
+    widget.formDataBACKUP?.p17percepcion = _P17Perc?.index;
 
     if (_P18Perc == P18Perc.Si) {PercP18 = "${PercP18}Sí-A;";}
     if (_P18Perc == P18Perc.No) {PercP18 = "${PercP18}No-B;";}
     widget.formData?.p18percepcion = _P18Perc?.index;
-    //widget.formDataBACKUP?.p18percepcion = _P18Perc?.index;
+    widget.formDataBACKUP?.p18percepcion = _P18Perc?.index;
 
     PercP19 = "${PercP19}${widget.P19EspecificarPerc!.text};";
     widget.formData?.p19percepcion =widget.P19EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p19percepcion =widget.P19EspecificarPerc!.text;
+    widget.formDataBACKUP?.p19percepcion =widget.P19EspecificarPerc!.text;
 
     if (_P20Perc == P20Perc.hombre) {PercP20 = "${PercP20}hombre-A;";}
     if (_P20Perc == P20Perc.mujer) {PercP20 = "${PercP20}mujer-B;";}
     widget.formData?.p20percepcion = _P20Perc?.index;
-    //widget.formDataBACKUP?.p20percepcion = _P20Perc?.index;
+    widget.formDataBACKUP?.p20percepcion = _P20Perc?.index;
 
     if (_P21Perc == P21Perc.Si) {PercP21 = "${PercP21}Sí-A;";}
     if (_P21Perc == P21Perc.No) {PercP21 = "${PercP21}No-B;";}
     widget.formData?.p21percepcion = _P21Perc?.index;
-    //widget.formDataBACKUP?.p21percepcion = _P21Perc?.index;
+    widget.formDataBACKUP?.p21percepcion = _P21Perc?.index;
 
     if (_P22Perc == P22Perc.omadep) {PercP22 = "${PercP22}Personal de la Municipalidad (OMAPED)-A;";}
     if (_P22Perc == P22Perc.familaires) {PercP22 = "${PercP22}Familiares / Vecinos / Amigos-B;";}
@@ -765,11 +767,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P22Perc == P22Perc.yo) {PercP22 = "${PercP22}Yo mismo buscando en internet -E;";}
     if (_P22Perc == P22Perc.otro) {PercP22 = "${PercP22}Otro-F:${widget.P22EspecificarPerc!.text};";}
     widget.formData?.p22percepcion = _P22Perc?.index;
-    //widget.formDataBACKUP?.p22percepcion = _P22Perc?.index;
+    widget.formDataBACKUP?.p22percepcion = _P22Perc?.index;
     widget.formData?.p22percepcionEspecificar =widget.P22EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p22percepcionEspecificar =widget.P22EspecificarPerc!.text;
+    widget.formDataBACKUP?.p22percepcionEspecificar =widget.P22EspecificarPerc!.text;
 
-    //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase3() async {
@@ -783,14 +785,14 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P23Perc == P23Perc.trabajador) {PercP23 = "${PercP23}Trabajador/a del hogar-H;";}
     if (_P23Perc == P23Perc.otropariente) {PercP23 = "${PercP23}Otro/a pariente-I:${widget.P23EspecificarPerc!.text};";}
     widget.formData?.p23percepcion = _P23Perc?.index;
-    //widget.formDataBACKUP?.p23percepcion = _P23Perc?.index;
+    widget.formDataBACKUP?.p23percepcion = _P23Perc?.index;
     widget.formData?.p23percepcionEspecificar =widget.P23EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p23percepcionEspecificar =widget.P23EspecificarPerc!.text;
+    widget.formDataBACKUP?.p23percepcionEspecificar =widget.P23EspecificarPerc!.text;
 
     if (_P24Perc == P24Perc.hombre) {PercP24 = "${PercP24}Hombre-A;";}
     if (_P24Perc == P24Perc.mujer) {PercP24 = "${PercP24}Mujer-B;";}
     widget.formData?.p24percepcion = _P24Perc?.index;
-    //widget.formDataBACKUP?.p24percepcion = _P24Perc?.index;
+    widget.formDataBACKUP?.p24percepcion = _P24Perc?.index;
 
     //25, 26 y 27
     if (_P25Perc == P25Perc.solo) {PercP25 = "${PercP25}Solo-A;";}
@@ -799,19 +801,19 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P25Perc == P25Perc.padreshermanos) {PercP25 = "${PercP25}Padres y Hermanos-D;";}
     if (_P25Perc == P25Perc.padres) {PercP25 = "${PercP25}Padres-E;";}
     widget.formData?.p25percepcion = _P25Perc?.index;
-    //widget.formDataBACKUP?.p25percepcion = _P25Perc?.index;
+    widget.formDataBACKUP?.p25percepcion = _P25Perc?.index;
 
     if (_P26Perc == P26Perc.Si) {PercP26 = "${PercP26}Sí-A;";}
     if (_P26Perc == P26Perc.No) {PercP26 = "${PercP26}No-B;";}
     widget.formData?.p26percepcion = _P26Perc?.index;
-    //widget.formDataBACKUP?.p26percepcion = _P26Perc?.index;
+    widget.formDataBACKUP?.p26percepcion = _P26Perc?.index;
 
     if (_P27Perc == P27Perc.Si) {PercP27 = "${PercP27}Sí-A;";}
     if (_P27Perc == P27Perc.No) {PercP27 = "${PercP27}No-B;";}
     widget.formData?.p27percepcion = _P27Perc?.index;
-    //widget.formDataBACKUP?.p27percepcion = _P27Perc?.index;
+    widget.formDataBACKUP?.p27percepcion = _P27Perc?.index;
 
-    //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase4() async {
@@ -823,7 +825,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P28Perc == P28Perc.muymala) {PercP28 = "${PercP28}Muy mala-D;";}
     if (_P28Perc == P28Perc.nosabe) {PercP28 = "${PercP28}No sabe / No responde-E;";}
     widget.formData?.p28percepcion = _P28Perc?.index;
-    //widget.formDataBACKUP?.p28percepcion = _P28Perc?.index;
+    widget.formDataBACKUP?.p28percepcion = _P28Perc?.index;
 
     if (_P29Perc == P29Perc.muybuena) {PercP29 = "${PercP29}Muy buena-A;";}
     if (_P29Perc == P29Perc.buena) {PercP29 = "${PercP29}Buena-B;";}
@@ -831,7 +833,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P29Perc == P29Perc.muymala) {PercP29 = "${PercP29}Muy mala-D;";}
     if (_P29Perc == P29Perc.nosabe) {PercP29 = "${PercP29}No sabe / No responde-E;";}
     widget.formData?.p29percepcion = _P29Perc?.index;
-    //widget.formDataBACKUP?.p29percepcion = _P29Perc?.index;
+    widget.formDataBACKUP?.p29percepcion = _P29Perc?.index;
 
     //30,31,32,33
     if(isCheckedP30Opcion01){PercP30 = "${PercP30}A,";}
@@ -928,42 +930,42 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P34Perc == P34Perc.muyinsatisfecho) {PercP34 = "${PercP34}Muy insatisfecho/a-D;";}
     if (_P34Perc == P34Perc.nosabe) {PercP34 = "${PercP34}No sabe/No responde-E;";}
     widget.formData?.p34percepcion = _P34Perc?.index;
-    //widget.formDataBACKUP?.p34percepcion = _P34Perc?.index;
+    widget.formDataBACKUP?.p34percepcion = _P34Perc?.index;
 
     if (_P35Perc == P35Perc.nunca) {PercP35 = "${PercP35}Nunca-A;";}
     if (_P35Perc == P35Perc.algunavez) {PercP35 = "${PercP35}Alguna vez-B;";}
     if (_P35Perc == P35Perc.frecuente) {PercP35 = "${PercP35}Frecuentemente-C;";}
     if (_P35Perc == P35Perc.siempre) {PercP35 = "${PercP35}Siempre-D;";}
     widget.formData?.p35percepcion = _P35Perc?.index;
-    //widget.formDataBACKUP?.p35percepcion = _P35Perc?.index;
+    widget.formDataBACKUP?.p35percepcion = _P35Perc?.index;
 
     if (_P36Perc == P36Perc.nunca) {PercP36 = "${PercP36}Nunca-A;";}
     if (_P36Perc == P36Perc.algunavez) {PercP36 = "${PercP36}Alguna vez-B;";}
     if (_P36Perc == P36Perc.frecuente) {PercP36 = "${PercP36}Frecuentemente-C;";}
     if (_P36Perc == P36Perc.siempre) {PercP36 = "${PercP36}Siempre-D;";}
     widget.formData?.p36percepcion = _P36Perc?.index;
-    //widget.formDataBACKUP?.p36percepcion = _P36Perc?.index;
+    widget.formDataBACKUP?.p36percepcion = _P36Perc?.index;
 
     if (_P37Perc == P37Perc.nunca) {PercP37 = "${PercP37}Nunca-A;";}
     if (_P37Perc == P37Perc.algunavez) {PercP37 = "${PercP37}Alguna vez-B;";}
     if (_P37Perc == P37Perc.frecuente) {PercP37 = "${PercP37}Frecuentementeente-C;";}
     if (_P37Perc == P37Perc.siempre) {PercP37 = "${PercP37}Siempre-D;";}
     widget.formData?.p37percepcion = _P37Perc?.index;
-    //widget.formDataBACKUP?.p37percepcion = _P37Perc?.index;
+    widget.formDataBACKUP?.p37percepcion = _P37Perc?.index;
 
     if (_P38Perc == P38Perc.nunca) {PercP38 = "${PercP38}Nunca-A;";}
     if (_P38Perc == P38Perc.algunavez) {PercP38 = "${PercP38}Alguna vez-B;";}
     if (_P38Perc == P38Perc.frecuente) {PercP38 = "${PercP38}Frecuentementente-C;";}
     if (_P38Perc == P38Perc.siempre) {PercP38 = "${PercP38}Siempre-D;";}
     widget.formData?.p38percepcion = _P38Perc?.index;
-    //widget.formDataBACKUP?.p38percepcion = _P38Perc?.index;
+    widget.formDataBACKUP?.p38percepcion = _P38Perc?.index;
 
     if (_P39Perc == P39Perc.nunca) {PercP39 = "${PercP39}Nunca-A;";}
     if (_P39Perc == P39Perc.algunavez) {PercP39 = "${PercP39}Alguna vez-B;";}
     if (_P39Perc == P39Perc.frecuente) {PercP39 = "${PercP39}Frecuentementente-C;";}
     if (_P39Perc == P39Perc.siempre) {PercP39 = "${PercP39}Siempre-D;";}
     widget.formData?.p39percepcion = _P39Perc?.index;
-    //widget.formDataBACKUP?.p39percepcion = _P39Perc?.index;
+    widget.formDataBACKUP?.p39percepcion = _P39Perc?.index;
 
     if (_P40Perc == P40Perc.muysatisfecho) {PercP40 = "${PercP40}Nunca-A;";}
     if (_P40Perc == P40Perc.satisfecho) {PercP40 = "${PercP40}Alguna vez-B;";}
@@ -971,14 +973,14 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P40Perc == P40Perc.muyinsatisfecho) {PercP40 = "${PercP40}Siempre-D;";}
     if (_P40Perc == P40Perc.nosabe) {PercP40 = "${PercP40}Siempre-E;";}
     widget.formData?.p40percepcion = _P40Perc?.index;
-    //widget.formDataBACKUP?.p40percepcion = _P40Perc?.index;
+    widget.formDataBACKUP?.p40percepcion = _P40Perc?.index;
 
     if (_P41Perc == P41Perc.sigueigual) {PercP41 = "${PercP41}Sigue igual-A;";}
     if (_P41Perc == P41Perc.hamejorado) {PercP41 = "${PercP41}Ha mejorado-B;";}
     if (_P41Perc == P41Perc.haempeorado) {PercP41 = "${PercP41}Ha empeorado-C;";}
     if (_P41Perc == P41Perc.nosabe) {PercP41 = "${PercP41}No sabe/ No responde-D;";}
     widget.formData?.p41percepcion = _P41Perc?.index;
-    //widget.formDataBACKUP?.p41percepcion = _P41Perc?.index;
+    widget.formDataBACKUP?.p41percepcion = _P41Perc?.index;
 
     //42
     String PercP42Check="";
@@ -988,32 +990,34 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (P42Perc03SaludF) {PercP42 = "${PercP42}tres-B,"; PercP42Check = "B3,";}
     else if (P42Perc02SaludF) {PercP42 = "${PercP42}dos-B,"; PercP42Check = "B2,";}
     else if (P42Perc01SaludF) {PercP42 = "${PercP42}uno-B,"; PercP42Check = "B1,";}
+    if (P42Perc03Dinero) {PercP42 = "${PercP42}tres-C,"; PercP42Check = "C3,";}
+    else if (P42Perc02Dinero) {PercP42 = "${PercP42}dos-C,"; PercP42Check = "C2,";}
+    else if (P42Perc01Dinero) {PercP42 = "${PercP42}uno-C,"; PercP42Check = "C1,";}
+    if (P42Perc03Dinero) {PercP42 = "${PercP42}tres-D,"; PercP42Check = "D3,";}
+    else if (P42Perc02Dinero) {PercP42 = "${PercP42}dos-D,"; PercP42Check = "D2,";}
+    else if (P42Perc01Dinero) {PercP42 = "${PercP42}uno-D,"; PercP42Check = "D1,";}
+    if (P42Perc03ProblemasF) {PercP42 = "${PercP42}tres-E,"; PercP42Check = "E3,";}
+    else if (P42Perc02ProblemasF) {PercP42 = "${PercP42}dos-E,"; PercP42Check = "E2,";}
+    else if (P42Perc01ProblemasF) {PercP42 = "${PercP42}uno-E,"; PercP42Check = "E1,";}
+    if (P42Perc03Falta) {PercP42 = "${PercP42}tres-F,"; PercP42Check = "F3,";}
+    else if (P42Perc02Falta) {PercP42 = "${PercP42}dos-F,"; PercP42Check = "F2,";}
+    else if (P42Perc01Falta) {PercP42 = "${PercP42}uno-F,"; PercP42Check = "F1,";}
+    if (P42Perc03ProblemasV) {PercP42 = "${PercP42}tres-G,"; PercP42Check = "G3,";}
+    else if (P42Perc02ProblemasV) {PercP42 = "${PercP42}dos-G,"; PercP42Check = "G2,";}
+    else if (P42Perc01ProblemasV) {PercP42 = "${PercP42}uno-G,"; PercP42Check = "G1,";}
+    if (P42Perc03Estudio) {PercP42 = "${PercP42}tres-H,"; PercP42Check = "H3,";}
+    else if (P42Perc02Estudio) {PercP42 = "${PercP42}dos-H,"; PercP42Check = "H2,";}
+    else if (P42Perc01Estudio) {PercP42 = "${PercP42}uno-H,"; PercP42Check = "H1,";}
+    if (P42Perc03Otro) {PercP42 = "${PercP42}tres-I,"; PercP42Check = "I3,";}
+    else if (P42Perc02Otro) {PercP42 = "${PercP42}dos-I,"; PercP42Check = "I2,";}
+    else if (P42Perc01Otro) {PercP42 = "${PercP42}uno-I,"; PercP42Check = "I1,";}
+    if (P42Perc03SinPreocupaciones) {PercP42 = "${PercP42}J,"; PercP42Check = "J,";}
     PercP42 = "${PercP42};";
     widget.formData?.p42percepcion = PercP42Check;
-    //widget.formDataBACKUP?.p42percepcion = PercP42Check;
+    widget.formDataBACKUP?.p42percepcion = PercP42Check;
 
-    /*
-    bool P42Perc01Dinero = false;
-    bool P42Perc02Dinero = false;
-    bool P42Perc03Dinero = false;
-    bool P42Perc01ProblemasF = false;
-    bool P42Perc02ProblemasF = false;
-    bool P42Perc03ProblemasF = false;
-    bool P42Perc01Falta = false;
-    bool P42Perc02Falta = false;
-    bool P42Perc03Falta = false;
-    bool P42Perc01ProblemasV = false;
-    bool P42Perc02ProblemasV = false;
-    bool P42Perc03ProblemasV = false;
-    bool P42Perc01Estudio= false;
-    bool P42Perc02Estudio= false;
-    bool P42Perc03Estudio= false;
-    bool P42Perc01Otro= false;
-    bool P42Perc02Otro= false;
-    bool P42Perc03Otro= false;
-    bool P42Perc03SinPreocupaciones= false;*/
 
-    // await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase5() async {
@@ -1021,7 +1025,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P43Perc == P43Perc.Si) {PercP43 = "${PercP43}Sí-A;";}
     if (_P43Perc == P43Perc.No) {PercP43 = "${PercP43}No-B;";}
     widget.formData?.p43percepcion = _P43Perc?.index;
-    //widget.formDataBACKUP?.p43percepcion = _P43Perc?.index;
+    widget.formDataBACKUP?.p43percepcion = _P43Perc?.index;
 
     if (_P44Perc == P44Perc.omadep) {PercP44 = "${PercP44}OMAPED-A;";}
     if (_P44Perc == P44Perc.familaires) {PercP44 = "${PercP44}Familiares / Vecinos / Amigos-B;";}
@@ -1031,9 +1035,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P44Perc == P44Perc.yo) {PercP44 = "${PercP44}Yo mismo buscando en internet-F;";}
     if (_P44Perc == P44Perc.otro) {PercP44 = "${PercP44}Otro-G:${widget.P44EspecificarPerc!.text};";}
     widget.formData?.p44percepcion = _P44Perc?.index;
-    //widget.formDataBACKUP?.p44percepcion = _P44Perc?.index;
+    widget.formDataBACKUP?.p44percepcion = _P44Perc?.index;
     widget.formData?.p44percepcionEspecificar =widget.P44EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p44percepcionEspecificar =widget.P44EspecificarPerc!.text;
+    widget.formDataBACKUP?.p44percepcionEspecificar =widget.P44EspecificarPerc!.text;
 
     if (_P45Perc == P45Perc.dosmeses) {PercP45 = "${PercP45}Hace 2 meses o menos-A;";}
     if (_P45Perc == P45Perc.masdosmeses) {PercP45 = "${PercP45}Hace más de 2 a 6 meses-B;";}
@@ -1041,9 +1045,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P45Perc == P45Perc.nosabe) {PercP45 = "${PercP45}No sabe / No responde-D;";}
     if (_P45Perc == P45Perc.otro) {PercP45 = "${PercP45}Otro-E:${widget.P45EspecificarPerc!.text};";}
     widget.formData?.p45percepcion = _P45Perc?.index;
-    //widget.formDataBACKUP?.p45percepcion = _P45Perc?.index;
+    widget.formDataBACKUP?.p45percepcion = _P45Perc?.index;
     widget.formData?.p44percepcionEspecificar =widget.P44EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p44percepcionEspecificar =widget.P44EspecificarPerc!.text;
+    widget.formDataBACKUP?.p44percepcionEspecificar =widget.P44EspecificarPerc!.text;
 
     if (_P46Perc == P46Perc.nosabiausuario) {PercP46 = "${PercP46}No sabía que era usuario del Programa-A;";}
     if (_P46Perc == P46Perc.nosabiafecha)   {PercP46 = "${PercP46}No sabía de la fecha de pago-B;";}
@@ -1053,9 +1057,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P46Perc == P46Perc.nosabe)         {PercP46 = "${PercP46}No sabe / No responde -F;";}
     if (_P46Perc == P46Perc.otro)           {PercP46 = "${PercP46}Otro-G:${widget.P46EspecificarPerc!.text};";}
     widget.formData?.p46percepcion = _P46Perc?.index;
-    //widget.formDataBACKUP?.p46percepcion = _P46Perc?.index;
+    widget.formDataBACKUP?.p46percepcion = _P46Perc?.index;
     widget.formData?.p46percepcionEspecificar =widget.P46EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p46percepcionEspecificar =widget.P46EspecificarPerc!.text;
+    widget.formDataBACKUP?.p46percepcionEspecificar =widget.P46EspecificarPerc!.text;
 
     if (_P47Perc == P47Perc.independiente)  {PercP47 = "${PercP47}Yo, de manera independiente-A;";}
     if (_P47Perc == P47Perc.cuidador)       {PercP47 = "${PercP47}Yo, acompañado de cuidador-B;";}
@@ -1063,14 +1067,14 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P47Perc == P47Perc.municipalidad)  {PercP47 = "${PercP47}Yo, con apoyo del personal de la Municipalidad-D;";}
     if (_P47Perc == P47Perc.cobro)          {PercP47 = "${PercP47}Persona autorizada para el cobro-E;";}
     widget.formData?.p47percepcion = _P47Perc?.index;
-    //widget.formDataBACKUP?.p47percepcion = _P47Perc?.index;
+    widget.formDataBACKUP?.p47percepcion = _P47Perc?.index;
 
     if (_P48Perc == P48Perc.mediahora)  {PercP48 = "${PercP48}Media hora o menos-A;";}
     if (_P48Perc == P48Perc.masmediahora)       {PercP48 = "${PercP48}Más de media hora, pero menos de 1 hora-B;";}
     if (_P48Perc == P48Perc.unoadoshoras)       {PercP48 = "${PercP48}De 1 a 2 horas-C;";}
     if (_P48Perc == P48Perc.masdoshoras)  {PercP48 = "${PercP48}Más de 2 horas-D;";}
     widget.formData?.p48percepcion = _P48Perc?.index;
-    //widget.formDataBACKUP?.p48percepcion = _P48Perc?.index;
+    widget.formDataBACKUP?.p48percepcion = _P48Perc?.index;
 
     if (_P49Perc == P49Perc.apie) {PercP49 = "${PercP49}A pie-A;";}
     if (_P49Perc == P49Perc.bicicletas)   {PercP49 = "${PercP49}Bicicleta-B;";}
@@ -1083,13 +1087,13 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P49Perc == P49Perc.camion)         {PercP49 = "${PercP49}Camión-I;";}
     if (_P49Perc == P49Perc.otro)           {PercP49 = "${PercP49}Otro-J:${widget.P49EspecificarPerc!.text};";}
     widget.formData?.p49percepcion = _P49Perc?.index;
-    //widget.formDataBACKUP?.p49percepcion = _P49Perc?.index;
+    widget.formDataBACKUP?.p49percepcion = _P49Perc?.index;
     widget.formData?.p49percepcionEspecificar =widget.P49EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p49percepcionEspecificar =widget.P49EspecificarPerc!.text;
+    widget.formDataBACKUP?.p49percepcionEspecificar =widget.P49EspecificarPerc!.text;
 
     PercP50 = "${PercP50}${widget.P50EspecificarPerc!.text};";
     widget.formData?.p50percepcion =widget.P50EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p50percepcion =widget.P50EspecificarPerc!.text;
+    widget.formDataBACKUP?.p50percepcion =widget.P50EspecificarPerc!.text;
 
     if (_P51Perc == P51Perc.banco)    {PercP51 = "${PercP51}Cobro por ventanilla del Banco de la Nación-A;";}
     if (_P51Perc == P51Perc.debito) {PercP51 = "${PercP51}Cobro con tarjeta de débito (cobro por cajero)-B;";}
@@ -1097,7 +1101,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P51Perc == P51Perc.pagador)  {PercP51 = "${PercP51}Carrito pagador-D;";}
     if (_P51Perc == P51Perc.pias)  {PercP51 = "${PercP51}Plataformas itinerantes de acción social (PIAS)-E;";}
     widget.formData?.p51percepcion = _P51Perc?.index;
-    //widget.formDataBACKUP?.p51percepcion = _P51Perc?.index;
+    widget.formDataBACKUP?.p51percepcion = _P51Perc?.index;
 
     String p52check = ""; //POR EL ESPECIFICA
     if (P52Perc01)     {PercP52 = "${PercP52}A,"; p52check ="${p52check}A";}
@@ -1114,14 +1118,14 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (P52Perc12)     {PercP52 = "${PercP52}L:${widget.P52EspecificarPerc!.text}";p52check ="${p52check}L";}
     PercP52 = "${PercP52};";
     widget.formData?.p52percepcion = p52check;
-    //widget.formDataBACKUP?.p52percepcion = p52check;
+    widget.formDataBACKUP?.p52percepcion = p52check;
     widget.formData?.p52percepcionEspecificar =widget.P52EspecificarPerc!.text;
-    //widget.formDataBACKUP?.p52percepcionEspecificar =widget.P52EspecificarPerc!.text;
+    widget.formDataBACKUP?.p52percepcionEspecificar =widget.P52EspecificarPerc!.text;
 
     if (_P53Perc == P53Perc.Si) {PercP53 = "${PercP53}Sí-A;";}
     if (_P53Perc == P53Perc.No) {PercP53 = "${PercP53}No-B;";}
     widget.formData?.p53percepcion = _P53Perc?.index;
-    //widget.formDataBACKUP?.p53percepcion = _P53Perc?.index;
+    widget.formDataBACKUP?.p53percepcion = _P53Perc?.index;
 
     String PercP54Check="";
     if      (P54Perc01Distancia) {PercP54 = "${PercP54}tres-A,";  PercP54Check = "A3,";}
@@ -1147,61 +1151,42 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     else if (P54Perc03Otro) {PercP54 = "${PercP54}uno-G,";   PercP54Check = "G1,";}
     PercP54="${PercP54};";
     widget.formData?.p54percepcion = PercP54Check;
-    //widget.formDataBACKUP?.p54percepcion = PercP54Check;
+    widget.formDataBACKUP?.p54percepcion = PercP54Check;
 
 
-    //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
   Future<void> guardadoFase6() async {
     //P55 - P57
-    if (_P55Perc == P55Perc.Si) {
-      PercP55 = "${PercP55}Sí-A;";
-    }
-    if (_P55Perc == P55Perc.No) {
-      PercP55 = "${PercP55}No-B;";
-    }
+    if (_P55Perc == P55Perc.Si) {PercP55 = "${PercP55}Sí-A;";}
+    if (_P55Perc == P55Perc.No) {PercP55 = "${PercP55}No-B;";}
+    widget.formData?.p55percepcion = _P55Perc?.index;
+    widget.formDataBACKUP?.p55percepcion = _P55Perc?.index;
 
-    if (_P56Perc == P56Perc.cuidador) {
-      PercP56 = "${PercP56}Cuidador/a-A;";
-    }
-    if (_P56Perc == P56Perc.autorizada) {
-      PercP56 = "${PercP56}Persona autorizada-B;";
-    }
+    if (_P56Perc == P56Perc.cuidador) {PercP56 = "${PercP56}Cuidador/a-A;";}
+    if (_P56Perc == P56Perc.autorizada) {PercP56 = "${PercP56}Persona autorizada-B;";}
+    widget.formData?.p56percepcion = _P56Perc?.index;
+    widget.formDataBACKUP?.p56percepcion = _P56Perc?.index;
 
-    if (_P57Perc == P57Perc.salud) {
-      PercP57 = "${PercP57}Salud/Medicina-A;";
-    }
-    if (_P57Perc == P57Perc.ayuda) {
-      PercP57 = "${PercP57}Ayudas técnicas-B;";
-    }
-    if (_P57Perc == P57Perc.alimentacion) {
-      PercP57 = "${PercP57}Alimentación-C;";
-    }
-    if (_P57Perc == P57Perc.vestimenta) {
-      PercP57 = "${PercP57}Vestimenta o ropa-D;";
-    }
-    if (_P57Perc == P57Perc.transporte) {
-      PercP57 = "${PercP57}Transporte-E;";
-    }
-    if (_P57Perc == P57Perc.invierte) {
-      PercP57 = "${PercP57}Invierte/Activos-F;";
-    }
-    if (_P57Perc == P57Perc.mejora) {
-      PercP57 = "${PercP57}Mejora Vivienda-G;";
-    }
-    if (_P57Perc == P57Perc.ahorra) {
-      PercP57 = "${PercP57}Ahorro-H;";
-    }
-    if (_P57Perc == P57Perc.pago) {
-      PercP57 = "${PercP57}Pago de Servicios-I;";
-    }
-    if (_P57Perc == P57Perc.nosabe) {
-      PercP57 = "${PercP57}No Sabe-J;";
-    }
-    if (_P57Perc == P57Perc.otro) {
-      PercP57 = "${PercP57}Otro-K:${widget.P57EspecificarPerc!.text};";
-    }
+    if (_P57Perc == P57Perc.salud) {PercP57 = "${PercP57}Salud/Medicina-A;";}
+    if (_P57Perc == P57Perc.ayuda) {PercP57 = "${PercP57}Ayudas técnicas-B;";}
+    if (_P57Perc == P57Perc.alimentacion) {PercP57 = "${PercP57}Alimentación-C;";}
+    if (_P57Perc == P57Perc.vestimenta) {PercP57 = "${PercP57}Vestimenta o ropa-D;";}
+    if (_P57Perc == P57Perc.transporte) {PercP57 = "${PercP57}Transporte-E;";}
+    if (_P57Perc == P57Perc.invierte) {PercP57 = "${PercP57}Invierte/Activos-F;";}
+    if (_P57Perc == P57Perc.mejora) {PercP57 = "${PercP57}Mejora Vivienda-G;";}
+    if (_P57Perc == P57Perc.ahorra) {PercP57 = "${PercP57}Ahorro-H;";}
+    if (_P57Perc == P57Perc.pago) {PercP57 = "${PercP57}Pago de Servicios-I;";}
+    if (_P57Perc == P57Perc.nosabe) {PercP57 = "${PercP57}No Sabe-J;";}
+    if (_P57Perc == P57Perc.otro) {PercP57 = "${PercP57}Otro-K:${widget.P57EspecificarPerc!.text};";}
+    widget.formData?.p57percepcion = _P57Perc?.index;
+    widget.formDataBACKUP?.p57percepcion = _P57Perc?.index;
+    widget.formData?.p57percepcionEspecificar =widget.P57EspecificarPerc!.text;
+    widget.formDataBACKUP?.p57percepcionEspecificar =widget.P57EspecificarPerc!.text;
+
+    await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
+
   }
 
   void PedirPermiso() {

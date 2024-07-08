@@ -1,5 +1,8 @@
 import 'dart:async';
 import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_padronLogin.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/dao/formdatamodeldao_respuestaBACKUPpercepcion.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaPercepcion.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respBackuppercepciones.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_deOpciones.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_deOpcionesDINAMICO.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_deOpcionesPERCEPCION.dart';
@@ -46,7 +49,12 @@ class MenudeOpcionesListado extends StatefulWidget {
   FormDataModelDaoRespuestaunovisita get formDataModelDaoRespuesta => _appDatabase.formDataModelDaoRespuesta;
   FormDataModelDaoPadron get formDataModelDaoPadron => _appDatabase.formDataModelDaoPadron;
   FormDataModelDaoPadronLogin get formDataModelDaoPadronLogin => _appDatabase.formDataModelDaoPadronLogin;
+
+  //VISITA UNO BACKUP
   FormDataModelDaoRespuestaBACKUPunovisita get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
+  //PERCEPCION BACKUP
+  FormDataModelDaoRespuestaBACKUpercepcion get formDataModelDaoBackuPercepcion => _appDatabase.formDataModelDaoRespuestaBACKUpercepcion;
+
   FormDataModelDaoFormulario get formDataModelDaoFormulario => _appDatabase.formDataModelDaoFormulario; //ENCUESTA PERCEPCIONES
 
   List<Formulario> listForm = List.empty(growable: true);
@@ -66,6 +74,7 @@ class MenudeOpcionesListado extends StatefulWidget {
   apiprovider_menuOpciones apiVersion = apiprovider_menuOpciones();
   //BACKUP
   bool backup = false;
+  bool backupPERCEP = false;
 
   //FORMULARIO DINAMICO
   bool dinamico = false;
@@ -105,6 +114,10 @@ late final _appDatabase;
   late RespuestaBACKUPprimeravisita objBackup;
   RespuestaPrimeraVisita obj = RespuestaPrimeraVisita();
 
+  List <RespuestaBACKUPpercepcion> listBackupPERCEP = List.empty();
+  late RespuestaBACKUPpercepcion objBackupPERCEP;
+  RespuestaPrimeraVisita objPERCEP = RespuestaPrimeraVisita();
+
 
 
   Future<void> listarVisitasAvanzar() async {
@@ -138,7 +151,8 @@ late final _appDatabase;
   }
 
   Future<void> revisarBackup() async {
-    listBackup = await widget.formDataModelDaoBackup.findAllRespuesta();
+    listBackup        = await widget.formDataModelDaoBackup.findAllRespuesta();
+    listBackupPERCEP  = await widget.formDataModelDaoBackuPercepcion.findAllRespuesta();
     setState(() {
       if(listBackup.isNotEmpty){
         widget.backup = true;
@@ -148,7 +162,18 @@ late final _appDatabase;
       } else {
         widget.backup = false;
       }
+
+      if(listBackupPERCEP.isNotEmpty){
+        widget.backupPERCEP = true;
+        objBackupPERCEP = listBackupPERCEP[0];
+        //Convierto el backup en el objeto respuesta
+        objPERCEP = BackupMapper.instance.backuptoPercp(objBackupPERCEP);
+      } else {
+        widget.backupPERCEP = false;
+      }
+
     });
+
   }
 
   Future<void> revisarPercepciones() async {
@@ -1358,9 +1383,6 @@ late final _appDatabase;
                       onTap: () async {
 
                         /*
-                        if(widget.backup){
-                          await widget.formDataModelDaoBackup.BorrarTodo();
-                        }
 
                         Widget ContactoRefererencia = MenudeOpcionesPercepcion(RespuestaPrimeraVisita()); //CARGO DATA
                         Navigator.push(
@@ -1399,8 +1421,8 @@ late final _appDatabase;
                   child:  GestureDetector(
                       onTap: () async {
 
-                        if(widget.backup){
-                          await widget.formDataModelDaoBackup.BorrarTodo();
+                        if(widget.backupPERCEP){
+                          await widget.formDataModelDaoBackuPercepcion.BorrarTodo();
                         }
 
                         Widget ContactoRefererencia = MenudeOpcionesPercepcion(RespuestaPrimeraVisita()); //CARGO DATA
@@ -1427,7 +1449,7 @@ late final _appDatabase;
               ),
               const Spacer(),
               Visibility(
-                visible: widget.backup,
+                visible: widget.backupPERCEP,
                 child:
                 Padding(
                   padding: const EdgeInsets.all(2.0),
@@ -1439,7 +1461,7 @@ late final _appDatabase;
                       //Convierto el backup en el objeto respuesta
                       //Respuesta obj = BackupMapper.instance.backuptoResp(objBackup);
                       //MODIFICAR PARA QUE CARGE un backup con ID null
-                      Widget ContactoRefererencia = MenudeOpcionesVisitaUno(obj); //CARGO DATA
+                      Widget ContactoRefererencia = MenudeOpcionesPercepcion(objPERCEP); //CARGO DATA
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
@@ -1450,7 +1472,7 @@ late final _appDatabase;
               ),
 
               Visibility(
-                visible: !widget.backup,
+                visible: !widget.backupPERCEP,
                 child:
                 Padding(
                     padding: const EdgeInsets.all(2.0),

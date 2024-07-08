@@ -1,5 +1,6 @@
 
 
+import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respBackuppercepciones.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respuestaprimeravisita.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/model/visitaDomiciliaria/t_respuestaprimeravisita.dart';
 
@@ -41,6 +42,81 @@ class BackupMapper {
     rptabck.p18Emprendimiento = rpta.p18Emprendimiento;
     rptabck.id_usuario = rpta.id_usuario;
     return rptabck;
+  }
+
+  RespuestaPrimeraVisita backuptoPercp(RespuestaBACKUPpercepcion rpta) {
+
+    var rptabck = RespuestaPrimeraVisita();
+    rptabck.p01percepcion = rpta.p01percepcion;
+    rptabck.p02percepcion = rpta.p02percepcion;
+    rptabck.p03percepcion = rpta.p03percepcion;
+    rptabck.p04percepcion = rpta.p04percepcion;
+    rptabck.p05percepcion = rpta.p05percepcion;
+    rptabck.p06percepcion = rpta.p06percepcion;
+    rptabck.p07percepcion = rpta.p07percepcion;
+    rptabck.p08percepcion = rpta.p08percepcion;
+    rptabck.p09percepcion = rpta.p09percepcion;
+    rptabck.p10percepcion = rpta.p10percepcion;
+    rptabck.p11percepcion = rpta.p11percepcion;
+    rptabck.p12percepcion = rpta.p12percepcion;
+    rptabck.p13percepcion = rpta.p13percepcion;
+    rptabck.p14percepcion = rpta.p14percepcion;
+    rptabck.p15percepcion = rpta.p15percepcion;
+    rptabck.p16percepcion = rpta.p16percepcion;
+    rptabck.p17percepcion = rpta.p17percepcion;
+    rptabck.p18percepcion = rpta.p18percepcion;
+    rptabck.p19percepcion = rpta.p19percepcion;
+    rptabck.p20percepcion = rpta.p20percepcion;
+    rptabck.p21percepcion = rpta.p21percepcion;
+    rptabck.p22percepcion = rpta.p22percepcion;
+    rptabck.p23percepcion = rpta.p23percepcion;
+    rptabck.p24percepcion = rpta.p24percepcion;
+    rptabck.p25percepcion = rpta.p25percepcion;
+    rptabck.p26percepcion = rpta.p26percepcion;
+    rptabck.p27percepcion = rpta.p27percepcion;
+    rptabck.p28percepcion = rpta.p28percepcion;
+    rptabck.p29percepcion = rpta.p29percepcion;
+    rptabck.p30percepcion = rpta.p30percepcion;
+    rptabck.p31percepcion = rpta.p31percepcion;
+    rptabck.p32percepcion = rpta.p32percepcion;
+    rptabck.p33percepcion = rpta.p33percepcion;
+    rptabck.p34percepcion = rpta.p34percepcion;
+    rptabck.p35percepcion = rpta.p35percepcion;
+    rptabck.p36percepcion = rpta.p36percepcion;
+    rptabck.p37percepcion = rpta.p37percepcion;
+    rptabck.p38percepcion = rpta.p38percepcion;
+    rptabck.p39percepcion = rpta.p39percepcion;
+    rptabck.p40percepcion = rpta.p40percepcion;
+    rptabck.p41percepcion = rpta.p41percepcion;
+    rptabck.p42percepcion = rpta.p42percepcion;
+    rptabck.p43percepcion = rpta.p43percepcion;
+    rptabck.p44percepcion = rpta.p44percepcion;
+    rptabck.p45percepcion = rpta.p45percepcion;
+    rptabck.p46percepcion = rpta.p46percepcion;
+    rptabck.p47percepcion = rpta.p47percepcion;
+    rptabck.p48percepcion = rpta.p48percepcion;
+    rptabck.p49percepcion = rpta.p49percepcion;
+    rptabck.p50percepcion = rpta.p50percepcion;
+    rptabck.p51percepcion = rpta.p51percepcion;
+    rptabck.p52percepcion = rpta.p52percepcion;
+    rptabck.p53percepcion = rpta.p53percepcion;
+    rptabck.p54percepcion = rpta.p54percepcion;
+    rptabck.p55percepcion = rpta.p55percepcion;
+    rptabck.p56percepcion = rpta.p56percepcion;
+    rptabck.p57percepcion = rpta.p57percepcion;
+    rptabck.p22percepcionEspecificar = rpta.p22percepcionEspecificar;
+    rptabck.p23percepcionEspecificar = rpta.p23percepcionEspecificar;
+    rptabck.p44percepcionEspecificar = rpta.p44percepcionEspecificar;
+    rptabck.p45percepcionEspecificar = rpta.p45percepcionEspecificar;
+    rptabck.p46percepcionEspecificar = rpta.p46percepcionEspecificar;
+    rptabck.p49percepcionEspecificar = rpta.p49percepcionEspecificar;
+    rptabck.p52percepcionEspecificar = rpta.p52percepcionEspecificar;
+    rptabck.p57percepcionEspecificar = rpta.p57percepcionEspecificar;
+
+    rptabck.id_usuario = rpta.id_usuario;
+    return rptabck;
+
+
   }
 
   List<RespuestaPrimeraVisita> listRespuestaToRespuestaENVIO(List<RespuestaBACKUPprimeravisita> listVisitas) {

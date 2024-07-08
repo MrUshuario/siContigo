@@ -109,6 +109,7 @@ class RespuestaPrimeraVisita {
   int? p55percepcion;
   int? p56percepcion;
   int? p57percepcion;
+  String? p57percepcionEspecificar;
 
 
   RespuestaPrimeraVisita({
@@ -134,7 +135,7 @@ class RespuestaPrimeraVisita {
     this.p56percepcion,this.p57percepcion,
     this.p22percepcionEspecificar, this.p23percepcionEspecificar, this.p44percepcionEspecificar,
     this.p45percepcionEspecificar, this.p46percepcionEspecificar, this.p49percepcionEspecificar,
-    this.p52percepcionEspecificar
+    this.p52percepcionEspecificar, this.p57percepcionEspecificar,
 
   });
 
@@ -241,7 +242,8 @@ class RespuestaPrimeraVisita {
       p45percepcionEspecificar: json['p45percepcionEspecificar'] as String?,
       p46percepcionEspecificar: json['p46percepcionEspecificar'] as String?,
       p49percepcionEspecificar: json['p49percepcionEspecificar'] as String?,
-      p52percepcionEspecificar: json['p52percepcionEspecificar'] as String?
+      p52percepcionEspecificar: json['p52percepcionEspecificar'] as String?,
+      p57percepcionEspecificar: json['p57percepcionEspecificar'] as String?
 
     );
   }
@@ -357,6 +359,7 @@ class RespuestaPrimeraVisita {
       "p46percepcionEspecificar": p46percepcionEspecificar,
       "p49percepcionEspecificar": p49percepcionEspecificar,
       "p52percepcionEspecificar": p52percepcionEspecificar,
+      "p57percepcionEspecificar": p57percepcionEspecificar,
     };
   }
 
