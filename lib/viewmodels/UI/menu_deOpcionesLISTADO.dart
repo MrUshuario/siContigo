@@ -1610,7 +1610,11 @@ late final _appDatabase;
                         title: SizedBox(
                           height: MediaQuery.of(context).size.height * 0.040,
                           child: Text(
-                            "${index + 1})",
+                            "${index + 1}) "
+                            "${widget.listRespuesta![index].tipoencuesta == 1 ? 'Visita 1' : ''}"
+                            "${widget.listRespuesta![index].tipoencuesta == 2 ? 'Visita 2' : ''}"
+                            "${widget.listRespuesta![index].tipoencuesta == 3 ? 'Visita 3' : ''}"
+                            "${widget.listRespuesta![index].tipoencuesta == 4 ? 'Percepciones' : ''}",
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 15.0,

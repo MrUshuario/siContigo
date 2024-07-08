@@ -1110,6 +1110,7 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
                   widget.formData?.longitud = GPSlongitude;
                   widget.formData?.latitud = GPSlatitude;
                   widget.formData?.id_usuario = int.parse(widget.formIdUsuario.text);
+                  widget.formData?.tipoencuesta = 1;
                   //GPSlatitude
 
                   //FUNCION PARA SINCRONIZAR
