@@ -166,6 +166,20 @@ enum P31Perc03 {cuidador, familiar}
 enum P31Perc02 {cuidador, familiar}
 enum P31Perc01 {cuidador, familiar}
 
+enum P32Perc01 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P32Perc02 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P32Perc03 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P32Perc04 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P32Perc05 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P32Perc06 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P32Perc07 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P32Perc08 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P32Perc09 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P32Perc10 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P32Perc11 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P32Perc12 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P32Perc13 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+enum P32Perc14 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
 
 enum P34Perc {muysatisfecho, satisfecho, insatisfecho, muyinsatisfecho, nosabe}
 
@@ -195,14 +209,6 @@ enum P55Perc {Si, No}
 enum P56Perc {cuidador, autorizada}
 enum P57Perc {salud, ayuda, alimentacion, vestimenta, transporte, invierte, mejora, ahorra, pago, nosabe, otro}
 
-
-enum TipoVivienda {Si, No}
-enum SituacionRiesgo {Si, No}
-enum TipoEmprendimiento {Si, No}
-enum SituacionRiesgoAB {relacionCobro, relacionSocioEconomico}
-enum TipoViviendaABC {inadecuadaBarreras, inadecuadaSuministros, inadecuadaAusencia }
-enum TieneAyudasABCD {redInformalSUficiente,cuidadoraExterna, redInformalInsuficiente,noTieneApoyo}
-enum IngresoEconomico {recibenMas2050,recibenMas1537,recibenIgual1537,reciben1025,sinIngresosFijos}
 
 class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
@@ -368,6 +374,21 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
   P31Perc02? _P31Perc02;
   P31Perc01? _P31Perc01;
 
+  P32Perc01? _P32Perc01;
+  P32Perc02? _P32Perc02;
+  P32Perc03? _P32Perc03;
+  P32Perc04? _P32Perc04;
+  P32Perc05? _P32Perc05;
+  P32Perc06? _P32Perc06;
+  P32Perc07? _P32Perc07;
+  P32Perc08? _P32Perc08;
+  P32Perc09? _P32Perc09;
+  P32Perc10? _P32Perc10;
+  P32Perc11? _P32Perc11;
+  P32Perc12? _P32Perc12;
+  P32Perc13? _P32Perc13;
+  P32Perc14? _P32Perc14;
+
   bool P33Perc01Opcion01 = false;
   bool P33Perc02Opcion01 = false;
   bool P33Perc03Opcion01 = false;
@@ -510,6 +531,798 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
 
     if (widget.formData != null) {
+
+      if (widget.formData!.p01percepcion != null  && widget.formData!.p01percepcion!.isNotEmpty) {
+        setState(() {
+          widget.P01EspecificarPerc!.text = widget.formData!.p01percepcion!;
+        });
+      }
+
+      if (widget.formData!.p02percepcion != null  && widget.formData!.p02percepcion!.isNotEmpty) {
+        setState(() {
+          widget.P02EspecificarPerc!.text = widget.formData!.p02percepcion!;
+        });
+      }
+
+      if (widget.formData!.p03percepcion != null  && widget.formData!.p03percepcion!.isNotEmpty) {
+        setState(() {
+          widget.P03EspecificarPerc!.text = widget.formData!.p03percepcion!;
+        });
+      }
+
+      if (widget.formData!.p04percepcion != null  && widget.formData!.p04percepcion!.isNotEmpty) {
+        setState(() {
+          widget.P04EspecificarPerc!.text = widget.formData!.p04percepcion!;
+        });
+      }
+
+      if (widget.formData!.p05percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p05percepcion) {
+            case 0:
+              _P05Perc = P05Perc.avenida;
+            case 1:
+              _P05Perc = P05Perc.calle;
+            case 2:
+              _P05Perc = P05Perc.jiron;
+            case 3:
+              _P05Perc = P05Perc.pasaje;
+            case 4:
+              _P05Perc = P05Perc.carretera;
+            case 6:
+              _P05Perc = P05Perc.otro;
+          }
+        });
+      }
+
+      if (widget.formData!.p06percepcion != null  && widget.formData!.p06percepcion!.isNotEmpty) {
+        setState(() {
+          widget.P06EspecificarPerc!.text = widget.formData!.p06percepcion!;
+        });
+      }
+
+      if (widget.formData!.p07percepcion != null  && widget.formData!.p07percepcion!.isNotEmpty) {
+        setState(() {
+          widget.P07EspecificarPerc!.text = widget.formData!.p07percepcion!;
+        });
+      }
+
+      if (widget.formData!.p08percepcion != null  && widget.formData!.p08percepcion!.isNotEmpty) {
+        setState(() {
+          widget.P08EspecificarPerc!.text = widget.formData!.p08percepcion!;
+        });
+      }
+
+      if (widget.formData!.p09percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p09percepcion) {
+            case 0:
+              _P09Perc = P09Perc.Si;
+            case 1:
+              _P09Perc = P09Perc.No;
+          }
+        });
+      }
+
+      if (widget.formData!.p10percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p10percepcion) {
+            case 0:
+              _P10Perc = P10Perc.Si;
+            case 1:
+              _P10Perc = P10Perc.No;
+          }
+        });
+      }
+
+      if (widget.formData!.p11percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p11percepcion) {
+            case 0:
+              _P11Perc = P11Perc.Si;
+            case 1:
+              _P11Perc = P11Perc.No;
+          }
+        });
+      }
+
+      if (widget.formData!.p12percepcion != null  && widget.formData!.p12percepcion!.isNotEmpty) {
+        setState(() {
+          widget.P12EspecificarPerc!.text = widget.formData!.p12percepcion!;
+        });
+      }
+
+      if (widget.formData!.p13percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p13percepcion) {
+            case 0:
+              _P13Perc = P13Perc.hombre;
+            case 1:
+              _P13Perc = P13Perc.mujer;
+          }
+        });
+      }
+
+      if (widget.formData!.p14percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p14percepcion) {
+            case 0:
+              _P14Perc = P14Perc.Si;
+            case 1:
+              _P14Perc = P14Perc.No;
+          }
+        });
+      }
+
+      if (widget.formData!.p15percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p15percepcion) {
+            case 0:
+              _P15Perc = P15Perc.Si;
+            case 1:
+              _P15Perc = P15Perc.No;
+          }
+        });
+      }
+
+      if (widget.formData!.p16percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p16percepcion) {
+            case 0:
+              _P16Perc = P16Perc.esposa;
+            case 1:
+              _P16Perc = P16Perc.conviviente;
+            case 2:
+              _P16Perc = P16Perc.hijo;
+            case 3:
+              _P16Perc = P16Perc.hijastro;
+            case 4:
+              _P16Perc = P16Perc.yerno;
+            case 5:
+              _P16Perc = P16Perc.nieto;
+            case 6:
+              _P16Perc = P16Perc.padres;
+            case 7:
+              _P16Perc = P16Perc.suegro;
+            case 8:
+              _P16Perc = P16Perc.hermano;
+            case 9:
+              _P16Perc = P16Perc.trabajador;
+            case 10:
+              _P16Perc = P16Perc.otropariente;
+            case 11:
+              _P16Perc = P16Perc.otronopariente;
+          }
+        });
+      }
+
+      if (widget.formData!.p16percepcionEspecificar != null  && widget.formData!.p16percepcionEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.P16EspecificarPerc!.text = widget.formData!.p16percepcionEspecificar!;
+        });
+      }
+
+      if (widget.formData!.p17percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p17percepcion) {
+            case 0:
+              _P17Perc = P17Perc.Si;
+            case 1:
+              _P17Perc = P17Perc.No;
+          }
+        });
+      }
+
+      if (widget.formData!.p18percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p18percepcion) {
+            case 0:
+              _P18Perc = P18Perc.Si;
+            case 1:
+              _P18Perc = P18Perc.No;
+          }
+        });
+      }
+
+      if (widget.formData!.p19percepcion != null  && widget.formData!.p19percepcion!.isNotEmpty) {
+        setState(() {
+          widget.P19EspecificarPerc!.text = widget.formData!.p19percepcion!;
+        });
+      }
+
+      if (widget.formData!.p20percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p20percepcion) {
+            case 0:
+              _P20Perc = P20Perc.hombre;
+            case 1:
+              _P20Perc = P20Perc.mujer;
+          }
+        });
+      }
+
+      if (widget.formData!.p21percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p21percepcion) {
+            case 0:
+              _P21Perc = P21Perc.Si;
+            case 1:
+              _P21Perc = P21Perc.No;
+          }
+        });
+      }
+
+      if (widget.formData!.p22percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p22percepcion) {
+            case 0:
+              _P22Perc = P22Perc.omadep;
+            case 1:
+              _P22Perc = P22Perc.familaires;
+            case 2:
+              _P22Perc = P22Perc.medios;
+            case 3:
+              _P22Perc = P22Perc.personal;
+            case 4:
+              _P22Perc = P22Perc.yo;
+            case 5:
+              _P22Perc = P22Perc.otro;
+          }
+        });
+      }
+
+      if (widget.formData!.p22percepcionEspecificar != null  && widget.formData!.p22percepcionEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.P22EspecificarPerc!.text = widget.formData!.p22percepcionEspecificar!;
+        });
+      }
+
+      if (widget.formData!.p23percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p23percepcion) {
+            case 0:
+              _P23Perc = P23Perc.jefe;
+            case 1:
+              _P23Perc = P23Perc.esposa;
+            case 2:
+              _P23Perc = P23Perc.hijo;
+            case 3:
+              _P23Perc = P23Perc.yerno;
+            case 4:
+              _P23Perc = P23Perc.nieto;
+            case 5:
+              _P23Perc = P23Perc.padres;
+            case 6:
+              _P23Perc = P23Perc.hermano;
+            case 7:
+              _P23Perc = P23Perc.trabajador;
+            case 8:
+              _P23Perc = P23Perc.otropariente;
+          }
+        });
+      }
+
+      if (widget.formData!.p23percepcionEspecificar != null  && widget.formData!.p23percepcionEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.P23EspecificarPerc!.text = widget.formData!.p23percepcionEspecificar!;
+        });
+      }
+
+      if (widget.formData!.p24percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p24percepcion) {
+            case 0:
+              _P24Perc = P24Perc.hombre;
+            case 1:
+              _P24Perc = P24Perc.mujer;
+          }
+        });
+      }
+
+      if (widget.formData!.p25percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p25percepcion) {
+            case 0:
+              _P25Perc = P25Perc.solo;
+            case 1:
+              _P25Perc = P25Perc.esposohijos;
+            case 2:
+              _P25Perc = P25Perc.esposo;
+            case 3:
+              _P25Perc = P25Perc.padreshermanos;
+            case 4:
+              _P25Perc = P25Perc.padres;
+          }
+        });
+      }
+
+      if (widget.formData!.p26percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p26percepcion) {
+            case 0:
+              _P26Perc = P26Perc.Si;
+            case 1:
+              _P26Perc = P26Perc.No;
+          }
+        });
+      }
+
+      if (widget.formData!.p27percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p27percepcion) {
+            case 0:
+              _P27Perc = P27Perc.Si;
+            case 1:
+              _P27Perc = P27Perc.No;
+          }
+        });
+      }
+
+      if (widget.formData!.p28percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p28percepcion) {
+            case 0:
+              _P28Perc = P28Perc.muybuena;
+            case 1:
+              _P28Perc = P28Perc.buena;
+            case 2:
+              _P28Perc = P28Perc.mala;
+            case 3:
+              _P28Perc = P28Perc.muymala;
+            case 4:
+              _P28Perc = P28Perc.nosabe;
+          }
+        });
+      }
+
+      if (widget.formData!.p29percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p29percepcion) {
+            case 0:
+              _P29Perc = P29Perc.muybuena;
+            case 1:
+              _P29Perc = P29Perc.buena;
+            case 2:
+              _P29Perc = P29Perc.mala;
+            case 3:
+              _P29Perc = P29Perc.muymala;
+            case 4:
+              _P29Perc = P29Perc.nosabe;
+          }
+        });
+      }
+
+      //30 31 32 33 is checked
+
+      if (widget.formData!.p34percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p34percepcion) {
+            case 0:
+              _P34Perc = P34Perc.muysatisfecho;
+            case 1:
+              _P34Perc = P34Perc.satisfecho;
+            case 2:
+              _P34Perc = P34Perc.insatisfecho;
+            case 3:
+              _P34Perc = P34Perc.muyinsatisfecho;
+            case 4:
+              _P34Perc = P34Perc.nosabe;
+          }
+        });
+      }
+
+      if (widget.formData!.p35percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p35percepcion) {
+            case 0:
+              _P35Perc = P35Perc.nunca;
+            case 1:
+              _P35Perc = P35Perc.algunavez;
+            case 2:
+              _P35Perc = P35Perc.frecuente;
+            case 3:
+              _P35Perc = P35Perc.siempre;
+          }
+        });
+      }
+
+      if (widget.formData!.p36percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p36percepcion) {
+            case 0:
+              _P36Perc = P36Perc.nunca;
+            case 1:
+              _P36Perc = P36Perc.algunavez;
+            case 2:
+              _P36Perc = P36Perc.frecuente;
+            case 3:
+              _P36Perc = P36Perc.siempre;
+          }
+        });
+      }
+
+      if (widget.formData!.p37percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p37percepcion) {
+            case 0:
+              _P37Perc = P37Perc.nunca;
+            case 1:
+              _P37Perc = P37Perc.algunavez;
+            case 2:
+              _P37Perc = P37Perc.frecuente;
+            case 3:
+              _P37Perc = P37Perc.siempre;
+          }
+        });
+      }
+
+      if (widget.formData!.p38percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p38percepcion) {
+            case 0:
+              _P38Perc = P38Perc.nunca;
+            case 1:
+              _P38Perc = P38Perc.algunavez;
+            case 2:
+              _P38Perc = P38Perc.frecuente;
+            case 3:
+              _P38Perc = P38Perc.siempre;
+          }
+        });
+      }
+
+      if (widget.formData!.p39percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p39percepcion) {
+            case 0:
+              _P39Perc = P39Perc.nunca;
+            case 1:
+              _P39Perc = P39Perc.algunavez;
+            case 2:
+              _P39Perc = P39Perc.frecuente;
+            case 3:
+              _P39Perc = P39Perc.siempre;
+          }
+        });
+      }
+
+      if (widget.formData!.p40percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p40percepcion) {
+            case 0:
+              _P40Perc = P40Perc.muysatisfecho;
+            case 1:
+              _P40Perc = P40Perc.satisfecho;
+            case 2:
+              _P40Perc = P40Perc.insatisfecho;
+            case 3:
+              _P40Perc = P40Perc.muyinsatisfecho;
+            case 4:
+              _P40Perc = P40Perc.nosabe;
+          }
+        });
+      }
+
+      if (widget.formData!.p41percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p41percepcion) {
+            case 0:
+              _P41Perc = P41Perc.sigueigual;
+            case 1:
+              _P41Perc = P41Perc.hamejorado;
+            case 2:
+              _P41Perc = P41Perc.haempeorado;
+            case 3:
+              _P41Perc = P41Perc.nosabe;
+          }
+        });
+      }
+
+      //42
+      if (widget.formData!.p42percepcion != null  && widget.formData!.p42percepcion!.isNotEmpty) {
+        setState(() {
+          if( widget.formData!.p42percepcion!.contains('A1')){P42Perc01Salud = true;}
+          if( widget.formData!.p42percepcion!.contains('A2')){P42Perc01Salud = true; P42Perc02Salud = true;}
+          if( widget.formData!.p42percepcion!.contains('A3')){P42Perc01Salud = true; P42Perc02Salud = true; P42Perc03Salud = true;}
+          if( widget.formData!.p42percepcion!.contains('B1')){P42Perc01SaludF = true;}
+          if( widget.formData!.p42percepcion!.contains('B2')){P42Perc01SaludF = true; P42Perc02SaludF = true;}
+          if( widget.formData!.p42percepcion!.contains('B3')){P42Perc01SaludF = true; P42Perc02SaludF = true; P42Perc03SaludF = true;}
+          if( widget.formData!.p42percepcion!.contains('C1')){P42Perc01Dinero = true;}
+          if( widget.formData!.p42percepcion!.contains('C2')){P42Perc01Dinero = true; P42Perc02Dinero = true;}
+          if( widget.formData!.p42percepcion!.contains('C3')){P42Perc01Dinero = true; P42Perc02Dinero = true; P42Perc03Dinero = true;}
+          if( widget.formData!.p42percepcion!.contains('D1')){P42Perc01ProblemasF = true;}
+          if( widget.formData!.p42percepcion!.contains('D2')){P42Perc01ProblemasF = true; P42Perc02ProblemasF = true;}
+          if( widget.formData!.p42percepcion!.contains('D3')){P42Perc01ProblemasF = true; P42Perc02ProblemasF = true; P42Perc03ProblemasF = true;}
+          if( widget.formData!.p42percepcion!.contains('E1')){P42Perc01Falta = true;}
+          if( widget.formData!.p42percepcion!.contains('E2')){P42Perc01Falta = true; P42Perc02Falta = true;}
+          if( widget.formData!.p42percepcion!.contains('E3')){P42Perc01Falta = true; P42Perc02Falta = true; P42Perc03Falta = true;}
+          if( widget.formData!.p42percepcion!.contains('F1')){P42Perc01ProblemasV = true;}
+          if( widget.formData!.p42percepcion!.contains('F2')){P42Perc01ProblemasV = true; P42Perc02ProblemasV = true;}
+          if( widget.formData!.p42percepcion!.contains('F3')){P42Perc01ProblemasV = true; P42Perc02ProblemasV = true; P42Perc03ProblemasV = true;}
+          if( widget.formData!.p42percepcion!.contains('G1')){P42Perc01Estudio = true;}
+          if( widget.formData!.p42percepcion!.contains('G2')){P42Perc01Estudio = true; P42Perc02Estudio = true;}
+          if( widget.formData!.p42percepcion!.contains('G3')){P42Perc01Estudio = true; P42Perc02Estudio = true; P42Perc03Estudio = true;}
+          if( widget.formData!.p42percepcion!.contains('H1')){P42Perc01Otro = true;}
+          if( widget.formData!.p42percepcion!.contains('H2')){P42Perc01Otro = true; P42Perc02Otro = true;}
+          if( widget.formData!.p42percepcion!.contains('H3')){P42Perc01Otro = true; P42Perc02Otro = true; P42Perc03Otro = true;}
+          if( widget.formData!.p42percepcion!.contains('I')){P42Perc03SinPreocupaciones = true;}
+        });
+      }
+
+      if (widget.formData!.p43percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p43percepcion) {
+            case 0:
+              _P43Perc = P43Perc.Si;
+            case 1:
+              _P43Perc = P43Perc.No;
+          }
+        });
+      }
+
+      if (widget.formData!.p44percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p44percepcion) {
+            case 0:
+              _P44Perc = P44Perc.omadep;
+            case 1:
+              _P44Perc = P44Perc.familaires;
+            case 2:
+              _P44Perc = P44Perc.medios;
+            case 3:
+              _P44Perc = P44Perc.personal;
+            case 4:
+              _P44Perc = P44Perc.banco;
+            case 5:
+              _P44Perc = P44Perc.yo;
+            case 5:
+              _P44Perc = P44Perc.otro;
+          }
+        });
+      }
+
+      if (widget.formData!.p44percepcionEspecificar != null  && widget.formData!.p44percepcionEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.P44EspecificarPerc!.text = widget.formData!.p44percepcionEspecificar!;
+        });
+      }
+
+      if (widget.formData!.p45percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p45percepcion) {
+            case 0:
+              _P45Perc = P45Perc.dosmeses;
+            case 1:
+              _P45Perc = P45Perc.masdosmeses;
+            case 2:
+              _P45Perc = P45Perc.seismeses;
+            case 3:
+              _P45Perc = P45Perc.nosabe;
+            case 4:
+              _P45Perc = P45Perc.otro;
+          }
+        });
+      }
+
+      if (widget.formData!.p45percepcionEspecificar != null  && widget.formData!.p45percepcionEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.P45EspecificarPerc!.text = widget.formData!.p45percepcionEspecificar!;
+        });
+      }
+
+      if (widget.formData!.p46percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p46percepcion) {
+            case 0:
+              _P46Perc = P46Perc.nosabiausuario;
+            case 1:
+              _P46Perc = P46Perc.nosabiafecha;
+            case 2:
+              _P46Perc = P46Perc.enfermo;
+            case 3:
+              _P46Perc = P46Perc.guarde;
+            case 4:
+              _P46Perc = P46Perc.movilidad;
+            case 5:
+              _P46Perc = P46Perc.nosabe;
+            case 6:
+              _P46Perc = P46Perc.otro;
+          }
+        });
+      }
+
+      if (widget.formData!.p46percepcionEspecificar != null  && widget.formData!.p46percepcionEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.P46EspecificarPerc!.text = widget.formData!.p46percepcionEspecificar!;
+        });
+      }
+
+      if (widget.formData!.p47percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p47percepcion) {
+            case 0:
+              _P47Perc = P47Perc.independiente;
+            case 1:
+              _P47Perc = P47Perc.cuidador;
+            case 2:
+              _P47Perc = P47Perc.familiar;
+            case 3:
+              _P47Perc = P47Perc.municipalidad;
+            case 4:
+              _P47Perc = P47Perc.cobro;
+          }
+        });
+      }
+
+      if (widget.formData!.p48percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p48percepcion) {
+            case 0:
+              _P48Perc = P48Perc.mediahora;
+            case 1:
+              _P48Perc = P48Perc.masmediahora;
+            case 2:
+              _P48Perc = P48Perc.unoadoshoras;
+            case 3:
+              _P48Perc = P48Perc.masdoshoras;
+          }
+        });
+      }
+
+      if (widget.formData!.p49percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p49percepcion) {
+            case 0:
+              _P49Perc = P49Perc.apie;
+            case 1:
+              _P49Perc = P49Perc.bicicletas;
+            case 2:
+              _P49Perc = P49Perc.caballo;
+            case 3:
+              _P49Perc = P49Perc.mototaxi;
+            case 4:
+              _P49Perc = P49Perc.motocicleta;
+            case 5:
+              _P49Perc = P49Perc.automovil;
+            case 6:
+              _P49Perc = P49Perc.taxi;
+            case 7:
+              _P49Perc = P49Perc.colectivo;
+            case 8:
+              _P49Perc = P49Perc.camion;
+            case 9:
+              _P49Perc = P49Perc.otro;
+          }
+        });
+      }
+
+      if (widget.formData!.p49percepcionEspecificar != null  && widget.formData!.p49percepcionEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.P49EspecificarPerc!.text = widget.formData!.p49percepcionEspecificar!;
+        });
+      }
+
+      //50
+
+      if (widget.formData!.p51percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p51percepcion) {
+            case 0:
+              _P51Perc = P51Perc.banco;
+            case 1:
+              _P51Perc = P51Perc.debito;
+            case 2:
+              _P51Perc = P51Perc.agente;
+            case 3:
+              _P51Perc = P51Perc.pagador;
+            case 4:
+              _P51Perc = P51Perc.pias;
+          }
+        });
+      }
+
+      //52 es un check
+
+      if (widget.formData!.p52percepcionEspecificar != null  && widget.formData!.p52percepcionEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.P52EspecificarPerc!.text = widget.formData!.p52percepcionEspecificar!;
+        });
+      }
+
+      if (widget.formData!.p53percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p53percepcion) {
+            case 0:
+              _P53Perc = P53Perc.Si;
+            case 1:
+              _P53Perc = P53Perc.No;
+          }
+        });
+      }
+
+      //42
+      if (widget.formData!.p54percepcion != null  && widget.formData!.p54percepcion!.isNotEmpty) {
+        setState(() {
+          if( widget.formData!.p54percepcion!.contains('A1')){P54Perc01Distancia = true;}
+          if( widget.formData!.p54percepcion!.contains('A2')){P54Perc01Distancia = true; P54Perc02Distancia = true;}
+          if( widget.formData!.p54percepcion!.contains('A3')){P54Perc01Distancia = true; P54Perc02Distancia = true; P54Perc03Distancia = true;}
+          if( widget.formData!.p54percepcion!.contains('B1')){P54Perc01Fisico = true;}
+          if( widget.formData!.p54percepcion!.contains('B2')){P54Perc01Fisico = true; P54Perc02Fisico = true;}
+          if( widget.formData!.p54percepcion!.contains('B3')){P54Perc01Fisico = true; P54Perc02Fisico = true; P54Perc03Fisico = true;}
+          if( widget.formData!.p54percepcion!.contains('C1')){P54Perc01Ausencia = true;}
+          if( widget.formData!.p54percepcion!.contains('C2')){P54Perc01Ausencia = true; P54Perc02Ausencia = true;}
+          if( widget.formData!.p54percepcion!.contains('C3')){P54Perc01Ausencia = true; P54Perc02Ausencia = true; P54Perc03Ausencia = true;}
+          if( widget.formData!.p54percepcion!.contains('D1')){P54Perc01Requiere = true;}
+          if( widget.formData!.p54percepcion!.contains('D2')){P54Perc01Requiere = true; P54Perc02Requiere = true;}
+          if( widget.formData!.p54percepcion!.contains('D3')){P54Perc01Requiere = true; P54Perc02Requiere = true; P54Perc03Requiere = true;}
+          if( widget.formData!.p54percepcion!.contains('E1')){P54Perc01Clima = true;}
+          if( widget.formData!.p54percepcion!.contains('E2')){P54Perc01Clima = true; P54Perc02Clima = true;}
+          if( widget.formData!.p54percepcion!.contains('E3')){P54Perc01Clima = true; P54Perc02Clima = true; P54Perc03Clima = true;}
+          if( widget.formData!.p54percepcion!.contains('F1')){P54Perc01Terreno = true;}
+          if( widget.formData!.p54percepcion!.contains('F2')){P54Perc01Terreno = true; P54Perc02Terreno = true;}
+          if( widget.formData!.p54percepcion!.contains('F3')){P54Perc01Terreno = true; P54Perc02Terreno = true; P54Perc03Terreno = true;}
+          if( widget.formData!.p54percepcion!.contains('G1')){P54Perc01Otro = true;}
+          if( widget.formData!.p54percepcion!.contains('G2')){P54Perc01Otro = true; P54Perc02Otro = true;}
+          if( widget.formData!.p54percepcion!.contains('G3')){P54Perc01Otro = true; P54Perc02Otro = true; P54Perc03Otro = true;}
+        });
+      }
+
+      if (widget.formData!.p55percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p55percepcion) {
+            case 0:
+              _P55Perc = P55Perc.Si;
+            case 1:
+              _P55Perc = P55Perc.No;
+          }
+        });
+      }
+
+      if (widget.formData!.p56percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p56percepcion) {
+            case 0:
+              _P56Perc = P56Perc.cuidador;
+            case 1:
+              _P56Perc = P56Perc.autorizada;
+          }
+        });
+      }
+
+      if (widget.formData!.p57percepcion != null) {
+        setState(() {
+          switch (widget.formData!.p57percepcion) {
+            case 0:
+              _P57Perc = P57Perc.salud;
+            case 1:
+              _P57Perc = P57Perc.ayuda;
+            case 2:
+              _P57Perc = P57Perc.alimentacion;
+            case 3:
+              _P57Perc = P57Perc.vestimenta;
+            case 4:
+              _P57Perc = P57Perc.transporte;
+            case 5:
+              _P57Perc = P57Perc.invierte;
+            case 6:
+              _P57Perc = P57Perc.mejora;
+            case 7:
+              _P57Perc = P57Perc.ahorra;
+            case 8:
+              _P57Perc = P57Perc.pago;
+            case 9:
+              _P57Perc = P57Perc.nosabe;
+            case 10:
+              _P57Perc = P57Perc.otro;
+          }
+        });
+      }
+
+      if (widget.formData!.p57percepcionEspecificar != null  && widget.formData!.p57percepcionEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.P57EspecificarPerc!.text = widget.formData!.p57percepcionEspecificar!;
+        });
+      }
 
     }
 
@@ -735,6 +1548,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P16Perc == P16Perc.otronopariente) {PercP16 = "${PercP16}Otro/a no pariente-L:${widget.P16EspecificarPerc!.text};";}
     widget.formData?.p16percepcion = _P16Perc?.index;
     widget.formDataBACKUP?.p16percepcion = _P16Perc?.index;
+    widget.formData?.p16percepcionEspecificar =widget.P16EspecificarPerc!.text;
+    widget.formDataBACKUP?.p16percepcionEspecificar =widget.P16EspecificarPerc!.text;
 
     if (_P17Perc == P17Perc.Si) {PercP17 = "${PercP17}Sí-A;";}
     if (_P17Perc == P17Perc.No) {PercP17 = "${PercP17}No-B;";}
@@ -836,21 +1651,24 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     widget.formDataBACKUP?.p29percepcion = _P29Perc?.index;
 
     //30,31,32,33
-    if(isCheckedP30Opcion01){PercP30 = "${PercP30}A,";}
-    if(isCheckedP30Opcion02){PercP30 = "${PercP30}B,";}
-    if(isCheckedP30Opcion03){PercP30 = "${PercP30}C,";}
-    if(isCheckedP30Opcion04){PercP30 = "${PercP30}D,";}
-    if(isCheckedP30Opcion05){PercP30 = "${PercP30}E,";}
-    if(isCheckedP30Opcion06){PercP30 = "${PercP30}F,";}
-    if(isCheckedP30Opcion07){PercP30 = "${PercP30}G,";}
-    if(isCheckedP30Opcion08){PercP30 = "${PercP30}H,";}
-    if(isCheckedP30Opcion09){PercP30 = "${PercP30}I,";}
-    if(isCheckedP30Opcion10){PercP30 = "${PercP30}J,";}
-    if(isCheckedP30Opcion11){PercP30 = "${PercP30}K,";}
-    if(isCheckedP30Opcion12){PercP30 = "${PercP30}L,";}
-    if(isCheckedP30Opcion13){PercP30 = "${PercP30}M,";}
-    if(isCheckedP30Opcion14){PercP30 = "${PercP30}N,";}
+    String PercP30Check="";
+    if(isCheckedP30Opcion01){PercP30 = "${PercP30}A,";PercP30Check = "A,";}
+    if(isCheckedP30Opcion02){PercP30 = "${PercP30}B,";PercP30Check = "B,";}
+    if(isCheckedP30Opcion03){PercP30 = "${PercP30}C,";PercP30Check = "C,";}
+    if(isCheckedP30Opcion04){PercP30 = "${PercP30}D,";PercP30Check = "D,";}
+    if(isCheckedP30Opcion05){PercP30 = "${PercP30}E,";PercP30Check = "E,";}
+    if(isCheckedP30Opcion06){PercP30 = "${PercP30}F,";PercP30Check = "F,";}
+    if(isCheckedP30Opcion07){PercP30 = "${PercP30}G,";PercP30Check = "G,";}
+    if(isCheckedP30Opcion08){PercP30 = "${PercP30}H,";PercP30Check = "H,";}
+    if(isCheckedP30Opcion09){PercP30 = "${PercP30}I,";PercP30Check = "I,";}
+    if(isCheckedP30Opcion10){PercP30 = "${PercP30}J,";PercP30Check = "J,";}
+    if(isCheckedP30Opcion11){PercP30 = "${PercP30}K,";PercP30Check = "K,";}
+    if(isCheckedP30Opcion12){PercP30 = "${PercP30}L,";PercP30Check = "L,";}
+    if(isCheckedP30Opcion13){PercP30 = "${PercP30}M,";PercP30Check = "M,";}
+    if(isCheckedP30Opcion14){PercP30 = "${PercP30}N,";PercP30Check = "N,";}
     PercP30 = "${PercP30};";
+    widget.formData?.p30percepcion = PercP30Check;
+    widget.formDataBACKUP?.p30percepcion = PercP30Check;
 
     if (_P31Perc01 == P31Perc01.cuidador) {PercP31 = "${PercP31}01-Cuidador,";}
     if (_P31Perc01 == P31Perc01.familiar) {PercP31 = "${PercP31}01-Familiar,";}
@@ -993,25 +1811,22 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (P42Perc03Dinero) {PercP42 = "${PercP42}tres-C,"; PercP42Check = "C3,";}
     else if (P42Perc02Dinero) {PercP42 = "${PercP42}dos-C,"; PercP42Check = "C2,";}
     else if (P42Perc01Dinero) {PercP42 = "${PercP42}uno-C,"; PercP42Check = "C1,";}
-    if (P42Perc03Dinero) {PercP42 = "${PercP42}tres-D,"; PercP42Check = "D3,";}
-    else if (P42Perc02Dinero) {PercP42 = "${PercP42}dos-D,"; PercP42Check = "D2,";}
-    else if (P42Perc01Dinero) {PercP42 = "${PercP42}uno-D,"; PercP42Check = "D1,";}
-    if (P42Perc03ProblemasF) {PercP42 = "${PercP42}tres-E,"; PercP42Check = "E3,";}
-    else if (P42Perc02ProblemasF) {PercP42 = "${PercP42}dos-E,"; PercP42Check = "E2,";}
-    else if (P42Perc01ProblemasF) {PercP42 = "${PercP42}uno-E,"; PercP42Check = "E1,";}
-    if (P42Perc03Falta) {PercP42 = "${PercP42}tres-F,"; PercP42Check = "F3,";}
-    else if (P42Perc02Falta) {PercP42 = "${PercP42}dos-F,"; PercP42Check = "F2,";}
-    else if (P42Perc01Falta) {PercP42 = "${PercP42}uno-F,"; PercP42Check = "F1,";}
-    if (P42Perc03ProblemasV) {PercP42 = "${PercP42}tres-G,"; PercP42Check = "G3,";}
-    else if (P42Perc02ProblemasV) {PercP42 = "${PercP42}dos-G,"; PercP42Check = "G2,";}
-    else if (P42Perc01ProblemasV) {PercP42 = "${PercP42}uno-G,"; PercP42Check = "G1,";}
-    if (P42Perc03Estudio) {PercP42 = "${PercP42}tres-H,"; PercP42Check = "H3,";}
-    else if (P42Perc02Estudio) {PercP42 = "${PercP42}dos-H,"; PercP42Check = "H2,";}
-    else if (P42Perc01Estudio) {PercP42 = "${PercP42}uno-H,"; PercP42Check = "H1,";}
-    if (P42Perc03Otro) {PercP42 = "${PercP42}tres-I,"; PercP42Check = "I3,";}
-    else if (P42Perc02Otro) {PercP42 = "${PercP42}dos-I,"; PercP42Check = "I2,";}
-    else if (P42Perc01Otro) {PercP42 = "${PercP42}uno-I,"; PercP42Check = "I1,";}
-    if (P42Perc03SinPreocupaciones) {PercP42 = "${PercP42}J,"; PercP42Check = "J,";}
+    if (P42Perc03ProblemasF) {PercP42 = "${PercP42}tres-D,"; PercP42Check = "D3,";}
+    else if (P42Perc02ProblemasF) {PercP42 = "${PercP42}dos-D,"; PercP42Check = "D2,";}
+    else if (P42Perc01ProblemasF) {PercP42 = "${PercP42}uno-D,"; PercP42Check = "D1,";}
+    if (P42Perc03Falta) {PercP42 = "${PercP42}tres-E,"; PercP42Check = "E3,";}
+    else if (P42Perc02Falta) {PercP42 = "${PercP42}dos-E,"; PercP42Check = "E2,";}
+    else if (P42Perc01Falta) {PercP42 = "${PercP42}uno-E,"; PercP42Check = "E1,";}
+    if (P42Perc03ProblemasV) {PercP42 = "${PercP42}tres-F,"; PercP42Check = "F3,";}
+    else if (P42Perc02ProblemasV) {PercP42 = "${PercP42}dos-F,"; PercP42Check = "F2,";}
+    else if (P42Perc01ProblemasV) {PercP42 = "${PercP42}uno-F,"; PercP42Check = "F1,";}
+    if (P42Perc03Estudio) {PercP42 = "${PercP42}tres-G,"; PercP42Check = "G3,";}
+    else if (P42Perc02Estudio) {PercP42 = "${PercP42}dos-G,"; PercP42Check = "G2,";}
+    else if (P42Perc01Estudio) {PercP42 = "${PercP42}uno-G,"; PercP42Check = "G1,";}
+    if (P42Perc03Otro) {PercP42 = "${PercP42}tres-H,"; PercP42Check = "H3,";}
+    else if (P42Perc02Otro) {PercP42 = "${PercP42}dos-H,"; PercP42Check = "H2,";}
+    else if (P42Perc01Otro) {PercP42 = "${PercP42}uno-H,"; PercP42Check = "H1,";}
+    if (P42Perc03SinPreocupaciones) {PercP42 = "${PercP42}I,"; PercP42Check = "I,";}
     PercP42 = "${PercP42};";
     widget.formData?.p42percepcion = PercP42Check;
     widget.formDataBACKUP?.p42percepcion = PercP42Check;
@@ -1128,27 +1943,27 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     widget.formDataBACKUP?.p53percepcion = _P53Perc?.index;
 
     String PercP54Check="";
-    if      (P54Perc01Distancia) {PercP54 = "${PercP54}tres-A,";  PercP54Check = "A3,";}
+    if      (P54Perc03Distancia) {PercP54 = "${PercP54}tres-A,";  PercP54Check = "A3,";}
     else if (P54Perc02Distancia) {PercP54 = "${PercP54}dos-A,";   PercP54Check = "A2,";}
-    else if (P54Perc03Distancia) {PercP54 = "${PercP54}uno-A,";   PercP54Check = "A1,";}
-    if      (P54Perc01Fisico) {PercP54 = "${PercP54}tres-B,";  PercP54Check = "B3,";}
+    else if (P54Perc01Distancia) {PercP54 = "${PercP54}uno-A,";   PercP54Check = "A1,";}
+    if      (P54Perc03Fisico) {PercP54 = "${PercP54}tres-B,";  PercP54Check = "B3,";}
     else if (P54Perc02Fisico) {PercP54 = "${PercP54}dos-B,";   PercP54Check = "B2,";}
-    else if (P54Perc03Fisico) {PercP54 = "${PercP54}uno-B,";   PercP54Check = "B1,";}
-    if      (P54Perc01Ausencia) {PercP54 = "${PercP54}tres-C,";  PercP54Check = "C3,";}
+    else if (P54Perc01Fisico) {PercP54 = "${PercP54}uno-B,";   PercP54Check = "B1,";}
+    if      (P54Perc03Ausencia) {PercP54 = "${PercP54}tres-C,";  PercP54Check = "C3,";}
     else if (P54Perc02Ausencia) {PercP54 = "${PercP54}dos-C,";   PercP54Check = "C2,";}
-    else if (P54Perc03Ausencia) {PercP54 = "${PercP54}uno-C,";   PercP54Check = "C1,";}
-    if      (P54Perc01Requiere) {PercP54 = "${PercP54}tres-D,";  PercP54Check = "D3,";}
+    else if (P54Perc01Ausencia) {PercP54 = "${PercP54}uno-C,";   PercP54Check = "C1,";}
+    if      (P54Perc03Requiere) {PercP54 = "${PercP54}tres-D,";  PercP54Check = "D3,";}
     else if (P54Perc02Requiere) {PercP54 = "${PercP54}dos-D,";   PercP54Check = "D2,";}
-    else if (P54Perc03Requiere) {PercP54 = "${PercP54}uno-D,";   PercP54Check = "D1,";}
-    if      (P54Perc01Clima) {PercP54 = "${PercP54}tres-E,";  PercP54Check = "E3,";}
+    else if (P54Perc01Requiere) {PercP54 = "${PercP54}uno-D,";   PercP54Check = "D1,";}
+    if      (P54Perc03Clima) {PercP54 = "${PercP54}tres-E,";  PercP54Check = "E3,";}
     else if (P54Perc02Clima) {PercP54 = "${PercP54}dos-E,";   PercP54Check = "E2,";}
-    else if (P54Perc03Clima) {PercP54 = "${PercP54}uno-E,";   PercP54Check = "E1,";}
-    if      (P54Perc01Terreno) {PercP54 = "${PercP54}tres-F,";  PercP54Check = "F3,";}
+    else if (P54Perc01Clima) {PercP54 = "${PercP54}uno-E,";   PercP54Check = "E1,";}
+    if      (P54Perc03Terreno) {PercP54 = "${PercP54}tres-F,";  PercP54Check = "F3,";}
     else if (P54Perc02Terreno) {PercP54 = "${PercP54}dos-F,";   PercP54Check = "F2,";}
-    else if (P54Perc03Terreno) {PercP54 = "${PercP54}uno-F,";   PercP54Check = "F1,";}
-    if      (P54Perc01Otro) {PercP54 = "${PercP54}tres-G,";  PercP54Check = "G3,";}
+    else if (P54Perc01Terreno) {PercP54 = "${PercP54}uno-F,";   PercP54Check = "F1,";}
+    if      (P54Perc03Otro) {PercP54 = "${PercP54}tres-G,";  PercP54Check = "G3,";}
     else if (P54Perc02Otro) {PercP54 = "${PercP54}dos-G,";   PercP54Check = "G2,";}
-    else if (P54Perc03Otro) {PercP54 = "${PercP54}uno-G,";   PercP54Check = "G1,";}
+    else if (P54Perc01Otro) {PercP54 = "${PercP54}uno-G,";   PercP54Check = "G1,";}
     PercP54="${PercP54};";
     widget.formData?.p54percepcion = PercP54Check;
     widget.formDataBACKUP?.p54percepcion = PercP54Check;
@@ -3787,7 +4602,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -3829,12 +4644,144 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+
+
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
                         visible: (_P31Perc01 == P31Perc01.cuidador),
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              //SECUNDARIA SECUNDARIA
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc01>(
+                                      value: P32Perc01.esposa,
+                                      groupValue: _P32Perc01,
+                                      onChanged: (P32Perc01? value) {
+                                        setState(() {
+                                          _P32Perc01 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc01>(
+                                      value: P32Perc01.conviviente,
+                                      groupValue: _P32Perc01,
+                                      onChanged: (P32Perc01? value) {
+                                        setState(() {
+                                          _P32Perc01 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc01>(
+                                      value: P32Perc01.hijo,
+                                      groupValue: _P32Perc01,
+                                      onChanged: (P32Perc01? value) {
+                                        setState(() {
+                                          _P32Perc01 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc01>(
+                                      value: P32Perc01.hijastro,
+                                      groupValue: _P32Perc01,
+                                      onChanged: (P32Perc01? value) {
+                                        setState(() {
+                                          _P32Perc01 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc01>(
+                                      value: P32Perc01.yerno,
+                                      groupValue: _P32Perc01,
+                                      onChanged: (P32Perc01? value) {
+                                        setState(() {
+                                          _P32Perc01 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc01>(
+                                      value: P32Perc01.nieto,
+                                      groupValue: _P32Perc01,
+                                      onChanged: (P32Perc01? value) {
+                                        setState(() {
+                                          _P32Perc01 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc01>(
+                                      value: P32Perc01.padres,
+                                      groupValue: _P32Perc01,
+                                      onChanged: (P32Perc01? value) {
+                                        setState(() {
+                                          _P32Perc01 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height:16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -3917,7 +4864,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -3953,11 +4900,145 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+
+
+
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
                         visible: (_P31Perc02 == P31Perc02.cuidador),
                         child:Column(
                             children: <Widget>[
+                              const SizedBox(height: 16.0),
+
+                              //SECUNDARIA SECUNDARIA
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc02>(
+                                      value: P32Perc02.esposa,
+                                      groupValue: _P32Perc02,
+                                      onChanged: (P32Perc02? value) {
+                                        setState(() {
+                                          _P32Perc02 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc02>(
+                                      value: P32Perc02.conviviente,
+                                      groupValue: _P32Perc02,
+                                      onChanged: (P32Perc02? value) {
+                                        setState(() {
+                                          _P32Perc02 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc02>(
+                                      value: P32Perc02.hijo,
+                                      groupValue: _P32Perc02,
+                                      onChanged: (P32Perc02? value) {
+                                        setState(() {
+                                          _P32Perc02 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc02>(
+                                      value: P32Perc02.hijastro,
+                                      groupValue: _P32Perc02,
+                                      onChanged: (P32Perc02? value) {
+                                        setState(() {
+                                          _P32Perc02 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc02>(
+                                      value: P32Perc02.yerno,
+                                      groupValue: _P32Perc02,
+                                      onChanged: (P32Perc02? value) {
+                                        setState(() {
+                                          _P32Perc02 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc02>(
+                                      value: P32Perc02.nieto,
+                                      groupValue: _P32Perc02,
+                                      onChanged: (P32Perc02? value) {
+                                        setState(() {
+                                          _P32Perc02 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc02>(
+                                      value: P32Perc02.padres,
+                                      groupValue: _P32Perc02,
+                                      onChanged: (P32Perc02? value) {
+                                        setState(() {
+                                          _P32Perc02 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
                               const SizedBox(height: 16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
@@ -4039,7 +5120,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4075,11 +5156,144 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+                    //SECUNDARIA SECUNDARIA
+
+
+
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
                         visible: (_P31Perc03 == P31Perc03.cuidador),
                         child:Column(
                             children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc03>(
+                                      value: P32Perc03.esposa,
+                                      groupValue: _P32Perc03,
+                                      onChanged: (P32Perc03? value) {
+                                        setState(() {
+                                          _P32Perc03 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc03>(
+                                      value: P32Perc03.conviviente,
+                                      groupValue: _P32Perc03,
+                                      onChanged: (P32Perc03? value) {
+                                        setState(() {
+                                          _P32Perc03 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc03>(
+                                      value: P32Perc03.hijo,
+                                      groupValue: _P32Perc03,
+                                      onChanged: (P32Perc03? value) {
+                                        setState(() {
+                                          _P32Perc03 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc03>(
+                                      value: P32Perc03.hijastro,
+                                      groupValue: _P32Perc03,
+                                      onChanged: (P32Perc03? value) {
+                                        setState(() {
+                                          _P32Perc03 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc03>(
+                                      value: P32Perc03.yerno,
+                                      groupValue: _P32Perc03,
+                                      onChanged: (P32Perc03? value) {
+                                        setState(() {
+                                          _P32Perc03 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc03>(
+                                      value: P32Perc03.nieto,
+                                      groupValue: _P32Perc03,
+                                      onChanged: (P32Perc03? value) {
+                                        setState(() {
+                                          _P32Perc03 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc03>(
+                                      value: P32Perc03.padres,
+                                      groupValue: _P32Perc03,
+                                      onChanged: (P32Perc03? value) {
+                                        setState(() {
+                                          _P32Perc03 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
                               const SizedBox(height: 16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
@@ -4161,7 +5375,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4197,11 +5411,144 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+
+
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
                         visible: (_P31Perc04 == P31Perc04.cuidador),
                         child:Column(
                             children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              //SECUNDARIA SECUNDARIA
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc04>(
+                                      value: P32Perc04.esposa,
+                                      groupValue: _P32Perc04,
+                                      onChanged: (P32Perc04? value) {
+                                        setState(() {
+                                          _P32Perc04 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc04>(
+                                      value: P32Perc04.conviviente,
+                                      groupValue: _P32Perc04,
+                                      onChanged: (P32Perc04? value) {
+                                        setState(() {
+                                          _P32Perc04 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc04>(
+                                      value: P32Perc04.hijo,
+                                      groupValue: _P32Perc04,
+                                      onChanged: (P32Perc04? value) {
+                                        setState(() {
+                                          _P32Perc04 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc04>(
+                                      value: P32Perc04.hijastro,
+                                      groupValue: _P32Perc04,
+                                      onChanged: (P32Perc04? value) {
+                                        setState(() {
+                                          _P32Perc04 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc04>(
+                                      value: P32Perc04.yerno,
+                                      groupValue: _P32Perc04,
+                                      onChanged: (P32Perc04? value) {
+                                        setState(() {
+                                          _P32Perc04 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc04>(
+                                      value: P32Perc04.nieto,
+                                      groupValue: _P32Perc04,
+                                      onChanged: (P32Perc04? value) {
+                                        setState(() {
+                                          _P32Perc04 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc04>(
+                                      value: P32Perc04.padres,
+                                      groupValue: _P32Perc04,
+                                      onChanged: (P32Perc04? value) {
+                                        setState(() {
+                                          _P32Perc04 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
                               const SizedBox(height: 16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
@@ -4283,7 +5630,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4319,11 +5666,144 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
+
+
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
                         visible: (_P31Perc05 != P31Perc05.familiar),
                         child:Column(
                             children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              //SECUNDARIA SECUNDARIA
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc05>(
+                                      value: P32Perc05.esposa,
+                                      groupValue: _P32Perc05,
+                                      onChanged: (P32Perc05? value) {
+                                        setState(() {
+                                          _P32Perc05 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc05>(
+                                      value: P32Perc05.conviviente,
+                                      groupValue: _P32Perc05,
+                                      onChanged: (P32Perc05? value) {
+                                        setState(() {
+                                          _P32Perc05 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc05>(
+                                      value: P32Perc05.hijo,
+                                      groupValue: _P32Perc05,
+                                      onChanged: (P32Perc05? value) {
+                                        setState(() {
+                                          _P32Perc05 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc05>(
+                                      value: P32Perc05.hijastro,
+                                      groupValue: _P32Perc05,
+                                      onChanged: (P32Perc05? value) {
+                                        setState(() {
+                                          _P32Perc05 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc05>(
+                                      value: P32Perc05.yerno,
+                                      groupValue: _P32Perc05,
+                                      onChanged: (P32Perc05? value) {
+                                        setState(() {
+                                          _P32Perc05 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc05>(
+                                      value: P32Perc05.nieto,
+                                      groupValue: _P32Perc05,
+                                      onChanged: (P32Perc05? value) {
+                                        setState(() {
+                                          _P32Perc05 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc05>(
+                                      value: P32Perc05.padres,
+                                      groupValue: _P32Perc05,
+                                      onChanged: (P32Perc05? value) {
+                                        setState(() {
+                                          _P32Perc05 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
                               const SizedBox(height: 16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
@@ -4405,7 +5885,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4441,53 +5921,145 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
-                    //PREGUNTA SECUNDARIA
-                    Visibility(
-                        visible: (isCheckedP30Opcion05),
-                        child:Column(
-                            children: <Widget>[
-                              const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Cuidador',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P31Perc05>(
-                                    value: P31Perc05.cuidador,
-                                    groupValue: _P31Perc05,
-                                    onChanged: (P31Perc05? value) {
-                                      setState(() {
-                                        _P31Perc05 = value;
-                                      });
-                                    },
-                                  ),
-                                  const Text(
-                                    'Familiar',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P31Perc05>(
-                                    value: P31Perc05.familiar,
-                                    groupValue: _P31Perc05,
-                                    onChanged: (P31Perc05? value) {
-                                      setState(() {
-                                        _P31Perc05 = value;
-                                      });
-                                    },),],
-                              ),
-                            ]
-                        )),
+
+
+
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
                         visible: (_P31Perc06 == P31Perc06.cuidador),
                         child:Column(
                             children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              //SECUNDARIA SECUNDARIA
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc06>(
+                                      value: P32Perc06.esposa,
+                                      groupValue: _P32Perc06,
+                                      onChanged: (P32Perc06? value) {
+                                        setState(() {
+                                          _P32Perc06 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc06>(
+                                      value: P32Perc06.conviviente,
+                                      groupValue: _P32Perc06,
+                                      onChanged: (P32Perc06? value) {
+                                        setState(() {
+                                          _P32Perc06 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc06>(
+                                      value: P32Perc06.hijo,
+                                      groupValue: _P32Perc06,
+                                      onChanged: (P32Perc06? value) {
+                                        setState(() {
+                                          _P32Perc06 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc06>(
+                                      value: P32Perc06.hijastro,
+                                      groupValue: _P32Perc06,
+                                      onChanged: (P32Perc06? value) {
+                                        setState(() {
+                                          _P32Perc06 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc06>(
+                                      value: P32Perc06.yerno,
+                                      groupValue: _P32Perc06,
+                                      onChanged: (P32Perc06? value) {
+                                        setState(() {
+                                          _P32Perc06 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc06>(
+                                      value: P32Perc06.nieto,
+                                      groupValue: _P32Perc06,
+                                      onChanged: (P32Perc06? value) {
+                                        setState(() {
+                                          _P32Perc06 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc06>(
+                                      value: P32Perc06.padres,
+                                      groupValue: _P32Perc06,
+                                      onChanged: (P32Perc06? value) {
+                                        setState(() {
+                                          _P32Perc06= value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
                               const SizedBox(height: 16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
@@ -4569,7 +6141,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4605,53 +6177,141 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
-                    //PREGUNTA SECUNDARIA
-                    Visibility(
-                        visible: (isCheckedP30Opcion05),
-                        child:Column(
-                            children: <Widget>[
-                              const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Cuidador',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P31Perc05>(
-                                    value: P31Perc05.cuidador,
-                                    groupValue: _P31Perc05,
-                                    onChanged: (P31Perc05? value) {
-                                      setState(() {
-                                        _P31Perc05 = value;
-                                      });
-                                    },
-                                  ),
-                                  const Text(
-                                    'Familiar',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P31Perc05>(
-                                    value: P31Perc05.familiar,
-                                    groupValue: _P31Perc05,
-                                    onChanged: (P31Perc05? value) {
-                                      setState(() {
-                                        _P31Perc05 = value;
-                                      });
-                                    },),],
-                              ),
-                            ]
-                        )),
-
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
                         visible: (_P31Perc07 == P31Perc07.cuidador),
                         child:Column(
                             children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              //SECUNDARIA SECUNDARIA
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc07>(
+                                      value: P32Perc07.esposa,
+                                      groupValue: _P32Perc07,
+                                      onChanged: (P32Perc07? value) {
+                                        setState(() {
+                                          _P32Perc07 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc07>(
+                                      value: P32Perc07.conviviente,
+                                      groupValue: _P32Perc07,
+                                      onChanged: (P32Perc07? value) {
+                                        setState(() {
+                                          _P32Perc07 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc07>(
+                                      value: P32Perc07.hijo,
+                                      groupValue: _P32Perc07,
+                                      onChanged: (P32Perc07? value) {
+                                        setState(() {
+                                          _P32Perc07 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc07>(
+                                      value: P32Perc07.hijastro,
+                                      groupValue: _P32Perc07,
+                                      onChanged: (P32Perc07? value) {
+                                        setState(() {
+                                          _P32Perc07 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc07>(
+                                      value: P32Perc07.yerno,
+                                      groupValue: _P32Perc07,
+                                      onChanged: (P32Perc07? value) {
+                                        setState(() {
+                                          _P32Perc07 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc07>(
+                                      value: P32Perc07.nieto,
+                                      groupValue: _P32Perc07,
+                                      onChanged: (P32Perc07? value) {
+                                        setState(() {
+                                          _P32Perc07 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc07>(
+                                      value: P32Perc07.padres,
+                                      groupValue: _P32Perc07,
+                                      onChanged: (P32Perc07? value) {
+                                        setState(() {
+                                          _P32Perc07 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
                               const SizedBox(height: 16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
@@ -4733,7 +6393,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4769,53 +6429,142 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
-                    //PREGUNTA SECUNDARIA
-                    Visibility(
-                        visible: (isCheckedP30Opcion05),
-                        child:Column(
-                            children: <Widget>[
-                              const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Cuidador',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P31Perc05>(
-                                    value: P31Perc05.cuidador,
-                                    groupValue: _P31Perc05,
-                                    onChanged: (P31Perc05? value) {
-                                      setState(() {
-                                        _P31Perc05 = value;
-                                      });
-                                    },
-                                  ),
-                                  const Text(
-                                    'Familiar',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P31Perc05>(
-                                    value: P31Perc05.familiar,
-                                    groupValue: _P31Perc05,
-                                    onChanged: (P31Perc05? value) {
-                                      setState(() {
-                                        _P31Perc05 = value;
-                                      });
-                                    },),],
-                              ),
-                            ]
-                        )),
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
                         visible: (_P31Perc08 == P31Perc08.cuidador),
                         child:Column(
                             children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              //SECUNDARIA SECUNDARIA
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc08>(
+                                      value: P32Perc08.esposa,
+                                      groupValue: _P32Perc08,
+                                      onChanged: (P32Perc08? value) {
+                                        setState(() {
+                                          _P32Perc08 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc08>(
+                                      value: P32Perc08.conviviente,
+                                      groupValue: _P32Perc08,
+                                      onChanged: (P32Perc08? value) {
+                                        setState(() {
+                                          _P32Perc08 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc08>(
+                                      value: P32Perc08.hijo,
+                                      groupValue: _P32Perc08,
+                                      onChanged: (P32Perc08? value) {
+                                        setState(() {
+                                          _P32Perc08 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc08>(
+                                      value: P32Perc08.hijastro,
+                                      groupValue: _P32Perc08,
+                                      onChanged: (P32Perc08? value) {
+                                        setState(() {
+                                          _P32Perc08 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc08>(
+                                      value: P32Perc08.yerno,
+                                      groupValue: _P32Perc08,
+                                      onChanged: (P32Perc08? value) {
+                                        setState(() {
+                                          _P32Perc08 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc08>(
+                                      value: P32Perc08.nieto,
+                                      groupValue: _P32Perc08,
+                                      onChanged: (P32Perc08? value) {
+                                        setState(() {
+                                          _P32Perc08 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc08>(
+                                      value: P32Perc08.padres,
+                                      groupValue: _P32Perc08,
+                                      onChanged: (P32Perc08? value) {
+                                        setState(() {
+                                          _P32Perc08 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
                               const SizedBox(height: 16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
@@ -4897,7 +6646,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -4933,53 +6682,142 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
-                    //PREGUNTA SECUNDARIA
-                    Visibility(
-                        visible: (isCheckedP30Opcion05),
-                        child:Column(
-                            children: <Widget>[
-                              const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Cuidador',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P31Perc05>(
-                                    value: P31Perc05.cuidador,
-                                    groupValue: _P31Perc05,
-                                    onChanged: (P31Perc05? value) {
-                                      setState(() {
-                                        _P31Perc05 = value;
-                                      });
-                                    },
-                                  ),
-                                  const Text(
-                                    'Familiar',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P31Perc05>(
-                                    value: P31Perc05.familiar,
-                                    groupValue: _P31Perc05,
-                                    onChanged: (P31Perc05? value) {
-                                      setState(() {
-                                        _P31Perc05 = value;
-                                      });
-                                    },),],
-                              ),
-                            ]
-                        )),
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
                         visible: (_P31Perc09 == P31Perc09.cuidador),
                         child:Column(
                             children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              //SECUNDARIA SECUNDARIA
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc09>(
+                                      value: P32Perc09.esposa,
+                                      groupValue: _P32Perc09,
+                                      onChanged: (P32Perc09? value) {
+                                        setState(() {
+                                          _P32Perc09 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc09>(
+                                      value: P32Perc09.conviviente,
+                                      groupValue: _P32Perc09,
+                                      onChanged: (P32Perc09? value) {
+                                        setState(() {
+                                          _P32Perc09 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc09>(
+                                      value: P32Perc09.hijo,
+                                      groupValue: _P32Perc09,
+                                      onChanged: (P32Perc09? value) {
+                                        setState(() {
+                                          _P32Perc09 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc09>(
+                                      value: P32Perc09.hijastro,
+                                      groupValue: _P32Perc09,
+                                      onChanged: (P32Perc09? value) {
+                                        setState(() {
+                                          _P32Perc09 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc09>(
+                                      value: P32Perc09.yerno,
+                                      groupValue: _P32Perc09,
+                                      onChanged: (P32Perc09? value) {
+                                        setState(() {
+                                          _P32Perc09 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc09>(
+                                      value: P32Perc09.nieto,
+                                      groupValue: _P32Perc09,
+                                      onChanged: (P32Perc09? value) {
+                                        setState(() {
+                                          _P32Perc09 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc09>(
+                                      value: P32Perc09.padres,
+                                      groupValue: _P32Perc09,
+                                      onChanged: (P32Perc09? value) {
+                                        setState(() {
+                                          _P32Perc09 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
                               const SizedBox(height: 16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
@@ -5061,7 +6899,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -5097,53 +6935,141 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
-                    //PREGUNTA SECUNDARIA
-                    Visibility(
-                        visible: (isCheckedP30Opcion05),
-                        child:Column(
-                            children: <Widget>[
-                              const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Cuidador',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P31Perc05>(
-                                    value: P31Perc05.cuidador,
-                                    groupValue: _P31Perc05,
-                                    onChanged: (P31Perc05? value) {
-                                      setState(() {
-                                        _P31Perc05 = value;
-                                      });
-                                    },
-                                  ),
-                                  const Text(
-                                    'Familiar',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P31Perc05>(
-                                    value: P31Perc05.familiar,
-                                    groupValue: _P31Perc05,
-                                    onChanged: (P31Perc05? value) {
-                                      setState(() {
-                                        _P31Perc05 = value;
-                                      });
-                                    },),],
-                              ),
-                            ]
-                        )),
-
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
                         visible: (_P31Perc10 == P31Perc10.cuidador),
                         child:Column(
                             children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              //SECUNDARIA SECUNDARIA
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc10>(
+                                      value: P32Perc10.esposa,
+                                      groupValue: _P32Perc10,
+                                      onChanged: (P32Perc10? value) {
+                                        setState(() {
+                                          _P32Perc10 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc10>(
+                                      value: P32Perc10.conviviente,
+                                      groupValue: _P32Perc10,
+                                      onChanged: (P32Perc10? value) {
+                                        setState(() {
+                                          _P32Perc10 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc10>(
+                                      value: P32Perc10.hijo,
+                                      groupValue: _P32Perc10,
+                                      onChanged: (P32Perc10? value) {
+                                        setState(() {
+                                          _P32Perc10 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc10>(
+                                      value: P32Perc10.hijastro,
+                                      groupValue: _P32Perc10,
+                                      onChanged: (P32Perc10? value) {
+                                        setState(() {
+                                          _P32Perc10 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc10>(
+                                      value: P32Perc10.yerno,
+                                      groupValue: _P32Perc10,
+                                      onChanged: (P32Perc10? value) {
+                                        setState(() {
+                                          _P32Perc10 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc10>(
+                                      value: P32Perc10.nieto,
+                                      groupValue: _P32Perc10,
+                                      onChanged: (P32Perc10? value) {
+                                        setState(() {
+                                          _P32Perc10 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc10>(
+                                      value: P32Perc10.padres,
+                                      groupValue: _P32Perc10,
+                                      onChanged: (P32Perc10? value) {
+                                        setState(() {
+                                          _P32Perc10 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
                               const SizedBox(height: 16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
@@ -5225,7 +7151,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -5266,6 +7192,136 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         visible: (_P31Perc11 == P31Perc11.cuidador),
                         child:Column(
                             children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              //SECUNDARIA SECUNDARIA
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc11>(
+                                      value: P32Perc11.esposa,
+                                      groupValue: _P32Perc11,
+                                      onChanged: (P32Perc11? value) {
+                                        setState(() {
+                                          _P32Perc11 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc11>(
+                                      value: P32Perc11.conviviente,
+                                      groupValue: _P32Perc11,
+                                      onChanged: (P32Perc11? value) {
+                                        setState(() {
+                                          _P32Perc11 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc11>(
+                                      value: P32Perc11.hijo,
+                                      groupValue: _P32Perc11,
+                                      onChanged: (P32Perc11? value) {
+                                        setState(() {
+                                          _P32Perc11 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc11>(
+                                      value: P32Perc11.hijastro,
+                                      groupValue: _P32Perc11,
+                                      onChanged: (P32Perc11? value) {
+                                        setState(() {
+                                          _P32Perc11 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc11>(
+                                      value: P32Perc11.yerno,
+                                      groupValue: _P32Perc11,
+                                      onChanged: (P32Perc11? value) {
+                                        setState(() {
+                                          _P32Perc11 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc11>(
+                                      value: P32Perc11.nieto,
+                                      groupValue: _P32Perc11,
+                                      onChanged: (P32Perc11? value) {
+                                        setState(() {
+                                          _P32Perc11 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc11>(
+                                      value: P32Perc11.padres,
+                                      groupValue: _P32Perc11,
+                                      onChanged: (P32Perc11? value) {
+                                        setState(() {
+                                          _P32Perc11 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
                               const SizedBox(height: 16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
@@ -5347,7 +7403,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -5388,6 +7444,137 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         visible: (_P31Perc12 == P31Perc12.cuidador),
                         child:Column(
                             children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              //SECUNDARIA SECUNDARIA
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc12>(
+                                      value: P32Perc12.esposa,
+                                      groupValue: _P32Perc12,
+                                      onChanged: (P32Perc12? value) {
+                                        setState(() {
+                                          _P32Perc12 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc12>(
+                                      value: P32Perc12.conviviente,
+                                      groupValue: _P32Perc12,
+                                      onChanged: (P32Perc12? value) {
+                                        setState(() {
+                                          _P32Perc12 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc12>(
+                                      value: P32Perc12.hijo,
+                                      groupValue: _P32Perc12,
+                                      onChanged: (P32Perc12? value) {
+                                        setState(() {
+                                          _P32Perc12 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc12>(
+                                      value: P32Perc12.hijastro,
+                                      groupValue: _P32Perc12,
+                                      onChanged: (P32Perc12? value) {
+                                        setState(() {
+                                          _P32Perc12 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc12>(
+                                      value: P32Perc12.yerno,
+                                      groupValue: _P32Perc12,
+                                      onChanged: (P32Perc12? value) {
+                                        setState(() {
+                                          _P32Perc12 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc12>(
+                                      value: P32Perc12.nieto,
+                                      groupValue: _P32Perc12,
+                                      onChanged: (P32Perc12? value) {
+                                        setState(() {
+                                          _P32Perc12 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc12>(
+                                      value: P32Perc12.padres,
+                                      groupValue: _P32Perc12,
+                                      onChanged: (P32Perc12? value) {
+                                        setState(() {
+                                          _P32Perc12 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
                               const SizedBox(height: 16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
@@ -5469,7 +7656,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -5510,6 +7697,136 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         visible: (_P31Perc13 == P31Perc13.cuidador),
                         child:Column(
                             children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              //SECUNDARIA SECUNDARIA
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc13>(
+                                      value: P32Perc13.esposa,
+                                      groupValue: _P32Perc13,
+                                      onChanged: (P32Perc13? value) {
+                                        setState(() {
+                                          _P32Perc13 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc13>(
+                                      value: P32Perc13.conviviente,
+                                      groupValue: _P32Perc13,
+                                      onChanged: (P32Perc13? value) {
+                                        setState(() {
+                                          _P32Perc13 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc13>(
+                                      value: P32Perc13.hijo,
+                                      groupValue: _P32Perc13,
+                                      onChanged: (P32Perc13? value) {
+                                        setState(() {
+                                          _P32Perc13 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc13>(
+                                      value: P32Perc13.hijastro,
+                                      groupValue: _P32Perc13,
+                                      onChanged: (P32Perc13? value) {
+                                        setState(() {
+                                          _P32Perc13 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc13>(
+                                      value: P32Perc13.yerno,
+                                      groupValue: _P32Perc13,
+                                      onChanged: (P32Perc13? value) {
+                                        setState(() {
+                                          _P32Perc13 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc13>(
+                                      value: P32Perc13.nieto,
+                                      groupValue: _P32Perc13,
+                                      onChanged: (P32Perc13? value) {
+                                        setState(() {
+                                          _P32Perc13 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc13>(
+                                      value: P32Perc13.padres,
+                                      groupValue: _P32Perc13,
+                                      onChanged: (P32Perc13? value) {
+                                        setState(() {
+                                          _P32Perc13 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
                               const SizedBox(height: 16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
@@ -5591,7 +7908,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-                              HelpersViewLetrasSubs.formItemsDesign( "32) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
+                              HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
                                   const Text(
@@ -5632,6 +7949,136 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         visible: (_P31Perc14 == P31Perc14.cuidador),
                         child:Column(
                             children: <Widget>[
+                              const SizedBox(height: 16.0),
+                              //SECUNDARIA SECUNDARIA
+                              HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [ //
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc14>(
+                                      value: P32Perc14.esposa,
+                                      groupValue: _P32Perc14,
+                                      onChanged: (P32Perc14? value) {
+                                        setState(() {
+                                          _P32Perc14 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc14>(
+                                      value: P32Perc14.conviviente,
+                                      groupValue: _P32Perc14,
+                                      onChanged: (P32Perc14? value) {
+                                        setState(() {
+                                          _P32Perc14 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc14>(
+                                      value: P32Perc14.hijo,
+                                      groupValue: _P32Perc14,
+                                      onChanged: (P32Perc14? value) {
+                                        setState(() {
+                                          _P32Perc14 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc14>(
+                                      value: P32Perc14.hijastro,
+                                      groupValue: _P32Perc14,
+                                      onChanged: (P32Perc14? value) {
+                                        setState(() {
+                                          _P32Perc14 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc14>(
+                                      value: P32Perc14.yerno,
+                                      groupValue: _P32Perc14,
+                                      onChanged: (P32Perc14? value) {
+                                        setState(() {
+                                          _P32Perc14 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc14>(
+                                      value: P32Perc14.nieto,
+                                      groupValue: _P32Perc14,
+                                      onChanged: (P32Perc14? value) {
+                                        setState(() {
+                                          _P32Perc14 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Radio<P32Perc14>(
+                                      value: P32Perc14.padres,
+                                      groupValue: _P32Perc14,
+                                      onChanged: (P32Perc14? value) {
+                                        setState(() {
+                                          _P32Perc14 = value;
+                                        });
+                                      },),
+                                  ),
+                                ],
+                              ),
                               const SizedBox(height: 16.0),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
