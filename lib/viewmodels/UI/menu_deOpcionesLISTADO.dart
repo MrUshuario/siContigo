@@ -579,6 +579,15 @@ late final _appDatabase;
             },
           ),
 
+          IconButton(
+            icon: Image.asset(Resources.lupa),
+            color: Colors.white,
+            onPressed: () async {
+              FiltroDialog();
+            },
+          ),
+
+
           /*
           IconButton(
             icon: Image.asset(
@@ -666,6 +675,32 @@ late final _appDatabase;
           ),
         ],
       ),
+    );
+  }
+
+  //Filtro
+  void FiltroDialog() {
+    String titulo = "Encuesta dirigida a la persona Usuaria";
+    showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+              contentPadding: EdgeInsets.all(0),
+              content: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      HelpersViewAlertMensajeFOTO.formItemsDesign("-","Filtro proximamente"),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.end, // Align row to the end
+                        children: [
+
+                        ],
+                      ),
+                    ],
+                  )
+              )
+          );
+        }
     );
   }
 

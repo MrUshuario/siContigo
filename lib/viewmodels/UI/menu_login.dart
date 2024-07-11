@@ -426,7 +426,7 @@ class _login extends State<login> {
                       fontWeight: FontWeight.w500)),
             ))
 
-        ,
+        ,/*
         GestureDetector(
             onTap: () async {
 
@@ -454,6 +454,8 @@ class _login extends State<login> {
                       fontSize: 18,
                       fontWeight: FontWeight.w500)),
             ))
+
+         */
 
 
 
