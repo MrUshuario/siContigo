@@ -21,9 +21,12 @@ import 'package:Sicontigo_Visita_Domiciliaria/utils/resources_apis.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_login.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/viewmodels/form_viewsmodel_formulario.dart';
 import '../../infraestructure/dao/formdatamodeldao_padron.dart';
+import '../../infraestructure/dao/formdatamodeldao_respuestaBACKUPtresvisita.dart';
 import '../../model/t_insertarEncuestaRSPTA.dart';
 import '../../model/t_padron.dart';
 import '../../model/visitaDomiciliaria/t_respBackupprimeravisita.dart';
+import '../../model/visitaDomiciliaria/t_respBackupsegundavisita.dart';
+import '../../model/visitaDomiciliaria/t_respBackupterceravisita.dart';
 import '../../utils/helpersviewAlertFaltaMSG.dart';
 import '../../utils/helpersviewAlertMensajeFOTO.dart';
 import '../../utils/helpersviewAlertProgressCircle.dart';
@@ -39,7 +42,7 @@ class MenudeOpcionesVisitaTres extends StatefulWidget {
 
   final _appDatabase = GetIt.I.get<AppDatabase>();
   FormDataModelDaoRespuestaunovisita get formDataModelDao => _appDatabase.formDataModelDaoRespuesta;
-  FormDataModelDaoRespuestaBACKUPunovisita get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
+  FormDataModelDaoRespuestaBACKUPtresvisita get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUPtresvisita;
 
   //PADRON
   FormDataModelDaoPadron get padronsql => _appDatabase.formDataModelDaoPadron;
@@ -78,7 +81,7 @@ class MenudeOpcionesVisitaTres extends StatefulWidget {
   //ENVIAR LA DATA
   apiprovider_formulario apiForm = apiprovider_formulario();
   RespuestaPrimeraVisita? formData;
-  RespuestaBACKUPprimeravisita? formDataBACKUP = RespuestaBACKUPprimeravisita();
+  RespuestaBACKUPterceravisita? formDataBACKUP = RespuestaBACKUPterceravisita();
   MenudeOpcionesVisitaTres(this.formData, {super.key});
 
   @override
@@ -127,7 +130,7 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
   int puntaje = 0;
 
   //BACKUP
-  List <RespuestaBACKUPprimeravisita> listBackup = List.empty();
+  List <RespuestaBACKUPterceravisita> listBackup = List.empty();
 
   Future<void> conseguirVersion() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -213,8 +216,8 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
 
   Future<void> guardadoFase1() async{
 
-    widget.formData?.id_usuario =  int.parse(widget.formIdUsuario!.text);
-    widget.formDataBACKUP?.id_usuario = int.parse(widget.formIdUsuario!.text);
+    widget.formData?.id_usuario = widget.formIdUsuario!.text;
+    widget.formDataBACKUP?.id_usuario =widget.formIdUsuario!.text;
     await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
@@ -459,7 +462,7 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
                   widget.formData?.puntaje =  puntaje;
                   widget.formData?.longitud = GPSlongitude;
                   widget.formData?.latitud = GPSlatitude;
-                  widget.formData?.id_usuario = int.parse(widget.formIdUsuario.text);
+                  widget.formData?.id_usuario = widget.formIdUsuario.text;
                   //GPSlatitude
 
                   //FUNCION PARA SINCRONIZAR

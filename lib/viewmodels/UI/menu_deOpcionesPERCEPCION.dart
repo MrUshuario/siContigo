@@ -1202,7 +1202,12 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
         });
       }
 
-      //50
+      if (widget.formData!.p50percepcion != null  && widget.formData!.p50percepcion!.isNotEmpty) {
+        setState(() {
+          widget.P50EspecificarPerc!.text = widget.formData!.p50percepcion!;
+        });
+      }
+
 
       if (widget.formData!.p51percepcion != null) {
         setState(() {
@@ -1452,7 +1457,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
   Future<void> guardadoFase1() async {
     //MODULO I
-    widget.formData?.id_usuario = int.parse(widget.formIdUsuario!.text);
+    widget.formData?.id_usuario =widget.formIdUsuario!.text;
+    widget.formDataBACKUP?.id_usuario = widget.formIdUsuario!.text;
 
     PercP01 = "${PercP01}${widget.P01EspecificarPerc!.text};";
     widget.formData?.p01percepcion =widget.P01EspecificarPerc!.text;
@@ -2232,7 +2238,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                   widget.formData?.longitud = GPSlongitude;
                   widget.formData?.latitud = GPSlatitude;
                   widget.formData?.id_usuario =
-                      int.parse(widget.formIdUsuario.text);
+                      widget.formIdUsuario.text;
                   widget.formData?.tipoencuesta = 4;
 
                   //GPSlatitude
@@ -3816,7 +3822,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     ){
                                       showDialogValidFields(Constants.faltanCampos);
                                     } else {
-                                      //await guardadoFase2();
+                                      await guardadoFase2();
                                       setState(() {
                                         Fase2 = false;
                                         Fase3 = true;
@@ -3864,7 +3870,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     ){
                                       showDialogValidFields(Constants.faltanCampos);
                                     } else {
-                                      //await guardadoFase2();
+                                      await guardadoFase2();
                                       setState(() {
                                         Fase2 = false;
                                         Fase7 = true;
@@ -4335,7 +4341,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                           ){
                             showDialogValidFields(Constants.faltanCampos);
                           } else {
-                            //await guardadoFase3();
+                            await guardadoFase3();
                             setState(() {
                               Fase3 = false;
                               Fase4 = true;
@@ -4382,7 +4388,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario: Calidad de vida es …\n"
                         "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5.",
                         controller: _tip28),
-                    HelpersViewLetrasSubs.formItemsDesign( "28) ¿Cómo crees que ha sido tu calidad de vida   en los últimos 30 días?"),
+                    HelpersViewLetrasSubs.formItemsDesign( "28) ¿Cómo crees que ha sido tu calidad de vida en los últimos 30 días?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
@@ -4464,7 +4470,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Radio<P28Perc>(
-                            value: P28Perc.muybuena,
+                            value: P28Perc.nosabe,
                             groupValue: _P28Perc,
                             onChanged: (P28Perc? value) {
                               setState(() {
@@ -4899,10 +4905,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
                             ]
                         )),
-
-
-
-
+                    
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
                         visible: (_P31Perc02 == P31Perc02.cuidador),
@@ -5666,8 +5669,6 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             ]
                         )),
 
-
-
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
                         visible: (_P31Perc05 != P31Perc05.familiar),
@@ -5920,10 +5921,6 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
                             ]
                         )),
-
-
-
-
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(

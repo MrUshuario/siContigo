@@ -214,8 +214,8 @@ class _MenudeOpcionesBase extends State<MenudeOpcionesBase> {
 
   Future<void> guardadoFase1() async{
 
-    widget.formData?.id_usuario =  int.parse(widget.formIdUsuario!.text);
-    widget.formDataBACKUP?.id_usuario = int.parse(widget.formIdUsuario!.text);
+    widget.formData?.id_usuario =  widget.formIdUsuario!.text;
+    widget.formDataBACKUP?.id_usuario = widget.formIdUsuario!.text;
     await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
@@ -460,7 +460,7 @@ class _MenudeOpcionesBase extends State<MenudeOpcionesBase> {
                   widget.formData?.puntaje =  puntaje;
                   widget.formData?.longitud = GPSlongitude;
                   widget.formData?.latitud = GPSlatitude;
-                  widget.formData?.id_usuario = int.parse(widget.formIdUsuario.text);
+                  widget.formData?.id_usuario = widget.formIdUsuario.text;
                   //GPSlatitude
 
                   //FUNCION PARA SINCRONIZAR

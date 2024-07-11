@@ -4,7 +4,7 @@ import 'package:floor/floor.dart';
 class RespuestaENVIO {
   @PrimaryKey(autoGenerate: true)
   int? idformato;
-  int? id_usuario;
+  String? id_usuario;
   String? fecha;
   String? respuestas;
   int? puntaje;
@@ -19,7 +19,7 @@ class RespuestaENVIO {
   factory RespuestaENVIO.fromJson(dynamic json) {
     return RespuestaENVIO(
       idformato: json['idformato'] as int?,
-      id_usuario: json['id_usuario'] as int?,
+      id_usuario: json['id_usuario'] as String?,
       fecha: json['fecha'] as String?,
       respuestas: json['respuestas'] as String?,
       puntaje: json['puntaje'] as int?,

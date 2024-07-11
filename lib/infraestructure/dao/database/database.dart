@@ -12,19 +12,27 @@ import '../../../model/t_formulario.dart';
 import '../../../model/t_padron.dart';
 import '../../../model/visitaDomiciliaria/t_respBackuppercepciones.dart';
 import '../../../model/visitaDomiciliaria/t_respBackupprimeravisita.dart';
+import '../../../model/visitaDomiciliaria/t_respBackupsegundavisita.dart';
+import '../../../model/visitaDomiciliaria/t_respBackupterceravisita.dart';
 import '../formdatamodeldao_padron.dart';
 import '../formdatamodeldao_padronLogin.dart';
+import '../formdatamodeldao_respuestaBACKUPdosvisita.dart';
+import '../formdatamodeldao_respuestaBACKUPtresvisita.dart';
 import '../formdatamodeldao_respuestaunovisita.dart';
 part 'database.g.dart';
 
 
 @Database(version: 1, entities:
-[Formulario, RespuestaPrimeraVisita, RespuestaENVIO, RespuestaBACKUPprimeravisita, Padron, PadronLogin, RespuestaBACKUPpercepcion ])
+[Formulario, RespuestaPrimeraVisita, RespuestaENVIO, RespuestaBACKUPprimeravisita,
+  RespuestaBACKUPsegundavisita, RespuestaBACKUPterceravisita, Padron,
+  PadronLogin, RespuestaBACKUPpercepcion ])
 
 abstract class AppDatabase extends FloorDatabase {
   FormDataModelDaoFormulario get  formDataModelDaoFormulario;
   FormDataModelDaoRespuestaunovisita get  formDataModelDaoRespuesta;
   FormDataModelDaoRespuestaBACKUPunovisita get formDataModelDaoRespuestaBACKUP;
+  FormDataModelDaoRespuestaBACKUPdosvisita get formDataModelDaoRespuestaBACKUPdosvisita;
+  FormDataModelDaoRespuestaBACKUPtresvisita get formDataModelDaoRespuestaBACKUPtresvisita;
   FormDataModelDaoRespuestaBACKUpercepcion get formDataModelDaoRespuestaBACKUpercepcion;
   FormDataModelDaoPadron get formDataModelDaoPadron;
   FormDataModelDaoPadronLogin get formDataModelDaoPadronLogin;

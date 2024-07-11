@@ -5,7 +5,7 @@ class RespuestaBACKUPpercepcion {
   @PrimaryKey(autoGenerate: true)
   int? cod;
   int? idformato;
-  int? id_usuario;
+  String? id_usuario;
   String? fecha;
   String? respuestas;
   int? puntaje;
@@ -108,7 +108,7 @@ class RespuestaBACKUPpercepcion {
     return RespuestaBACKUPpercepcion(
       cod: json['cod'] as int?,
       idformato: json['idformato'] as int?,
-      id_usuario: json['id_usuario'] as int?,
+      id_usuario: json['id_usuario'] as String?,
       fecha: json['fecha'] as String?,
       respuestas: json['respuestas'] as String?,
       puntaje: json['puntaje'] as int?,

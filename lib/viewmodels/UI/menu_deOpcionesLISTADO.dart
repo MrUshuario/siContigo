@@ -31,9 +31,13 @@ import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_login.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/viewmodels/form_viewsmodel_respuesta.dart';
 
 
+import '../../infraestructure/dao/formdatamodeldao_respuestaBACKUPdosvisita.dart';
+import '../../infraestructure/dao/formdatamodeldao_respuestaBACKUPtresvisita.dart';
 import '../../main.dart';
 import '../../model/t_padronlogin.dart';
 import '../../model/visitaDomiciliaria/t_respBackupprimeravisita.dart';
+import '../../model/visitaDomiciliaria/t_respBackupsegundavisita.dart';
+import '../../model/visitaDomiciliaria/t_respBackupterceravisita.dart';
 import '../../utils/helpersviewAlertMensajeFOTO.dart';
 import '../../utils/helpersviewAlertProgressSinc.dart';
 import '../../utils/helpersviewBlancoIcon.dart';
@@ -52,6 +56,10 @@ class MenudeOpcionesListado extends StatefulWidget {
 
   //VISITA UNO BACKUP
   FormDataModelDaoRespuestaBACKUPunovisita get formDataModelDaoBackup => _appDatabase.formDataModelDaoRespuestaBACKUP;
+  //VISITA UNO BACKUP
+  FormDataModelDaoRespuestaBACKUPdosvisita get formDataModelDaoBackupdos => _appDatabase.formDataModelDaoRespuestaBACKUPdosvisita;
+  //VISITA UNO BACKUP
+  FormDataModelDaoRespuestaBACKUPtresvisita get formDataModelDaoBackuptres => _appDatabase.formDataModelDaoRespuestaBACKUPtresvisita;
   //PERCEPCION BACKUP
   FormDataModelDaoRespuestaBACKUpercepcion get formDataModelDaoBackuPercepcion => _appDatabase.formDataModelDaoRespuestaBACKUpercepcion;
 
@@ -74,6 +82,8 @@ class MenudeOpcionesListado extends StatefulWidget {
   apiprovider_menuOpciones apiVersion = apiprovider_menuOpciones();
   //BACKUP
   bool backup = false;
+  bool backupdos = false;
+  bool backuptres = false;
   bool backupPERCEP = false;
 
   //FORMULARIO DINAMICO
@@ -109,10 +119,18 @@ late final _appDatabase;
     _appDatabase = await GetIt.I.get<AppDatabase>();
   }
 
-  //BACKUP
+  //BACKUP estoy usando para el visita uno dos tres y percepcion el uno pero global
   List <RespuestaBACKUPprimeravisita> listBackup = List.empty();
   late RespuestaBACKUPprimeravisita objBackup;
   RespuestaPrimeraVisita obj = RespuestaPrimeraVisita();
+
+  List <RespuestaBACKUPsegundavisita> listBackupsegunda = List.empty();
+  late RespuestaBACKUPsegundavisita objBackupsegunda;
+  RespuestaPrimeraVisita objdos = RespuestaPrimeraVisita();
+
+  List <RespuestaBACKUPterceravisita> listBackuptercera = List.empty();
+  late RespuestaBACKUPterceravisita objBackuptercera;
+  RespuestaPrimeraVisita objtres = RespuestaPrimeraVisita();
 
   List <RespuestaBACKUPpercepcion> listBackupPERCEP = List.empty();
   late RespuestaBACKUPpercepcion objBackupPERCEP;
@@ -152,25 +170,49 @@ late final _appDatabase;
 
   Future<void> revisarBackup() async {
     listBackup        = await widget.formDataModelDaoBackup.findAllRespuesta();
+    listBackupsegunda = await widget.formDataModelDaoBackupdos.findAllRespuesta();
+    listBackuptercera = await widget.formDataModelDaoBackuptres.findAllRespuesta();
     listBackupPERCEP  = await widget.formDataModelDaoBackuPercepcion.findAllRespuesta();
-    setState(() {
-      if(listBackup.isNotEmpty){
-        widget.backup = true;
-        objBackup = listBackup[0];
-        //Convierto el backup en el objeto respuesta
-        obj = BackupMapper.instance.backuptoResp(objBackup);
-      } else {
-        widget.backup = false;
-      }
+    //objBackupsegunda;
+    //objBackuptercera;
 
-      if(listBackupPERCEP.isNotEmpty){
-        widget.backupPERCEP = true;
-        objBackupPERCEP = listBackupPERCEP[0];
-        //Convierto el backup en el objeto respuesta
-        objPERCEP = BackupMapper.instance.backuptoPercp(objBackupPERCEP);
-      } else {
-        widget.backupPERCEP = false;
-      }
+    //VISITA UNO
+      setState(() {
+        if(listBackup.isNotEmpty){
+          widget.backup = true;
+          objBackup = listBackup[0];
+          //Convierto el backup en el objeto respuesta
+          obj = BackupMapper.instance.backuptoResp(objBackup);
+        } else {
+          widget.backup = false;
+        }
+      //VISITA DOS
+        if(listBackupsegunda.isNotEmpty){
+          widget.backupdos = true;
+          objBackupsegunda = listBackupsegunda[0]; //
+          //Convierto el backup en el objeto respuesta
+          objdos = BackupMapper.instance.backuptoRespdos(objBackupsegunda);
+        } else {
+          widget.backupdos = false;
+        }
+        //VISITATRES
+        if(listBackuptercera.isNotEmpty){
+          widget.backuptres = true;
+          objBackuptercera = listBackuptercera[0];
+          //Convierto el backup en el objeto respuesta
+          objtres = BackupMapper.instance.backuptoResptres(objBackuptercera);
+        } else {
+          widget.backuptres = false;
+        }
+
+        if(listBackupPERCEP.isNotEmpty){
+          widget.backupPERCEP = true;
+          objBackupPERCEP = listBackupPERCEP[0];
+          //Convierto el backup en el objeto respuesta
+          objPERCEP = BackupMapper.instance.backuptoPercp(objBackupPERCEP);
+        } else {
+          widget.backupPERCEP = false;
+        }
 
     });
 
@@ -289,8 +331,12 @@ late final _appDatabase;
     //CAMBIARIA EL OBJ POR EL BACKUP CORRESPONDIENTE A CADA UNO
     //Respuesta obj = BackupMapper.instance.backuptoResp(objBackup);
     Widget primeraVisitaBACKUP = MenudeOpcionesVisitaUno(obj),
-    segundaVisitaBACKUP  = MenudeOpcionesVisitaDos(obj),
-    terceraVisitaBACKUP  = MenudeOpcionesVisitaTres(obj);
+    segundaVisitaBACKUP  = MenudeOpcionesVisitaDos(objdos),
+    terceraVisitaBACKUP  = MenudeOpcionesVisitaTres(objtres);
+
+    bool visibiliadad1 = widget.backup;
+    bool visibiliadad2 = widget.backupdos;
+    bool visibiliadad3 = widget.backuptres;
 
     //BOTONES
     Widget primeraVisita = MenudeOpcionesVisitaUno(RespuestaPrimeraVisita()),
@@ -302,26 +348,27 @@ late final _appDatabase;
         Resources.siContigo_icono_generico,
         Resources.titulo_primera_Visita,
         primeraVisita,
-        primeraVisitaBACKUP
+        primeraVisitaBACKUP,
+        visibiliadad1
       ],
 
       [
         Resources.siContigo_icono_generico,
         Resources.titulo_segunda_Visita,
         segundaVisita,
-        segundaVisitaBACKUP
+        segundaVisitaBACKUP,
+        visibiliadad2
 
       ],
 
       [Resources.siContigo_icono_generico,
         Resources.titulo_tercera_Visita,
         terceraVisita,
-        terceraVisitaBACKUP
-
+        terceraVisitaBACKUP,
+        visibiliadad3
       ],
 
     ];
-
 
     /* //SI HAY VARIOS BOTONES
     if (lista == 1) {
@@ -331,8 +378,6 @@ late final _appDatabase;
     } else if (lista == 3) {
       ProductosLIST = OtrasLIST;
     }*/
-
-
     //final Widget value = () => MenuVerificacionRemota() as Widget;
 
     showDialog(
@@ -344,9 +389,9 @@ late final _appDatabase;
             return AlertDialog(
               backgroundColor: Colors.white,
               title: const Text(
-                'Tipo de Registro',
+                'Tipo de Registro:',
                 style: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -360,6 +405,7 @@ late final _appDatabase;
                       final String textValue = ProductosLIST[i][1] as String;
                       final Widget ui = ProductosLIST[i][2] as Widget;
                       final Widget uiBACKUP = ProductosLIST[i][3] as Widget;
+                      final bool visbilidadbck = ProductosLIST[i][4] as bool;
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 20.0),
                         child: Row(
@@ -400,7 +446,7 @@ late final _appDatabase;
                               const Spacer(),
 
                               Visibility(
-                                visible: widget.backup,
+                                visible: visbilidadbck,
                                 child:
                                 Padding(
                                   padding: const EdgeInsets.all(2.0),
@@ -419,7 +465,7 @@ late final _appDatabase;
                               ),
 
                               Visibility(
-                                visible: !widget.backup,
+                                visible: !visbilidadbck,
                                 child:
                                 Padding(
                                     padding: const EdgeInsets.all(2.0),
@@ -803,11 +849,35 @@ late final _appDatabase;
 
                           InkWell(
                             onTap: () {
+
+                              switch (obj.tipoencuesta) {
+                                case 1:
                                   Widget ContactoRefererencia = MenudeOpcionesVisitaUno(obj); //CARGO DATA
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
                                   );
+                                case 2:
+                                  Widget ContactoRefererencia = MenudeOpcionesVisitaDos(obj); //CARGO DATA
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
+                                  );
+                                case 3:
+                                  Widget ContactoRefererencia = MenudeOpcionesVisitaTres(obj); //CARGO DATA
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
+                                  );
+                                case 4:
+                                  Widget ContactoRefererencia = MenudeOpcionesPercepcion(obj); //CARGO DATA
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
+                                  );
+                              }
+
+
                             },
                             child: Container(
                               padding: const EdgeInsets.only(top: 20, right: 20, bottom: 20),
@@ -1345,36 +1415,226 @@ late final _appDatabase;
       child: Column(
         children: [
 
-          //FORMULARIO ENCUESTA
-          Row(
-            children: [
-               Expanded(
-                flex: 5,
-                child:           GestureDetector(
-                    onTap: () async {
-                      showModal(1);
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.all(10.0),
-                      alignment: Alignment.center,
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0)),
-                        color: Color.fromARGB(255, 27, 65, 187),
-                      ),
-                      padding: const EdgeInsets.only(top: 16, bottom: 16),
-                      child: const Text("Visita Domiciliaria",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500)),
-                    ))
-              ),
 
-            ],
+        Container(
+          decoration: ShapeDecoration(
+            color: Colors.white, // Set background color to white
+            shape: RoundedRectangleBorder( // Define rounded rectangle shape
+              borderRadius: BorderRadius.circular(10.0), // Adjust border radius
+              side: const BorderSide( // Add border with desired properties
+                color: Colors.black54, // Set border color to black
+                width: 3.0, // Adjust border width (optional)
+              ),
+            ),
           ),
 
+          margin: const EdgeInsets.only(top: 20.0),
+          child: Padding(
+          padding: const EdgeInsets.all(1.0), // Add margin here
+          child: Column(
+              children: [
+
+                //VISTIA DOMICILIARIA
+                Row(
+                  children: [
+                    Expanded(
+                        flex: 5,
+                        child:           GestureDetector(
+                            onTap: () async {
+                              showModal(1);
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.all(10.0),
+                              alignment: Alignment.center,
+                              decoration: ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0)),
+                                color: Color.fromARGB(255, 27, 65, 187),
+                              ),
+                              padding: const EdgeInsets.only(top: 16, bottom: 16),
+                              child: const Text("Visita Domiciliaria",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500)),
+                            ))
+                    ),
+
+                  ],
+                ),
+                //ENCUESTAS PERCEPCIONES EN DURO
+                Row(
+                  children: [
+                    Expanded(
+                        flex: 5,
+                        child:  GestureDetector(
+                            onTap: () async {
+
+                              if(widget.backupPERCEP){
+                                await widget.formDataModelDaoBackuPercepcion.BorrarTodo();
+                              }
+
+                              Widget ContactoRefererencia = MenudeOpcionesPercepcion(RespuestaPrimeraVisita()); //CARGO DATA
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
+                              );
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.all(10.0),
+                              alignment: Alignment.center,
+                              decoration: ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0)),
+                                color: Color.fromARGB(255, 27, 65, 187),
+                              ),
+                              padding: const EdgeInsets.only(top: 16, bottom: 16),
+                              child: const Text("Encuesta Percepcion",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500)),
+                            ))
+                    ),
+                    const Spacer(),
+                    Visibility(
+                      visible: widget.backupPERCEP,
+                      child:
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child:
+                        IconButton(
+                          icon: Image.asset(Resources.guardar),
+                          color: Colors.white,
+                          onPressed: () async {
+                            //Convierto el backup en el objeto respuesta
+                            //Respuesta obj = BackupMapper.instance.backuptoResp(objBackup);
+                            //MODIFICAR PARA QUE CARGE un backup con ID null
+                            Widget ContactoRefererencia = MenudeOpcionesPercepcion(objPERCEP); //CARGO DATA
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+
+                    Visibility(
+                      visible: !widget.backupPERCEP,
+                      child:
+                      Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child:
+                          IconButton(
+                            icon: ColorFiltered(
+                              colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.saturation), // Apply grayscale filter
+                              child: Image.asset(Resources.guardar),
+                            ),
+                            color: Colors.white, // This might not be necessary anymore due to the filter
+                            onPressed: ()  {
+                              showDialogValidFields(
+                                  "Este es el backup, sino termina una encuesta este boton le permitira retomarla.");
+                            },
+                          )
+                      ),
+                    ),
+                  ],
+                ),
+                //CARGAR PADRON USUARIOS
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child:    GestureDetector(
+                          onTap: () async {
+
+                            if(PREFtypeUser == "ADMIN") {
+
+                              showDialogValidFields(
+                                  "Usted es Admin, no puede descargar");
+
+                            } else {
+                              if(widget.nombrePadron == "") {
+                                GuardarPadronDialog();
+                              } else {
+                                GuardarPadronDialogAVISO();
+                              }
+                            }
+
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.all(10.0),
+                            alignment: Alignment.center,
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0)),
+                              color: Color.fromARGB(255, 27, 65, 187),
+                            ),
+                            padding: const EdgeInsets.only(top: 16, bottom: 16),
+                            child: const Text("Cargar padrón de usuarios",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500)),
+                          )),
+                    ),
+
+
+                    Container(
+                      margin: EdgeInsets.only(left: 5.0, top: MediaQuery.of(context).size.height * 0.010, bottom: MediaQuery.of(context).size.height * 0.010),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Total de\nPadrones: ${widget.totalPadrones}",
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+
+                  ],
+                ),
+
+              ]
+          ),
+          ),
+        ),
+          //FORMULARIO ENCUESTA
+
+
+          //BOTON ENCUESTA PERCEPCIONES
+          /*
+          GestureDetector(
+              onTap: () async {
+
+                if(!widget.dinamico){
+                  showDialogValidFields("Tiene que descargar la encuesta"); //LO ULTIMO QUE HIZE
+                } else{
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>  MenudeOpcionesDinamico(Respuesta())), //VOY AHI
+                  );
+                }
+
+
+              },
+              child: Container(
+                margin: const EdgeInsets.all(10.0),
+                alignment: Alignment.center,
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                  color: Color.fromARGB(255, 27, 65, 187),
+                ),
+                padding: const EdgeInsets.only(top: 16, bottom: 16),
+                child: const Text("Encuesta percepcion",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500)),
+              )),
+          */
+
           //PROXIMAMENTE
+          /*
           Row(
             children: [
               Expanded(
@@ -1411,173 +1671,7 @@ late final _appDatabase;
 
             ],
           ),
-
-
-          //ENCUESTAS PERCEPCIONES EN DURO
-          Row(
-            children: [
-              Expanded(
-                  flex: 5,
-                  child:  GestureDetector(
-                      onTap: () async {
-
-                        if(widget.backupPERCEP){
-                          await widget.formDataModelDaoBackuPercepcion.BorrarTodo();
-                        }
-
-                        Widget ContactoRefererencia = MenudeOpcionesPercepcion(RespuestaPrimeraVisita()); //CARGO DATA
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
-                        );
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.all(10.0),
-                        alignment: Alignment.center,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          color: Color.fromARGB(255, 27, 65, 187),
-                        ),
-                        padding: const EdgeInsets.only(top: 16, bottom: 16),
-                        child: const Text("Encuesta Percepcion",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500)),
-                      ))
-              ),
-              const Spacer(),
-              Visibility(
-                visible: widget.backupPERCEP,
-                child:
-                Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child:
-                  IconButton(
-                    icon: Image.asset(Resources.guardar),
-                    color: Colors.white,
-                    onPressed: () async {
-                      //Convierto el backup en el objeto respuesta
-                      //Respuesta obj = BackupMapper.instance.backuptoResp(objBackup);
-                      //MODIFICAR PARA QUE CARGE un backup con ID null
-                      Widget ContactoRefererencia = MenudeOpcionesPercepcion(objPERCEP); //CARGO DATA
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
-                      );
-                    },
-                  ),
-                ),
-              ),
-
-              Visibility(
-                visible: !widget.backupPERCEP,
-                child:
-                Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child:
-                    IconButton(
-                      icon: ColorFiltered(
-                        colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.saturation), // Apply grayscale filter
-                        child: Image.asset(Resources.guardar),
-                      ),
-                      color: Colors.white, // This might not be necessary anymore due to the filter
-                      onPressed: ()  {
-                        showDialogValidFields(
-                            "Este es el backup, sino termina una encuesta este boton le permitira retomarla.");
-                      },
-                    )
-                ),
-              ),
-            ],
-          ),
-
-
-          //BOTON ENCUESTA PERCEPCIONES
-          /*
-          GestureDetector(
-              onTap: () async {
-
-                if(!widget.dinamico){
-                  showDialogValidFields("Tiene que descargar la encuesta"); //LO ULTIMO QUE HIZE
-                } else{
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) =>  MenudeOpcionesDinamico(Respuesta())), //VOY AHI
-                  );
-                }
-
-
-              },
-              child: Container(
-                margin: const EdgeInsets.all(10.0),
-                alignment: Alignment.center,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  color: Color.fromARGB(255, 27, 65, 187),
-                ),
-                padding: const EdgeInsets.only(top: 16, bottom: 16),
-                child: const Text("Encuesta percepcion",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500)),
-              )),
-          */
-
-          Row(
-            children: [
-              Expanded(
-                  flex: 5,
-                  child:    GestureDetector(
-                      onTap: () async {
-
-                        if(PREFtypeUser == "ADMIN") {
-
-                          showDialogValidFields(
-                              "Usted es Admin, no puede descargar");
-
-                        } else {
-                          if(widget.nombrePadron == "") {
-                            GuardarPadronDialog();
-                          } else {
-                            GuardarPadronDialogAVISO();
-                          }
-                        }
-
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.all(10.0),
-                        alignment: Alignment.center,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          color: Color.fromARGB(255, 27, 65, 187),
-                        ),
-                        padding: const EdgeInsets.only(top: 16, bottom: 16),
-                        child: const Text("Cargar padrón de usuarios",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500)),
-                      )),
-              ),
-
-
-              Container(
-                margin: EdgeInsets.only(left: 5.0, top: MediaQuery.of(context).size.height * 0.010, bottom: MediaQuery.of(context).size.height * 0.010),
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Total de\nPadrones: ${widget.totalPadrones}",
-                  textAlign: TextAlign.left,
-                ),
-              ),
-
-            ],
-          ),
-
+           */
 
           Container(
             margin: EdgeInsets.only(left: 20.0, top: MediaQuery.of(context).size.height * 0.020, bottom: MediaQuery.of(context).size.height * 0.020),

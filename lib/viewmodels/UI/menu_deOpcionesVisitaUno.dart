@@ -634,8 +634,8 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
 
   Future<void> guardadoFase1() async{
 
-    widget.formData?.id_usuario =  int.parse(widget.formIdUsuario!.text);
-    widget.formDataBACKUP?.id_usuario = int.parse(widget.formIdUsuario!.text);
+    widget.formData?.id_usuario =  widget.formIdUsuario!.text;
+    widget.formDataBACKUP?.id_usuario =widget.formIdUsuario!.text;
     await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
 
@@ -1109,7 +1109,7 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
                   widget.formData?.puntaje =  puntaje;
                   widget.formData?.longitud = GPSlongitude;
                   widget.formData?.latitud = GPSlatitude;
-                  widget.formData?.id_usuario = int.parse(widget.formIdUsuario.text);
+                  widget.formData?.id_usuario =widget.formIdUsuario.text;
                   widget.formData?.tipoencuesta = 1;
                   //GPSlatitude
 

@@ -220,7 +220,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
   }
 
   Future<void> guardadoFase1() async{
-    widget.formData?.id_usuario =  int.parse(widget.formIdUsuario!.text);
+    widget.formData?.id_usuario =  widget.formIdUsuario!.text;
   }
 
   Future<void> guardadoFase2() async{
@@ -497,7 +497,7 @@ class _MenudeOpcionesDinamico extends State<MenudeOpcionesDinamico> {
                   widget.formData?.puntaje =  puntaje;
                   widget.formData?.longitud = GPSlongitude;
                   widget.formData?.latitud = GPSlatitude;
-                  widget.formData?.id_usuario = int.parse(widget.formIdUsuario.text);
+                  widget.formData?.id_usuario = widget.formIdUsuario.text;
 
                     await widget.formDataModelDaoBackup.BorrarTodo();
 
