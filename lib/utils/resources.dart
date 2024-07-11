@@ -12,6 +12,7 @@ class Resources {
 
 
   //ICONOS
+  static const String padronImg= 'assets/padronesBLUE.png';
   static const String fotoImg= 'assets/camara_lente_x32.png';
   static const String fotoCam= 'assets/camara_x_32.png';
   static const String fotoX = 'assets/cancelar_032_032.png';

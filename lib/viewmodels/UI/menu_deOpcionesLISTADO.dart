@@ -1418,7 +1418,7 @@ late final _appDatabase;
 
         Container(
           decoration: ShapeDecoration(
-            color: Colors.white, // Set background color to white
+            color: const Color(0xffEDF1F1),
             shape: RoundedRectangleBorder( // Define rounded rectangle shape
               borderRadius: BorderRadius.circular(10.0), // Adjust border radius
               side: const BorderSide( // Add border with desired properties
@@ -1430,7 +1430,7 @@ late final _appDatabase;
 
           margin: const EdgeInsets.only(top: 20.0),
           child: Padding(
-          padding: const EdgeInsets.all(1.0), // Add margin here
+          padding: const EdgeInsets.all(5.0), // Add margin here
           child: Column(
               children: [
 
@@ -1524,7 +1524,7 @@ late final _appDatabase;
                       visible: !widget.backupPERCEP,
                       child:
                       Padding(
-                          padding: const EdgeInsets.all(2.0),
+                          padding: EdgeInsets.only(right: MediaQuery.of(context).size.height * 0.028),
                           child:
                           IconButton(
                             icon: ColorFiltered(
@@ -1581,14 +1581,21 @@ late final _appDatabase;
                     ),
 
 
-                    Container(
-                      margin: EdgeInsets.only(left: 5.0, top: MediaQuery.of(context).size.height * 0.010, bottom: MediaQuery.of(context).size.height * 0.010),
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Total de\nPadrones: ${widget.totalPadrones}",
-                        textAlign: TextAlign.left,
+                    Column(
+                    children: [
+                      Image.asset(Resources.padronImg, width: 48, height: 48),
+
+                      Container(
+                        margin: EdgeInsets.only(left: 5.0, top: MediaQuery.of(context).size.height * 0.00, bottom: MediaQuery.of(context).size.height * 0.00),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Usuarios: ${widget.totalPadrones}",
+                          textAlign: TextAlign.left,
+                        ),
                       ),
-                    ),
+                    ],),
+
+
 
                   ],
                 ),
@@ -1691,7 +1698,7 @@ late final _appDatabase;
                   onTap: () async {
                     await listarVisitasRetro();
                   },
-                  child: Image.asset(Resources.inconflechaD, width: 48, height: 48),
+                  child: Image.asset(Resources.inconflechaD, width: 48, height: 48), //
                 ),
 
 

@@ -198,7 +198,7 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
     revisarBackup();
     if(widget.formData != null) {
 
-      if (widget.formData!.id_gestor != null) {
+      if (widget.formData!.id_usuario != null) {
         setState(() {
           widget.formIdUsuario!.text = widget.formData!.id_usuario!.toString();
         });

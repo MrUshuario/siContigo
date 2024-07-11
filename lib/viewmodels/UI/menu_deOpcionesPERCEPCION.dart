@@ -532,6 +532,12 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
     if (widget.formData != null) {
 
+      if (widget.formData!.id_usuario != null) {
+        setState(() {
+          widget.formIdUsuario!.text = widget.formData!.id_usuario!.toString();
+        });
+      }
+
       if (widget.formData!.p01percepcion != null  && widget.formData!.p01percepcion!.isNotEmpty) {
         setState(() {
           widget.P01EspecificarPerc!.text = widget.formData!.p01percepcion!;
