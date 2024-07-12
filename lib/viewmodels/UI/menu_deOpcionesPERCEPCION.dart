@@ -3620,592 +3620,620 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     },),],
                               ),
 
-
-                              const SizedBox(height: 16.0),
-                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas.",
-                                  controller: _tip16),
-                              HelpersViewLetrasSubs.formItemsDesign( "16) ¿Cuál es la relación de parentesco del/de la cuidador/a con e/la usuario/a del Programa CONTIGO?"),
-                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P16Perc>(
-                                      value: P16Perc.esposa,
-                                      groupValue: _P16Perc,
-                                      onChanged: (P16Perc? value) {
-                                        setState(() {
-                                          _P16Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P16Perc>(
-                                      value: P16Perc.conviviente,
-                                      groupValue: _P16Perc,
-                                      onChanged: (P16Perc? value) {
-                                        setState(() {
-                                          _P16Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P16Perc>(
-                                      value: P16Perc.hijo,
-                                      groupValue: _P16Perc,
-                                      onChanged: (P16Perc? value) {
-                                        setState(() {
-                                          _P16Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P16Perc>(
-                                      value: P16Perc.hijastro,
-                                      groupValue: _P16Perc,
-                                      onChanged: (P16Perc? value) {
-                                        setState(() {
-                                          _P16Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P16Perc>(
-                                      value: P16Perc.yerno,
-                                      groupValue: _P16Perc,
-                                      onChanged: (P16Perc? value) {
-                                        setState(() {
-                                          _P16Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P16Perc>(
-                                      value: P16Perc.nieto,
-                                      groupValue: _P16Perc,
-                                      onChanged: (P16Perc? value) {
-                                        setState(() {
-                                          _P16Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P16Perc>(
-                                      value: P16Perc.padres,
-                                      groupValue: _P16Perc,
-                                      onChanged: (P16Perc? value) {
-                                        setState(() {
-                                          _P16Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Suegro/a"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P16Perc>(
-                                      value: P16Perc.suegro,
-                                      groupValue: _P16Perc,
-                                      onChanged: (P16Perc? value) {
-                                        setState(() {
-                                          _P16Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hermano/a"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P16Perc>(
-                                      value: P16Perc.hermano,
-                                      groupValue: _P16Perc,
-                                      onChanged: (P16Perc? value) {
-                                        setState(() {
-                                          _P16Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Trabajador/a del Hogar"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P16Perc>(
-                                      value: P16Perc.trabajador,
-                                      groupValue: _P16Perc,
-                                      onChanged: (P16Perc? value) {
-                                        setState(() {
-                                          _P16Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro/a pariente (especificar)"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P16Perc>(
-                                      value: P16Perc.otropariente,
-                                      groupValue: _P16Perc,
-                                      onChanged: (P16Perc? value) {
-                                        setState(() {
-                                          _P16Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro/a no pariente (especificar)"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P16Perc>(
-                                      value: P16Perc.otronopariente,
-                                      groupValue: _P16Perc,
-                                      onChanged: (P16Perc? value) {
-                                        setState(() {
-                                          _P16Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              //OTRO ESPECIFICAR
+                              //SI RESPONDE NO
                               Visibility(
-                                  visible: (_P16Perc == P16Perc.otronopariente || _P16Perc == P16Perc.otropariente),
+                                  visible: (_P15Perc == P15Perc.Si || _P15Perc == null),
                                   child:Column(
                                       children: <Widget>[
-                                        HelpersViewBlancoIcon.formItemsDesign(
-                                            Icons.pending_actions,
-                                            TextFormField(
-                                              controller: widget.P16EspecificarPerc ,
-                                              decoration: const InputDecoration(
-                                                labelText: 'Especifique',
-                                              ),
-                                              validator: (value) {
-                                                return HelpersViewBlancoIcon.validateField(
-                                                    value!, widget.ParamP16EspecificarPerc );
-                                              },
-                                              maxLength: 100,
-                                            ), context),
-                                      ]
-                                  )),
 
-                              const SizedBox(height: 16.0),
-                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a\n"
-                                  "●	Miembro del hogar: Es la persona pariente o no que reside en la vivienda, comparten al menos "
-                                  "las comidas principales y/o tienen en común otras necesidades básicas, con cargo a un presupuesto común (comen de una misma olla).",
-                                  controller: _tip17),
-                              HelpersViewLetrasSubs.formItemsDesign( "17) ¿El/la cuidador/a es miembro del hogar?"),
-                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+                                        const SizedBox(height: 16.0),
+                                        HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas.",
+                                            controller: _tip16),
+                                        HelpersViewLetrasSubs.formItemsDesign( "16) ¿Cuál es la relación de parentesco del/de la cuidador/a con e/la usuario/a del Programa CONTIGO?"),
+                                        HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Sí',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P17Perc>(
-                                    value: P17Perc.Si,
-                                    groupValue: _P17Perc,
-                                    onChanged: (P17Perc? value) {
-                                      setState(() {
-                                        _P17Perc = value;
-                                      });
-                                    },
-                                  ),
-                                  const Text(
-                                    'No',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P17Perc>(
-                                    value: P17Perc.No,
-                                    groupValue: _P17Perc,
-                                    onChanged: (P17Perc? value) {
-                                      setState(() {
-                                        _P17Perc = value;
-                                      });
-                                    },
-                                  ),
-                                ],
-                              ),
-
-                              const SizedBox(height: 16.0),
-                              HelpersViewLetrasToolTip(message: "● Realizar la pregunta al usuario/a o cuidador/a. \n"
-                                  "●	Si el usuario/a indica que él solo realiza el cobro, marcar la opción 2. Recordar que el cuidador/a no necesariamente es la persona autorizada para el cobro. "
-                                  ,
-                                  controller: _tip18),
-                              HelpersViewLetrasSubs.formItemsDesign( "18) ¿El/la cuidador/a es el autorizado para realizar el cobro del dinero del Programa CONTIGO?"),
-                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
-
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Sí',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P18Perc>(
-                                    value: P18Perc.Si,
-                                    groupValue: _P18Perc,
-                                    onChanged: (P18Perc? value) {
-                                      setState(() {
-                                        _P18Perc = value;
-                                      });
-                                    },
-                                  ),
-                                  const Text(
-                                    'No',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P18Perc>(
-                                    value: P18Perc.No,
-                                    groupValue: _P18Perc,
-                                    onChanged: (P18Perc? value) {
-                                      setState(() {
-                                        _P18Perc = value;
-                                      });
-                                    },
-                                  ),
-                                ],
-                              ),
-
-                              const SizedBox(height: 16.0),
-                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
-                                  controller: _tip19),
-                              HelpersViewLetrasSubs.formItemsDesign( "19) El/la cuidador/a ¿Qué edad tiene en años cumplidos?"),
-                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
-
-                              Row(
-                                children: [
-                                  const Text('Años:', style: TextStyle(
-                                    fontSize: 12.0,
-                                    //color: Colors.white,
-                                  ),),
-
-                                  HelpersViewBlancoIcon.formItemsDesignDNI(
-                                      TextFormField(
-                                        controller: widget.P19EspecificarPerc,
-                                        decoration: const InputDecoration(
-                                          labelText: 'Edad',
+                                        Row(
+                                          children: [
+                                            HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposa/o"),
+                                            const Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Radio<P16Perc>(
+                                                value: P16Perc.esposa,
+                                                groupValue: _P16Perc,
+                                                onChanged: (P16Perc? value) {
+                                                  setState(() {
+                                                    _P16Perc = value;
+                                                  });
+                                                },),
+                                            ),
+                                          ],
                                         ),
-                                        keyboardType: TextInputType.number,
-                                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                        /*
+
+                                        Row(
+                                          children: [
+                                            HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Conviviente"),
+                                            const Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Radio<P16Perc>(
+                                                value: P16Perc.conviviente,
+                                                groupValue: _P16Perc,
+                                                onChanged: (P16Perc? value) {
+                                                  setState(() {
+                                                    _P16Perc = value;
+                                                  });
+                                                },),
+                                            ),
+                                          ],
+                                        ),
+
+                                        Row(
+                                          children: [
+                                            HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a"),
+                                            const Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Radio<P16Perc>(
+                                                value: P16Perc.hijo,
+                                                groupValue: _P16Perc,
+                                                onChanged: (P16Perc? value) {
+                                                  setState(() {
+                                                    _P16Perc = value;
+                                                  });
+                                                },),
+                                            ),
+                                          ],
+                                        ),
+
+                                        Row(
+                                          children: [
+                                            HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijastro/a"),
+                                            const Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Radio<P16Perc>(
+                                                value: P16Perc.hijastro,
+                                                groupValue: _P16Perc,
+                                                onChanged: (P16Perc? value) {
+                                                  setState(() {
+                                                    _P16Perc = value;
+                                                  });
+                                                },),
+                                            ),
+                                          ],
+                                        ),
+
+                                        Row(
+                                          children: [
+                                            HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno/Nuera"),
+                                            const Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Radio<P16Perc>(
+                                                value: P16Perc.yerno,
+                                                groupValue: _P16Perc,
+                                                onChanged: (P16Perc? value) {
+                                                  setState(() {
+                                                    _P16Perc = value;
+                                                  });
+                                                },),
+                                            ),
+                                          ],
+                                        ),
+
+                                        Row(
+                                          children: [
+                                            HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                                            const Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Radio<P16Perc>(
+                                                value: P16Perc.nieto,
+                                                groupValue: _P16Perc,
+                                                onChanged: (P16Perc? value) {
+                                                  setState(() {
+                                                    _P16Perc = value;
+                                                  });
+                                                },),
+                                            ),
+                                          ],
+                                        ),
+
+                                        Row(
+                                          children: [
+                                            HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/Madrea"),
+                                            const Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Radio<P16Perc>(
+                                                value: P16Perc.padres,
+                                                groupValue: _P16Perc,
+                                                onChanged: (P16Perc? value) {
+                                                  setState(() {
+                                                    _P16Perc = value;
+                                                  });
+                                                },),
+                                            ),
+                                          ],
+                                        ),
+
+                                        Row(
+                                          children: [
+                                            HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Suegro/a"),
+                                            const Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Radio<P16Perc>(
+                                                value: P16Perc.suegro,
+                                                groupValue: _P16Perc,
+                                                onChanged: (P16Perc? value) {
+                                                  setState(() {
+                                                    _P16Perc = value;
+                                                  });
+                                                },),
+                                            ),
+                                          ],
+                                        ),
+
+                                        Row(
+                                          children: [
+                                            HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hermano/a"),
+                                            const Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Radio<P16Perc>(
+                                                value: P16Perc.hermano,
+                                                groupValue: _P16Perc,
+                                                onChanged: (P16Perc? value) {
+                                                  setState(() {
+                                                    _P16Perc = value;
+                                                  });
+                                                },),
+                                            ),
+                                          ],
+                                        ),
+
+                                        Row(
+                                          children: [
+                                            HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Trabajador/a del Hogar"),
+                                            const Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Radio<P16Perc>(
+                                                value: P16Perc.trabajador,
+                                                groupValue: _P16Perc,
+                                                onChanged: (P16Perc? value) {
+                                                  setState(() {
+                                                    _P16Perc = value;
+                                                  });
+                                                },),
+                                            ),
+                                          ],
+                                        ),
+
+                                        Row(
+                                          children: [
+                                            HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro/a pariente (especificar)"),
+                                            const Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Radio<P16Perc>(
+                                                value: P16Perc.otropariente,
+                                                groupValue: _P16Perc,
+                                                onChanged: (P16Perc? value) {
+                                                  setState(() {
+                                                    _P16Perc = value;
+                                                  });
+                                                },),
+                                            ),
+                                          ],
+                                        ),
+
+                                        Row(
+                                          children: [
+                                            HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro/a no pariente (especificar)"),
+                                            const Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Radio<P16Perc>(
+                                                value: P16Perc.otronopariente,
+                                                groupValue: _P16Perc,
+                                                onChanged: (P16Perc? value) {
+                                                  setState(() {
+                                                    _P16Perc = value;
+                                                  });
+                                                },),
+                                            ),
+                                          ],
+                                        ),
+
+                                        //OTRO ESPECIFICAR
+                                        Visibility(
+                                            visible: (_P16Perc == P16Perc.otronopariente || _P16Perc == P16Perc.otropariente),
+                                            child:Column(
+                                                children: <Widget>[
+                                                  HelpersViewBlancoIcon.formItemsDesign(
+                                                      Icons.pending_actions,
+                                                      TextFormField(
+                                                        controller: widget.P16EspecificarPerc ,
+                                                        decoration: const InputDecoration(
+                                                          labelText: 'Especifique',
+                                                        ),
+                                                        validator: (value) {
+                                                          return HelpersViewBlancoIcon.validateField(
+                                                              value!, widget.ParamP16EspecificarPerc );
+                                                        },
+                                                        maxLength: 100,
+                                                      ), context),
+                                                ]
+                                            )),
+
+                                        const SizedBox(height: 16.0),
+                                        HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a\n"
+                                            "●	Miembro del hogar: Es la persona pariente o no que reside en la vivienda, comparten al menos "
+                                            "las comidas principales y/o tienen en común otras necesidades básicas, con cargo a un presupuesto común (comen de una misma olla).",
+                                            controller: _tip17),
+                                        HelpersViewLetrasSubs.formItemsDesign( "17) ¿El/la cuidador/a es miembro del hogar?"),
+                                        HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              'Sí',
+                                              style: TextStyle(
+                                                fontSize: 14.0,
+                                              ),
+                                            ),
+                                            Radio<P17Perc>(
+                                              value: P17Perc.Si,
+                                              groupValue: _P17Perc,
+                                              onChanged: (P17Perc? value) {
+                                                setState(() {
+                                                  _P17Perc = value;
+                                                });
+                                              },
+                                            ),
+                                            const Text(
+                                              'No',
+                                              style: TextStyle(
+                                                fontSize: 14.0,
+                                              ),
+                                            ),
+                                            Radio<P17Perc>(
+                                              value: P17Perc.No,
+                                              groupValue: _P17Perc,
+                                              onChanged: (P17Perc? value) {
+                                                setState(() {
+                                                  _P17Perc = value;
+                                                });
+                                              },
+                                            ),
+                                          ],
+                                        ),
+
+                                        const SizedBox(height: 16.0),
+                                        HelpersViewLetrasToolTip(message: "● Realizar la pregunta al usuario/a o cuidador/a. \n"
+                                            "●	Si el usuario/a indica que él solo realiza el cobro, marcar la opción 2. Recordar que el cuidador/a no necesariamente es la persona autorizada para el cobro. "
+                                            ,
+                                            controller: _tip18),
+                                        HelpersViewLetrasSubs.formItemsDesign( "18) ¿El/la cuidador/a es el autorizado para realizar el cobro del dinero del Programa CONTIGO?"),
+                                        HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              'Sí',
+                                              style: TextStyle(
+                                                fontSize: 14.0,
+                                              ),
+                                            ),
+                                            Radio<P18Perc>(
+                                              value: P18Perc.Si,
+                                              groupValue: _P18Perc,
+                                              onChanged: (P18Perc? value) {
+                                                setState(() {
+                                                  _P18Perc = value;
+                                                });
+                                              },
+                                            ),
+                                            const Text(
+                                              'No',
+                                              style: TextStyle(
+                                                fontSize: 14.0,
+                                              ),
+                                            ),
+                                            Radio<P18Perc>(
+                                              value: P18Perc.No,
+                                              groupValue: _P18Perc,
+                                              onChanged: (P18Perc? value) {
+                                                setState(() {
+                                                  _P18Perc = value;
+                                                });
+                                              },
+                                            ),
+                                          ],
+                                        ),
+
+                                        const SizedBox(height: 16.0),
+                                        HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
+                                            controller: _tip19),
+                                        HelpersViewLetrasSubs.formItemsDesign( "19) El/la cuidador/a ¿Qué edad tiene en años cumplidos?"),
+                                        HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                                        Row(
+                                          children: [
+                                            const Text('Años:', style: TextStyle(
+                                              fontSize: 12.0,
+                                              //color: Colors.white,
+                                            ),),
+
+                                            HelpersViewBlancoIcon.formItemsDesignDNI(
+                                                TextFormField(
+                                                  controller: widget.P19EspecificarPerc,
+                                                  decoration: const InputDecoration(
+                                                    labelText: 'Edad',
+                                                  ),
+                                                  keyboardType: TextInputType.number,
+                                                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                                  /*
                       validator: (value) {
                         return HelpersViewBlancoIcon.validateField(
                             value!, widget.formIdUsuario);
                       }, */
-                                        maxLength: 2,
-                                      ), context),
+                                                  maxLength: 2,
+                                                ), context),
 
-                                ],
-                              ),
+                                          ],
+                                        ),
 
-                              const SizedBox(height: 16.0),
-                              HelpersViewLetrasToolTip(message: "●	Registrar por observación, de ser el caso realizar la pregunta al usuario/a o cuidador/a. ",
-                                  controller: _tip20),
-                              HelpersViewLetrasSubs.formItemsDesign( "20) Sexo del cuidador/a"),
-                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+                                        const SizedBox(height: 16.0),
+                                        HelpersViewLetrasToolTip(message: "●	Registrar por observación, de ser el caso realizar la pregunta al usuario/a o cuidador/a. ",
+                                            controller: _tip20),
+                                        HelpersViewLetrasSubs.formItemsDesign( "20) Sexo del cuidador/a"),
+                                        HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Hombre',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P20Perc>(
-                                    value: P20Perc.hombre,
-                                    groupValue: _P20Perc,
-                                    onChanged: (P20Perc? value) {
-                                      setState(() {
-                                        _P20Perc = value;
-                                      });
-                                    },
-                                  ),
-                                  const Text(
-                                    'Mujer',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P20Perc>(
-                                    value: P20Perc.mujer,
-                                    groupValue: _P20Perc,
-                                    onChanged: (P20Perc? value) {
-                                      setState(() {
-                                        _P20Perc = value;
-                                      });
-                                    },),],
-                              ),
-
-                              const SizedBox(height: 16.0),
-                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
-                                  controller: _tip21),
-                              HelpersViewLetrasSubs.formItemsDesign( "21) ¿El cuidador ha recibido capacitación en prácticas de cuidado, atención y trato adecuado a las personas con discapacidad?"),
-                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
-
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Sí',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P21Perc>(
-                                    value: P21Perc.Si,
-                                    groupValue: _P21Perc,
-                                    onChanged: (P21Perc? value) {
-                                      setState(() {
-                                        _P21Perc = value;
-                                      });
-                                    },
-                                  ),
-                                  const Text(
-                                    'No',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P21Perc>(
-                                    value: P21Perc.No,
-                                    groupValue: _P21Perc,
-                                    onChanged: (P21Perc? value) {
-                                      setState(() {
-                                        _P21Perc = value;
-                                      });
-                                    },
-                                  ),
-                                ],
-                              ),
-
-                              const SizedBox(height: 16.0),
-                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
-                                  controller: _tip22),
-                              HelpersViewLetrasSubs.formItemsDesign("22) ¿De quién recibió la capacitación?"),
-                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Personal de la Municipalidad (OMAPED)"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P22Perc>(
-                                      value: P22Perc.omadep,
-                                      groupValue: _P22Perc,
-                                      onChanged: (P22Perc? value) {
-                                        setState(() {
-                                          _P22Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Familiares / Vecinos / Amigos"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P22Perc>(
-                                      value: P22Perc.familaires,
-                                      groupValue: _P22Perc,
-                                      onChanged: (P22Perc? value) {
-                                        setState(() {
-                                          _P22Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Medios de comunicación (radio, televisión, perifoneo, etc.)"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P22Perc>(
-                                      value: P22Perc.medios,
-                                      groupValue: _P22Perc,
-                                      onChanged: (P22Perc? value) {
-                                        setState(() {
-                                          _P22Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Personal del Programa CONTIGO"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P22Perc>(
-                                      value: P22Perc.personal,
-                                      groupValue: _P22Perc,
-                                      onChanged: (P22Perc? value) {
-                                        setState(() {
-                                          _P22Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yo mismo buscando en internet"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P22Perc>(
-                                      value: P22Perc.yo,
-                                      groupValue: _P22Perc,
-                                      onChanged: (P22Perc? value) {
-                                        setState(() {
-                                          _P22Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              Row(
-                                children: [
-                                  HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (especifique)"),
-                                  const Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Radio<P22Perc>(
-                                      value: P22Perc.otro,
-                                      groupValue: _P22Perc,
-                                      onChanged: (P22Perc? value) {
-                                        setState(() {
-                                          _P22Perc = value;
-                                        });
-                                      },),
-                                  ),
-                                ],
-                              ),
-
-                              //OTRO ESPECIFICAR
-                              Visibility(
-                                  visible: (_P22Perc == P22Perc.otro),
-                                  child:Column(
-                                      children: <Widget>[
-                                        HelpersViewBlancoIcon.formItemsDesign(
-                                            Icons.pending_actions,
-                                            TextFormField(
-                                              controller: widget.P22EspecificarPerc ,
-                                              decoration: const InputDecoration(
-                                                labelText: 'Especifique',
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              'Hombre',
+                                              style: TextStyle(
+                                                fontSize: 14.0,
                                               ),
-                                              validator: (value) {
-                                                return HelpersViewBlancoIcon.validateField(
-                                                    value!, widget.ParamP22EspecificarPerc );
+                                            ),
+                                            Radio<P20Perc>(
+                                              value: P20Perc.hombre,
+                                              groupValue: _P20Perc,
+                                              onChanged: (P20Perc? value) {
+                                                setState(() {
+                                                  _P20Perc = value;
+                                                });
                                               },
-                                              maxLength: 100,
-                                            ), context),
-                                      ]
-                                  )),
+                                            ),
+                                            const Text(
+                                              'Mujer',
+                                              style: TextStyle(
+                                                fontSize: 14.0,
+                                              ),
+                                            ),
+                                            Radio<P20Perc>(
+                                              value: P20Perc.mujer,
+                                              groupValue: _P20Perc,
+                                              onChanged: (P20Perc? value) {
+                                                setState(() {
+                                                  _P20Perc = value;
+                                                });
+                                              },),],
+                                        ),
+
+                                        const SizedBox(height: 16.0),
+                                        HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
+                                            controller: _tip21),
+                                        HelpersViewLetrasSubs.formItemsDesign( "21) ¿El cuidador ha recibido capacitación en prácticas de cuidado, atención y trato adecuado a las personas con discapacidad?"),
+                                        HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              'Sí',
+                                              style: TextStyle(
+                                                fontSize: 14.0,
+                                              ),
+                                            ),
+                                            Radio<P21Perc>(
+                                              value: P21Perc.Si,
+                                              groupValue: _P21Perc,
+                                              onChanged: (P21Perc? value) {
+                                                setState(() {
+                                                  _P21Perc = value;
+                                                });
+                                              },
+                                            ),
+                                            const Text(
+                                              'No',
+                                              style: TextStyle(
+                                                fontSize: 14.0,
+                                              ),
+                                            ),
+                                            Radio<P21Perc>(
+                                              value: P21Perc.No,
+                                              groupValue: _P21Perc,
+                                              onChanged: (P21Perc? value) {
+                                                setState(() {
+                                                  _P21Perc = value;
+                                                });
+                                              },
+                                            ),
+                                          ],
+                                        ),
+
+                                        Visibility(
+                                            visible: (_P21Perc == P21Perc.Si || _P21Perc ==null),
+                                            child:Column(
+                                                children: <Widget>[
+
+                                                  const SizedBox(height: 16.0),
+                                                  HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
+                                                      controller: _tip22),
+                                                  HelpersViewLetrasSubs.formItemsDesign("22) ¿De quién recibió la capacitación?"),
+                                                  HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                                                  Row(
+                                                    children: [
+                                                      HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Personal de la Municipalidad (OMAPED)"),
+                                                      const Spacer(),
+                                                      Padding(
+                                                        padding: const EdgeInsets.all(8.0),
+                                                        child: Radio<P22Perc>(
+                                                          value: P22Perc.omadep,
+                                                          groupValue: _P22Perc,
+                                                          onChanged: (P22Perc? value) {
+                                                            setState(() {
+                                                              _P22Perc = value;
+                                                            });
+                                                          },),
+                                                      ),
+                                                    ],
+                                                  ),
+
+                                                  Row(
+                                                    children: [
+                                                      HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Familiares / Vecinos / Amigos"),
+                                                      const Spacer(),
+                                                      Padding(
+                                                        padding: const EdgeInsets.all(8.0),
+                                                        child: Radio<P22Perc>(
+                                                          value: P22Perc.familaires,
+                                                          groupValue: _P22Perc,
+                                                          onChanged: (P22Perc? value) {
+                                                            setState(() {
+                                                              _P22Perc = value;
+                                                            });
+                                                          },),
+                                                      ),
+                                                    ],
+                                                  ),
+
+                                                  Row(
+                                                    children: [
+                                                      HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Medios de comunicación (radio, televisión, perifoneo, etc.)"),
+                                                      const Spacer(),
+                                                      Padding(
+                                                        padding: const EdgeInsets.all(8.0),
+                                                        child: Radio<P22Perc>(
+                                                          value: P22Perc.medios,
+                                                          groupValue: _P22Perc,
+                                                          onChanged: (P22Perc? value) {
+                                                            setState(() {
+                                                              _P22Perc = value;
+                                                            });
+                                                          },),
+                                                      ),
+                                                    ],
+                                                  ),
+
+                                                  Row(
+                                                    children: [
+                                                      HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Personal del Programa CONTIGO"),
+                                                      const Spacer(),
+                                                      Padding(
+                                                        padding: const EdgeInsets.all(8.0),
+                                                        child: Radio<P22Perc>(
+                                                          value: P22Perc.personal,
+                                                          groupValue: _P22Perc,
+                                                          onChanged: (P22Perc? value) {
+                                                            setState(() {
+                                                              _P22Perc = value;
+                                                            });
+                                                          },),
+                                                      ),
+                                                    ],
+                                                  ),
+
+                                                  Row(
+                                                    children: [
+                                                      HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yo mismo buscando en internet"),
+                                                      const Spacer(),
+                                                      Padding(
+                                                        padding: const EdgeInsets.all(8.0),
+                                                        child: Radio<P22Perc>(
+                                                          value: P22Perc.yo,
+                                                          groupValue: _P22Perc,
+                                                          onChanged: (P22Perc? value) {
+                                                            setState(() {
+                                                              _P22Perc = value;
+                                                            });
+                                                          },),
+                                                      ),
+                                                    ],
+                                                  ),
+
+                                                  Row(
+                                                    children: [
+                                                      HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro (especifique)"),
+                                                      const Spacer(),
+                                                      Padding(
+                                                        padding: const EdgeInsets.all(8.0),
+                                                        child: Radio<P22Perc>(
+                                                          value: P22Perc.otro,
+                                                          groupValue: _P22Perc,
+                                                          onChanged: (P22Perc? value) {
+                                                            setState(() {
+                                                              _P22Perc = value;
+                                                            });
+                                                          },),
+                                                      ),
+                                                    ],
+                                                  ),
+
+                                                  //OTRO ESPECIFICAR
+                                                  Visibility(
+                                                      visible: (_P22Perc == P22Perc.otro),
+                                                      child:Column(
+                                                          children: <Widget>[
+                                                            HelpersViewBlancoIcon.formItemsDesign(
+                                                                Icons.pending_actions,
+                                                                TextFormField(
+                                                                  controller: widget.P22EspecificarPerc ,
+                                                                  decoration: const InputDecoration(
+                                                                    labelText: 'Especifique',
+                                                                  ),
+                                                                  validator: (value) {
+                                                                    return HelpersViewBlancoIcon.validateField(
+                                                                        value!, widget.ParamP22EspecificarPerc );
+                                                                  },
+                                                                  maxLength: 100,
+                                                                ), context),
+                                                          ]
+                                                      )),
+
+                                                  const SizedBox(height: 16.0),
+
+                                                  //BOTON PARA PRESEGUIR
+
+                                                ]
+                                            )),
+
+
+                                                ]
+                                            )),
+
+
 
                               const SizedBox(height: 16.0),
-
-                              //BOTON PARA PRESEGUIR
 
                               GestureDetector(
                                   onTap: ()  async {
 
                                     if(
-                                    1==2
+                                      (_P09Perc == null) ||
+                                      (_P10Perc == null) ||
+                                      (_P11Perc == null) ||
+                                      (widget.P12EspecificarPerc.text == null || widget.P12EspecificarPerc.text.isEmpty) ||
+                                      (_P13Perc == null) ||
+                                      (_P14Perc == null) ||
+                                      (_P15Perc == null)
+                                    //SI LA 15 es no los demas hasta la 21 se vuelven opcionales
                                     ){
                                       showDialogValidFields(Constants.faltanCampos);
                                     } else {
@@ -4724,7 +4752,13 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     const SizedBox(height: 16.0),
                     GestureDetector(
                         onTap: ()  async {
-                          if( 2 == 3
+                          if(
+
+                              (_P23Perc == null) ||
+                              (_P24Perc == null) ||
+                              (_P25Perc == null)
+                                  //26 y 27 dependen de lo marcado en 25
+
                           ){
                             showDialogValidFields(Constants.faltanCampos);
                           } else {
@@ -9828,7 +9862,22 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     GestureDetector(
                         onTap: ()  async {
                           if(
-                          (1 == 2)
+
+                              (_P28Perc == null) ||
+                              (_P29Perc == null) ||
+                              //30 al 33 es muy complejo
+                              (_P34Perc == null) ||
+                              (_P35Perc == null) ||
+                              (_P36Perc == null) ||
+                              (_P37Perc == null) ||
+                              (_P38Perc == null) ||
+                              (_P39Perc == null) ||
+                              (_P40Perc == null) ||
+                              (_P41Perc == null)
+                              //42 puede haber ninguna bien opcional
+
+
+
                           ){
                             showDialogValidFields(Constants.faltanCampos);
                           } else {
@@ -11147,414 +11196,438 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             });
                           },),],
                     ),
-
-                    const SizedBox(height: 16.0),
-                    HelpersViewLetrasToolTip(message: "●	Dejar que el Usuario se tome su tiempo para pensar en la respuesta y de ser "
-                        "necesario repetirle la pregunta. Recuerde que no debe leer las alternativas.\n"
-                        "●	Si la respuesta es distinta a las presentadas, seleccione “Otro” (Especifique) y registre la información correspondiente.\n"
-                        "●	Se debe indagar en la respuesta brindada y de acuerdo a orden de importancia marcar los tres principales motivos.\n"
-                        "●	Precisar que la dificultad debe estar referida al traslado del usuario/a al lugar de pago.\n"
-                        "●	Puede haber 3, 2, 1 o ninguna preocupación.",
-                        controller: _tip54),
-                    HelpersViewLetrasSubs.formItemsDesign( "54) ¿Cuáles son los tres principales motivos por los que se le hace difícil llegar al lugar de pago?"),
-                    HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
-
-                    HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAvisoVarios),
-                    HelpersViewLetrasSubs.formItemsDesign("Por la distancia y/o tiempo de traslado"),
-                    Row(
-                      children: [
-                        const Text(
-                          '1',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc01Distancia  ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Distancia = false;
-                              P54Perc02Distancia = false;
-                              P54Perc01Distancia=  value!;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '2',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc02Distancia ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Distancia  = false;
-                              P54Perc02Distancia  = value!;
-                              P54Perc01Distancia =  true;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '3',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc03Distancia ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Distancia  = value!;
-                              P54Perc02Distancia  = true;
-                              P54Perc01Distancia  = true;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                    HelpersViewLetrasSubs.formItemsDesign("Por su estado físico o enfermedad "),
-                    Row(
-                      children: [
-                        const Text(
-                          '1',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc01Fisico  ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Fisico = false;
-                              P54Perc02Fisico = false;
-                              P54Perc01Fisico=  value!;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '2',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc02Fisico ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Fisico  = false;
-                              P54Perc02Fisico  = value!;
-                              P54Perc01Fisico =  true;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '3',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc03Fisico ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Fisico  = value!;
-                              P54Perc02Fisico  = true;
-                              P54Perc01Fisico  = true;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                    HelpersViewLetrasSubs.formItemsDesign("Por la ausencia de medios de transporte"),
-                    Row(
-                      children: [
-                        const Text(
-                          '1',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc01Ausencia  ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Ausencia = false;
-                              P54Perc02Ausencia = false;
-                              P54Perc01Ausencia=  value!;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '2',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc02Ausencia ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Ausencia  = false;
-                              P54Perc02Ausencia  = value!;
-                              P54Perc01Ausencia =  true;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '3',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc03Ausencia ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Ausencia  = value!;
-                              P54Perc02Ausencia  = true;
-                              P54Perc01Ausencia  = true;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                    HelpersViewLetrasSubs.formItemsDesign("Porque requiere que alguien lo acompañe"),
-                    Row(
-                      children: [
-                        const Text(
-                          '1',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc01Requiere  ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Requiere = false;
-                              P54Perc02Requiere = false;
-                              P54Perc01Requiere=  value!;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '2',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc02Requiere ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Requiere  = false;
-                              P54Perc02Requiere  = value!;
-                              P54Perc01Requiere =  true;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '3',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc03Requiere ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Requiere = value!;
-                              P54Perc02Requiere = true;
-                              P54Perc01Requiere = true;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                    HelpersViewLetrasSubs.formItemsDesign("Por el clima / ambiente"),
-                    Row(
-                      children: [
-                        const Text(
-                          '1',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc01Clima  ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Clima = false;
-                              P54Perc02Clima = false;
-                              P54Perc01Clima=  value!;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '2',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc02Clima ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Clima  = false;
-                              P54Perc02Clima  = value!;
-                              P54Perc01Clima =  true;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '3',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc03Clima ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Clima = value!;
-                              P54Perc02Clima = true;
-                              P54Perc01Clima = true;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                    HelpersViewLetrasSubs.formItemsDesign("Por el terreno / accesibilidad"),
-                    Row(
-                      children: [
-                        const Text(
-                          '1',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc01Terreno  ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Terreno = false;
-                              P54Perc02Terreno = false;
-                              P54Perc01Terreno=  value!;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '2',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc02Terreno ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Terreno  = false;
-                              P54Perc02Terreno  = value!;
-                              P54Perc01Terreno =  true;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '3',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc03Terreno ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Terreno = value!;
-                              P54Perc02Terreno = true;
-                              P54Perc01Terreno = true;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                    HelpersViewLetrasSubs.formItemsDesign("Otro (especifique): "),
-                    Row(
-                      children: [
-                        const Text(
-                          '1',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc01Otro  ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Otro = false;
-                              P54Perc02Otro = false;
-                              P54Perc01Otro=  value!;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '2',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc02Otro ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Otro  = false;
-                              P54Perc02Otro  = value!;
-                              P54Perc01Otro =  true;
-                            });
-                          },
-                        ),
-                        const Text(
-                          '3',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Checkbox(
-                          value: P54Perc03Otro ,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              P54Perc03Otro = value!;
-                              P54Perc02Otro = true;
-                              P54Perc01Otro = true;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
+                    
+                    //53 no saltea 54
                     Visibility(
-                        visible: (P54Perc01Otro || P54Perc02Otro || P54Perc03Otro),
+                        visible: (_P53Perc == P53Perc.Si || _P53Perc == null),
                         child:Column(
                             children: <Widget>[
-                              HelpersViewBlancoIcon.formItemsDesign(
-                                  Icons.pending_actions,
-                                  TextFormField(
-                                    controller: widget.P54EspecificarPerc ,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Especifique',
+
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasToolTip(message: "●	Dejar que el Usuario se tome su tiempo para pensar en la respuesta y de ser "
+                                  "necesario repetirle la pregunta. Recuerde que no debe leer las alternativas.\n"
+                                  "●	Si la respuesta es distinta a las presentadas, seleccione “Otro” (Especifique) y registre la información correspondiente.\n"
+                                  "●	Se debe indagar en la respuesta brindada y de acuerdo a orden de importancia marcar los tres principales motivos.\n"
+                                  "●	Precisar que la dificultad debe estar referida al traslado del usuario/a al lugar de pago.\n"
+                                  "●	Puede haber 3, 2, 1 o ninguna preocupación.",
+                                  controller: _tip54),
+                              HelpersViewLetrasSubs.formItemsDesign( "54) ¿Cuáles son los tres principales motivos por los que se le hace difícil llegar al lugar de pago?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.checkAviso),
+
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAvisoVarios),
+                              HelpersViewLetrasSubs.formItemsDesign("Por la distancia y/o tiempo de traslado"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
                                     ),
-                                    validator: (value) {
-                                      return HelpersViewBlancoIcon.validateField(
-                                          value!, widget.ParamP54EspecificarPerc );
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc01Distancia  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Distancia = false;
+                                        P54Perc02Distancia = false;
+                                        P54Perc01Distancia=  value!;
+                                      });
                                     },
-                                    maxLength: 100,
-                                  ), context),
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc02Distancia ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Distancia  = false;
+                                        P54Perc02Distancia  = value!;
+                                        P54Perc01Distancia =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc03Distancia ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Distancia  = value!;
+                                        P54Perc02Distancia  = true;
+                                        P54Perc01Distancia  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                              HelpersViewLetrasSubs.formItemsDesign("Por su estado físico o enfermedad "),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc01Fisico  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Fisico = false;
+                                        P54Perc02Fisico = false;
+                                        P54Perc01Fisico=  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc02Fisico ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Fisico  = false;
+                                        P54Perc02Fisico  = value!;
+                                        P54Perc01Fisico =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc03Fisico ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Fisico  = value!;
+                                        P54Perc02Fisico  = true;
+                                        P54Perc01Fisico  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                              HelpersViewLetrasSubs.formItemsDesign("Por la ausencia de medios de transporte"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc01Ausencia  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Ausencia = false;
+                                        P54Perc02Ausencia = false;
+                                        P54Perc01Ausencia=  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc02Ausencia ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Ausencia  = false;
+                                        P54Perc02Ausencia  = value!;
+                                        P54Perc01Ausencia =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc03Ausencia ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Ausencia  = value!;
+                                        P54Perc02Ausencia  = true;
+                                        P54Perc01Ausencia  = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                              HelpersViewLetrasSubs.formItemsDesign("Porque requiere que alguien lo acompañe"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc01Requiere  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Requiere = false;
+                                        P54Perc02Requiere = false;
+                                        P54Perc01Requiere=  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc02Requiere ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Requiere  = false;
+                                        P54Perc02Requiere  = value!;
+                                        P54Perc01Requiere =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc03Requiere ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Requiere = value!;
+                                        P54Perc02Requiere = true;
+                                        P54Perc01Requiere = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                              HelpersViewLetrasSubs.formItemsDesign("Por el clima / ambiente"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc01Clima  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Clima = false;
+                                        P54Perc02Clima = false;
+                                        P54Perc01Clima=  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc02Clima ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Clima  = false;
+                                        P54Perc02Clima  = value!;
+                                        P54Perc01Clima =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc03Clima ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Clima = value!;
+                                        P54Perc02Clima = true;
+                                        P54Perc01Clima = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                              HelpersViewLetrasSubs.formItemsDesign("Por el terreno / accesibilidad"),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc01Terreno  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Terreno = false;
+                                        P54Perc02Terreno = false;
+                                        P54Perc01Terreno=  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc02Terreno ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Terreno  = false;
+                                        P54Perc02Terreno  = value!;
+                                        P54Perc01Terreno =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc03Terreno ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Terreno = value!;
+                                        P54Perc02Terreno = true;
+                                        P54Perc01Terreno = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                              HelpersViewLetrasSubs.formItemsDesign("Otro (especifique): "),
+                              Row(
+                                children: [
+                                  const Text(
+                                    '1',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc01Otro  ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Otro = false;
+                                        P54Perc02Otro = false;
+                                        P54Perc01Otro=  value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc02Otro ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Otro  = false;
+                                        P54Perc02Otro  = value!;
+                                        P54Perc01Otro =  true;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    value: P54Perc03Otro ,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        P54Perc03Otro = value!;
+                                        P54Perc02Otro = true;
+                                        P54Perc01Otro = true;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                              Visibility(
+                                  visible: (P54Perc01Otro || P54Perc02Otro || P54Perc03Otro),
+                                  child:Column(
+                                      children: <Widget>[
+                                        HelpersViewBlancoIcon.formItemsDesign(
+                                            Icons.pending_actions,
+                                            TextFormField(
+                                              controller: widget.P54EspecificarPerc ,
+                                              decoration: const InputDecoration(
+                                                labelText: 'Especifique',
+                                              ),
+                                              validator: (value) {
+                                                return HelpersViewBlancoIcon.validateField(
+                                                    value!, widget.ParamP54EspecificarPerc );
+                                              },
+                                              maxLength: 100,
+                                            ), context),
+                                      ]
+                                  )),
                             ]
                         )),
 
+
+
+                    const SizedBox(height: 16.0),
                     GestureDetector(
                         onTap: ()  async {
                           if(
-                          (1 == 2)
+                              (_P43Perc == null) ||
+                              (_P44Perc == null) ||
+                              (_P45Perc == null) ||
+                              (_P46Perc == null) ||
+                              //46 tiene un especificar
+                              (_P47Perc == null) ||
+                              (_P48Perc == null) ||
+                              (_P49Perc == null) ||
+                              //49 tiene un especificar
+                              (widget.P50EspecificarPerc.text == null || widget.P50EspecificarPerc.text.isEmpty) ||
+                              (_P51Perc == null) ||
+                              //52 es check con especificar
+                              (_P53Perc == null)
+                          //54 es opcional
                           ){
                             showDialogValidFields(Constants.faltanCampos);
                           } else {
@@ -11911,7 +11984,10 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     GestureDetector(
                         onTap: ()  async {
                           if(
-                          (1 == 2)
+                              (_P55Perc == null) ||
+                              (_P56Perc == null) ||
+                              (_P57Perc == null)
+                          //57 tiene un otro
                           ){
                             showDialogValidFields(Constants.faltanCampos);
                           } else {

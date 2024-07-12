@@ -814,6 +814,8 @@ late final _appDatabase;
                                         showDialogValidFields(
                                             "Hubo problemas en la sincronización");
                                       } else {
+                                        //NO ESTOY SEGURO SI AGREGARLE IUN SET.
+                                        widget.total = 0;
                                         showDialogValidFields(
                                             "Sincronización exitosa");
                                       }
