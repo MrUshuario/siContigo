@@ -362,7 +362,7 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
-          Constants.tituloMenudeOpciones,
+          Constants.tituloMenudeOpcionestres,
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 27, 65, 187),

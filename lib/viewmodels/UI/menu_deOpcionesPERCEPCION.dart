@@ -898,7 +898,75 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
         });
       }
 
+
+
+      if (widget.formData!.p30percepcion != null  && widget.formData!.p30percepcion!.isNotEmpty) {
+        setState(() {
+          if( widget.formData!.p30percepcion!.contains('A')){isCheckedP30Opcion01 = true;}
+          if( widget.formData!.p30percepcion!.contains('B')){isCheckedP30Opcion02 = true;}
+          if( widget.formData!.p30percepcion!.contains('C')){isCheckedP30Opcion03 = true;}
+          if( widget.formData!.p30percepcion!.contains('D')){isCheckedP30Opcion04 = true;}
+          if( widget.formData!.p30percepcion!.contains('E')){isCheckedP30Opcion05 = true;}
+          if( widget.formData!.p30percepcion!.contains('F')){isCheckedP30Opcion06 = true;}
+          if( widget.formData!.p30percepcion!.contains('G')){isCheckedP30Opcion07 = true;}
+          if( widget.formData!.p30percepcion!.contains('H')){isCheckedP30Opcion08 = true;}
+          if( widget.formData!.p30percepcion!.contains('I')){isCheckedP30Opcion09 = true;}
+          if( widget.formData!.p30percepcion!.contains('J')){isCheckedP30Opcion10 = true;}
+          if( widget.formData!.p30percepcion!.contains('K')){isCheckedP30Opcion11 = true;}
+          if( widget.formData!.p30percepcion!.contains('L')){isCheckedP30Opcion12 = true;}
+          if( widget.formData!.p30percepcion!.contains('M')){isCheckedP30Opcion13 = true;}
+          if( widget.formData!.p30percepcion!.contains('N')){isCheckedP30Opcion14 = true;}
+        });
+      }
+
+
       //30 31 32 33 is checked
+      /*
+      if (widget.formData!.P32Perc01 != null) {
+        setState(() {
+          switch (widget.formData!.p36percepcion) {
+            case 0:
+              _P32Perc01 = P32Perc01.esposa;
+            case 1:
+              _P32Perc01 = P32Perc01.conviviente;
+            case 2:
+              _P32Perc01 = P32Perc01.hijo;
+            case 3:
+              _P32Perc01 = P32Perc01.hijastro;
+            case 4:
+              _P32Perc01 = P32Perc01.yerno;
+            case 5:
+              _P32Perc01 = P32Perc01.nieto;
+            case 6:
+              _P32Perc01 = P32Perc01.nieto;
+            case 7:
+              _P32Perc01 = P32Perc01.suegro;
+            case 8:
+              _P32Perc01 = P32Perc01.hermano;
+            case 9:
+              _P32Perc01 = P32Perc01.trabajador;
+            case 10:
+              _P32Perc01 = P32Perc01.otropariente;
+            case 11:
+              _P32Perc01 = P32Perc01.otronopariente;
+          }
+        });
+      }
+
+    P32Perc01 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+    P32Perc02 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+    P32Perc03 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+    P32Perc04 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+    P32Perc05 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+    P32Perc06 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+    P32Perc07 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+    P32Perc08 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+    P32Perc09 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+    P32Perc10 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+    P32Perc11 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+    P32Perc12 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+    P32Perc13 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente }
+    P32Perc14 { esposa, conviviente, hijo, hijastro, yerno, nieto, padres, suegro, hermano, trabajador, otropariente, otronopariente } */
 
       if (widget.formData!.p34percepcion != null) {
         setState(() {
@@ -1741,6 +1809,192 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     if (_P31Perc14 == P31Perc14.cuidador) {PercP31 = "${PercP31}14-Cuidador,";}
     if (_P31Perc14 == P31Perc14.familiar) {PercP31 = "${PercP31}14-Familiar,";}
 
+
+    if (_P32Perc01 == P32Perc01.esposa) {PercP32 = "${PercP32}01-Esposa,";}
+    if (_P32Perc01 == P32Perc01.conviviente) {PercP32 = "${PercP32}01-Conviviente,";}
+    if (_P32Perc01 == P32Perc01.hijo) {PercP32 = "${PercP32}01-Hijo,";}
+    if (_P32Perc01 == P32Perc01.hijastro) {PercP32 = "${PercP32}01-Hijastro,";}
+    if (_P32Perc01 == P32Perc01.yerno) {PercP32 = "${PercP32}01-Yerno,";}
+    if (_P32Perc01 == P32Perc01.nieto) {PercP32 = "${PercP32}01-Nieto,";}
+    if (_P32Perc01 == P32Perc01.padres) {PercP32 = "${PercP32}01-Padres,";}
+    if (_P32Perc01 == P32Perc01.suegro) {PercP32 = "${PercP32}01-Suegro/Nuera,";}
+    if (_P32Perc01 == P32Perc01.hermano) {PercP32 = "${PercP32}01-Hermano/a,";}
+    if (_P32Perc01 == P32Perc01.trabajador) {PercP32 = "${PercP32}01-Trabajador,";}
+    if (_P32Perc01 == P32Perc01.otropariente) {PercP32 = "${PercP32}01-Pariente,";}
+    if (_P32Perc01 == P32Perc01.otronopariente) {PercP32 = "${PercP32}01-No Pariente,";}
+
+    if (_P32Perc02 == P32Perc02.esposa) {PercP32 = "${PercP32}02-Esposa,";}
+    if (_P32Perc02 == P32Perc02.conviviente) {PercP32 = "${PercP32}02-Conviviente,";}
+    if (_P32Perc02 == P32Perc02.hijo) {PercP32 = "${PercP32}02-Hijo,";}
+    if (_P32Perc02 == P32Perc02.hijastro) {PercP32 = "${PercP32}02-Hijastro,";}
+    if (_P32Perc02 == P32Perc02.yerno) {PercP32 = "${PercP32}02-Yerno,";}
+    if (_P32Perc02 == P32Perc02.nieto) {PercP32 = "${PercP32}02-Nieto,";}
+    if (_P32Perc02 == P32Perc02.padres) {PercP32 = "${PercP32}02-Padres,";}
+    if (_P32Perc02 == P32Perc02.suegro) {PercP32 = "${PercP32}02-Suegro/Nuera,";}
+    if (_P32Perc02 == P32Perc02.hermano) {PercP32 = "${PercP32}02-Hermano/a,";}
+    if (_P32Perc02 == P32Perc02.trabajador) {PercP32 = "${PercP32}02-Trabajador,";}
+    if (_P32Perc02 == P32Perc02.otropariente) {PercP32 = "${PercP32}02-Pariente,";}
+    if (_P32Perc02 == P32Perc02.otronopariente) {PercP32 = "${PercP32}02-No Pariente,";}
+
+    if (_P32Perc03 == P32Perc03.esposa) {PercP32 = "${PercP32}03-Esposa,";}
+    if (_P32Perc03 == P32Perc03.conviviente) {PercP32 = "${PercP32}03-Conviviente,";}
+    if (_P32Perc03 == P32Perc03.hijo) {PercP32 = "${PercP32}03-Hijo,";}
+    if (_P32Perc03 == P32Perc03.hijastro) {PercP32 = "${PercP32}03-Hijastro,";}
+    if (_P32Perc03 == P32Perc03.yerno) {PercP32 = "${PercP32}03-Yerno,";}
+    if (_P32Perc03 == P32Perc03.nieto) {PercP32 = "${PercP32}03-Nieto,";}
+    if (_P32Perc03 == P32Perc03.padres) {PercP32 = "${PercP32}03-Padres,";}
+    if (_P32Perc03 == P32Perc03.suegro) {PercP32 = "${PercP32}03-Suegro/Nuera,";}
+    if (_P32Perc03 == P32Perc03.hermano) {PercP32 = "${PercP32}03-Hermano/a,";}
+    if (_P32Perc03 == P32Perc03.trabajador) {PercP32 = "${PercP32}03-Trabajador,";}
+    if (_P32Perc03 == P32Perc03.otropariente) {PercP32 = "${PercP32}03-Pariente,";}
+    if (_P32Perc03 == P32Perc03.otronopariente) {PercP32 = "${PercP32}03-No Pariente,";}
+
+    if (_P32Perc04 == P32Perc04.esposa) {PercP32 =          "${PercP32}04-Esposa,";}
+    if (_P32Perc04 == P32Perc04.conviviente) {PercP32 =     "${PercP32}04-Conviviente,";}
+    if (_P32Perc04 == P32Perc04.hijo) {PercP32 =            "${PercP32}04-Hijo,";}
+    if (_P32Perc04 == P32Perc04.hijastro) {PercP32 =        "${PercP32}04-Hijastro,";}
+    if (_P32Perc04 == P32Perc04.yerno) {PercP32 =           "${PercP32}04-Yerno,";}
+    if (_P32Perc04 == P32Perc04.nieto) {PercP32 =           "${PercP32}04-Nieto,";}
+    if (_P32Perc04 == P32Perc04.padres) {PercP32 =          "${PercP32}04-Padres,";}
+    if (_P32Perc04 == P32Perc04.suegro) {PercP32 =          "${PercP32}04-Suegro/Nuera,";}
+    if (_P32Perc04 == P32Perc04.hermano) {PercP32 =         "${PercP32}04-Hermano/a,";}
+    if (_P32Perc04 == P32Perc04.trabajador) {PercP32 =      "${PercP32}04-Trabajador,";}
+    if (_P32Perc04 == P32Perc04.otropariente) {PercP32 =    "${PercP32}04-Pariente,";}
+    if (_P32Perc04 == P32Perc04.otronopariente) {PercP32 =  "${PercP32}04-No Pariente,";}
+
+    if (_P32Perc05 == P32Perc05.esposa) {PercP32 =          "${PercP32}05-Esposa,";}
+    if (_P32Perc05 == P32Perc05.conviviente) {PercP32 =     "${PercP32}05-Conviviente,";}
+    if (_P32Perc05 == P32Perc05.hijo) {PercP32 =            "${PercP32}05-Hijo,";}
+    if (_P32Perc05 == P32Perc05.hijastro) {PercP32 =        "${PercP32}05-Hijastro,";}
+    if (_P32Perc05 == P32Perc05.yerno) {PercP32 =           "${PercP32}05-Yerno,";}
+    if (_P32Perc05 == P32Perc05.nieto) {PercP32 =           "${PercP32}05-Nieto,";}
+    if (_P32Perc05 == P32Perc05.padres) {PercP32 =          "${PercP32}05-Padres,";}
+    if (_P32Perc05 == P32Perc05.suegro) {PercP32 =          "${PercP32}05-Suegro/Nuera,";}
+    if (_P32Perc05 == P32Perc05.hermano) {PercP32 =         "${PercP32}05-Hermano/a,";}
+    if (_P32Perc05 == P32Perc05.trabajador) {PercP32 =      "${PercP32}05-Trabajador,";}
+    if (_P32Perc05 == P32Perc05.otropariente) {PercP32 =    "${PercP32}05-Pariente,";}
+    if (_P32Perc05 == P32Perc05.otronopariente) {PercP32 =  "${PercP32}05-No Pariente,";}
+
+    if (_P32Perc06 == P32Perc06.esposa) {PercP32 =          "${PercP32}06-Esposa,";}
+    if (_P32Perc06 == P32Perc06.conviviente) {PercP32 =     "${PercP32}06-Conviviente,";}
+    if (_P32Perc06 == P32Perc06.hijo) {PercP32 =            "${PercP32}06-Hijo,";}
+    if (_P32Perc06 == P32Perc06.hijastro) {PercP32 =        "${PercP32}06-Hijastro,";}
+    if (_P32Perc06 == P32Perc06.yerno) {PercP32 =           "${PercP32}06-Yerno,";}
+    if (_P32Perc06 == P32Perc06.nieto) {PercP32 =           "${PercP32}06-Nieto,";}
+    if (_P32Perc06 == P32Perc06.padres) {PercP32 =          "${PercP32}06-Padres,";}
+    if (_P32Perc06 == P32Perc06.suegro) {PercP32 =          "${PercP32}06-Suegro/Nuera,";}
+    if (_P32Perc06 == P32Perc06.hermano) {PercP32 =         "${PercP32}06-Hermano/a,";}
+    if (_P32Perc06 == P32Perc06.trabajador) {PercP32 =      "${PercP32}06-Trabajador,";}
+    if (_P32Perc06 == P32Perc06.otropariente) {PercP32 =    "${PercP32}06-Pariente,";}
+    if (_P32Perc06 == P32Perc06.otronopariente) {PercP32 =  "${PercP32}06-No Pariente,";}
+
+    if (_P32Perc07 == P32Perc07.esposa) {PercP32 =          "${PercP32}07-Esposa,";}
+    if (_P32Perc07 == P32Perc07.conviviente) {PercP32 =     "${PercP32}07-Conviviente,";}
+    if (_P32Perc07 == P32Perc07.hijo) {PercP32 =            "${PercP32}07-Hijo,";}
+    if (_P32Perc07 == P32Perc07.hijastro) {PercP32 =        "${PercP32}07-Hijastro,";}
+    if (_P32Perc07 == P32Perc07.yerno) {PercP32 =           "${PercP32}07-Yerno,";}
+    if (_P32Perc07 == P32Perc07.nieto) {PercP32 =           "${PercP32}07-Nieto,";}
+    if (_P32Perc07 == P32Perc07.padres) {PercP32 =          "${PercP32}07-Padres,";}
+    if (_P32Perc07 == P32Perc07.suegro) {PercP32 =          "${PercP32}07-Suegro/Nuera,";}
+    if (_P32Perc07 == P32Perc07.hermano) {PercP32 =         "${PercP32}07-Hermano/a,";}
+    if (_P32Perc07 == P32Perc07.trabajador) {PercP32 =      "${PercP32}07-Trabajador,";}
+    if (_P32Perc07 == P32Perc07.otropariente) {PercP32 =    "${PercP32}07-Pariente,";}
+    if (_P32Perc07 == P32Perc07.otronopariente) {PercP32 =  "${PercP32}07-No Pariente,";}
+
+    if (_P32Perc08 == P32Perc08.esposa) {PercP32 =          "${PercP32}08-Esposa,";}
+    if (_P32Perc08 == P32Perc08.conviviente) {PercP32 =     "${PercP32}08-Conviviente,";}
+    if (_P32Perc08 == P32Perc08.hijo) {PercP32 =            "${PercP32}08-Hijo,";}
+    if (_P32Perc08 == P32Perc08.hijastro) {PercP32 =        "${PercP32}08-Hijastro,";}
+    if (_P32Perc08 == P32Perc08.yerno) {PercP32 =           "${PercP32}08-Yerno,";}
+    if (_P32Perc08 == P32Perc08.nieto) {PercP32 =           "${PercP32}08-Nieto,";}
+    if (_P32Perc08 == P32Perc08.padres) {PercP32 =          "${PercP32}08-Padres,";}
+    if (_P32Perc08 == P32Perc08.suegro) {PercP32 =          "${PercP32}08-Suegro/Nuera,";}
+    if (_P32Perc08 == P32Perc08.hermano) {PercP32 =         "${PercP32}08-Hermano/a,";}
+    if (_P32Perc08 == P32Perc08.trabajador) {PercP32 =      "${PercP32}08-Trabajador,";}
+    if (_P32Perc08 == P32Perc08.otropariente) {PercP32 =    "${PercP32}08-Pariente,";}
+    if (_P32Perc08 == P32Perc08.otronopariente) {PercP32 =  "${PercP32}08-No Pariente,";}
+
+    if (_P32Perc09 == P32Perc09.esposa) {PercP32 =          "${PercP32}09-Esposa,";}
+    if (_P32Perc09 == P32Perc09.conviviente) {PercP32 =     "${PercP32}09-Conviviente,";}
+    if (_P32Perc09 == P32Perc09.hijo) {PercP32 =            "${PercP32}09-Hijo,";}
+    if (_P32Perc09 == P32Perc09.hijastro) {PercP32 =        "${PercP32}09-Hijastro,";}
+    if (_P32Perc09 == P32Perc09.yerno) {PercP32 =           "${PercP32}09-Yerno,";}
+    if (_P32Perc09 == P32Perc09.nieto) {PercP32 =           "${PercP32}09-Nieto,";}
+    if (_P32Perc09 == P32Perc09.padres) {PercP32 =          "${PercP32}09-Padres,";}
+    if (_P32Perc09 == P32Perc09.suegro) {PercP32 =          "${PercP32}09-Suegro/Nuera,";}
+    if (_P32Perc09 == P32Perc09.hermano) {PercP32 =         "${PercP32}09-Hermano/a,";}
+    if (_P32Perc09 == P32Perc09.trabajador) {PercP32 =      "${PercP32}09-Trabajador,";}
+    if (_P32Perc09 == P32Perc09.otropariente) {PercP32 =    "${PercP32}09-Pariente,";}
+    if (_P32Perc09 == P32Perc09.otronopariente) {PercP32 =  "${PercP32}09-No Pariente,";}
+
+    if (_P32Perc10 == P32Perc10.esposa) {PercP32 =          "${PercP32}10-Esposa,";}
+    if (_P32Perc10 == P32Perc10.conviviente) {PercP32 =     "${PercP32}10-Conviviente,";}
+    if (_P32Perc10 == P32Perc10.hijo) {PercP32 =            "${PercP32}10-Hijo,";}
+    if (_P32Perc10 == P32Perc10.hijastro) {PercP32 =        "${PercP32}10-Hijastro,";}
+    if (_P32Perc10 == P32Perc10.yerno) {PercP32 =           "${PercP32}10-Yerno,";}
+    if (_P32Perc10 == P32Perc10.nieto) {PercP32 =           "${PercP32}10-Nieto,";}
+    if (_P32Perc10 == P32Perc10.padres) {PercP32 =          "${PercP32}10-Padres,";}
+    if (_P32Perc10 == P32Perc10.suegro) {PercP32 =          "${PercP32}10-Suegro/Nuera,";}
+    if (_P32Perc10 == P32Perc10.hermano) {PercP32 =         "${PercP32}10-Hermano/a,";}
+    if (_P32Perc10 == P32Perc10.trabajador) {PercP32 =      "${PercP32}10-Trabajador,";}
+    if (_P32Perc10 == P32Perc10.otropariente) {PercP32 =    "${PercP32}10-Pariente,";}
+    if (_P32Perc10 == P32Perc10.otronopariente) {PercP32 =  "${PercP32}10-No Pariente,";}
+
+    if (_P32Perc11 == P32Perc11.esposa) {PercP32 =          "${PercP32}11-Esposa,";}
+    if (_P32Perc11 == P32Perc11.conviviente) {PercP32 =     "${PercP32}11-Conviviente,";}
+    if (_P32Perc11 == P32Perc11.hijo) {PercP32 =            "${PercP32}11-Hijo,";}
+    if (_P32Perc11 == P32Perc11.hijastro) {PercP32 =        "${PercP32}11-Hijastro,";}
+    if (_P32Perc11 == P32Perc11.yerno) {PercP32 =           "${PercP32}11-Yerno,";}
+    if (_P32Perc11 == P32Perc11.nieto) {PercP32 =           "${PercP32}11-Nieto,";}
+    if (_P32Perc11 == P32Perc11.padres) {PercP32 =          "${PercP32}11-Padres,";}
+    if (_P32Perc11 == P32Perc11.suegro) {PercP32 =          "${PercP32}11-Suegro/Nuera,";}
+    if (_P32Perc11 == P32Perc11.hermano) {PercP32 =         "${PercP32}11-Hermano/a,";}
+    if (_P32Perc11 == P32Perc11.trabajador) {PercP32 =      "${PercP32}11-Trabajador,";}
+    if (_P32Perc11 == P32Perc11.otropariente) {PercP32 =    "${PercP32}11-Pariente,";}
+    if (_P32Perc11 == P32Perc11.otronopariente) {PercP32 =  "${PercP32}11-No Pariente,";}
+
+    if (_P32Perc12 == P32Perc12.esposa) {PercP32 =          "${PercP32}12-Esposa,";}
+    if (_P32Perc12 == P32Perc12.conviviente) {PercP32 =     "${PercP32}12-Conviviente,";}
+    if (_P32Perc12 == P32Perc12.hijo) {PercP32 =            "${PercP32}12-Hijo,";}
+    if (_P32Perc12 == P32Perc12.hijastro) {PercP32 =        "${PercP32}12-Hijastro,";}
+    if (_P32Perc12 == P32Perc12.yerno) {PercP32 =           "${PercP32}12-Yerno,";}
+    if (_P32Perc12 == P32Perc12.nieto) {PercP32 =           "${PercP32}12-Nieto,";}
+    if (_P32Perc12 == P32Perc12.padres) {PercP32 =          "${PercP32}12-Padres,";}
+    if (_P32Perc12 == P32Perc12.suegro) {PercP32 =          "${PercP32}12-Suegro/Nuera,";}
+    if (_P32Perc12 == P32Perc12.hermano) {PercP32 =         "${PercP32}12-Hermano/a,";}
+    if (_P32Perc12 == P32Perc12.trabajador) {PercP32 =      "${PercP32}12-Trabajador,";}
+    if (_P32Perc12 == P32Perc12.otropariente) {PercP32 =    "${PercP32}12-Pariente,";}
+    if (_P32Perc12 == P32Perc12.otronopariente) {PercP32 =  "${PercP32}12-No Pariente,";}
+
+    if (_P32Perc13 == P32Perc13.esposa) {PercP32 =          "${PercP32}13-Esposa,";}
+    if (_P32Perc13 == P32Perc13.conviviente) {PercP32 =     "${PercP32}13-Conviviente,";}
+    if (_P32Perc13 == P32Perc13.hijo) {PercP32 =            "${PercP32}13-Hijo,";}
+    if (_P32Perc13 == P32Perc13.hijastro) {PercP32 =        "${PercP32}13-Hijastro,";}
+    if (_P32Perc13 == P32Perc13.yerno) {PercP32 =           "${PercP32}13-Yerno,";}
+    if (_P32Perc13 == P32Perc13.nieto) {PercP32 =           "${PercP32}13-Nieto,";}
+    if (_P32Perc13 == P32Perc13.padres) {PercP32 =          "${PercP32}13-Padres,";}
+    if (_P32Perc13 == P32Perc13.suegro) {PercP32 =          "${PercP32}13-Suegro/Nuera,";}
+    if (_P32Perc13 == P32Perc13.hermano) {PercP32 =         "${PercP32}13-Hermano/a,";}
+    if (_P32Perc13 == P32Perc13.trabajador) {PercP32 =      "${PercP32}13-Trabajador,";}
+    if (_P32Perc13 == P32Perc13.otropariente) {PercP32 =    "${PercP32}13-Pariente,";}
+    if (_P32Perc13 == P32Perc13.otronopariente) {PercP32 =  "${PercP32}13-No Pariente,";}
+
+    if (_P32Perc14 == P32Perc14.esposa) {PercP32 =          "${PercP32}14-Esposa,";}
+    if (_P32Perc14 == P32Perc14.conviviente) {PercP32 =     "${PercP32}14-Conviviente,";}
+    if (_P32Perc14 == P32Perc14.hijo) {PercP32 =            "${PercP32}14-Hijo,";}
+    if (_P32Perc14 == P32Perc14.hijastro) {PercP32 =        "${PercP32}14-Hijastro,";}
+    if (_P32Perc14 == P32Perc14.yerno) {PercP32 =           "${PercP32}14-Yerno,";}
+    if (_P32Perc14 == P32Perc14.nieto) {PercP32 =           "${PercP32}14-Nieto,";}
+    if (_P32Perc14 == P32Perc14.padres) {PercP32 =          "${PercP32}14-Padres,";}
+    if (_P32Perc14 == P32Perc14.suegro) {PercP32 =          "${PercP32}14-Suegro/Nuera,";}
+    if (_P32Perc14 == P32Perc14.hermano) {PercP32 =         "${PercP32}14-Hermano/a,";}
+    if (_P32Perc14 == P32Perc14.trabajador) {PercP32 =      "${PercP32}14-Trabajador,";}
+    if (_P32Perc14 == P32Perc14.otropariente) {PercP32 =    "${PercP32}14-Pariente,";}
+    if (_P32Perc14 == P32Perc14.otronopariente) {PercP32 =  "${PercP32}14-No Pariente,";}
+
+
+    PercP32 = "${PercP32};";
+
     if (P33Perc01Opcion01) {PercP33 = "${PercP33}1-A,";}
     if (P33Perc02Opcion01) {PercP33 = "${PercP33}2-A,";}
     if (P33Perc03Opcion01) {PercP33 = "${PercP33}3-A,";}
@@ -2439,6 +2693,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     widget.P49EspecificarPerc!.clear();
     widget.P52EspecificarPerc!.clear();
     widget.P57EspecificarPerc!.clear();
+    widget.P42EspecificarPerc!.clear();
+    widget.P54EspecificarPerc!.clear();
     widget.formIdUsuario!.clear();
     widget.formNombreUsuario!.clear();
 
@@ -2447,6 +2703,78 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
 
     setState(() {
+
+      _P31Perc01 = null;
+      _P32Perc01 = null;
+      P33Perc03Opcion01 = false;
+      P33Perc02Opcion01 = false;
+      P33Perc01Opcion01 = false;
+      _P31Perc02 = null;
+      _P32Perc02 = null;
+      P33Perc03Opcion02 = false;
+      P33Perc02Opcion02 = false;
+      P33Perc01Opcion02 = false;
+      _P31Perc03 = null;
+      _P32Perc03 = null;
+      P33Perc03Opcion03 = false;
+      P33Perc02Opcion03 = false;
+      P33Perc01Opcion03 = false;
+      _P31Perc04 = null;
+      _P32Perc04 = null;
+      P33Perc03Opcion04 = false;
+      P33Perc02Opcion04 = false;
+      P33Perc01Opcion04 = false;
+      _P31Perc05 = null;
+      _P32Perc05 = null;
+      P33Perc03Opcion05 = false;
+      P33Perc02Opcion05 = false;
+      P33Perc01Opcion05 = false;
+      _P31Perc06 = null;
+      _P32Perc06 = null;
+      P33Perc03Opcion06 = false;
+      P33Perc02Opcion06 = false;
+      P33Perc01Opcion06 = false;
+      _P31Perc07 = null;
+      _P32Perc07 = null;
+      P33Perc03Opcion07 = false;
+      P33Perc02Opcion07 = false;
+      P33Perc01Opcion07 = false;
+      _P31Perc08 = null;
+      _P32Perc08 = null;
+      P33Perc03Opcion08 = false;
+      P33Perc02Opcion08 = false;
+      P33Perc01Opcion08 = false;
+      _P31Perc09 = null;
+      _P32Perc09 = null;
+      P33Perc03Opcion09 = false;
+      P33Perc02Opcion09 = false;
+      P33Perc01Opcion09 = false;
+      _P31Perc10 = null;
+      _P32Perc10 = null;
+      P33Perc03Opcion10 = false;
+      P33Perc02Opcion10 = false;
+      P33Perc01Opcion10 = false;
+      _P31Perc11 = null;
+      _P32Perc11 = null;
+      P33Perc03Opcion11 = false;
+      P33Perc02Opcion11 = false;
+      P33Perc01Opcion11 = false;
+      _P31Perc12 = null;
+      _P32Perc12 = null;
+      P33Perc03Opcion12 = false;
+      P33Perc02Opcion12 = false;
+      P33Perc01Opcion12 = false;
+      _P31Perc13 = null;
+      _P32Perc13 = null;
+      P33Perc03Opcion13 = false;
+      P33Perc02Opcion13 = false;
+      P33Perc01Opcion13 = false;
+      _P31Perc14 = null;
+      _P32Perc14 = null;
+      P33Perc03Opcion14 = false;
+      P33Perc02Opcion14 = false;
+      P33Perc01Opcion14 = false;
+
       Fase1 = true;
       Fase2 = false;
       Fase3 = false;
@@ -2909,14 +3237,30 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                 curve: Curves.easeInOut,
               );
 
-              if( widget.formIdUsuario.text != null && widget.formIdUsuario.text != "" ){
+              if(
+
+                  (widget.formIdUsuario.text      == null || widget.formIdUsuario.text.isEmpty) ||
+                  (widget.P01EspecificarPerc.text == null || widget.P01EspecificarPerc.text.isEmpty) ||
+                  (widget.P02EspecificarPerc.text == null || widget.P02EspecificarPerc.text.isEmpty) ||
+                  (widget.P03EspecificarPerc.text == null || widget.P03EspecificarPerc.text.isEmpty) ||
+                  (widget.P04EspecificarPerc.text == null || widget.P04EspecificarPerc.text.isEmpty) ||
+                  (_P05Perc == null) ||
+                  (widget.P06EspecificarPerc.text == null || widget.P06EspecificarPerc.text.isEmpty) ||
+                  (widget.P07EspecificarPerc.text == null || widget.P07EspecificarPerc.text.isEmpty) ||
+                  (widget.P08EspecificarPerc.text == null || widget.P08EspecificarPerc.text.isEmpty)
+              ){
+                showDialogValidFields(Constants.faltanCampos);
+              } else {
                 await guardadoFase1();
                 setState(() {
                   Fase1 = false;
                   Fase2 = true;
                 });
-              } else {
-                showDialogValidFields(Constants.faltanCampos);
+                scrollController.animateTo(
+                  0.0,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                );
               }
 
 
@@ -4638,6 +4982,10 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               setState(() {
                                 isCheckedP30Opcion01  = value!;
                                 _P31Perc01 = null;
+                                _P32Perc01 = null;
+                                P33Perc03Opcion01 = false;
+                                P33Perc02Opcion01 = false;
+                                P33Perc01Opcion01=  false;
                               });
                             },
                           ),
@@ -4692,8 +5040,6 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
                             ]
                         )),
-
-
 
                     //PREGUNTA SECUNDARIA DE LA SECUNDARIA
                     Visibility(
@@ -4899,6 +5245,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion02  = value!;
+                                _P31Perc02 = null;
+                                _P32Perc02 = null;
+                                P33Perc03Opcion02 = false;
+                                P33Perc02Opcion02 = false;
+                                P33Perc01Opcion02=  false;
                               });
                             },
                           ),
@@ -4928,6 +5279,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc02? value) {
                                       setState(() {
                                         _P31Perc02 = value;
+                                        P33Perc03Opcion02 = false;
+                                        P33Perc02Opcion02 = false;
+                                        P33Perc01Opcion02=  false;
                                       });
                                     },
                                   ),
@@ -4943,6 +5297,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc02? value) {
                                       setState(() {
                                         _P31Perc02 = value;
+                                        P33Perc03Opcion02 = false;
+                                        P33Perc02Opcion02 = false;
+                                        P33Perc01Opcion02=  false;
                                       });
                                     },),],
                               ),
@@ -5153,6 +5510,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion03  = value!;
+                                _P31Perc03 = null;
+                                _P32Perc03 = null;
+                                P33Perc03Opcion03 = false;
+                                P33Perc02Opcion03 = false;
+                                P33Perc01Opcion03=  false;
                               });
                             },
                           ),
@@ -5181,6 +5543,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc03? value) {
                                       setState(() {
                                         _P31Perc03 = value;
+                                        P33Perc03Opcion03 = false;
+                                        P33Perc02Opcion03 = false;
+                                        P33Perc01Opcion03=  false;
                                       });
                                     },
                                   ),
@@ -5196,6 +5561,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc03? value) {
                                       setState(() {
                                         _P31Perc03 = value;
+                                        P33Perc03Opcion03 = false;
+                                        P33Perc02Opcion03 = false;
+                                        P33Perc01Opcion03 =  false;
                                       });
                                     },),],
                               ),
@@ -5408,6 +5776,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion04  = value!;
+                                _P31Perc04 = null;
+                                _P32Perc04 = null;
+                                P33Perc03Opcion04 = false;
+                                P33Perc02Opcion04 = false;
+                                P33Perc01Opcion04=  false;
                               });
                             },
                           ),
@@ -5436,6 +5809,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc04? value) {
                                       setState(() {
                                         _P31Perc04 = value;
+                                        P33Perc03Opcion04 = false;
+                                        P33Perc02Opcion04 = false;
+                                        P33Perc01Opcion04=  false;
                                       });
                                     },
                                   ),
@@ -5451,6 +5827,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc04? value) {
                                       setState(() {
                                         _P31Perc04 = value;
+                                        P33Perc03Opcion04 = false;
+                                        P33Perc02Opcion04 = false;
+                                        P33Perc01Opcion04=  false;
                                       });
                                     },),],
                               ),
@@ -5663,6 +6042,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion05 = value!;
+                                _P31Perc05 = null;
+                                _P32Perc05 = null;
+                                P33Perc03Opcion05 = false;
+                                P33Perc02Opcion05 = false;
+                                P33Perc01Opcion05 = false;
                               });
                             },
                           ),
@@ -5691,6 +6075,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc05? value) {
                                       setState(() {
                                         _P31Perc05 = value;
+                                        P33Perc03Opcion05 = false;
+                                        P33Perc02Opcion05 = false;
+                                        P33Perc01Opcion05 = false;
                                       });
                                     },
                                   ),
@@ -5706,6 +6093,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc05? value) {
                                       setState(() {
                                         _P31Perc05 = value;
+                                        P33Perc03Opcion05 = false;
+                                        P33Perc02Opcion05 = false;
+                                        P33Perc01Opcion05 =  false;
                                       });
                                     },),],
                               ),
@@ -5916,6 +6306,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion06 = value!;
+                                _P31Perc06 = null;
+                                _P32Perc06 = null;
+                                P33Perc03Opcion06 = false;
+                                P33Perc02Opcion06 = false;
+                                P33Perc01Opcion06 = false;
                               });
                             },
                           ),
@@ -5944,6 +6339,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc06? value) {
                                       setState(() {
                                         _P31Perc06 = value;
+                                        P33Perc03Opcion06 = false;
+                                        P33Perc02Opcion06 = false;
+                                        P33Perc01Opcion06 = false;
                                       });
                                     },
                                   ),
@@ -5959,6 +6357,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc06? value) {
                                       setState(() {
                                         _P31Perc06 = value;
+                                        P33Perc03Opcion06 = false;
+                                        P33Perc02Opcion06 = false;
+                                        P33Perc01Opcion06 = false;
                                       });
                                     },),],
                               ),
@@ -6168,6 +6569,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion07 = value!;
+                                _P31Perc07 = null;
+                                _P32Perc07 = null;
+                                P33Perc03Opcion07 = false;
+                                P33Perc02Opcion07 = false;
+                                P33Perc01Opcion07 = false;
                               });
                             },
                           ),
@@ -6196,6 +6602,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc07? value) {
                                       setState(() {
                                         _P31Perc07 = value;
+                                        P33Perc03Opcion07 = false;
+                                        P33Perc02Opcion07 = false;
+                                        P33Perc01Opcion07 = false;
                                       });
                                     },
                                   ),
@@ -6211,6 +6620,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc07? value) {
                                       setState(() {
                                         _P31Perc07 = value;
+                                        P33Perc03Opcion07 = false;
+                                        P33Perc02Opcion07 = false;
+                                        P33Perc01Opcion07 = false;
                                       });
                                     },),],
                               ),
@@ -6420,6 +6832,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion08 = value!;
+                                _P31Perc08 = null;
+                                _P32Perc08 = null;
+                                P33Perc03Opcion08 = false;
+                                P33Perc02Opcion08 = false;
+                                P33Perc01Opcion08 = false;
                               });
                             },
                           ),
@@ -6448,6 +6865,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc08? value) {
                                       setState(() {
                                         _P31Perc08 = value;
+                                        P33Perc03Opcion08 = false;
+                                        P33Perc02Opcion08 = false;
+                                        P33Perc01Opcion08 = false;
                                       });
                                     },
                                   ),
@@ -6463,6 +6883,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc08? value) {
                                       setState(() {
                                         _P31Perc08 = value;
+                                        P33Perc03Opcion08 = false;
+                                        P33Perc02Opcion08 = false;
+                                        P33Perc01Opcion08 = false;
                                       });
                                     },),],
                               ),
@@ -6673,6 +7096,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion09 = value!;
+                                _P31Perc09 = null;
+                                _P32Perc09 = null;
+                                P33Perc03Opcion09 = false;
+                                P33Perc02Opcion09 = false;
+                                P33Perc01Opcion09 = false;
                               });
                             },
                           ),
@@ -6701,6 +7129,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc09? value) {
                                       setState(() {
                                         _P31Perc09 = value;
+                                        P33Perc03Opcion09 = false;
+                                        P33Perc02Opcion09 = false;
+                                        P33Perc01Opcion09 = false;
                                       });
                                     },
                                   ),
@@ -6716,6 +7147,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc09? value) {
                                       setState(() {
                                         _P31Perc09 = value;
+                                        P33Perc03Opcion09 = false;
+                                        P33Perc02Opcion09 = false;
+                                        P33Perc01Opcion09 = false;
                                       });
                                     },),],
                               ),
@@ -6926,6 +7360,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion10 = value!;
+                                _P31Perc10 = null;
+                                _P32Perc10 = null;
+                                P33Perc03Opcion10 = false;
+                                P33Perc02Opcion10 = false;
+                                P33Perc01Opcion10 = false;
                               });
                             },
                           ),
@@ -6954,6 +7393,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc10? value) {
                                       setState(() {
                                         _P31Perc10 = value;
+                                        P33Perc03Opcion10 = false;
+                                        P33Perc02Opcion10 = false;
+                                        P33Perc01Opcion10 = false;
                                       });
                                     },
                                   ),
@@ -6969,6 +7411,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc10? value) {
                                       setState(() {
                                         _P31Perc10 = value;
+                                        P33Perc03Opcion10 = false;
+                                        P33Perc02Opcion10 = false;
+                                        P33Perc01Opcion10 = false;
                                       });
                                     },),],
                               ),
@@ -7178,6 +7623,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion11 = value!;
+                                _P31Perc11 = null;
+                                _P32Perc11 = null;
+                                P33Perc03Opcion11 = false;
+                                P33Perc02Opcion11 = false;
+                                P33Perc01Opcion11 = false;
                               });
                             },
                           ),
@@ -7206,6 +7656,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc11? value) {
                                       setState(() {
                                         _P31Perc11 = value;
+                                        P33Perc03Opcion11 = false;
+                                        P33Perc02Opcion11 = false;
+                                        P33Perc01Opcion11 = false;
                                       });
                                     },
                                   ),
@@ -7221,6 +7674,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc11? value) {
                                       setState(() {
                                         _P31Perc11 = value;
+                                        P33Perc03Opcion11 = false;
+                                        P33Perc02Opcion11 = false;
+                                        P33Perc01Opcion11 = false;
                                       });
                                     },),],
                               ),
@@ -7430,6 +7886,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion12 = value!;
+                                _P31Perc12 = null;
+                                _P32Perc12 = null;
+                                P33Perc03Opcion12 = false;
+                                P33Perc02Opcion12 = false;
+                                P33Perc01Opcion12 = false;
                               });
                             },
                           ),
@@ -7458,6 +7919,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc12? value) {
                                       setState(() {
                                         _P31Perc12 = value;
+                                        P33Perc03Opcion12 = false;
+                                        P33Perc02Opcion12 = false;
+                                        P33Perc01Opcion12 = false;
                                       });
                                     },
                                   ),
@@ -7473,6 +7937,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc12? value) {
                                       setState(() {
                                         _P31Perc12 = value;
+                                        P33Perc03Opcion12 = false;
+                                        P33Perc02Opcion12 = false;
+                                        P33Perc01Opcion12 = false;
                                       });
                                     },),],
                               ),
@@ -7683,6 +8150,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion13 = value!;
+                                _P31Perc13 = null;
+                                _P32Perc13 = null;
+                                P33Perc03Opcion13 = false;
+                                P33Perc02Opcion13 = false;
+                                P33Perc01Opcion13 = false;
                               });
                             },
                           ),
@@ -7711,6 +8183,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc13? value) {
                                       setState(() {
                                         _P31Perc13 = value;
+                                        P33Perc03Opcion13 = false;
+                                        P33Perc02Opcion13 = false;
+                                        P33Perc01Opcion13 = false;
                                       });
                                     },
                                   ),
@@ -7726,6 +8201,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc13? value) {
                                       setState(() {
                                         _P31Perc13 = value;
+                                        P33Perc03Opcion13 = false;
+                                        P33Perc02Opcion13 = false;
+                                        P33Perc01Opcion13 = false;
                                       });
                                     },),],
                               ),
@@ -7935,6 +8413,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isCheckedP30Opcion14 = value!;
+                                _P31Perc14 = null;
+                                _P32Perc14 = null;
+                                P33Perc03Opcion14 = false;
+                                P33Perc02Opcion14 = false;
+                                P33Perc01Opcion14 = false;
                               });
                             },
                           ),
@@ -7963,6 +8446,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc14? value) {
                                       setState(() {
                                         _P31Perc14 = value;
+                                        P33Perc03Opcion14 = false;
+                                        P33Perc02Opcion14 = false;
+                                        P33Perc01Opcion14 = false;
                                       });
                                     },
                                   ),
@@ -7978,6 +8464,9 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P31Perc14? value) {
                                       setState(() {
                                         _P31Perc14 = value;
+                                        P33Perc03Opcion14 = false;
+                                        P33Perc02Opcion14 = false;
+                                        P33Perc01Opcion14 = false;
                                       });
                                     },),],
                               ),
