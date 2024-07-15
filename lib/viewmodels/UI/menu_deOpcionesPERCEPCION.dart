@@ -3616,6 +3616,14 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     onChanged: (P15Perc? value) {
                                       setState(() {
                                         _P15Perc = value;
+                                        _P16Perc = null;
+                                        widget.P16EspecificarPerc!.clear();
+                                        _P17Perc = null;
+                                        _P18Perc = null;
+                                        widget.P19EspecificarPerc!.clear();
+                                        _P20Perc = null;
+                                        _P21Perc = null;
+                                        _P22Perc = null;
                                       });
                                     },),],
                               ),
@@ -3644,6 +3652,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                                 onChanged: (P16Perc? value) {
                                                   setState(() {
                                                     _P16Perc = value;
+                                                    widget.P16EspecificarPerc!.clear();
                                                   });
                                                 },),
                                             ),
@@ -3662,6 +3671,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                                 onChanged: (P16Perc? value) {
                                                   setState(() {
                                                     _P16Perc = value;
+                                                    widget.P16EspecificarPerc!.clear();
                                                   });
                                                 },),
                                             ),
@@ -3680,6 +3690,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                                 onChanged: (P16Perc? value) {
                                                   setState(() {
                                                     _P16Perc = value;
+                                                    widget.P16EspecificarPerc!.clear();
                                                   });
                                                 },),
                                             ),
@@ -3698,6 +3709,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                                 onChanged: (P16Perc? value) {
                                                   setState(() {
                                                     _P16Perc = value;
+                                                    widget.P16EspecificarPerc!.clear();
                                                   });
                                                 },),
                                             ),
@@ -3716,6 +3728,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                                 onChanged: (P16Perc? value) {
                                                   setState(() {
                                                     _P16Perc = value;
+                                                    widget.P16EspecificarPerc!.clear();
                                                   });
                                                 },),
                                             ),
@@ -3734,6 +3747,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                                 onChanged: (P16Perc? value) {
                                                   setState(() {
                                                     _P16Perc = value;
+                                                    widget.P16EspecificarPerc!.clear();
                                                   });
                                                 },),
                                             ),
@@ -3752,6 +3766,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                                 onChanged: (P16Perc? value) {
                                                   setState(() {
                                                     _P16Perc = value;
+                                                    widget.P16EspecificarPerc!.clear();
                                                   });
                                                 },),
                                             ),
@@ -3770,6 +3785,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                                 onChanged: (P16Perc? value) {
                                                   setState(() {
                                                     _P16Perc = value;
+                                                    widget.P16EspecificarPerc!.clear();
                                                   });
                                                 },),
                                             ),
@@ -3788,6 +3804,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                                 onChanged: (P16Perc? value) {
                                                   setState(() {
                                                     _P16Perc = value;
+                                                    widget.P16EspecificarPerc!.clear();
                                                   });
                                                 },),
                                             ),
@@ -3806,6 +3823,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                                 onChanged: (P16Perc? value) {
                                                   setState(() {
                                                     _P16Perc = value;
+                                                    widget.P16EspecificarPerc!.clear();
                                                   });
                                                 },),
                                             ),
@@ -4061,6 +4079,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                               onChanged: (P21Perc? value) {
                                                 setState(() {
                                                   _P21Perc = value;
+                                                  _P22Perc = null;
                                                 });
                                               },
                                             ),
@@ -4232,8 +4251,17 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                       (widget.P12EspecificarPerc.text == null || widget.P12EspecificarPerc.text.isEmpty) ||
                                       (_P13Perc == null) ||
                                       (_P14Perc == null) ||
-                                      (_P15Perc == null)
                                     //SI LA 15 es no los demas hasta la 21 se vuelven opcionales
+                                      (_P15Perc == null) ||
+                                    //especifique 16 y opcional si marco NO
+                                      ( (_P15Perc == P15Perc.Si && _P16Perc == null ) ) ||
+                                      ( (_P15Perc == P15Perc.Si && _P17Perc == null ) ) ||
+                                      ( (_P15Perc == P15Perc.Si && _P18Perc == null ) ) ||
+                                      ( (_P15Perc == P15Perc.Si && (widget.P19EspecificarPerc.text == null || widget.P19EspecificarPerc.text.isEmpty) ) ) ||
+                                      ( (_P15Perc == P15Perc.Si && _P20Perc == null ) ) ||
+                                      ( (_P15Perc == P15Perc.Si && _P21Perc == null ) ) ||
+                                      ( (_P15Perc == P15Perc.Si && _P21Perc == P21Perc.Si && _P22Perc == null ) )
+
                                     ){
                                       showDialogValidFields(Constants.faltanCampos);
                                     } else {
@@ -4350,6 +4378,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P23Perc? value) {
                               setState(() {
                                 _P23Perc = value;
+                                widget.P23EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -4368,6 +4397,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P23Perc? value) {
                               setState(() {
                                 _P23Perc = value;
+                                widget.P23EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -4386,6 +4416,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P23Perc? value) {
                               setState(() {
                                 _P23Perc = value;
+                                widget.P23EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -4404,6 +4435,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P23Perc? value) {
                               setState(() {
                                 _P23Perc = value;
+                                widget.P23EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -4422,6 +4454,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P23Perc? value) {
                               setState(() {
                                 _P23Perc = value;
+                                widget.P23EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -4440,6 +4473,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P23Perc? value) {
                               setState(() {
                                 _P23Perc = value;
+                                widget.P23EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -4458,6 +4492,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P23Perc? value) {
                               setState(() {
                                 _P23Perc = value;
+                                widget.P23EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -4476,6 +4511,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P23Perc? value) {
                               setState(() {
                                 _P23Perc = value;
+                                widget.P23EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -8866,7 +8902,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Radio<P35Perc>(
-                            value: P35Perc.frecuente,
+                            value: P35Perc.siempre,
                             groupValue: _P35Perc,
                             onChanged: (P35Perc? value) {
                               setState(() {
@@ -9981,6 +10017,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P44Perc? value) {
                               setState(() {
                                 _P44Perc = value;
+                                widget.P44EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -9999,6 +10036,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P44Perc? value) {
                               setState(() {
                                 _P44Perc = value;
+                                widget.P44EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10017,6 +10055,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P44Perc? value) {
                               setState(() {
                                 _P44Perc = value;
+                                widget.P44EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10035,6 +10074,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P44Perc? value) {
                               setState(() {
                                 _P44Perc = value;
+                                widget.P44EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10053,6 +10093,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P44Perc? value) {
                               setState(() {
                                 _P44Perc = value;
+                                widget.P44EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10071,6 +10112,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P44Perc? value) {
                               setState(() {
                                 _P44Perc = value;
+                                widget.P44EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10137,6 +10179,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P45Perc? value) {
                               setState(() {
                                 _P45Perc = value;
+                                widget.P45EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10155,6 +10198,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P45Perc? value) {
                               setState(() {
                                 _P45Perc = value;
+                                widget.P45EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10173,6 +10217,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P45Perc? value) {
                               setState(() {
                                 _P45Perc = value;
+                                widget.P45EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10191,6 +10236,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P45Perc? value) {
                               setState(() {
                                 _P45Perc = value;
+                                widget.P45EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10255,6 +10301,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P46Perc? value) {
                               setState(() {
                                 _P46Perc = value;
+                                widget.P46EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10273,6 +10320,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P46Perc? value) {
                               setState(() {
                                 _P46Perc = value;
+                                widget.P46EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10291,6 +10339,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P46Perc? value) {
                               setState(() {
                                 _P46Perc = value;
+                                widget.P46EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10309,6 +10358,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P46Perc? value) {
                               setState(() {
                                 _P46Perc = value;
+                                widget.P46EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10327,6 +10377,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P46Perc? value) {
                               setState(() {
                                 _P46Perc = value;
+                                widget.P46EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10345,6 +10396,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P46Perc? value) {
                               setState(() {
                                 _P46Perc = value;
+                                widget.P46EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10591,6 +10643,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P49Perc? value) {
                               setState(() {
                                 _P49Perc = value;
+                                widget.P49EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10609,6 +10662,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P49Perc? value) {
                               setState(() {
                                 _P49Perc = value;
+                                widget.P49EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10627,6 +10681,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P49Perc? value) {
                               setState(() {
                                 _P49Perc = value;
+                                widget.P49EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10645,6 +10700,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P49Perc? value) {
                               setState(() {
                                 _P49Perc = value;
+                                widget.P49EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10663,6 +10719,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P49Perc? value) {
                               setState(() {
                                 _P49Perc = value;
+                                widget.P49EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10681,6 +10738,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P49Perc? value) {
                               setState(() {
                                 _P49Perc = value;
+                                widget.P49EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10699,6 +10757,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P49Perc? value) {
                               setState(() {
                                 _P49Perc = value;
+                                widget.P49EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10717,6 +10776,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P49Perc? value) {
                               setState(() {
                                 _P49Perc = value;
+                                widget.P49EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -10735,6 +10795,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (P49Perc? value) {
                               setState(() {
                                 _P49Perc = value;
+                                widget.P49EspecificarPerc!.clear();
                               });
                             },),
                         ),
@@ -11127,6 +11188,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                             onChanged: (bool? value) {
                               setState(() {
                                 P52Perc12 = value!;
+                                widget.P52EspecificarPerc!.clear();
                               });
                             },
                           ),

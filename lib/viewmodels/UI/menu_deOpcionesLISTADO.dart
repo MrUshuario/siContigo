@@ -579,6 +579,7 @@ late final _appDatabase;
             },
           ),
 
+          /* //FILTRO LUPA ENCUESTA
           IconButton(
             icon: Image.asset(Resources.lupa),
             color: Colors.white,
@@ -586,7 +587,7 @@ late final _appDatabase;
               FiltroDialog();
             },
           ),
-
+          */
 
           /*
           IconButton(
