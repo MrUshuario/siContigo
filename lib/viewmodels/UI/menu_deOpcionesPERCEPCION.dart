@@ -317,7 +317,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
       PREFname = prefs.getString('name') ?? "ERROR";
       PREFapPaterno = prefs.getString('apPaterno') ?? "ERROR";
       PREFapMaterno = prefs.getString('apMaterno') ?? "ERROR";
-      PREFnroDoc = prefs.getString('nroDoc') ?? "ERROR";
+      PREFnroDoc = prefs.getString('nroDoc') ?? "999999";
       PREFtypeUser = prefs.getString('typeUser') ?? "ERROR";
       PREFtoken = prefs.getString('token') ?? "ERROR";
 
