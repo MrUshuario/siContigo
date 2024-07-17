@@ -767,6 +767,7 @@ late final _appDatabase;
                                     //apiprovider_formulario apiForm = apiprovider_formulario();
                                     var iniciFinActividades = await widget._appDatabase.formDataModelDaoRespuesta.findAllRespuesta();
                                     bool problemas = false;
+                                    bool noautorizado = false;
                                     if (iniciFinActividades.isEmpty) {
                                       ScaffoldMessenger.of(context).showSnackBar(
                                           const SnackBar(
@@ -788,11 +789,11 @@ late final _appDatabase;
                                         print("response: $response");
                                         //BORRA LA SENTENCIA
                                         // if(response.codigo == "0105"){
-                                        if(response.codigo != "0000"){
-                                          print("ENVIO BIEN SUPONGO");
-                                          //NO BORRA PORQUE NO TENGO UN CODIGO!
+                                        if(response.codigo == "Acceso no autorizado"){
+                                          noautorizado = true;
+                                          problemas = true;
+                                        } else if (response.codigo == "0000") {
                                           widget._appDatabase.formDataModelDaoRespuesta.BorrarFormDataModels(codigosBorrar[i]!);
-                                          //widget._appDatabase.formDataModelDaoRespuesta.BorrarTodo();
                                         } else {
                                           problemas = true;
                                         }
@@ -812,8 +813,19 @@ late final _appDatabase;
                                           context); //Close your current dialog
 
                                       if(problemas){
-                                        showDialogValidFields(
-                                            "Hubo problemas en la sincronización");
+
+                                        if(noautorizado){
+
+                                          showDialogValidFieldsTOKENVENCIDO(
+                                              "Su sesión ha vencido, vuelva a iniciar sesión");
+                                        } else {
+                                          showDialogValidFields(
+                                              "Hubo problemas en la sincronización");
+                                        }
+
+
+
+
                                       } else {
                                         //NO ESTOY SEGURO SI AGREGARLE IUN SET.
                                         widget.total = 0;
@@ -1000,6 +1012,61 @@ late final _appDatabase;
                                 Icons.save,
                                 color: Color.fromARGB(255, 31, 55, 192),
                               )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  )));
+        });
+  }
+
+  void showDialogValidFieldsTOKENVENCIDO(String? msg) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              contentPadding: const EdgeInsets.all(0),
+              content: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MenudeOpcionesListado()),
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(20),
+                          decoration: const BoxDecoration(),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: Text(
+                                    msg.toString(),
+                                    style: const TextStyle(fontSize: 16),
+                                  )),
+                              InkWell(
+                                onTap: () {
+
+                                  Navigator.pop(context); // Cierra el diálogo
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => login()),
+                                  );
+
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, right: 20, bottom: 20),
+                                  child: const Text(
+                                    "Ir al Inicio",
+                                    style: const TextStyle(fontSize: 16),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -1348,57 +1415,68 @@ late final _appDatabase;
                                             List<Padron> PadronEntity  = await widget.apiVersion.post_DescargarUsuarios();
 
                                             if(PadronEntity.length>0){
-                                              setState(() {
-                                                widget.total = PadronEntity.length;
-                                                MensajeSinc = "Borrando Padrones anteriores";
-                                                progressoFin = PadronEntity.length; //TOTAL PADRONES
-                                                sumando = (100/PadronEntity.length!)/100;
-                                              });
-                                              //BORRAR TODA LA DATA EXISTENTE
-                                              await widget.formDataModelDaoPadron.BorrarTodo();
 
-                                              //AGREGAR AL QUE LO DESCARGO
-                                              PadronLogin objPadron = PadronLogin();
+                                              if(PadronEntity[0].id == 999999){
+                                                Navigator.pop(context);
+                                                showDialogValidFieldsTOKENVENCIDO(
+                                                    "Su sesión ha vencido, vuelva a iniciar sesión");
 
-                                              objPadron.id = 1;
-                                              objPadron.nombre = PREFname;
-                                              objPadron.apellidos = "$PREFapPaterno $PREFapMaterno";
-                                              objPadron.hogarDepartamento = PREFdistrito; //ES DISTRITO PERO PUSE DEPA EN LA TABLA
-                                              await widget.formDataModelDaoPadronLogin.insertFormDataModel(objPadron);
-                                              //
+                                              }else {
+                                                setState(() {
+                                                  widget.total = PadronEntity.length;
+                                                  MensajeSinc = "Borrando Padrones anteriores";
+                                                  progressoFin = PadronEntity.length; //TOTAL PADRONES
+                                                  sumando = (100/PadronEntity.length!)/100;
+                                                });
+                                                //BORRAR TODA LA DATA EXISTENTE
+                                                await widget.formDataModelDaoPadron.BorrarTodo();
 
-                                              setState(() {
-                                                MensajeSinc = "Descargando Padron";
-                                              });
+                                                //AGREGAR AL QUE LO DESCARGO
+                                                PadronLogin objPadron = PadronLogin();
 
-                                              for (int i = 0; i < PadronEntity.length; i++) {
-                                                try {
-                                                  await widget.formDataModelDaoPadron.insertFormDataModel(PadronEntity[i]);
-                                                  print("AGREGADO PADRON ${i}");
-                                                  //AUMENTAR LA BARRA
-                                                  //AUMENTA
-                                                  setState(() {
-                                                    //mostrar = true;
-                                                    //progresso = 0.0;
-                                                    progresso += (sumando);
-                                                    progressoInicio++;
-                                                    MensajeSubSinc = "$progressoInicio/$progressoFin";
-                                                  });
+                                                objPadron.id = 1;
+                                                objPadron.nombre = PREFname;
+                                                objPadron.apellidos = "$PREFapPaterno $PREFapMaterno";
+                                                objPadron.hogarDepartamento = PREFdistrito; //ES DISTRITO PERO PUSE DEPA EN LA TABLA
+                                                await widget.formDataModelDaoPadronLogin.insertFormDataModel(objPadron);
+                                                //
 
+                                                setState(() {
+                                                  MensajeSinc = "Descargando Padron";
+                                                });
+
+                                                for (int i = 0; i < PadronEntity.length; i++) {
+                                                  try {
+                                                    await widget.formDataModelDaoPadron.insertFormDataModel(PadronEntity[i]);
+                                                    print("AGREGADO PADRON ${i}");
+                                                    //AUMENTAR LA BARRA
+                                                    //AUMENTA
+                                                    setState(() {
+                                                      //mostrar = true;
+                                                      //progresso = 0.0;
+                                                      progresso += (sumando);
+                                                      progressoInicio++;
+                                                      MensajeSubSinc = "$progressoInicio/$progressoFin";
+                                                    });
+
+                                                  }
+                                                  catch (error) { print("Error saving ONDICION CANTIADAD: $error"); }
                                                 }
-                                                catch (error) { print("Error saving ONDICION CANTIADAD: $error"); }
+                                                //TERMINO
+                                                loadTotalRegister();
+                                                setState(() {
+                                                  widget.totalPadrones = PadronEntity.length;
+                                                });
+
+
+                                                Navigator.pop(
+                                                    context); //Close your current dialog
+                                                showDialogValidFields(
+                                                    "Sincronización exitosa");
                                               }
-                                              //TERMINO
-                                              loadTotalRegister();
-                                              setState(() {
-                                                widget.totalPadrones = PadronEntity.length;
-                                              });
 
 
-                                              Navigator.pop(
-                                                  context); //Close your current dialog
-                                              showDialogValidFields(
-                                                  "Sincronización exitosa");
+
 
                                             } else { print("ALGO SALIO MAL");
                                             Navigator.pop(

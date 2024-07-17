@@ -77,11 +77,27 @@ class apiprovider_menuOpciones {
           'Authorization': 'Bearer $token'
         },
       );
-      print("response login2...${response.body}");
+
+      if (response.statusCode == 200) {
+        print("response login2...${response.body}");
         final Map<String, dynamic> data = jsonDecode(response.body);
         print("response genero ...${data['object']}");
         //DEVOLVER DATOS LOGIN
         return Padron.listFromJson(data['object']);
+      } else if (response.statusCode == 401) {
+
+        List<Padron> tipo = [];
+        Padron obj = Padron();
+        obj.id = 999999;
+        tipo.add(obj);
+        return  tipo;
+
+      } else {
+        List<Padron> tipo = List.empty();
+        return  tipo;
+      }
+
+
 
       } catch (e) {
       List<Padron> tipo = List.empty();

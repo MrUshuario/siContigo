@@ -20,6 +20,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/utils/resources_apis.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/menu_login.dart';
 import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/viewmodels/form_viewsmodel_formulario.dart';
+import 'package:super_tooltip/super_tooltip.dart';
 import '../../infraestructure/dao/formdatamodeldao_padron.dart';
 import '../../infraestructure/dao/formdatamodeldao_respuestaBACKUPtresvisita.dart';
 import '../../model/t_insertarEncuestaRSPTA.dart';
@@ -34,6 +35,7 @@ import '../../utils/helpersviewBlancoIcon.dart';
 import '../../utils/helpersviewBlancoSelect.dart';
 import '../../utils/helpersviewLetrasRojas.dart';
 import '../../utils/helpersviewLetrasSubs.dart';
+import '../../utils/helpersviewLetrasToolTip.dart';
 import '../../utils/helperviewCabecera.dart';
 import 'menu_deOpcionesLISTADO.dart';
 
@@ -52,21 +54,36 @@ class MenudeOpcionesVisitaTres extends StatefulWidget {
   TextEditingController formIdUsuario = TextEditingController();
   TextEditingController formNombreUsuario = TextEditingController();
 
-  //P03
-  TextEditingController formP03EspecificarCtrl = TextEditingController();
-  final ParamP03EspecificarCtrl = List.filled(3, "", growable: false);
+  //P0
+  TextEditingController p01EspecificarCtrl = TextEditingController();
+  final Paramp01EspecificarCtrl = List.filled(3, "", growable: false);
+  TextEditingController p01P1EspecificarCtrl = TextEditingController();
+  final Paramp01P1EspecificarCtrl = List.filled(3, "", growable: false);
+  TextEditingController p02EspecificarCtrl = TextEditingController();
+  final Paramp02EspecificarCtrl = List.filled(3, "", growable: false);
+  TextEditingController p03EspecificarCtrl = TextEditingController();
+  final Paramp03EspecificarCtrl = List.filled(3, "", growable: false);
+  TextEditingController p04EspecificarCtrl = TextEditingController();
+  final Paramp04EspecificarCtrl = List.filled(3, "", growable: false);
+  TextEditingController p05EspecificarCtrl = TextEditingController();
+  final Paramp05EspecificarCtrl = List.filled(3, "", growable: false);
+  TextEditingController p06EspecificarCtrl = TextEditingController();
+  final Paramp06EspecificarCtrl = List.filled(3, "", growable: false);
+  TextEditingController p07EspecificarCtrl = TextEditingController();
+  final Paramp07EspecificarCtrl = List.filled(3, "", growable: false);
+  TextEditingController p08EspecificarCtrl = TextEditingController();
+  final Paramp08EspecificarCtrl = List.filled(3, "", growable: false);
+  TextEditingController p09EspecificarCtrl = TextEditingController();
+  final Paramp09EspecificarCtrl = List.filled(3, "", growable: false);
+  TextEditingController p09P1EspecificarCtrl = TextEditingController();
+  final Paramp09P1EspecificarCtrl = List.filled(3, "", growable: false);
+  TextEditingController p09P2EspecificarCtrl = TextEditingController();
+  final Paramp09P2EspecificarCtrl = List.filled(3, "", growable: false);
+  TextEditingController p10EspecificarCtrl = TextEditingController();
+  final Paramp10EspecificarCtrl = List.filled(3, "", growable: false);
+  TextEditingController p10P1EspecificarCtrl = TextEditingController();
+  final Paramp10P1EspecificarCtrl = List.filled(3, "", growable: false);
 
-  TextEditingController formP06EspecificarCtrl = TextEditingController();
-  final ParamP06EspecificarCtrl = List.filled(3, "", growable: false);
-
-  TextEditingController formP08EspecificarCtrl = TextEditingController();
-  final ParamP08EspecificarCtrl = List.filled(3, "", growable: false);
-
-  TextEditingController formP09EspecificarCtrl = TextEditingController();
-  final ParamP09EspecificarCtrl = List.filled(3, "", growable: false);
-
-  TextEditingController formP17EspecificarCtrl = TextEditingController();
-  final ParamP17EspecificarCtrl = List.filled(3, "", growable: false);
 
   //BACKUP
   bool backup = false;
@@ -95,6 +112,9 @@ class MenudeOpcionesVisitaTres extends StatefulWidget {
 
 class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
 
+  //HORA
+  String? horaFecha;
+
   //ANTES TENIAN LATE
   String? PREFname;
   String? PREFapPaterno;
@@ -110,6 +130,7 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
   String? GPSaltitude = "";
 
   String rpstP01 = "P01 ";
+  String rpstP01P1 = "P01.1 ";
   String rpstP02 = " P02 ";
   String rpstP03 = " P03 ";
   String rpstP04 = " P04 ";
@@ -118,15 +139,10 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
   String rpstP07 = " P07 ";
   String rpstP08 = " P08 ";
   String rpstP09 = " P09 ";
+  String rpstP09P1 = " P09.1 ";
+  String rpstP09P2 = " P09.2 ";
   String rpstP10 = " P10 ";
-  String rpstP11 = " P11 ";
-  String rpstP12 = " P12 ";
-  String rpstP13 = " P13 ";
-  String rpstP14 = " P14 ";
-  String rpstP15 = " P15 ";
-  String rpstP16 = " P16 ";
-  String rpstP17 = " P17 ";
-  String rpstP18 = " P18 ";
+  String rpstP10P1 = "P010.1 ";
   int puntaje = 0;
 
   //BACKUP
@@ -164,14 +180,33 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
   void initState() {
     conseguirVersion();
     revisarBackup();
+    ConseguirHora();
     if(widget.formData != null) {
 
+      if (widget.formData!.id_usuario != null) {
+        setState(() {
+          widget.formIdUsuario!.text = widget.formData!.id_usuario!.toString();
+        });
+      }
 
     }
 
     // TODO: implement initState
     super.initState();
   }
+
+  final _OE1 = SuperTooltipController();
+  final _OE2 = SuperTooltipController();
+  final _OE3 = SuperTooltipController();
+  final _OE4 = SuperTooltipController();
+
+
+
+
+
+
+
+
 
   bool isSatelliteGreen=false;
 
@@ -201,6 +236,21 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
     });
   }
 
+  void ConseguirHora() {
+    //CONSEGUIR HORA
+    String horamin = "";
+    DateTime now = DateTime.now();
+    int hour = now.hour;
+    int hour12 = (now.hour == 0) ? 12 : now.hour % 12;
+    String amPm = (now.hour < 12) ? 'AM' : 'PM';
+    int minut = now.minute;
+    horamin = "${hour12}:${minut} ${amPm}";
+
+    setState(() {
+      horaFecha = horamin;
+    });
+  }
+
   Future<void> capturarCoordenadas() async{
     HelpersViewCabecera.CoordenadasGPS(context).then((value) async {
       // Luego de recopilar la ubicación y la fecha, actualiza el estado del icono
@@ -223,6 +273,63 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
 
 
   Future<void> guardadoFase2() async{
+
+    rpstP01 = "${rpstP01}${widget.p01EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p01EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p01EspecificarCtrl!.text;
+
+    rpstP01P1 = "${rpstP01P1}${widget.p01P1EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p01P1EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p01P1EspecificarCtrl!.text;
+
+    rpstP02 = "${rpstP02}${widget.p02EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p02EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p02EspecificarCtrl!.text;
+
+    rpstP03 = "${rpstP03}${widget.p03EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p03EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p03EspecificarCtrl!.text;
+
+    rpstP04 = "${rpstP04}${widget.p04EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p04EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p04EspecificarCtrl!.text;
+
+    rpstP05 = "${rpstP05}${widget.p05EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p05EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p05EspecificarCtrl!.text;
+
+    rpstP06 = "${rpstP06}${widget.p06EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p06EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p06EspecificarCtrl!.text;
+
+    rpstP07 = "${rpstP07}${widget.p07EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p07EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p07EspecificarCtrl!.text;
+
+    rpstP08 = "${rpstP08}${widget.p08EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p08EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p08EspecificarCtrl!.text;
+
+    rpstP09 = "${rpstP09}${widget.p09EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p09EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p09EspecificarCtrl!.text;
+
+    rpstP09P1 = "${rpstP09P1}${widget.p09P1EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p09P1EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p09P1EspecificarCtrl!.text;
+
+    rpstP09P2 = "${rpstP09P2}${widget.p09P2EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p09P2EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p09P2EspecificarCtrl!.text;
+
+    rpstP10 = "${rpstP10}${widget.p10EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p10EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p10EspecificarCtrl!.text;
+
+    rpstP10P1 = "${rpstP10P1}${widget.p10P1EspecificarCtrl!.text};";
+    //widget.formData?.p01visita3 =widget.p10P1EspecificarCtrl!.text;
+    //widget.formDataBACKUP?.p01visita3 =widget.p10P1EspecificarCtrl!.text;
+
 
     //await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
@@ -441,12 +548,10 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
 
                   String respuestas = "";
 
-
                   respuestas = ''
                       'Respuestas:'
-                      '$rpstP01$rpstP02$rpstP03$rpstP04$rpstP05$rpstP06$rpstP07'
-                      '$rpstP08$rpstP09$rpstP10$rpstP11$rpstP12$rpstP13$rpstP14'
-                      '$rpstP15$rpstP16$rpstP17$rpstP18'
+                      '$rpstP01$rpstP01P1$rpstP02$rpstP03$rpstP04$rpstP05$rpstP06$rpstP07'
+                      '$rpstP08$rpstP09$rpstP09P1$rpstP09P2$rpstP10$rpstP10P1'
                       '- Nombre:$PREFname,'
                       '- Appaterno:$PREFapPaterno,'
                       '- MatMaterno:$PREFapMaterno,'
@@ -463,6 +568,7 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
                   widget.formData?.longitud = GPSlongitude;
                   widget.formData?.latitud = GPSlatitude;
                   widget.formData?.id_usuario = widget.formIdUsuario.text;
+                  widget.formData?.tipoencuesta = 3;
                   //GPSlatitude
 
                   //FUNCION PARA SINCRONIZAR
@@ -579,9 +685,16 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
   }
 
   void cleanForm() {
-
+    widget.formIdUsuario!.clear();
+    widget.formData = RespuestaPrimeraVisita();////
+    widget.formNombreUsuario!.clear();
     setState(() {
-
+      Fase1 = true;
+      Fase2 = false;
+      Fase3 = false;
+      Fase4 = false;
+      Fase5 = false;
+      Fase6 = false;
     });
 
   }
@@ -631,11 +744,13 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
                 HelpersViewLetrasRojas.formItemsDesign( "Inicio del cuestionario"),
                 const SizedBox(height: 16.0),
                 HelpersViewLetrasSubs.formItemsDesign( "Gestor social: ${PREFname} ${PREFapPaterno} ${PREFapMaterno}"),
-
+                HelpersViewLetrasSubs.formItemsDesignGris( "Hora Inicio: ${horaFecha}"),
                 //PONER AQUI
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasToolTip(message: "●	Validar los datos registrados por la persona usuaria y/o cuidadora en el proceso de afiliación.",
+                    controller: _OE1),
 
-
-                                //DNI & BUSCAR
+               //DNI & BUSCAR
                 Row(
                   children: [
 
@@ -751,19 +866,351 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
             child:Column(
               children: <Widget>[
 
-                //BOTON PARA PRESEGUIR
+                HelpersViewLetrasRojas.formItemsDesign( "MATRIZ DE CONSISTENCIA TERCERA VISITA"),
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasRojas.formItemsDesign( "CUESTIONARIO N° 3"),
 
+
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasToolTip(message: "●	Objetivo: Registrar y hacer el seguimiento a las metas de "
+                    "corto y mediano plazo, establecidas en el plan de metas concretas de la persona con discapacidad.",
+                    controller: _OE2),
+                HelpersViewLetrasSubs.formItemsDesign( "1) ¿Se logró cumplir con las metas concretas de corto y/o mediano plazo?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p01EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp01EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "1.1) ¿En qué medida se dio el cumplimiento?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p01P1EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp01P1EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "2) ¿Qué dificultades encontró para no realizar sus metas de corto y mediano plazo?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p02EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp02EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "3) ¿De qué manera considera usted que el Programa "
+                    "Contigo lo pueda apoyar a lograr sus metas de corto o mediano plazo?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p03EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp03EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasToolTip(message: "●	Verificar la situación de riesgo social de la persona con discapacidad severa, usuario de Programa Contigo.",
+                    controller: _OE3),
+                HelpersViewLetrasSubs.formItemsDesign( "4) ¿Con quién vive usted?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p04EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp04EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "5) ¿Usted tiene amigos, familiares, vecinos a los que suele visitar?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p05EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp05EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "6) ¿Recibe ayuda en sus actividades diarias?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p06EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp06EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "7) ¿Cuál es su ingreso económico en su hogar?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p07EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp07EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "8) ¿Qué tipo de vivienda tiene?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p08EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp08EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+                HelpersViewLetrasToolTip(message: "●	Orientar sobre las redes de apoyo social disponibles en la jurisdicción.",
+                    controller: _OE4),
+                HelpersViewLetrasSubs.formItemsDesign( "9) ¿Participa de alguna red de apoyo?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p09EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp09EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "9.1) Actualmente, ¿por qué no participa de alguna red de apoyo?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p09P1EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp09P1EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "9.2) ¿Está interesado de participar de alguna red de apoyo?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p09P2EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp09P2EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "10) ¿Ha identificado alguna situación de riesgo?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p10EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp10EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+
+                HelpersViewLetrasSubs.formItemsDesign( "10.1) ¿Es relacionado al cobro?"),
+
+                Column(
+                    children: <Widget>[
+                      HelpersViewBlancoIcon.formItemsDesign(
+                          Icons.pending_actions,
+                          TextFormField(
+                            controller: widget.p10P1EspecificarCtrl,
+                            decoration: const InputDecoration(
+                              labelText: '',
+                            ),
+                            validator: (value) {
+                              return HelpersViewBlancoIcon.validateField(
+                                  value!, widget.Paramp10P1EspecificarCtrl);
+                            },
+                            maxLength: 100,
+                          ), context),
+
+                    ]
+                ),
+                const SizedBox(height: 16.0),
+
+                //BOTON PARA PRESEGUIR
                 GestureDetector(
                     onTap: ()  async {
 
-                      if( 1 == 2
+                      if(
+                      (widget.p01EspecificarCtrl.text == null || widget.p01EspecificarCtrl.text.isEmpty) ||
+                      (widget.p01P1EspecificarCtrl.text == null || widget.p01P1EspecificarCtrl.text.isEmpty) ||
+                      (widget.p02EspecificarCtrl.text == null || widget.p02EspecificarCtrl.text.isEmpty) ||
+                      (widget.p03EspecificarCtrl.text == null || widget.p03EspecificarCtrl.text.isEmpty) ||
+                      (widget.p04EspecificarCtrl.text == null || widget.p04EspecificarCtrl.text.isEmpty) ||
+                      (widget.p05EspecificarCtrl.text == null || widget.p05EspecificarCtrl.text.isEmpty) ||
+                      (widget.p07EspecificarCtrl.text == null || widget.p07EspecificarCtrl.text.isEmpty) ||
+                      (widget.p08EspecificarCtrl.text == null || widget.p08EspecificarCtrl.text.isEmpty) ||
+                      (widget.p09EspecificarCtrl.text == null || widget.p09EspecificarCtrl.text.isEmpty) ||
+                      (widget.p09P1EspecificarCtrl.text == null || widget.p09P1EspecificarCtrl.text.isEmpty) ||
+                      (widget.p09P2EspecificarCtrl.text == null || widget.p09P2EspecificarCtrl.text.isEmpty) ||
+                      (widget.p10EspecificarCtrl.text == null || widget.p10EspecificarCtrl.text.isEmpty) ||
+                      (widget.p10P1EspecificarCtrl.text == null || widget.p10P1EspecificarCtrl.text.isEmpty)
                       ){
                         showDialogValidFields(Constants.faltanCampos);
                       } else {
                         await guardadoFase2();
                         setState(() {
                           Fase2 = false;
-                          Fase3 = true;
+                          Fase6 = true;
                         });
                       }
 

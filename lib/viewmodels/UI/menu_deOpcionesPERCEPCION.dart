@@ -3489,10 +3489,10 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                         keyboardType: TextInputType.number,
                                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                                         /*
-                      validator: (value) {
-                        return HelpersViewBlancoIcon.validateField(
-                            value!, widget.formIdUsuario);
-                      }, */
+                                          validator: (value) {
+                                            return HelpersViewBlancoIcon.validateField(
+                                                value!, widget.formIdUsuario);
+                                          }, */
                                         maxLength: 2,
                                       ), context),
 

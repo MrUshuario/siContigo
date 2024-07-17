@@ -1270,8 +1270,6 @@ class _MenudeOpcionesVisitaUno extends State<MenudeOpcionesVisitaUno> {
     widget.formP09EspecificarCtrl!.clear();
     widget.formP17EspecificarCtrl!.clear();
     widget.formIdUsuario!.clear();
-    widget.formNombreUsuario!.clear();
-    widget.formP17EspecificarCtrl!.clear();
     widget.formData = RespuestaPrimeraVisita();////
     widget.formNombreUsuario!.clear();
 

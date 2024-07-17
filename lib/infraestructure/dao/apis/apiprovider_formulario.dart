@@ -94,6 +94,10 @@ class apiprovider_formulario {
       print("response api_get_FormAnswerd...${response.body}");
       if (response.statusCode == 200) {
         return insertarEncuestaRSPTA.fromJson(json.decode(response.body));
+      } else if((response.statusCode == 401) ) {
+        insertarEncuestaRSPTA objaux = insertarEncuestaRSPTA();
+        objaux.codigo = "Acceso no autorizado";
+        return objaux;
       } else {
         return insertarEncuestaRSPTA.fromJson(json.decode(response.body));
       }
