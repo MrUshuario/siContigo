@@ -113,6 +113,9 @@ enum IngresoEconomico {recibenMas2050,recibenMas1537,recibenIgual1537,reciben102
 
 class _MenudeOpcionesVisitaDos extends State<MenudeOpcionesVisitaDos> {
 
+  //HORA
+  String? horaFecha;
+  String? horaFechafinal;
   //ANTES TENIAN LATE
   String? PREFname;
   String? PREFapPaterno;
@@ -199,6 +202,7 @@ class _MenudeOpcionesVisitaDos extends State<MenudeOpcionesVisitaDos> {
   void initState() {
     conseguirVersion();
     revisarBackup();
+    ConseguirHora();
     if(widget.formData != null) {
 
       if (widget.formData!.id_usuario != null) {
@@ -620,6 +624,36 @@ class _MenudeOpcionesVisitaDos extends State<MenudeOpcionesVisitaDos> {
       } else {
         widget.backup = false;
       }
+    });
+  }
+
+  void ConseguirHora() {
+    //CONSEGUIR HORA
+    String horamin = "";
+    DateTime now = DateTime.now();
+    int hour = now.hour;
+    int hour12 = (now.hour == 0) ? 12 : now.hour % 12;
+    String amPm = (now.hour < 12) ? 'AM' : 'PM';
+    int minut = now.minute;
+    horamin = "${hour12}:${minut} ${amPm}";
+
+    setState(() {
+      horaFecha = horamin;
+    });
+  }
+
+  void ConseguirHoraFinal() {
+    //CONSEGUIR HORA
+    String horamin = "";
+    DateTime now = DateTime.now();
+    int hour = now.hour;
+    int hour12 = (now.hour == 0) ? 12 : now.hour % 12;
+    String amPm = (now.hour < 12) ? 'AM' : 'PM';
+    int minut = now.minute;
+    horamin = "${hour12}:${minut} ${amPm}";
+
+    setState(() {
+      horaFechafinal = horamin;
     });
   }
 
@@ -1106,9 +1140,12 @@ class _MenudeOpcionesVisitaDos extends State<MenudeOpcionesVisitaDos> {
                   ;
 
                   //RELLENANDO
+                  ConseguirHoraFinal();
                   widget.formData?.idformato = apisResources.api_idFormato;
                   widget.formData?.id_gestor = int.parse(PREFnroDoc!);
                   widget.formData?.fecha = formatDate("dd/MM/yyyy hh:mm:ss", DateTime.now());
+                  widget.formData?.fecha_hora_fin = horaFecha;
+                  widget.formData?.fecha_hora_inicio = horaFechafinal;
                   widget.formData?.respuestas = respuestas;
                   widget.formData?.puntaje =  puntaje;
                   widget.formData?.longitud = GPSlongitude;

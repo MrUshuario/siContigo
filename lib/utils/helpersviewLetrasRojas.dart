@@ -39,6 +39,34 @@ static Widget formItemsDesign(String text) {
 }
 
 
+static Widget formItemsDesignLinea() {
+  return SingleChildScrollView( // Wrap with SingleChildScrollView
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center, // Center the Row
+      children: [
+        const SizedBox(width: 0.0), // Maintain left padding
+        Flexible( // Wrap container in Flexible
+          child: Container(
+            constraints: const BoxConstraints(
+              minWidth: 400.0, // Set minimum width
+              maxWidth: double.infinity, // Allow container to grow horizontally
+            ),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.blue,
+                  width: 2.0,
+                ),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 0.0), // Maintain right padding (optional)
+      ],
+    ),
+  );
+}
+
 
 static Widget formItemsDesign2(String text) {
   return Row(

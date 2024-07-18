@@ -16,6 +16,7 @@ class BackupMapper {
   RespuestaPrimeraVisita backuptoResp(RespuestaBACKUPprimeravisita rpta) {
     var rptabck = RespuestaPrimeraVisita();
     rptabck.id_usuario = rpta.id_usuario;
+    rptabck.id_gestor = rpta.id_gestor;
     rptabck.p01CobroPension = rpta.p01CobroPension;
     rptabck.p02TipoMeses = rpta.p02TipoMeses;
     rptabck.p03Check = rpta.p03Check;
@@ -50,6 +51,7 @@ class BackupMapper {
   RespuestaPrimeraVisita backuptoRespdos(RespuestaBACKUPsegundavisita rpta) {
     var rptabck = RespuestaPrimeraVisita();
     rptabck.id_usuario = rpta.id_usuario;
+    rptabck.id_gestor = rpta.id_gestor;
     rptabck.p01CobroPension = rpta.p01CobroPension;
     rptabck.p02TipoMeses = rpta.p02TipoMeses;
     rptabck.p03Check = rpta.p03Check;
@@ -83,6 +85,7 @@ class BackupMapper {
 
   RespuestaPrimeraVisita backuptoResptres(RespuestaBACKUPterceravisita rpta) {
     var rptabck = RespuestaPrimeraVisita();
+    rptabck.id_gestor = rpta.id_gestor;
     rptabck.id_usuario = rpta.id_usuario;
     return rptabck;
   }
@@ -91,6 +94,7 @@ class BackupMapper {
 
     var rptabck = RespuestaPrimeraVisita();
     rptabck.id_usuario = rpta.id_usuario;
+    rptabck.id_gestor = rpta.id_gestor;
     rptabck.p01percepcion = rpta.p01percepcion;
     rptabck.p02percepcion = rpta.p02percepcion;
     rptabck.p03percepcion = rpta.p03percepcion;

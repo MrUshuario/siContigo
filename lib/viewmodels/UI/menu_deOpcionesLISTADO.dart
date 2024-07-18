@@ -1571,7 +1571,7 @@ late final _appDatabase;
                               child: const Text("Visita Domiciliaria",
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 18,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.w500)),
                             ))
                     ),
@@ -1608,7 +1608,7 @@ late final _appDatabase;
                               child: const Text("Encuesta Percepcion",
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 18,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.w500)),
                             ))
                     ),
@@ -1691,7 +1691,7 @@ late final _appDatabase;
                             child: const Text("Cargar padrón de usuarios",
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 18,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w500)),
                           )),
                     ),

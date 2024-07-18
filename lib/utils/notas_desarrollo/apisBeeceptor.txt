@@ -37,6 +37,31 @@ VALIDACION PARA EL ADMIN, si es tipo usuario admin.
 CAMILITO ADMIN,
 
 
+{
+  "idformato": 1,
+  "id_usuario": "07655797",
+  "fecha": "16/07/2024",
+  "fecha_hora_inicio": "16/07/2024",
+  "fecha_hora_fin": "16/07/2024",
+  "respuestas": "Respuestaa",
+  "longitud": "-121112",
+  "latitud": "-134342",
+  "puntaje": "10",
+  "id_gestor": 1123123
+}
+
+{
+  "idformato": 0,
+  "id_usuario": 0,
+  "fecha": "m",
+  "respuestas": "Escriba lo que quiera",
+  "longitud": "t",
+  "latitud": "5",
+  "puntaje": "5"
+}
+
+
+
 VIDEO Y AUDIO PARA FLUTTER
   chewie_audio: 1.2.0
   video_player: 2.2.4

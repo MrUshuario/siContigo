@@ -11,6 +11,7 @@ class RespuestaBACKUPterceravisita {
   int? puntaje;
   String? longitud;
   String? latitud;
+
   int? id_gestor;
   //ESTO SOLO ES PARA MODIFICAR Y DEMAS
   int? p01CobroPension;

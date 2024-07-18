@@ -20,6 +20,8 @@ class RespuestaMapper {
     rptaApi.longitud = rpta.longitud;
     rptaApi.latitud = rpta.latitud;
     rptaApi.id_gestor= rpta.id_gestor;
+    rptaApi.fecha_hora_inicio= rpta.fecha_hora_inicio;
+    rptaApi.fecha_hora_fin= rpta.fecha_hora_fin;
 
     return rptaApi;
   }

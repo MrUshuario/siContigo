@@ -214,7 +214,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
   //HORA
   String? horaFecha;
-
+  String? horaFechafinal;
   //ANTES TENIAN LATE
   String? PREFname;
   String? PREFapPaterno;
@@ -1546,6 +1546,21 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
     });
   }
 
+  void ConseguirHoraFinal() {
+    //CONSEGUIR HORA
+    String horamin = "";
+    DateTime now = DateTime.now();
+    int hour = now.hour;
+    int hour12 = (now.hour == 0) ? 12 : now.hour % 12;
+    String amPm = (now.hour < 12) ? 'AM' : 'PM';
+    int minut = now.minute;
+    horamin = "${hour12}:${minut} ${amPm}";
+
+    setState(() {
+      horaFechafinal = horamin;
+    });
+  }
+
   Future<void> capturarCoordenadas() async {
     HelpersViewCabecera.CoordenadasGPS(context).then((value) async {
       // Luego de recopilar la ubicación y la fecha, actualiza el estado del icono
@@ -2526,10 +2541,12 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                   ;
 
                   //RELLENANDO
+                  ConseguirHoraFinal();
                   widget.formData?.idformato = apisResources.api_idFormato;
                   widget.formData?.id_gestor = int.parse(PREFnroDoc!);
-                  widget.formData?.fecha =
-                      formatDate("dd/MM/yyyy hh:mm:ss", DateTime.now());
+                  widget.formData?.fecha = formatDate("dd/MM/yyyy hh:mm:ss", DateTime.now());
+                  widget.formData?.fecha_hora_fin = horaFecha;
+                  widget.formData?.fecha_hora_inicio = horaFechafinal;
                   widget.formData?.respuestas = respuestas;
                   widget.formData?.puntaje = puntaje;
                   widget.formData?.longitud = GPSlongitude;
@@ -3065,7 +3082,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                       return HelpersViewBlancoIcon.validateField(
                           value!, widget.ParamP06EspecificarPerc);
                     },
-                    maxLength: 100,
+                    maxLength: 200,
                   ), context),
             ]
         ),
@@ -3084,7 +3101,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                       return HelpersViewBlancoIcon.validateField(
                           value!, widget.ParamP07EspecificarPerc);
                     },
-                    maxLength: 100,
+                    maxLength: 9,
                   ), context),
             ]
         ),
@@ -3105,7 +3122,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                       return HelpersViewBlancoIcon.validateField(
                           value!, widget.ParamP08EspecificarPerc);
                     },
-                    maxLength: 100,
+                    maxLength: 6,
                   ), context),
             ]
         ),
@@ -5069,6 +5086,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -5117,6 +5135,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               //SECUNDARIA SECUNDARIA
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
@@ -5247,6 +5266,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                 ],
                               ),
                               const SizedBox(height:16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -5334,6 +5354,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -5382,7 +5403,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
-
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               //SECUNDARIA SECUNDARIA
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
@@ -5513,6 +5534,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                 ],
                               ),
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -5598,6 +5620,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -5650,6 +5673,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
@@ -5779,6 +5803,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                 ],
                               ),
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -5864,6 +5889,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -5914,6 +5940,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               //SECUNDARIA SECUNDARIA
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
@@ -6045,6 +6072,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
 
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -6130,6 +6158,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -6178,6 +6207,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               //SECUNDARIA SECUNDARIA
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
@@ -6309,6 +6339,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
 
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -6394,6 +6425,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -6442,6 +6474,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               //SECUNDARIA SECUNDARIA
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
@@ -6572,6 +6605,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                 ],
                               ),
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -6657,6 +6691,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -6705,6 +6740,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               //SECUNDARIA SECUNDARIA
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
@@ -6835,6 +6871,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                 ],
                               ),
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -6920,6 +6957,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -6969,6 +7007,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               //SECUNDARIA SECUNDARIA
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
@@ -7099,6 +7138,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                 ],
                               ),
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -7184,6 +7224,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -7233,6 +7274,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               //SECUNDARIA SECUNDARIA
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
@@ -7363,6 +7405,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                 ],
                               ),
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -7448,6 +7491,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -7496,6 +7540,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               //SECUNDARIA SECUNDARIA
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
@@ -7626,6 +7671,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                 ],
                               ),
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -7711,6 +7757,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -7759,6 +7806,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               //SECUNDARIA SECUNDARIA
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
@@ -7889,6 +7937,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                 ],
                               ),
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -7974,6 +8023,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -8022,6 +8072,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               //SECUNDARIA SECUNDARIA
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
@@ -8153,6 +8204,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               ),
 
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -8238,6 +8290,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -8286,6 +8339,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               //SECUNDARIA SECUNDARIA
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
@@ -8416,6 +8470,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                 ],
                               ),
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [
@@ -8501,6 +8556,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "31) ¿Alguien lo asiste: ¿Cuidador o Familiar?"),
                               Row(
                                 children: [
@@ -8549,6 +8605,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         child:Column(
                             children: <Widget>[
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               //SECUNDARIA SECUNDARIA
                               HelpersViewLetrasSubs.formItemsDesign( "32) Si quien lo asiste es algún familiar, ¿cuál es su grado de parentesco?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
@@ -8679,6 +8736,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                 ],
                               ),
                               const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesignLinea(),
                               HelpersViewLetrasSubs.formItemsDesign( "33) ¿Con qué frecuencia recibe asistencia?"),
                               Row(
                                 children: [

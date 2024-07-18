@@ -12,7 +12,8 @@ class RespuestaPrimeraVisita {
   String? longitud;
   String? latitud;
   int? id_gestor;
-
+  String? fecha_hora_inicio;
+  String? fecha_hora_fin;
   int? tipoencuesta;
 
   //PRIMERA VISITA
@@ -122,7 +123,7 @@ class RespuestaPrimeraVisita {
     this.p06Establecimiento, this.p06EstablecimientoESPECIFICAR, this.p07Atendio, this.p08Check, this.p08CheckEspecificar, this.p09Check, this.p09CheckEspecificar,
     this.p10Frecuencia, this.p11Vive, this.p12Familia, this.p12FamiliaB, this.p13Ayudas, this.p13AyudasB,
     this.p14Ingreso, this.p15Tipovivienda, this.p15TipoviviendaB, this.p16Riesgo, this.p16RiesgoB, this.p17Check, this.p17CheckEspecificar,
-    this.p18Emprendimiento, this.tipoencuesta,
+    this.p18Emprendimiento, this.fecha_hora_inicio, this.fecha_hora_fin, this.tipoencuesta,
 
     this.p01percepcion,this.p02percepcion,this.p03percepcion,this.p04percepcion,this.p05percepcion,
     this.p06percepcion,this.p07percepcion,this.p08percepcion,this.p09percepcion,this.p10percepcion,
@@ -154,6 +155,8 @@ class RespuestaPrimeraVisita {
       longitud: json['longitud'] as String?,
       latitud: json['latitud'] as String?,
       id_gestor: json['id_gestor'] as int?,
+      fecha_hora_inicio: json['fecha_hora_inicio'] as String?,
+      fecha_hora_fin: json['fecha_hora_fin'] as String?,
       
       p01CobroPension: json['p01CobroPension'] as int?,
       p02TipoMeses: json['p02TipoMeses'] as int?,
@@ -274,6 +277,9 @@ class RespuestaPrimeraVisita {
       "longitud":longitud,
       "latitud":latitud,
       "id_gestor": id_gestor,
+      "fecha_hora_inicio":fecha_hora_inicio,
+      "fecha_hora_fin":fecha_hora_fin,
+
       "p01CobroPension":p01CobroPension,
       "p02TipoMeses":p02TipoMeses,
       "p03Check":p03Check,
