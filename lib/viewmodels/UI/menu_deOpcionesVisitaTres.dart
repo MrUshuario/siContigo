@@ -118,6 +118,7 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
 
   //HORA
   String? horaFecha;
+  String? horaFechaInicio;
   String? horaFechafinal;
   //ANTES TENIAN LATE
   String? PREFname;
@@ -253,23 +254,11 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
 
     setState(() {
       horaFecha = horamin;
+      horaFechaInicio = formatDate("dd/MM/yyyy hh:mm:ss", DateTime.now());
     });
   }
 
-  void ConseguirHoraFinal() {
-    //CONSEGUIR HORA
-    String horamin = "";
-    DateTime now = DateTime.now();
-    int hour = now.hour;
-    int hour12 = (now.hour == 0) ? 12 : now.hour % 12;
-    String amPm = (now.hour < 12) ? 'AM' : 'PM';
-    int minut = now.minute;
-    horamin = "${hour12}:${minut} ${amPm}";
 
-    setState(() {
-      horaFechafinal = horamin;
-    });
-  }
 
   Future<void> capturarCoordenadas() async{
     HelpersViewCabecera.CoordenadasGPS(context).then((value) async {
@@ -584,12 +573,12 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
                   ;
 
                   //RELLENANDO
-                  ConseguirHoraFinal();
+
                   widget.formData?.idformato = apisResources.api_idFormato;
                   widget.formData?.id_gestor = int.parse(PREFnroDoc!);
-                  widget.formData?.fecha = formatDate("dd/MM/yyyy hh:mm:ss", DateTime.now());
-                  widget.formData?.fecha_hora_fin = horaFecha;
-                  widget.formData?.fecha_hora_inicio = horaFechafinal;
+                  widget.formData?.fecha = formatDate("dd/MM/yyyy", DateTime.now());
+                  widget.formData?.fecha_hora_fin = formatDate("dd/MM/yyyy hh:mm:ss", DateTime.now());
+                  widget.formData?.fecha_hora_inicio = horaFechaInicio;
                   widget.formData?.respuestas = respuestas;
                   widget.formData?.puntaje =  puntaje;
                   widget.formData?.longitud = GPSlongitude;

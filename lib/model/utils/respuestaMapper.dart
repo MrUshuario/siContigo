@@ -15,7 +15,7 @@ class RespuestaMapper {
     rptaApi.idformato = rpta.idformato;
     rptaApi.id_usuario = rpta.id_usuario;
     rptaApi.fecha = rpta.fecha;
-    rptaApi.puntaje = rpta.puntaje;
+    rptaApi.puntaje = "${rpta.puntaje}";
     rptaApi.respuestas = rpta.respuestas;
     rptaApi.longitud = rpta.longitud;
     rptaApi.latitud = rpta.latitud;

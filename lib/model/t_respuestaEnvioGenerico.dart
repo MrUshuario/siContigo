@@ -7,7 +7,7 @@ class RespuestaENVIO {
   String? id_usuario;
   String? fecha;
   String? respuestas;
-  int? puntaje;
+  String? puntaje; //en los otros es int
   String? longitud;
   String? latitud;
   int? id_gestor;
@@ -25,7 +25,7 @@ class RespuestaENVIO {
       id_usuario: json['id_usuario'] as String?,
       fecha: json['fecha'] as String?,
       respuestas: json['respuestas'] as String?,
-      puntaje: json['puntaje'] as int?,
+      puntaje: json['puntaje'] as String?,
       longitud: json['longitud'] as String?,
       latitud: json['latitud'] as String?,
       id_gestor: json['id_gestor'] as int?,
