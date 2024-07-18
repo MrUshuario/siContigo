@@ -61,6 +61,9 @@ class Resources {
   static const String titulo_tercera_Visita = "Tercera Visita";
   static const int valor_terceraVisita = 3;
 
+  static const String titulo_percepciones = "Percepciones";
+  static const int valor_percepciones= 3;
+
 
 
   //STRINGS

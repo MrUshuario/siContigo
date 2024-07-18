@@ -16,6 +16,16 @@ class RespuestaPrimeraVisita {
   String? fecha_hora_fin;
   int? tipoencuesta;
 
+  //FOTO
+  String? fechaTabletFotoDos;
+  String? fechaTabletFotoTres;
+  String? fechaTabletFotoUno;
+  String? fechaTabletFotoCuatro;
+  String? fotoDos;
+  String? fotoTres;
+  String? fotoUno;
+  String? fotoCuatro;
+
   //PRIMERA VISITA
   int? p01CobroPension;
   int? p02TipoMeses;
@@ -125,6 +135,9 @@ class RespuestaPrimeraVisita {
     this.p14Ingreso, this.p15Tipovivienda, this.p15TipoviviendaB, this.p16Riesgo, this.p16RiesgoB, this.p17Check, this.p17CheckEspecificar,
     this.p18Emprendimiento, this.fecha_hora_inicio, this.fecha_hora_fin, this.tipoencuesta,
 
+    this.fechaTabletFotoUno, this.fechaTabletFotoDos, this.fechaTabletFotoTres, this.fechaTabletFotoCuatro,
+    this.fotoUno,this.fotoDos,this.fotoTres,this.fotoCuatro,
+
     this.p01percepcion,this.p02percepcion,this.p03percepcion,this.p04percepcion,this.p05percepcion,
     this.p06percepcion,this.p07percepcion,this.p08percepcion,this.p09percepcion,this.p10percepcion,
     this.p11percepcion,this.p12percepcion,this.p13percepcion,this.p14percepcion,this.p15percepcion,
@@ -185,6 +198,15 @@ class RespuestaPrimeraVisita {
       p17CheckEspecificar: json['p15TipoviviendaB'] as String?,
       p18Emprendimiento: json['p15TipoviviendaB'] as int?,
       tipoencuesta: json['tipoencuesta'] as int?,
+
+      fechaTabletFotoUno: json['fechaTabletFotoUno'] as String?,
+      fechaTabletFotoDos: json['fechaTabletFotoDos'] as String?,
+      fechaTabletFotoTres: json['fechaTabletFotoTres'] as String?,
+      fechaTabletFotoCuatro: json['fechaTabletFotoCuatro'] as String?,
+      fotoUno: json['fotoUno'] as String?,
+      fotoDos: json['fotoDos'] as String?,
+      fotoTres: json['fotoTres'] as String?,
+      fotoCuatro: json['fotoCuatro'] as String?,
 
       p01percepcion: json['p01percepcion'] as String?,
       p02percepcion: json['p02percepcion'] as String?,
@@ -279,6 +301,15 @@ class RespuestaPrimeraVisita {
       "id_gestor": id_gestor,
       "fecha_hora_inicio":fecha_hora_inicio,
       "fecha_hora_fin":fecha_hora_fin,
+
+      "fechaTabletFotoUno":fechaTabletFotoUno,
+      "fechaTabletFotoDos":fechaTabletFotoDos,
+      "fechaTabletFotoTres":fechaTabletFotoTres,
+      "fechaTabletFotoCuatro":fechaTabletFotoCuatro,
+      "fotoUno":fotoUno,
+      "fotoDos":fotoDos,
+      "fotoTres":fotoTres,
+      "fotoCuatro":fotoCuatro,
 
       "p01CobroPension":p01CobroPension,
       "p02TipoMeses":p02TipoMeses,

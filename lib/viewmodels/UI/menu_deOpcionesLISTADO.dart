@@ -368,6 +368,16 @@ late final _appDatabase;
         visibiliadad3
       ],
 
+      //PERCEPCIONES
+      /*
+        [Resources.siContigo_icono_generico,
+        Resources.titulo_percepciones,
+        terceraVisita,
+        terceraVisitaBACKUP,
+        visibiliadad3
+      ],
+       */
+
     ];
 
     /* //SI HAY VARIOS BOTONES
@@ -901,25 +911,25 @@ late final _appDatabase;
                             onTap: () {
 
                               switch (obj.tipoencuesta) {
-                                case 1:
+                                case Resources.valor_primeraVisita:
                                   Widget ContactoRefererencia = MenudeOpcionesVisitaUno(obj); //CARGO DATA
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
                                   );
-                                case 2:
+                                case Resources.valor_segundaVisita:
                                   Widget ContactoRefererencia = MenudeOpcionesVisitaDos(obj); //CARGO DATA
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
                                   );
-                                case 3:
+                                case Resources.valor_terceraVisita:
                                   Widget ContactoRefererencia = MenudeOpcionesVisitaTres(obj); //CARGO DATA
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(builder: (context) =>  ContactoRefererencia), //VOY AHI
                                   );
-                                case 4:
+                                case Resources.valor_percepciones:
                                   Widget ContactoRefererencia = MenudeOpcionesPercepcion(obj); //CARGO DATA
                                   Navigator.push(
                                     context,
@@ -1852,10 +1862,10 @@ late final _appDatabase;
                           height: MediaQuery.of(context).size.height * 0.040,
                           child: Text(
                             "${index + 1}) "
-                            "${widget.listRespuesta![index].tipoencuesta == 1 ? 'Visita 1' : ''}"
-                            "${widget.listRespuesta![index].tipoencuesta == 2 ? 'Visita 2' : ''}"
-                            "${widget.listRespuesta![index].tipoencuesta == 3 ? 'Visita 3' : ''}"
-                            "${widget.listRespuesta![index].tipoencuesta == 4 ? 'Percepciones' : ''}",
+                            "${widget.listRespuesta![index].tipoencuesta == Resources.valor_primeraVisita ? 'Visita 1' : ''}"
+                            "${widget.listRespuesta![index].tipoencuesta == Resources.valor_segundaVisita ? 'Visita 2' : ''}"
+                            "${widget.listRespuesta![index].tipoencuesta == Resources.valor_terceraVisita ? 'Visita 3' : ''}"
+                            "${widget.listRespuesta![index].tipoencuesta == Resources.valor_percepciones ? 'Percepciones' : ''}",
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 15.0,

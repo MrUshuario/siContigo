@@ -25,6 +25,8 @@ import '../../infraestructure/dao/formdatamodeldao_padron.dart';
 import '../../infraestructure/dao/formdatamodeldao_respuestaBACKUPtresvisita.dart';
 import '../../model/t_insertarEncuestaRSPTA.dart';
 import '../../model/t_padron.dart';
+import '../../model/utils/camera.dart';
+import '../../model/utils/viewdisplayfoto.dart';
 import '../../model/visitaDomiciliaria/t_respBackupprimeravisita.dart';
 import '../../model/visitaDomiciliaria/t_respBackupsegundavisita.dart';
 import '../../model/visitaDomiciliaria/t_respBackupterceravisita.dart';
@@ -48,6 +50,8 @@ class MenudeOpcionesVisitaTres extends StatefulWidget {
 
   //PADRON
   FormDataModelDaoPadron get padronsql => _appDatabase.formDataModelDaoPadron;
+
+  List<String> listMediaPath = List.empty(growable: true);
 
   GlobalKey<FormState> keyForm = GlobalKey();
   //SIGUIENTE
@@ -282,6 +286,7 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
 
   Future<void> guardadoFase1() async{
 
+    widget.formData?.tipoencuesta = Resources.valor_terceraVisita;
     widget.formData?.id_usuario = widget.formIdUsuario!.text;
     widget.formDataBACKUP?.id_usuario =widget.formIdUsuario!.text;
     await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
@@ -435,6 +440,9 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
 
   final _mostrarLoadingStreamController = StreamController<bool>.broadcast();
   final _mostrarLoadingStreamControllerPuntaje = StreamController<int>.broadcast();
+
+
+
   void CargaDialog() {
     bool mostrarLOADING = false;
     int puntajeLOADING = 0;
@@ -587,7 +595,7 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
                   widget.formData?.longitud = GPSlongitude;
                   widget.formData?.latitud = GPSlatitude;
                   widget.formData?.id_usuario = widget.formIdUsuario.text;
-                  widget.formData?.tipoencuesta = 3;
+                  //widget.formData?.tipoencuesta = Resources.valor_terceraVisita;
                   //GPSlatitude
 
                   //FUNCION PARA SINCRONIZAR
@@ -641,19 +649,14 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
       body: Center (
         child: SingleChildScrollView(
           controller: scrollController,
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              minWidth: 440.0, // Set your minimum width here
-              maxWidth: double.infinity, // Set your maximum width here
-            ),
             child: Container(
+              width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.all(41.0),
               child: Form(
                 //key: widget.keyForm,
                 child: formUI(scrollController),
               ),
             ),
-          ),
         ),
       ),
     );
@@ -698,6 +701,76 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
         });
   }
 
+  Future<void> BorrarFoto(int index) async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              contentPadding: EdgeInsets.all(0),
+              content: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      HelpersViewAlertMensajeFOTO.formItemsDesign(
+                          "¿En verdad desea borrar esta foto?", "Borrar Foto"),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        // Align row to the end
+                        children: [
+                          Spacer(), // Push remaining space to the left
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                  top: 20, right: 20, bottom: 20),
+                              child: const Text(
+                                "Cancelar",
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ),
+
+                          InkWell(
+                            onTap: () {
+                              if (widget.listMediaPath![index].isEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content:
+                                        Text("No hay fotos para eliminar")));
+                              } else {
+                                if (widget.formData!.fotoUno ==
+                                    widget.listMediaPath![index]) {
+                                  widget.formData!.fotoUno = "";
+                                } else if (widget.formData!.fotoDos ==
+                                    widget.listMediaPath![index]) {
+                                  widget.formData!.fotoDos = "";
+                                } else if (widget.formData!.fotoTres ==
+                                    widget.listMediaPath![index]) {
+                                  widget.formData!.fotoTres = "";
+                                } else if (widget.formData!.fotoCuatro ==
+                                    widget.listMediaPath![index]) {
+                                  widget.formData!.fotoCuatro = "";
+                                }
+                                setState(() {});
+                                Navigator.of(context).pop();
+                              }
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                  top: 20, right: 20, bottom: 20),
+                              child: const Text(
+                                "Aceptar",
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )));
+        });
+  }
 
   static String formatDate(String format, DateTime dateTime) {
     return DateFormat(format).format(dateTime).toString();
@@ -747,13 +820,37 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
 
   Widget formUI(ScrollController scrollController) {
 
+    widget.listMediaPath!.clear();
+
+    widget.listMediaPath!.add("");
+    widget.listMediaPath!.add("");
+    widget.listMediaPath!.add("");
+    widget.listMediaPath!.add("");
+
+    if (widget.formData!.fotoUno != null &&
+        widget.formData!.fotoUno!.isNotEmpty) {
+      widget.listMediaPath[0] = widget.formData!.fotoUno!;
+    }
+    if (widget.formData!.fotoDos != null &&
+        widget.formData!.fotoDos!.isNotEmpty) {
+      widget.listMediaPath[1] = widget.formData!.fotoDos!;
+    }
+    if (widget.formData!.fotoTres != null &&
+        widget.formData!.fotoTres!.isNotEmpty) {
+      widget.listMediaPath[2] = widget.formData!.fotoTres!;
+    }
+    if (widget.formData!.fotoCuatro != null &&
+        widget.formData!.fotoCuatro!.isNotEmpty) {
+      widget.listMediaPath[3] = widget.formData!.fotoCuatro!;
+    }
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
-        children: [
+        children: <Widget>[
 
           Visibility(
             visible: Fase1,
@@ -1210,6 +1307,7 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
                     onTap: ()  async {
 
                       if(
+
                       (widget.p01EspecificarCtrl.text == null || widget.p01EspecificarCtrl.text.isEmpty) ||
                       (widget.p01P1EspecificarCtrl.text == null || widget.p01P1EspecificarCtrl.text.isEmpty) ||
                       (widget.p02EspecificarCtrl.text == null || widget.p02EspecificarCtrl.text.isEmpty) ||
@@ -1222,6 +1320,9 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
                       (widget.p09P1EspecificarCtrl.text == null || widget.p09P1EspecificarCtrl.text.isEmpty) ||
                       (widget.p09P2EspecificarCtrl.text == null || widget.p09P2EspecificarCtrl.text.isEmpty) ||
                       (widget.p10EspecificarCtrl.text == null || widget.p10EspecificarCtrl.text.isEmpty) ||
+
+
+
                       (widget.p10P1EspecificarCtrl.text == null || widget.p10P1EspecificarCtrl.text.isEmpty)
                       ){
                         showDialogValidFields(Constants.faltanCampos);
@@ -1409,7 +1510,80 @@ class _MenudeOpcionesVisitaTres extends State<MenudeOpcionesVisitaTres> {
             child:Column(
               children: <Widget>[
 
+                SizedBox(
+                  width: double.infinity,
+                  height: 250,
+                  child: Center(
+                    child: SizedBox(
+                      child: ListView.builder( // bien hasta ahi
+                        itemCount: widget.listMediaPath!.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          var PhotoNumber = index + 1;
+                          return Card(
+                            child: ListTile(
+                              leading: Text("Foto$PhotoNumber"),
+                              title: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                // Center horizontally
+                                children: [
+                                  GestureDetector(
+                                    onTap: () async {
+                                      //await GuardarFormulario(); TIENE QUE GUARDAR ANTES
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CameraApp(widget.formData, index)));
+                                    },
+                                    child: Image.asset(Resources.fotoImg,
+                                        width: 48, height: 48),
+                                  ),
+                                  SizedBox(
+                                      width: MediaQuery.of(context).size.width * 0.02),
+                                  widget.listMediaPath![index].isEmpty
+                                      ? const Text("")
+                                      : GestureDetector(
+                                    onTap: () async {
+                                      if (widget.listMediaPath![index].isEmpty) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                            content: Text(
+                                                "No hay fotos para mostrar")));
+                                      } else {
+                                        //await GuardarFormulario(); TIENE QUE GUARDAR ANTES
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DisplayPhoto(
+                                                        widget.formData, index)));
+                                      }
+                                    },
+                                    child: Image.asset(Resources.fotoCam,
+                                        width: 48, height: 48),
+                                  ),
+                                  SizedBox(
+                                      width: MediaQuery.of(context).size.width * 0.02),
+                                  widget.listMediaPath![index].isEmpty
+                                      ? const Text("")
+                                      : GestureDetector(
+                                    onTap: () async {
+                                      await BorrarFoto(index);
+                                    },
+                                    child: Image.asset(Resources.fotoX,
+                                        width: 48, height: 48),
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  )),
+
                 HelpersViewLetrasSubs.formItemsDesign( "Para mejorar la precisión de la coordenada presioné icono del satélite, luego guarde su cuestionario presionando el icono diskette."),
+
 
               ],),
           ),
