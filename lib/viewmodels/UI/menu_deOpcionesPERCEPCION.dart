@@ -162,16 +162,16 @@ enum P18Perc3 { hombre, mujer }
 
 enum P20Perc { Si, No }
 enum P21Perc { omadep, familaires, medios, personal, yo, otro }
-enum P22Perc { omadep, familaires, medios, personal, yo, otro}
-enum P23Perc { jefe, esposa, hijo, yerno, nieto, padres, hermano, trabajador, otropariente }
-enum P24Perc { hombre, mujer }
+enum P22Perc {muybuena, buena, mala, muymala, nosabe}
+enum P23Perc {bastante, suficiente, poco, nada, nosabe}
+enum P24Perc { sigueigual, hamejorado, haempeorado, nosabe }
 
-enum P25Perc {solo, esposohijos, esposo, padreshermanos, padres}
+enum P25Perc {muybuena, buena, mala, muymala, nosabe}
 enum P26Perc {Si, No}
 enum P27Perc {Si, No}
 
-enum P28Perc {muybuena, buena, mala, muymala, nosabe}
-enum P29Perc {muybuena, buena, mala, muymala, nosabe}
+
+
 
 //30,31,32,33
 enum P31Perc14 {cuidador, familiar}
@@ -376,8 +376,6 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
   P26Perc? _P26Perc;
   P27Perc? _P27Perc;
 
-  P28Perc? _P28Perc;
-  P29Perc? _P29Perc;
 
   P31Perc14? _P31Perc14;
   P31Perc13? _P31Perc13;
@@ -881,28 +879,26 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
         });
       }
 
+      if (widget.formData!.p21percepcionEspecificar != null  && widget.formData!.p21percepcionEspecificar!.isNotEmpty) {
+        setState(() {
+          widget.P21EspecificarPerc!.text = widget.formData!.p21percepcionEspecificar!;
+        });
+      }
+
       if (widget.formData!.p22percepcion != null) {
         setState(() {
           switch (widget.formData!.p22percepcion) {
             case 0:
-              _P22Perc = P22Perc.omadep;
+              _P22Perc = P22Perc.muybuena;
             case 1:
-              _P22Perc = P22Perc.familaires;
+              _P22Perc = P22Perc.buena;
             case 2:
-              _P22Perc = P22Perc.medios;
+              _P22Perc = P22Perc.mala;
             case 3:
-              _P22Perc = P22Perc.personal;
+              _P22Perc = P22Perc.muymala;
             case 4:
-              _P22Perc = P22Perc.yo;
-            case 5:
-              _P22Perc = P22Perc.otro;
+              _P22Perc = P22Perc.nosabe;
           }
-        });
-      }
-
-      if (widget.formData!.p21percepcionEspecificar != null  && widget.formData!.p21percepcionEspecificar!.isNotEmpty) {
-        setState(() {
-          widget.P21EspecificarPerc!.text = widget.formData!.p21percepcionEspecificar!;
         });
       }
 
@@ -910,30 +906,16 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
         setState(() {
           switch (widget.formData!.p23percepcion) {
             case 0:
-              _P23Perc = P23Perc.jefe;
+              _P23Perc = P23Perc.bastante;
             case 1:
-              _P23Perc = P23Perc.esposa;
+              _P23Perc = P23Perc.suficiente;
             case 2:
-              _P23Perc = P23Perc.hijo;
+              _P23Perc = P23Perc.poco;
             case 3:
-              _P23Perc = P23Perc.yerno;
+              _P23Perc = P23Perc.nada;
             case 4:
-              _P23Perc = P23Perc.nieto;
-            case 5:
-              _P23Perc = P23Perc.padres;
-            case 6:
-              _P23Perc = P23Perc.hermano;
-            case 7:
-              _P23Perc = P23Perc.trabajador;
-            case 8:
-              _P23Perc = P23Perc.otropariente;
+              _P23Perc = P23Perc.nosabe;
           }
-        });
-      }
-
-      if (widget.formData!.p23percepcionEspecificar != null  && widget.formData!.p23percepcionEspecificar!.isNotEmpty) {
-        setState(() {
-          widget.P23EspecificarPerc!.text = widget.formData!.p23percepcionEspecificar!;
         });
       }
 
@@ -941,9 +923,13 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
         setState(() {
           switch (widget.formData!.p24percepcion) {
             case 0:
-              _P24Perc = P24Perc.hombre;
+              _P24Perc = P24Perc.sigueigual;
             case 1:
-              _P24Perc = P24Perc.mujer;
+              _P24Perc = P24Perc.hamejorado;
+            case 2:
+              _P24Perc = P24Perc.haempeorado;
+            case 3:
+              _P24Perc = P24Perc.nosabe;
           }
         });
       }
@@ -952,15 +938,15 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
         setState(() {
           switch (widget.formData!.p25percepcion) {
             case 0:
-              _P25Perc = P25Perc.solo;
+              _P25Perc = P25Perc.muybuena;
             case 1:
-              _P25Perc = P25Perc.esposohijos;
+              _P25Perc = P25Perc.buena;
             case 2:
-              _P25Perc = P25Perc.esposo;
+              _P25Perc = P25Perc.mala;
             case 3:
-              _P25Perc = P25Perc.padreshermanos;
+              _P25Perc = P25Perc.muymala;
             case 4:
-              _P25Perc = P25Perc.padres;
+              _P25Perc = P25Perc.nosabe;
           }
         });
       }
@@ -987,39 +973,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
         });
       }
 
-      if (widget.formData!.p28percepcion != null) {
-        setState(() {
-          switch (widget.formData!.p28percepcion) {
-            case 0:
-              _P28Perc = P28Perc.muybuena;
-            case 1:
-              _P28Perc = P28Perc.buena;
-            case 2:
-              _P28Perc = P28Perc.mala;
-            case 3:
-              _P28Perc = P28Perc.muymala;
-            case 4:
-              _P28Perc = P28Perc.nosabe;
-          }
-        });
-      }
 
-      if (widget.formData!.p29percepcion != null) {
-        setState(() {
-          switch (widget.formData!.p29percepcion) {
-            case 0:
-              _P29Perc = P29Perc.muybuena;
-            case 1:
-              _P29Perc = P29Perc.buena;
-            case 2:
-              _P29Perc = P29Perc.mala;
-            case 3:
-              _P29Perc = P29Perc.muymala;
-            case 4:
-              _P29Perc = P29Perc.nosabe;
-          }
-        });
-      }
 
 
 
@@ -1886,43 +1840,14 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
   }
 
   Future<void> guardadoFase3() async {
-    if (_P23Perc == P23Perc.jefe) {PercP23 = "${PercP23}Jefe/a del hogar-A;";}
-    if (_P23Perc == P23Perc.esposa) {PercP23 = "${PercP23}Esposo/a o compañero/a-B;";}
-    if (_P23Perc == P23Perc.hijo) {PercP23 = "${PercP23}Hijo/a / Hijastro/a-C;";}
-    if (_P23Perc == P23Perc.yerno) {PercP23 = "${PercP23}Yerno / nuera-D;";}
-    if (_P23Perc == P23Perc.nieto) {PercP23 = "${PercP23}Nieto/a-E;";}
-    if (_P23Perc == P23Perc.padres) {PercP23 = "${PercP23}Padre/ madre / suegro/a-F;";}
-    if (_P23Perc == P23Perc.hermano) {PercP23 = "${PercP23}Hermano/a-G;";}
-    if (_P23Perc == P23Perc.trabajador) {PercP23 = "${PercP23}Trabajador/a del hogar-H;";}
-    if (_P23Perc == P23Perc.otropariente) {PercP23 = "${PercP23}Otro/a pariente-I:${widget.P23EspecificarPerc!.text};";}
-    widget.formData?.p23percepcion = _P23Perc?.index;
-    widget.formDataBACKUP?.p23percepcion = _P23Perc?.index;
-    widget.formData?.p23percepcionEspecificar =widget.P23EspecificarPerc!.text;
-    widget.formDataBACKUP?.p23percepcionEspecificar =widget.P23EspecificarPerc!.text;
 
-    if (_P24Perc == P24Perc.hombre) {PercP24 = "${PercP24}Hombre-A;";}
-    if (_P24Perc == P24Perc.mujer) {PercP24 = "${PercP24}Mujer-B;";}
-    widget.formData?.p24percepcion = _P24Perc?.index;
-    widget.formDataBACKUP?.p24percepcion = _P24Perc?.index;
-
-    //25, 26 y 27
-    if (_P25Perc == P25Perc.solo) {PercP25 = "${PercP25}Solo-A;";}
-    if (_P25Perc == P25Perc.esposohijos) {PercP25 = "${PercP25}Esposo e Hijos-B;";}
-    if (_P25Perc == P25Perc.esposo) {PercP25 = "${PercP25}Esposo-C;";}
-    if (_P25Perc == P25Perc.padreshermanos) {PercP25 = "${PercP25}Padres y Hermanos-D;";}
-    if (_P25Perc == P25Perc.padres) {PercP25 = "${PercP25}Padres-E;";}
-    widget.formData?.p25percepcion = _P25Perc?.index;
-    widget.formDataBACKUP?.p25percepcion = _P25Perc?.index;
-
-    if (_P26Perc == P26Perc.Si) {PercP26 = "${PercP26}Sí-A;";}
-    if (_P26Perc == P26Perc.No) {PercP26 = "${PercP26}No-B;";}
-    widget.formData?.p26percepcion = _P26Perc?.index;
-    widget.formDataBACKUP?.p26percepcion = _P26Perc?.index;
-
-    if (_P27Perc == P27Perc.Si) {PercP27 = "${PercP27}Sí-A;";}
-    if (_P27Perc == P27Perc.No) {PercP27 = "${PercP27}No-B;";}
-    widget.formData?.p27percepcion = _P27Perc?.index;
-    widget.formDataBACKUP?.p27percepcion = _P27Perc?.index;
+    if (_P22Perc == P22Perc.muybuena) {PercP22 = "${PercP22}Muy buena-A;";}
+    if (_P22Perc == P22Perc.buena) {PercP22 = "${PercP22}Buena-B;";}
+    if (_P22Perc == P22Perc.mala) {PercP22 = "${PercP22}Mala-C;";}
+    if (_P22Perc == P22Perc.muymala) {PercP22 = "${PercP22}Muy mala-D;";}
+    if (_P22Perc == P22Perc.nosabe) {PercP22 = "${PercP22}No sabe / No responde-E;";}
+    widget.formData?.p22percepcion = _P22Perc?.index;
+    widget.formDataBACKUP?.p22percepcion = _P22Perc?.index;
 
     await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
   }
@@ -1930,21 +1855,15 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
   Future<void> guardadoFase4() async {
     //MODULO III parte 2
 
-    if (_P28Perc == P28Perc.muybuena) {PercP28 = "${PercP28}Muy buena-A;";}
-    if (_P28Perc == P28Perc.buena) {PercP28 = "${PercP28}Buena-B;";}
-    if (_P28Perc == P28Perc.mala) {PercP28 = "${PercP28}Mala-C;";}
-    if (_P28Perc == P28Perc.muymala) {PercP28 = "${PercP28}Muy mala-D;";}
-    if (_P28Perc == P28Perc.nosabe) {PercP28 = "${PercP28}No sabe / No responde-E;";}
-    widget.formData?.p28percepcion = _P28Perc?.index;
-    widget.formDataBACKUP?.p28percepcion = _P28Perc?.index;
 
-    if (_P29Perc == P29Perc.muybuena) {PercP29 = "${PercP29}Muy buena-A;";}
-    if (_P29Perc == P29Perc.buena) {PercP29 = "${PercP29}Buena-B;";}
-    if (_P29Perc == P29Perc.mala) {PercP29 = "${PercP29}Mala-C;";}
-    if (_P29Perc == P29Perc.muymala) {PercP29 = "${PercP29}Muy mala-D;";}
-    if (_P29Perc == P29Perc.nosabe) {PercP29 = "${PercP29}No sabe / No responde-E;";}
-    widget.formData?.p29percepcion = _P29Perc?.index;
-    widget.formDataBACKUP?.p29percepcion = _P29Perc?.index;
+
+    if (_P23Perc == P23Perc.bastante) {PercP29 = "${PercP23}Bastante-A;";}
+    if (_P23Perc == P23Perc.suficiente) {PercP29 = "${PercP23}Suficiente-B;";}
+    if (_P23Perc == P23Perc.poco) {PercP29 = "${PercP23}Poco-C;";}
+    if (_P23Perc == P23Perc.nada) {PercP29 = "${PercP23}Nada-D;";}
+    if (_P23Perc == P23Perc.nosabe) {PercP29 = "${PercP23}No sabe / No responde-E;";}
+    widget.formData?.p23percepcion = _P23Perc?.index;
+    widget.formDataBACKUP?.p23percepcion = _P23Perc?.index;
 
     //30,31,32,33
     String PercP30Check="";
@@ -2799,8 +2718,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
       _P25Perc = null;
       _P26Perc = null;
       _P27Perc = null;
-      _P28Perc = null;
-      _P29Perc = null;
+      //_P28Perc = null;
+      //_P29Perc = null;
       _P34Perc = null;
       _P35Perc = null;
       _P36Perc = null;
@@ -3052,7 +2971,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
             )),
 
         const SizedBox(height: 16.0),
-        HelpersViewLetrasRojas.formItemsDesign( "I) Identificación de Vivienda"),
+        HelpersViewLetrasRojas.formItemsDesign( "I) IDENTIFICACIÓN DE LA VIVIENDA"),
         const SizedBox(height: 16.0),
 
         //PREGUNTAS INPUT
@@ -3163,6 +3082,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     decoration: const InputDecoration(
                       labelText: '',
                     ),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     validator: (value) {
                       return HelpersViewBlancoIcon.validateField(
                           value!, widget.ParamP07EspecificarPerc);
@@ -3374,7 +3295,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                 child:Column(
                   children: <Widget>[
 
-                    HelpersViewLetrasRojas.formItemsDesign( "II) Identificación del Usuario y Cuidador"),
+                    HelpersViewLetrasRojas.formItemsDesign( "II)  IDENTIFICACIÓN DEL USUARIO, CUIDADOR Y PERSONA AUTORIZADA"),
                     const SizedBox(height: 16.0),
                     HelpersViewLetrasRojas.formItemsDesign( "Datos de la persona con discapacidad"),
                     const SizedBox(height: 16.0),
@@ -3599,8 +3520,88 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                               HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente enunciado: \n"
                                   "El Cuidador/a es la persona que cumple con la función de facilitar y/o proporcionar cuidados en las actividades de la vida cotidiana que la persona con discapacidad"
                                   " no pueda realizar o en la que requiera algún tipo de apoyo debido a su incapacidad.",
-                                  controller: _tip15),
+                                  controller: _tip13),
                               HelpersViewLetrasSubs.formItemsDesign( "13) ¿El usuario/a del programa CONTIGO cuenta con cuidador/a?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Sí',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P13Perc>(
+                                    value: P13Perc.Si,
+                                    groupValue: _P13Perc,
+                                    onChanged: (P13Perc? value) {
+                                      setState(() {
+                                        _P13Perc = value;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    'No',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P13Perc>(
+                                    value: P13Perc.No,
+                                    groupValue: _P13Perc,
+                                    onChanged: (P13Perc? value) {
+                                      setState(() {
+                                        _P13Perc = value;
+                                      });
+                                    },),],
+                              ),
+
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente enunciado: \n"
+                                  "El Autorizado/a del cobro es la persona designada y autorizada para que realice los cobros de la pensión no contributiva.",
+                                  controller: _tip14),
+                              HelpersViewLetrasSubs.formItemsDesign( "14) ¿El usuario/a del programa CONTIGO cuenta con una persona autorizado/a para el cobro de la pensión?"),
+                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Sí',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P14Perc>(
+                                    value: P14Perc.Si,
+                                    groupValue: _P14Perc,
+                                    onChanged: (P14Perc? value) {
+                                      setState(() {
+                                        _P14Perc = value;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    'No',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  Radio<P14Perc>(
+                                    value: P14Perc.No,
+                                    groupValue: _P14Perc,
+                                    onChanged: (P14Perc? value) {
+                                      setState(() {
+                                        _P14Perc = value;
+                                      });
+                                    },),],
+                              ),
+
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a, o al familiar autorizado/a para el cobro.\n"
+                                  "●	Si el usuario/a indica que él solo realiza el cobro, marcar la opción 2. Recordar que el cuidador/a no necesariamente es la persona autorizada para el cobro.",
+                                  controller: _tip15),
+                              HelpersViewLetrasSubs.formItemsDesign( "15) ¿El/la cuidador/a es el autorizado/a para realizar el cobro de la pensión del Programa CONTIGO?"),
                               HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                               Row(
@@ -3636,10 +3637,11 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     },),],
                               ),
 
+                              const SizedBox(height: 16.0),
+                              HelpersViewLetrasRojas.formItemsDesign( "Usuario/a del programa"),
+
                                 Column(
                                   children: <Widget>[
-
-
                                     const SizedBox(height: 16.0),
                                     HelpersViewLetrasToolTip(message: "●	Leer alternativas."
                                         "● Registrar para cada miembro si es que lo hubiera.",
@@ -3979,7 +3981,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     const SizedBox(height: 16.0),
                                     HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a, o al familiar autorizado/a para el cobro.",
                                         controller: _tip19),
-                                    HelpersViewLetrasSubs.formItemsDesign( "19) El/la cuidador/a ¿Qué edad tiene en años cumplidos?"),
+                                    HelpersViewLetrasSubs.formItemsDesign( "19) ¿Qué edad tiene en años cumplidos?"),
                                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                                     Row(
@@ -4008,6 +4010,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                       ],
                                     ),
 
+                                    const SizedBox(height: 16.0),
+                                    HelpersViewLetrasRojas.formItemsDesign( "Cuidador/a"),
 
                                      //CLONES
                                     const SizedBox(height: 16.0),
@@ -4347,7 +4351,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     const SizedBox(height: 16.0),
                                     HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a, o al familiar autorizado/a para el cobro.",
                                         controller: _tip19a),
-                                    HelpersViewLetrasSubs.formItemsDesign( "19) El/la cuidador/a ¿Qué edad tiene en años cumplidos?"),
+                                    HelpersViewLetrasSubs.formItemsDesign( "19) ¿Qué edad tiene en años cumplidos?"),
                                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                                     Row(
@@ -4376,6 +4380,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                       ],
                                     ),
 
+                                    const SizedBox(height: 16.0),
+                                    HelpersViewLetrasRojas.formItemsDesign( "Autorizado/a para el cobro"),
 
                                     const SizedBox(height: 16.0),
                                     HelpersViewLetrasToolTip(message: "●	Leer alternativas."
@@ -4718,7 +4724,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                     const SizedBox(height: 16.0),
                                     HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a, o al familiar autorizado/a para el cobro.",
                                         controller: _tip19b),
-                                    HelpersViewLetrasSubs.formItemsDesign( "19) El/la cuidador/a ¿Qué edad tiene en años cumplidos?"),
+                                    HelpersViewLetrasSubs.formItemsDesign( "19) ¿Qué edad tiene en años cumplidos?"),
                                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                                     Row(
@@ -4954,6 +4960,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                                       //(_P11Perc == null) ||
                                       (widget.P11EspecificarPerc.text == null || widget.P11EspecificarPerc.text.isEmpty) ||
                                       (_P12Perc == null) ||
+                                      (_P13Perc == null) ||
                                       (_P14Perc == null) ||
                                     //SI LA 15 es no los demas hasta la 21 se vuelven opcionales
                                       (_P15Perc == null) ||
@@ -5057,28 +5064,30 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                 child:Column(
                   children: <Widget>[
 
-                    HelpersViewLetrasRojas.formItemsDesign( "III) Características del Hogar"),
+                    HelpersViewLetrasRojas.formItemsDesign( "III) PERCEPCIÓN DE LA CALIDAD DE VIDA"),
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas.\n"
-                        "●	Jefe del hogar: Es la persona, a quien los miembros del hogar reconocen como tal y reside habitualmente en la vivienda, usualmente es la persona mayor de 18 años,"
-                        " sostén económico del hogar y/o responsable de las decisiones y administración de este.",
-                        controller: _tip23),
-                    HelpersViewLetrasSubs.formItemsDesign( "23) ¿Cuál es la relación de parentesco del usuario/a del Programa CONTIGO con el jefe o jefa del hogar?"),
+
+                    HelpersViewLetrasRojas.formItemsDesign( "IV) ACCESO A LA PENSIÓN NO CONTRIBUTIVA"),
+                    const SizedBox(height: 16.0),
+                    HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:"
+                        "Calidad de vida es tener cubiertas las necesidades básicas, sentirse bien física y emocionalmente y poder participar en actividades sociales y comunitarias de manera plena y satisfactoria.\n"
+                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5.",
+                        controller: _tip22),
+                    HelpersViewLetrasSubs.formItemsDesign( "22) ¿Cómo crees que ha sido tu calidad de vida en los últimos 30 días? (la del usuario/a)"), //
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
                       children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Jefe/a del hogar "),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy buena"),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Radio<P23Perc>(
-                            value: P23Perc.jefe,
-                            groupValue: _P23Perc,
-                            onChanged: (P23Perc? value) {
+                          child: Radio<P22Perc>(
+                            value: P22Perc.muybuena,
+                            groupValue: _P22Perc,
+                            onChanged: (P22Perc? value) {
                               setState(() {
-                                _P23Perc = value;
-                                widget.P23EspecificarPerc!.clear();
+                                _P22Perc = value;
                               });
                             },),
                         ),
@@ -5087,17 +5096,16 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     Row(
                       children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Esposo/a o compañero/a "),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Buena"),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Radio<P23Perc>(
-                            value: P23Perc.esposa,
-                            groupValue: _P23Perc,
-                            onChanged: (P23Perc? value) {
+                          child: Radio<P22Perc>(
+                            value: P22Perc.buena,
+                            groupValue: _P22Perc,
+                            onChanged: (P22Perc? value) {
                               setState(() {
-                                _P23Perc = value;
-                                widget.P23EspecificarPerc!.clear();
+                                _P22Perc = value;
                               });
                             },),
                         ),
@@ -5106,17 +5114,16 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     Row(
                       children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hijo/a / Hijastro/a"),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Mala"),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Radio<P23Perc>(
-                            value: P23Perc.hijo,
-                            groupValue: _P23Perc,
-                            onChanged: (P23Perc? value) {
+                          child: Radio<P22Perc>(
+                            value: P22Perc.mala,
+                            groupValue: _P22Perc,
+                            onChanged: (P22Perc? value) {
                               setState(() {
-                                _P23Perc = value;
-                                widget.P23EspecificarPerc!.clear();
+                                _P22Perc = value;
                               });
                             },),
                         ),
@@ -5125,17 +5132,16 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     Row(
                       children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Yerno / nuera"),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy mala"),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Radio<P23Perc>(
-                            value: P23Perc.yerno,
-                            groupValue: _P23Perc,
-                            onChanged: (P23Perc? value) {
+                          child: Radio<P22Perc>(
+                            value: P22Perc.muymala,
+                            groupValue: _P22Perc,
+                            onChanged: (P22Perc? value) {
                               setState(() {
-                                _P23Perc = value;
-                                widget.P23EspecificarPerc!.clear();
+                                _P22Perc = value;
                               });
                             },),
                         ),
@@ -5144,199 +5150,150 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     Row(
                       children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nieto/a"),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe / No responde"),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Radio<P23Perc>(
-                            value: P23Perc.nieto,
-                            groupValue: _P23Perc,
-                            onChanged: (P23Perc? value) {
+                          child: Radio<P22Perc>(
+                            value: P22Perc.nosabe,
+                            groupValue: _P22Perc,
+                            onChanged: (P22Perc? value) {
                               setState(() {
-                                _P23Perc = value;
-                                widget.P23EspecificarPerc!.clear();
+                                _P22Perc = value;
                               });
                             },),
                         ),
                       ],
                     ),
 
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Padre/ madre / suegro/a"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P23Perc>(
-                            value: P23Perc.padres,
-                            groupValue: _P23Perc,
-                            onChanged: (P23Perc? value) {
-                              setState(() {
-                                _P23Perc = value;
-                                widget.P23EspecificarPerc!.clear();
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Hermano/a"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P23Perc>(
-                            value: P23Perc.hermano,
-                            groupValue: _P23Perc,
-                            onChanged: (P23Perc? value) {
-                              setState(() {
-                                _P23Perc = value;
-                                widget.P23EspecificarPerc!.clear();
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Trabajador/a del hogar"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P23Perc>(
-                            value: P23Perc.trabajador,
-                            groupValue: _P23Perc,
-                            onChanged: (P23Perc? value) {
-                              setState(() {
-                                _P23Perc = value;
-                                widget.P23EspecificarPerc!.clear();
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Otro/a pariente (especificar):"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P23Perc>(
-                            value: P23Perc.otropariente,
-                            groupValue: _P23Perc,
-                            onChanged: (P23Perc? value) {
-                              setState(() {
-                                _P23Perc = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    //OTRO ESPECIFICAR
-                    Visibility(
-                        visible: (_P23Perc == P23Perc.otropariente),
-                        child:Column(
-                            children: <Widget>[
-                              HelpersViewBlancoIcon.formItemsDesign(
-                                  Icons.pending_actions,
-                                  TextFormField(
-                                    controller: widget.P23EspecificarPerc ,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Especifique',
-                                    ),
-                                    validator: (value) {
-                                      return HelpersViewBlancoIcon.validateField(
-                                          value!, widget.ParamP23EspecificarPerc );
-                                    },
-                                    maxLength: 100,
-                                  ), context),
-                            ]
-                        )),
+                    //22.1
 
                     const SizedBox(height: 16.0),
-                    HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. ",
-                        controller: _tip24),
-                    HelpersViewLetrasSubs.formItemsDesign( "24) Sexo del jefe/a del hogar"),
+                    HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
+                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.\n"
+                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5."
+                        "●	La respuesta debe ser brindada por el usuario del Programa; sin embargo, en caso el usuario/a sea menor de 18 años, "
+                        "no pueda manifestar su voluntad, o requiera ser asistido por su cuidador/a y/o familiar autorizado/a "
+                        "para el cobro, ellos podrán apoyar en las respuestas. En ese sentido, el encuestador debe marcar la opción de quién brindó la respuesta.",
+                        controller: _tip29),
+                    HelpersViewLetrasSubs.formItemsDesign( "23) ¿Cuánto ha contribuido el Programa CONTIGO a tu bienestar?"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
                       children: [
-                        const Text(
-                          'Hombre',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Bastante"),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Radio<P23Perc>(
+                            value: P23Perc.bastante,
+                            groupValue: _P23Perc,
+                            onChanged: (P23Perc? value) {
+                              setState(() {
+                                _P23Perc = value;
+                              });
+                            },),
                         ),
-                        Radio<P24Perc>(
-                          value: P24Perc.hombre,
-                          groupValue: _P24Perc,
-                          onChanged: (P24Perc? value) {
-                            setState(() {
-                              _P24Perc = value;
-                            });
-                          },
-                        ),
-                        const Text(
-                          'Mujer',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        Radio<P24Perc>(
-                          value: P24Perc.mujer,
-                          groupValue: _P24Perc,
-                          onChanged: (P24Perc? value) {
-                            setState(() {
-                              _P24Perc = value;
-                            });
-                          },),],
+                      ],
                     ),
 
-                    //COMBO DE PREGUNTA 25,26,27
+                    Row(
+                      children: [
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Suficiente"),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Radio<P23Perc>(
+                            value: P23Perc.suficiente,
+                            groupValue: _P23Perc,
+                            onChanged: (P23Perc? value) {
+                              setState(() {
+                                _P23Perc = value;
+                              });
+                            },),
+                        ),
+                      ],
+                    ),
+
+                    Row(
+                      children: [
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Poco"),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Radio<P23Perc>(
+                            value: P23Perc.poco,
+                            groupValue: _P23Perc,
+                            onChanged: (P23Perc? value) {
+                              setState(() {
+                                _P23Perc = value;
+                              });
+                            },),
+                        ),
+                      ],
+                    ),
+
+                    Row(
+                      children: [
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Nada"),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Radio<P23Perc>(
+                            value: P23Perc.nada,
+                            groupValue: _P23Perc,
+                            onChanged: (P23Perc? value) {
+                              setState(() {
+                                _P23Perc = value;
+                              });
+                            },),
+                        ),
+                      ],
+                    ),
+
+                    Row(
+                      children: [
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe/No responde"),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Radio<P23Perc>(
+                            value: P23Perc.nosabe,
+                            groupValue: _P23Perc,
+                            onChanged: (P23Perc? value) {
+                              setState(() {
+                                _P23Perc = value;
+                              });
+                            },),
+                        ),
+                      ],
+                    ),
+
+                    //23.1
 
                     const SizedBox(height: 16.0),
-                    //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. "),
-                    HelpersViewLetrasSubs.formItemsDesign( "25) En los últimos 6 meses ¿Con quién vive el usuario/a del Programa CONTIGO?"),
+                    HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
+                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.\n"
+                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 3. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 4."
+                        "●	La respuesta debe ser brindada por el usuario del Programa; sin embargo, en caso el usuario/a sea menor de 18 años, "
+                        "no pueda manifestar su voluntad, o requiera ser asistido por su cuidador/a y/o familiar autorizado/a "
+                        "para el cobro, ellos podrán apoyar en las respuestas. En ese sentido, el encuestador debe marcar la opción de quién brindó la respuesta.",
+                        controller: _tip29),
+                    HelpersViewLetrasSubs.formItemsDesign( "24) Desde que estás en el Programa CONTIGO, consideras que tu situación económica"),
                     HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
 
                     Row(
                       children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Solo/a"),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Sigue igual"),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Radio<P25Perc>(
-                            value: P25Perc.solo,
-                            groupValue: _P25Perc,
-                            onChanged: (P25Perc? value) {
+                          child: Radio<P24Perc>(
+                            value: P24Perc.sigueigual,
+                            groupValue: _P24Perc,
+                            onChanged: (P24Perc? value) {
                               setState(() {
-                                _P25Perc = value;
-                                _P26Perc = null;
-                                _P27Perc = null;
-
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con su esposo/a e hijos "),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P25Perc>(
-                            value: P25Perc.esposohijos,
-                            groupValue: _P25Perc,
-                            onChanged: (P25Perc? value) {
-                              setState(() {
-                                _P25Perc = value;
+                                _P24Perc = value;
                               });
                             },),
                         ),
@@ -5345,12 +5302,79 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     Row(
                       children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con su esposo/a"),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Ha mejorado"),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Radio<P24Perc>(
+                            value: P24Perc.hamejorado,
+                            groupValue: _P24Perc,
+                            onChanged: (P24Perc? value) {
+                              setState(() {
+                                _P24Perc = value;
+                              });
+                            },),
+                        ),
+                      ],
+                    ),
+
+                    Row(
+                      children: [
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Ha empeorado"),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Radio<P24Perc>(
+                            value: P24Perc.haempeorado,
+                            groupValue: _P24Perc,
+                            onChanged: (P24Perc? value) {
+                              setState(() {
+                                _P24Perc = value;
+                              });
+                            },),
+                        ),
+                      ],
+                    ),
+
+                    Row(
+                      children: [
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe/No responde"),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Radio<P24Perc>(
+                            value: P24Perc.nosabe,
+                            groupValue: _P24Perc,
+                            onChanged: (P24Perc? value) {
+                              setState(() {
+                                _P24Perc = value;
+                              });
+                            },),
+                        ),
+                      ],
+                    ),
+                    
+                    //24.1
+
+                    const SizedBox(height: 16.0),
+                    HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
+                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.\n"
+                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5."
+                        "●	La respuesta debe ser brindada por el usuario del Programa; sin embargo, en caso el usuario/a sea menor de 18 años, "
+                        "no pueda manifestar su voluntad, o requiera ser asistido por su cuidador/a y/o familiar autorizado/a "
+                        "para el cobro, ellos podrán apoyar en las respuestas. En ese sentido, el encuestador debe marcar la opción de quién brindó la respuesta.",
+                        controller: _tip29),
+                    HelpersViewLetrasSubs.formItemsDesign( "25) Desde que estás en el Programa CONTIGO, consideras que tu situación económica"),
+                    HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
+
+                    Row(
+                      children: [
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy buena"),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Radio<P25Perc>(
-                            value: P25Perc.esposo,
+                            value: P25Perc.muybuena,
                             groupValue: _P25Perc,
                             onChanged: (P25Perc? value) {
                               setState(() {
@@ -5363,12 +5387,12 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     Row(
                       children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vive con su padre/madre y hermano/as "),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Buena"),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Radio<P25Perc>(
-                            value: P25Perc.padreshermanos,
+                            value: P25Perc.buena,
                             groupValue: _P25Perc,
                             onChanged: (P25Perc? value) {
                               setState(() {
@@ -5381,12 +5405,12 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     Row(
                       children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Vivo con su padre/madre"),
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Mala"),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Radio<P25Perc>(
-                            value: P25Perc.padres,
+                            value: P25Perc.mala,
                             groupValue: _P25Perc,
                             onChanged: (P25Perc? value) {
                               setState(() {
@@ -5397,92 +5421,43 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                       ],
                     ),
 
-                    //
-                    Visibility(
-                        visible: (_P25Perc != P25Perc.solo),
-                        child:Column(
-                            children: <Widget>[
+                    Row(
+                      children: [
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy mala"),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Radio<P25Perc>(
+                            value: P25Perc.muymala,
+                            groupValue: _P25Perc,
+                            onChanged: (P25Perc? value) {
+                              setState(() {
+                                _P25Perc = value;
+                              });
+                            },),
+                        ),
+                      ],
+                    ),
 
-                              const SizedBox(height: 16.0),
-                              //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. "),
-                              HelpersViewLetrasSubs.formItemsDesign( "26) ¿Vive con otros familiares (como tío/as, primo/as, etc.)?"),
-                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
-
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Sí',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P26Perc>(
-                                    value: P26Perc.Si,
-                                    groupValue: _P26Perc,
-                                    onChanged: (P26Perc? value) {
-                                      setState(() {
-                                        _P26Perc = value;
-                                      });
-                                    },
-                                  ),
-                                  const Text(
-                                    'No',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P26Perc>(
-                                    value: P26Perc.No,
-                                    groupValue: _P26Perc,
-                                    onChanged: (P26Perc? value) {
-                                      setState(() {
-                                        _P26Perc = value;
-                                      });
-                                    },),],
-                              ),
-
-                              const SizedBox(height: 16.0),
-                              //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Realizar la pregunta al usuario/a o cuidador/a y leer las alternativas. "),
-                              HelpersViewLetrasSubs.formItemsDesign( "27) ¿Vive con otros familiares y/u otras personas que nos son parte de su familia (como hermanastro/as, madrina, etc.)?"),
-                              HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
-
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Sí',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P27Perc>(
-                                    value: P27Perc.Si,
-                                    groupValue: _P27Perc,
-                                    onChanged: (P27Perc? value) {
-                                      setState(() {
-                                        _P27Perc = value;
-                                      });
-                                    },
-                                  ),
-                                  const Text(
-                                    'No',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
-                                  Radio<P27Perc>(
-                                    value: P27Perc.No,
-                                    groupValue: _P27Perc,
-                                    onChanged: (P27Perc? value) {
-                                      setState(() {
-                                        _P27Perc = value;
-                                      });
-                                    },),],
-                              ),
-
-
-                            ]
-                        )),
-
+                    Row(
+                      children: [
+                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe/No responde"),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Radio<P25Perc>(
+                            value: P25Perc.nosabe,
+                            groupValue: _P25Perc,
+                            onChanged: (P25Perc? value) {
+                              setState(() {
+                                _P25Perc = value;
+                              });
+                            },),
+                        ),
+                      ],
+                    ),
+                    
+                    
 
 
                     const SizedBox(height: 16.0),
@@ -5490,9 +5465,18 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         onTap: ()  async {
                           if(
 
+                              (_P22Perc == null) ||
                               (_P23Perc == null) ||
                               (_P24Perc == null) ||
-                              (_P25Perc == null)
+                              (_P25Perc == null)  //||
+                              //(_P26Perc == null) ||
+                              //(_P27Perc == null) ||
+                              //(_P28Perc == null) ||
+                              //(_P29Perc == null) //||
+                              //(_P30Perc == null) ||
+                              //(_P31Perc == null) ||
+                              //(_P32Perc == null) ||
+                              //(_P33Perc == null)
                                   //26 y 27 dependen de lo marcado en 25
 
                           ){
@@ -5539,207 +5523,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                 visible: Fase4,
                 child:Column(
                   children: <Widget>[
-
-                    HelpersViewLetrasRojas.formItemsDesign( "III) Perceción de la calidad de vida"),
-                    const SizedBox(height: 16.0),
-                    HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario: Calidad de vida es …\n"
-                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5.",
-                        controller: _tip28),
-                    HelpersViewLetrasSubs.formItemsDesign( "28) ¿Cómo crees que ha sido tu calidad de vida en los últimos 30 días?"),
-                    HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy buena"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P28Perc>(
-                            value: P28Perc.muybuena,
-                            groupValue: _P28Perc,
-                            onChanged: (P28Perc? value) {
-                              setState(() {
-                                _P28Perc = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Buena"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P28Perc>(
-                            value: P28Perc.buena,
-                            groupValue: _P28Perc,
-                            onChanged: (P28Perc? value) {
-                              setState(() {
-                                _P28Perc = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Mala"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P28Perc>(
-                            value: P28Perc.mala,
-                            groupValue: _P28Perc,
-                            onChanged: (P28Perc? value) {
-                              setState(() {
-                                _P28Perc = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy mala"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P28Perc>(
-                            value: P28Perc.muymala,
-                            groupValue: _P28Perc,
-                            onChanged: (P28Perc? value) {
-                              setState(() {
-                                _P28Perc = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe / No responde"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P28Perc>(
-                            value: P28Perc.nosabe,
-                            groupValue: _P28Perc,
-                            onChanged: (P28Perc? value) {
-                              setState(() {
-                                _P28Perc = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16.0),
-                    HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"
-                        "“En esta pregunta le leeré las alternativas y al final usted me responde. Si no recuerda le leeré varias veces las alternativas”.\n"
-                        "●	El/la encuestador/a debe leer solo las alternativas del 1 al 4. Si el/la usuario/a no sabe o no responde debe marcar la alternativa 5.",
-                        controller: _tip29),
-                    HelpersViewLetrasSubs.formItemsDesign( "29) En la actualidad, dirías que tu salud es …"),
-                    HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy buena"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P29Perc>(
-                            value: P29Perc.muybuena,
-                            groupValue: _P29Perc,
-                            onChanged: (P29Perc? value) {
-                              setState(() {
-                                _P29Perc = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Buena"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P29Perc>(
-                            value: P29Perc.buena,
-                            groupValue: _P29Perc,
-                            onChanged: (P29Perc? value) {
-                              setState(() {
-                                _P29Perc = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Mala"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P29Perc>(
-                            value: P29Perc.mala,
-                            groupValue: _P29Perc,
-                            onChanged: (P29Perc? value) {
-                              setState(() {
-                                _P29Perc = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("Muy mala"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P29Perc>(
-                            value: P29Perc.muymala,
-                            groupValue: _P29Perc,
-                            onChanged: (P29Perc? value) {
-                              setState(() {
-                                _P29Perc = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      children: [
-                        HelpersViewLetrasSubsGris.formItemsDesignOPTIONTEXT("No sabe/No responde"),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Radio<P29Perc>(
-                            value: P29Perc.nosabe,
-                            groupValue: _P29Perc,
-                            onChanged: (P29Perc? value) {
-                              setState(() {
-                                _P29Perc = value;
-                              });
-                            },),
-                        ),
-                      ],
-                    ),
-
-                    const SizedBox(height: 16.0),
-                    //HelpersViewLetrasSubs.formItemsDesignBLUE( "●	Antes de realizar la pregunta, brindar el siguiente enunciado al Usuario:\n"),
-                    HelpersViewLetrasSubs.formItemsDesign( "30) Debido a tu condición de salud, ¿tiene dificultad para … sin ayuda o supervisión?"),
-                    //HelpersViewLetrasSubs.formItemsDesignGris(Constants.circleAviso),
-
+                    
+                    HelpersViewLetrasRojas.formItemsDesign( "IV) ACCESO A LA PENSIÓN NO CONTRIBUTIVA"),
 
                     const SizedBox(height: 16.0),
                     HelpersViewLetrasToolTip(message: "●	Antes de realizar la pregunta, brindar el siguiente "
@@ -6905,19 +6690,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                         onTap: ()  async {
                           if(
 
-                              (_P28Perc == null) ||
-                              (_P29Perc == null) ||
-                              //30 al 33 es muy complejo
-                              (_P34Perc == null) ||
-                              (_P35Perc == null) ||
-                              (_P36Perc == null) ||
-                              (_P37Perc == null) ||
-                              (_P38Perc == null) ||
-                              (_P39Perc == null) ||
-                              (_P40Perc == null) ||
-                              (_P41Perc == null)
-                              //42 puede haber ninguna bien opcional
-
+                              (1 == 2) //||
 
 
                           ){
@@ -6964,7 +6737,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
 
                     //MODULO IV
 
-                    HelpersViewLetrasRojas.formItemsDesign( "IV) Acceso a la pensión no contributativa"),
+                    HelpersViewLetrasRojas.formItemsDesign( "V) USO DEL DINERO"),
                     HelpersViewLetrasToolTip(message: "●	Realizar la pregunta al usuario/a o cuidador/a.",
                         controller: _tip43),
                     const SizedBox(height: 16.0),
@@ -8682,20 +8455,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     GestureDetector(
                         onTap: ()  async {
                           if(
-                              (_P43Perc == null) ||
-                              (_P44Perc == null) ||
-                              (_P45Perc == null) ||
-                              (_P46Perc == null) ||
-                              //46 tiene un especificar
-                              (_P47Perc == null) ||
-                              (_P48Perc == null) ||
-                              (_P49Perc == null) ||
-                              //49 tiene un especificar
-                              (widget.P50EspecificarPerc.text == null || widget.P50EspecificarPerc.text.isEmpty) ||
-                              (_P51Perc == null) ||
-                              //52 es check con especificar
-                              (_P53Perc == null)
-                          //54 es opcional
+                              (1 == 2) //||
+
                           ){
                             showDialogValidFields(Constants.faltanCampos);
                           } else {
@@ -8739,7 +8500,7 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                 child:Column(
                   children: <Widget>[
 
-                    HelpersViewLetrasRojas.formItemsDesign( "V) Módulo del dinero"),
+                    HelpersViewLetrasRojas.formItemsDesign( "VI) RIESGO SOCIAL"),
                     HelpersViewLetrasToolTip(message: "●	La respuesta la puede brindar el usuario del programa, su cuidador o familiar autorizado para el cobro.",
                         controller: _tip55),
                     const SizedBox(height: 16.0),
@@ -9052,10 +8813,8 @@ class _MenudeOpcionesPercepcion extends State<MenudeOpcionesPercepcion> {
                     GestureDetector(
                         onTap: ()  async {
                           if(
-                              (_P55Perc == null) ||
-                              (_P56Perc == null) ||
-                              (_P57Perc == null)
-                          //57 tiene un otro
+                              (1 == 2) //||
+
                           ){
                             showDialogValidFields(Constants.faltanCampos);
                           } else {

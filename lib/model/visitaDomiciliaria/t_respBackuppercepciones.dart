@@ -58,7 +58,6 @@ class RespuestaBACKUPpercepcion {
   int? p22percepcion;
   String? p21percepcionEspecificar;
   int? p23percepcion;
-  String? p23percepcionEspecificar;
   int? p24percepcion;
   int? p25percepcion;
   int? p26percepcion;
@@ -125,7 +124,7 @@ class RespuestaBACKUPpercepcion {
     this.p46percepcion,this.p47percepcion,this.p48percepcion,this.p49percepcion,this.p50percepcion,
     this.p51percepcion,this.p52percepcion,this.p53percepcion,this.p54percepcion,this.p55percepcion,
     this.p56percepcion,this.p57percepcion, this.p16percepcionEspecificar1, this.p16percepcionEspecificar2, this.p16percepcionEspecificar3,
-    this.p21percepcionEspecificar, this.p23percepcionEspecificar, this.p44percepcionEspecificar,
+    this.p21percepcionEspecificar, this.p44percepcionEspecificar,
     this.p45percepcionEspecificar, this.p46percepcionEspecificar, this.p49percepcionEspecificar,
     this.p52percepcionEspecificar, this.p57percepcionEspecificar, this.p42percepcionEspecificar,
     this.p54percepcionEspecificar, this.nombre_usuario
@@ -219,7 +218,6 @@ class RespuestaBACKUPpercepcion {
         p16percepcionEspecificar3: json['p16percepcionEspecificar3'] as String?,
 
         p21percepcionEspecificar: json['p21percepcionEspecificar'] as String?,
-        p23percepcionEspecificar: json['p23percepcionEspecificar'] as String?,
         p44percepcionEspecificar: json['p44percepcionEspecificar'] as String?,
         p45percepcionEspecificar: json['p45percepcionEspecificar'] as String?,
         p46percepcionEspecificar: json['p46percepcionEspecificar'] as String?,
@@ -324,7 +322,6 @@ class RespuestaBACKUPpercepcion {
       "p16percepcionEspecificar2":p16percepcionEspecificar2,
       "p16percepcionEspecificar3":p16percepcionEspecificar3,
       "p21percepcionEspecificar": p21percepcionEspecificar,
-      "p23percepcionEspecificar": p23percepcionEspecificar,
       "p44percepcionEspecificar": p44percepcionEspecificar,
       "p45percepcionEspecificar": p45percepcionEspecificar,
       "p46percepcionEspecificar": p46percepcionEspecificar,

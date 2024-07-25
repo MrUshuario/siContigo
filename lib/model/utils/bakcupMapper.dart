@@ -117,9 +117,18 @@ class BackupMapper {
     rptabck.p16percepcion1 = rpta.p16percepcion1;
     rptabck.p16percepcion2 = rpta.p16percepcion2;
     rptabck.p16percepcion3 = rpta.p16percepcion3;
-    rptabck.p17percepcion = rpta.p17percepcion;
-    rptabck.p18percepcion = rpta.p18percepcion;
-    rptabck.p19percepcion = rpta.p19percepcion;
+    rptabck.p17percepcion1 = rpta.p17percepcion1;
+    rptabck.p17percepcion2 = rpta.p17percepcion2;
+    rptabck.p17percepcion3 = rpta.p17percepcion3;
+
+    rptabck.p18percepcion1 = rpta.p18percepcion1;
+    rptabck.p18percepcion2 = rpta.p18percepcion2;
+    rptabck.p18percepcion3 = rpta.p18percepcion3;
+
+    rptabck.p19percepcion1 = rpta.p19percepcion1;
+    rptabck.p19percepcion2 = rpta.p19percepcion2;
+    rptabck.p19percepcion3 = rpta.p19percepcion3;
+
     rptabck.p20percepcion = rpta.p20percepcion;
     rptabck.p21percepcion = rpta.p21percepcion;
     rptabck.p22percepcion = rpta.p22percepcion;
@@ -158,8 +167,7 @@ class BackupMapper {
     rptabck.p55percepcion = rpta.p55percepcion;
     rptabck.p56percepcion = rpta.p56percepcion;
     rptabck.p57percepcion = rpta.p57percepcion;
-    rptabck.p22percepcionEspecificar = rpta.p22percepcionEspecificar;
-    rptabck.p23percepcionEspecificar = rpta.p23percepcionEspecificar;
+    rptabck.p21percepcionEspecificar = rpta.p21percepcionEspecificar;
     rptabck.p44percepcionEspecificar = rpta.p44percepcionEspecificar;
     rptabck.p45percepcionEspecificar = rpta.p45percepcionEspecificar;
     rptabck.p46percepcionEspecificar = rpta.p46percepcionEspecificar;
