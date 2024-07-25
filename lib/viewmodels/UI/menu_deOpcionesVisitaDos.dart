@@ -208,11 +208,18 @@ class _MenudeOpcionesVisitaDos extends State<MenudeOpcionesVisitaDos> {
     conseguirVersion();
     revisarBackup();
     ConseguirHora();
+    widget.formData?.tipoencuesta = Resources.valor_segundaVisita;
     if(widget.formData != null) {
 
       if (widget.formData!.id_usuario != null) {
         setState(() {
           widget.formIdUsuario!.text = widget.formData!.id_usuario!.toString();
+        });
+      }
+
+      if (widget.formData!.nombre_usuario != null) {
+        setState(() {
+          widget.formNombreUsuario!.text = widget.formData!.nombre_usuario!;
         });
       }
 
@@ -664,7 +671,9 @@ class _MenudeOpcionesVisitaDos extends State<MenudeOpcionesVisitaDos> {
   }
 
   Future<void> guardadoFase1() async{
-    widget.formData?.tipoencuesta = Resources.valor_terceraVisita;
+    //widget.formData?.tipoencuesta = Resources.valor_segundaVisita;
+    widget.formData?.nombre_usuario =widget.formNombreUsuario!.text;
+    widget.formDataBACKUP?.nombre_usuario = widget.formNombreUsuario!.text;
     widget.formData?.id_usuario =  widget.formIdUsuario!.text;
     widget.formDataBACKUP?.id_usuario = widget.formIdUsuario!.text;
     await widget.formDataModelDaoBackup.insertFormDataModel(widget.formDataBACKUP!);
@@ -1601,6 +1610,78 @@ class _MenudeOpcionesVisitaDos extends State<MenudeOpcionesVisitaDos> {
                       }, */
                       maxLength: 35,
                     ), context),
+                const SizedBox(height: 16.0),
+                SizedBox(
+                    width: double.infinity,
+                    height: 250,
+                    child: Center(
+                      child: SizedBox(
+                        child: ListView.builder( // bien hasta ahi
+                          itemCount: widget.listMediaPath!.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var PhotoNumber = index + 1;
+                            return Card(
+                              child: ListTile(
+                                leading: Text("Foto$PhotoNumber"),
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  // Center horizontally
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () async {
+                                        //await GuardarFormulario(); TIENE QUE GUARDAR ANTES
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    CameraApp(widget.formData, index)));
+                                      },
+                                      child: Image.asset(Resources.fotoImg,
+                                          width: 48, height: 48),
+                                    ),
+                                    SizedBox(
+                                        width: MediaQuery.of(context).size.width * 0.02),
+                                    widget.listMediaPath![index].isEmpty
+                                        ? const Text("")
+                                        : GestureDetector(
+                                      onTap: () async {
+                                        if (widget.listMediaPath![index].isEmpty) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(
+                                              content: Text(
+                                                  "No hay fotos para mostrar")));
+                                        } else {
+                                          //await GuardarFormulario(); TIENE QUE GUARDAR ANTES
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DisplayPhoto(
+                                                          widget.formData, index)));
+                                        }
+                                      },
+                                      child: Image.asset(Resources.fotoCam,
+                                          width: 48, height: 48),
+                                    ),
+                                    SizedBox(
+                                        width: MediaQuery.of(context).size.width * 0.02),
+                                    widget.listMediaPath![index].isEmpty
+                                        ? const Text("")
+                                        : GestureDetector(
+                                      onTap: () async {
+                                        await BorrarFoto(index);
+                                      },
+                                      child: Image.asset(Resources.fotoX,
+                                          width: 48, height: 48),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    )),
 
                 GestureDetector(
                     onTap: ()  async {
@@ -3904,77 +3985,7 @@ class _MenudeOpcionesVisitaDos extends State<MenudeOpcionesVisitaDos> {
             child:Column(
               children: <Widget>[
 
-                SizedBox(
-                    width: double.infinity,
-                    height: 250,
-                    child: Center(
-                      child: SizedBox(
-                        child: ListView.builder( // bien hasta ahi
-                          itemCount: widget.listMediaPath!.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            var PhotoNumber = index + 1;
-                            return Card(
-                              child: ListTile(
-                                leading: Text("Foto$PhotoNumber"),
-                                title: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  // Center horizontally
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () async {
-                                        //await GuardarFormulario(); TIENE QUE GUARDAR ANTES
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    CameraApp(widget.formData, index)));
-                                      },
-                                      child: Image.asset(Resources.fotoImg,
-                                          width: 48, height: 48),
-                                    ),
-                                    SizedBox(
-                                        width: MediaQuery.of(context).size.width * 0.02),
-                                    widget.listMediaPath![index].isEmpty
-                                        ? const Text("")
-                                        : GestureDetector(
-                                      onTap: () async {
-                                        if (widget.listMediaPath![index].isEmpty) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(const SnackBar(
-                                              content: Text(
-                                                  "No hay fotos para mostrar")));
-                                        } else {
-                                          //await GuardarFormulario(); TIENE QUE GUARDAR ANTES
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      DisplayPhoto(
-                                                          widget.formData, index)));
-                                        }
-                                      },
-                                      child: Image.asset(Resources.fotoCam,
-                                          width: 48, height: 48),
-                                    ),
-                                    SizedBox(
-                                        width: MediaQuery.of(context).size.width * 0.02),
-                                    widget.listMediaPath![index].isEmpty
-                                        ? const Text("")
-                                        : GestureDetector(
-                                      onTap: () async {
-                                        await BorrarFoto(index);
-                                      },
-                                      child: Image.asset(Resources.fotoX,
-                                          width: 48, height: 48),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    )),
+
 
                 HelpersViewLetrasSubs.formItemsDesign( "Para mejorar la precisión de la coordenada presioné icono del satélite, luego guarde su cuestionario presionando el icono diskette."),
 

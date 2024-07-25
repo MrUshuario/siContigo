@@ -105,21 +105,21 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Formulario` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `pregunta` TEXT, `tipoOpcion` TEXT, `puntaje` TEXT, `tipoRepuesta` INTEGER, `id` INTEGER, `idformato` INTEGER, `texto` TEXT, `titulo` TEXT, `idseccion` INTEGER, `descripcion` TEXT, `id_tipo_respuesta` INTEGER, `id_seccion` INTEGER)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `RespuestaPrimeraVisita` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` TEXT, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `fecha_hora_inicio` TEXT, `fecha_hora_fin` TEXT, `tipoencuesta` INTEGER, `fechaTabletFotoDos` TEXT, `fechaTabletFotoTres` TEXT, `fechaTabletFotoUno` TEXT, `fechaTabletFotoCuatro` TEXT, `fotoDos` TEXT, `fotoTres` TEXT, `fotoUno` TEXT, `fotoCuatro` TEXT, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER, `p01percepcion` TEXT, `p02percepcion` TEXT, `p03percepcion` TEXT, `p04percepcion` TEXT, `p05percepcion` INTEGER, `p06percepcion` TEXT, `p07percepcion` TEXT, `p08percepcion` TEXT, `p09percepcion` INTEGER, `p10percepcion` INTEGER, `p11percepcion` INTEGER, `p12percepcion` TEXT, `p13percepcion` INTEGER, `p14percepcion` INTEGER, `p15percepcion` INTEGER, `p16percepcion` INTEGER, `p16percepcionEspecificar` TEXT, `p17percepcion` INTEGER, `p18percepcion` INTEGER, `p19percepcion` TEXT, `p20percepcion` INTEGER, `p21percepcion` INTEGER, `p22percepcion` INTEGER, `p22percepcionEspecificar` TEXT, `p23percepcion` INTEGER, `p23percepcionEspecificar` TEXT, `p24percepcion` INTEGER, `p25percepcion` INTEGER, `p26percepcion` INTEGER, `p27percepcion` INTEGER, `p28percepcion` INTEGER, `p29percepcion` INTEGER, `p30percepcion` TEXT, `p31percepcion` INTEGER, `p32percepcion` INTEGER, `p33percepcion` INTEGER, `p34percepcion` INTEGER, `p35percepcion` INTEGER, `p36percepcion` INTEGER, `p37percepcion` INTEGER, `p38percepcion` INTEGER, `p39percepcion` INTEGER, `p40percepcion` INTEGER, `p41percepcion` INTEGER, `p42percepcion` TEXT, `p43percepcion` INTEGER, `p44percepcion` INTEGER, `p44percepcionEspecificar` TEXT, `p45percepcion` INTEGER, `p45percepcionEspecificar` TEXT, `p46percepcion` INTEGER, `p46percepcionEspecificar` TEXT, `p47percepcion` INTEGER, `p48percepcion` INTEGER, `p49percepcion` INTEGER, `p49percepcionEspecificar` TEXT, `p50percepcion` TEXT, `p51percepcion` INTEGER, `p52percepcion` TEXT, `p52percepcionEspecificar` TEXT, `p53percepcion` INTEGER, `p54percepcion` TEXT, `p55percepcion` INTEGER, `p56percepcion` INTEGER, `p57percepcion` INTEGER, `p57percepcionEspecificar` TEXT, `p42percepcionEspecificar` TEXT, `p54percepcionEspecificar` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `RespuestaPrimeraVisita` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` TEXT, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `fecha_hora_inicio` TEXT, `fecha_hora_fin` TEXT, `tipoencuesta` INTEGER, `nombre_usuario` TEXT, `fechaTabletFotoDos` TEXT, `fechaTabletFotoTres` TEXT, `fechaTabletFotoUno` TEXT, `fechaTabletFotoCuatro` TEXT, `fotoDos` TEXT, `fotoTres` TEXT, `fotoUno` TEXT, `fotoCuatro` TEXT, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER, `p01percepcion` TEXT, `p02percepcion` TEXT, `p03percepcion` TEXT, `p04percepcion` TEXT, `p05percepcion` INTEGER, `p06percepcion` TEXT, `p07percepcion` TEXT, `p08percepcion` TEXT, `p09percepcion` INTEGER, `p10percepcion` INTEGER, `p11percepcion` INTEGER, `p12percepcion` INTEGER, `p13percepcion` INTEGER, `p14percepcion` INTEGER, `p15percepcion` INTEGER, `p16percepcion` INTEGER, `p16percepcionEspecificar` TEXT, `p17percepcion` INTEGER, `p18percepcion` INTEGER, `p19percepcion` TEXT, `p20percepcion` INTEGER, `p21percepcion` INTEGER, `p22percepcion` INTEGER, `p22percepcionEspecificar` TEXT, `p23percepcion` INTEGER, `p23percepcionEspecificar` TEXT, `p24percepcion` INTEGER, `p25percepcion` INTEGER, `p26percepcion` INTEGER, `p27percepcion` INTEGER, `p28percepcion` INTEGER, `p29percepcion` INTEGER, `p30percepcion` TEXT, `p31percepcion` INTEGER, `p32percepcion` INTEGER, `p33percepcion` INTEGER, `p34percepcion` INTEGER, `p35percepcion` INTEGER, `p36percepcion` INTEGER, `p37percepcion` INTEGER, `p38percepcion` INTEGER, `p39percepcion` INTEGER, `p40percepcion` INTEGER, `p41percepcion` INTEGER, `p42percepcion` TEXT, `p43percepcion` INTEGER, `p44percepcion` INTEGER, `p44percepcionEspecificar` TEXT, `p45percepcion` INTEGER, `p45percepcionEspecificar` TEXT, `p46percepcion` INTEGER, `p46percepcionEspecificar` TEXT, `p47percepcion` INTEGER, `p48percepcion` INTEGER, `p49percepcion` INTEGER, `p49percepcionEspecificar` TEXT, `p50percepcion` TEXT, `p51percepcion` INTEGER, `p52percepcion` TEXT, `p52percepcionEspecificar` TEXT, `p53percepcion` INTEGER, `p54percepcion` TEXT, `p55percepcion` INTEGER, `p56percepcion` INTEGER, `p57percepcion` INTEGER, `p57percepcionEspecificar` TEXT, `p42percepcionEspecificar` TEXT, `p54percepcionEspecificar` TEXT)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `RespuestaENVIO` (`idformato` INTEGER PRIMARY KEY AUTOINCREMENT, `id_usuario` TEXT, `fecha` TEXT, `respuestas` TEXT, `puntaje` TEXT, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `fecha_hora_inicio` TEXT, `fecha_hora_fin` TEXT)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUPprimeravisita` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` TEXT, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUPprimeravisita` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` TEXT, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `nombre_usuario` TEXT, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUPsegundavisita` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` TEXT, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUPsegundavisita` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` TEXT, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `nombre_usuario` TEXT, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUPterceravisita` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` TEXT, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUPterceravisita` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` TEXT, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `nombre_usuario` TEXT, `id_gestor` INTEGER, `p01CobroPension` INTEGER, `p02TipoMeses` INTEGER, `p03Check` TEXT, `p03CheckEspecificar` TEXT, `p04Check` TEXT, `p05pension` INTEGER, `p06Establecimiento` INTEGER, `p06EstablecimientoESPECIFICAR` TEXT, `p07Atendio` INTEGER, `p08Check` TEXT, `p08CheckEspecificar` TEXT, `p09Check` TEXT, `p09CheckEspecificar` TEXT, `p10Frecuencia` INTEGER, `p11Vive` INTEGER, `p12Familia` INTEGER, `p12FamiliaB` INTEGER, `p13Ayudas` INTEGER, `p13AyudasB` INTEGER, `p14Ingreso` INTEGER, `p15Tipovivienda` INTEGER, `p15TipoviviendaB` INTEGER, `p16Riesgo` INTEGER, `p16RiesgoB` INTEGER, `p17Check` TEXT, `p17CheckEspecificar` TEXT, `p18Emprendimiento` INTEGER)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Padron` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `fechaCorte` TEXT, `hogarUbigeo` TEXT, `hogarDepartamento` TEXT, `hogarRegion` TEXT, `hogarProvincia` TEXT, `hogarDistrito` TEXT, `hogarNombreCcpp` TEXT, `hogarDireccionDescripcion` TEXT, `area` TEXT, `comunidadNativa` TEXT, `puebloIndigena` TEXT, `saldoCuenta` TEXT, `estadoCuenta` TEXT, `tarjetizacion` TEXT, `tipoDoc` TEXT, `dniCe` TEXT, `apPaterno` TEXT, `apMaterno` TEXT, `nombre` TEXT, `fechaNacimiento` TEXT, `edadPadron` TEXT, `sexo` TEXT, `telefonoUsuario` TEXT, `cse` TEXT, `vigenciaCse` TEXT, `condicionEdad` TEXT, `rangoEdad` TEXT, `estadoActivo` TEXT, `estadoDetalle` TEXT, `ingreso` TEXT, `ultimoPadronAfiliado` TEXT, `motivoDesafiliacionSuspencion` TEXT, `detalleDesafiliacionSuspencion` TEXT, `alertaGeneral` TEXT, `recomendacion` TEXT, `tieneAutorizacion` TEXT, `estadoAutorizacion` TEXT, `detalleObservacion` TEXT, `rde` TEXT, `fechaRde` TEXT, `parentezco` TEXT, `nombreAutorizado` TEXT, `tipoDocAutorizado` TEXT, `dniAutorizado` TEXT, `autorizadoSexo` TEXT, `telefonoAutorizado` TEXT, `correoAutorizado` TEXT, `prioridad` TEXT, `tipoDistrito` TEXT)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `PadronLogin` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `nombre` TEXT, `apellidos` TEXT, `hogarDepartamento` TEXT)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUPpercepcion` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` TEXT, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `tipoencuesta` INTEGER, `p01percepcion` TEXT, `p02percepcion` TEXT, `p03percepcion` TEXT, `p04percepcion` TEXT, `p05percepcion` INTEGER, `p06percepcion` TEXT, `p07percepcion` TEXT, `p08percepcion` TEXT, `p09percepcion` INTEGER, `p10percepcion` INTEGER, `p11percepcion` INTEGER, `p12percepcion` TEXT, `p13percepcion` INTEGER, `p14percepcion` INTEGER, `p15percepcion` INTEGER, `p16percepcion` INTEGER, `p16percepcionEspecificar` TEXT, `p17percepcion` INTEGER, `p18percepcion` INTEGER, `p19percepcion` TEXT, `p20percepcion` INTEGER, `p21percepcion` INTEGER, `p22percepcion` INTEGER, `p22percepcionEspecificar` TEXT, `p23percepcion` INTEGER, `p23percepcionEspecificar` TEXT, `p24percepcion` INTEGER, `p25percepcion` INTEGER, `p26percepcion` INTEGER, `p27percepcion` INTEGER, `p28percepcion` INTEGER, `p29percepcion` INTEGER, `p30percepcion` TEXT, `p31percepcion` INTEGER, `p32percepcion` INTEGER, `p33percepcion` INTEGER, `p34percepcion` INTEGER, `p35percepcion` INTEGER, `p36percepcion` INTEGER, `p37percepcion` INTEGER, `p38percepcion` INTEGER, `p39percepcion` INTEGER, `p40percepcion` INTEGER, `p41percepcion` INTEGER, `p42percepcion` TEXT, `p43percepcion` INTEGER, `p44percepcion` INTEGER, `p44percepcionEspecificar` TEXT, `p45percepcion` INTEGER, `p45percepcionEspecificar` TEXT, `p46percepcion` INTEGER, `p46percepcionEspecificar` TEXT, `p47percepcion` INTEGER, `p48percepcion` INTEGER, `p49percepcion` INTEGER, `p49percepcionEspecificar` TEXT, `p50percepcion` TEXT, `p51percepcion` INTEGER, `p52percepcion` TEXT, `p52percepcionEspecificar` TEXT, `p53percepcion` INTEGER, `p54percepcion` TEXT, `p55percepcion` INTEGER, `p56percepcion` INTEGER, `p57percepcion` INTEGER, `p57percepcionEspecificar` TEXT, `p42percepcionEspecificar` TEXT, `p54percepcionEspecificar` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `RespuestaBACKUPpercepcion` (`cod` INTEGER PRIMARY KEY AUTOINCREMENT, `idformato` INTEGER, `id_usuario` TEXT, `fecha` TEXT, `respuestas` TEXT, `puntaje` INTEGER, `longitud` TEXT, `latitud` TEXT, `id_gestor` INTEGER, `tipoencuesta` INTEGER, `nombre_usuario` TEXT, `p01percepcion` TEXT, `p02percepcion` TEXT, `p03percepcion` TEXT, `p04percepcion` TEXT, `p05percepcion` INTEGER, `p06percepcion` TEXT, `p07percepcion` TEXT, `p08percepcion` TEXT, `p09percepcion` INTEGER, `p10percepcion` INTEGER, `p11percepcion` INTEGER, `p12percepcion` INTEGER, `p13percepcion` INTEGER, `p14percepcion` INTEGER, `p15percepcion` INTEGER, `p16percepcion` INTEGER, `p16percepcionEspecificar` TEXT, `p17percepcion` INTEGER, `p18percepcion` INTEGER, `p19percepcion` TEXT, `p20percepcion` INTEGER, `p21percepcion` INTEGER, `p22percepcion` INTEGER, `p22percepcionEspecificar` TEXT, `p23percepcion` INTEGER, `p23percepcionEspecificar` TEXT, `p24percepcion` INTEGER, `p25percepcion` INTEGER, `p26percepcion` INTEGER, `p27percepcion` INTEGER, `p28percepcion` INTEGER, `p29percepcion` INTEGER, `p30percepcion` TEXT, `p31percepcion` INTEGER, `p32percepcion` INTEGER, `p33percepcion` INTEGER, `p34percepcion` INTEGER, `p35percepcion` INTEGER, `p36percepcion` INTEGER, `p37percepcion` INTEGER, `p38percepcion` INTEGER, `p39percepcion` INTEGER, `p40percepcion` INTEGER, `p41percepcion` INTEGER, `p42percepcion` TEXT, `p43percepcion` INTEGER, `p44percepcion` INTEGER, `p44percepcionEspecificar` TEXT, `p45percepcion` INTEGER, `p45percepcionEspecificar` TEXT, `p46percepcion` INTEGER, `p46percepcionEspecificar` TEXT, `p47percepcion` INTEGER, `p48percepcion` INTEGER, `p49percepcion` INTEGER, `p49percepcionEspecificar` TEXT, `p50percepcion` TEXT, `p51percepcion` INTEGER, `p52percepcion` TEXT, `p52percepcionEspecificar` TEXT, `p53percepcion` INTEGER, `p54percepcion` TEXT, `p55percepcion` INTEGER, `p56percepcion` INTEGER, `p57percepcion` INTEGER, `p57percepcionEspecificar` TEXT, `p42percepcionEspecificar` TEXT, `p54percepcionEspecificar` TEXT)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -402,6 +402,7 @@ class _$FormDataModelDaoRespuestaunovisita
                   'fecha_hora_inicio': item.fecha_hora_inicio,
                   'fecha_hora_fin': item.fecha_hora_fin,
                   'tipoencuesta': item.tipoencuesta,
+                  'nombre_usuario': item.nombre_usuario,
                   'fechaTabletFotoDos': item.fechaTabletFotoDos,
                   'fechaTabletFotoTres': item.fechaTabletFotoTres,
                   'fechaTabletFotoUno': item.fechaTabletFotoUno,
@@ -573,6 +574,7 @@ class _$FormDataModelDaoRespuestaunovisita
             fotoDos: row['fotoDos'] as String?,
             fotoTres: row['fotoTres'] as String?,
             fotoCuatro: row['fotoCuatro'] as String?,
+            nombre_usuario: row['nombre_usuario'] as String?,
             p01percepcion: row['p01percepcion'] as String?,
             p02percepcion: row['p02percepcion'] as String?,
             p03percepcion: row['p03percepcion'] as String?,
@@ -584,7 +586,7 @@ class _$FormDataModelDaoRespuestaunovisita
             p09percepcion: row['p09percepcion'] as int?,
             p10percepcion: row['p10percepcion'] as int?,
             p11percepcion: row['p11percepcion'] as int?,
-            p12percepcion: row['p12percepcion'] as String?,
+            p12percepcion: row['p12percepcion'] as int?,
             p13percepcion: row['p13percepcion'] as int?,
             p14percepcion: row['p14percepcion'] as int?,
             p15percepcion: row['p15percepcion'] as int?,
@@ -707,6 +709,7 @@ class _$FormDataModelDaoRespuestaunovisita
             fotoDos: row['fotoDos'] as String?,
             fotoTres: row['fotoTres'] as String?,
             fotoCuatro: row['fotoCuatro'] as String?,
+            nombre_usuario: row['nombre_usuario'] as String?,
             p01percepcion: row['p01percepcion'] as String?,
             p02percepcion: row['p02percepcion'] as String?,
             p03percepcion: row['p03percepcion'] as String?,
@@ -718,7 +721,7 @@ class _$FormDataModelDaoRespuestaunovisita
             p09percepcion: row['p09percepcion'] as int?,
             p10percepcion: row['p10percepcion'] as int?,
             p11percepcion: row['p11percepcion'] as int?,
-            p12percepcion: row['p12percepcion'] as String?,
+            p12percepcion: row['p12percepcion'] as int?,
             p13percepcion: row['p13percepcion'] as int?,
             p14percepcion: row['p14percepcion'] as int?,
             p15percepcion: row['p15percepcion'] as int?,
@@ -842,6 +845,7 @@ class _$FormDataModelDaoRespuestaBACKUPunovisita
                   'longitud': item.longitud,
                   'latitud': item.latitud,
                   'id_gestor': item.id_gestor,
+                  'nombre_usuario': item.nombre_usuario,
                   'p01CobroPension': item.p01CobroPension,
                   'p02TipoMeses': item.p02TipoMeses,
                   'p03Check': item.p03Check,
@@ -921,7 +925,8 @@ class _$FormDataModelDaoRespuestaBACKUPunovisita
             p16RiesgoB: row['p16RiesgoB'] as int?,
             p17Check: row['p17Check'] as String?,
             p17CheckEspecificar: row['p17CheckEspecificar'] as String?,
-            p18Emprendimiento: row['p18Emprendimiento'] as int?));
+            p18Emprendimiento: row['p18Emprendimiento'] as int?,
+            nombre_usuario: row['nombre_usuario'] as String?));
   }
 
   @override
@@ -964,6 +969,7 @@ class _$FormDataModelDaoRespuestaBACKUPdosvisita
                   'longitud': item.longitud,
                   'latitud': item.latitud,
                   'id_gestor': item.id_gestor,
+                  'nombre_usuario': item.nombre_usuario,
                   'p01CobroPension': item.p01CobroPension,
                   'p02TipoMeses': item.p02TipoMeses,
                   'p03Check': item.p03Check,
@@ -1043,7 +1049,8 @@ class _$FormDataModelDaoRespuestaBACKUPdosvisita
             p16RiesgoB: row['p16RiesgoB'] as int?,
             p17Check: row['p17Check'] as String?,
             p17CheckEspecificar: row['p17CheckEspecificar'] as String?,
-            p18Emprendimiento: row['p18Emprendimiento'] as int?));
+            p18Emprendimiento: row['p18Emprendimiento'] as int?,
+            nombre_usuario: row['nombre_usuario'] as String?));
   }
 
   @override
@@ -1085,6 +1092,7 @@ class _$FormDataModelDaoRespuestaBACKUPtresvisita
                   'puntaje': item.puntaje,
                   'longitud': item.longitud,
                   'latitud': item.latitud,
+                  'nombre_usuario': item.nombre_usuario,
                   'id_gestor': item.id_gestor,
                   'p01CobroPension': item.p01CobroPension,
                   'p02TipoMeses': item.p02TipoMeses,
@@ -1165,7 +1173,8 @@ class _$FormDataModelDaoRespuestaBACKUPtresvisita
             p16RiesgoB: row['p16RiesgoB'] as int?,
             p17Check: row['p17Check'] as String?,
             p17CheckEspecificar: row['p17CheckEspecificar'] as String?,
-            p18Emprendimiento: row['p18Emprendimiento'] as int?));
+            p18Emprendimiento: row['p18Emprendimiento'] as int?,
+            nombre_usuario: row['nombre_usuario'] as String?));
   }
 
   @override
@@ -1209,6 +1218,7 @@ class _$FormDataModelDaoRespuestaBACKUpercepcion
                   'latitud': item.latitud,
                   'id_gestor': item.id_gestor,
                   'tipoencuesta': item.tipoencuesta,
+                  'nombre_usuario': item.nombre_usuario,
                   'p01percepcion': item.p01percepcion,
                   'p02percepcion': item.p02percepcion,
                   'p03percepcion': item.p03percepcion,
@@ -1313,7 +1323,7 @@ class _$FormDataModelDaoRespuestaBACKUpercepcion
             p09percepcion: row['p09percepcion'] as int?,
             p10percepcion: row['p10percepcion'] as int?,
             p11percepcion: row['p11percepcion'] as int?,
-            p12percepcion: row['p12percepcion'] as String?,
+            p12percepcion: row['p12percepcion'] as int?,
             p13percepcion: row['p13percepcion'] as int?,
             p14percepcion: row['p14percepcion'] as int?,
             p15percepcion: row['p15percepcion'] as int?,
@@ -1380,7 +1390,8 @@ class _$FormDataModelDaoRespuestaBACKUpercepcion
             p42percepcionEspecificar:
                 row['p42percepcionEspecificar'] as String?,
             p54percepcionEspecificar:
-                row['p54percepcionEspecificar'] as String?));
+                row['p54percepcionEspecificar'] as String?,
+            nombre_usuario: row['nombre_usuario'] as String?));
   }
 
   @override

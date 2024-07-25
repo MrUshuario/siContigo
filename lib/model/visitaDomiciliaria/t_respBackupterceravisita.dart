@@ -11,6 +11,7 @@ class RespuestaBACKUPterceravisita {
   int? puntaje;
   String? longitud;
   String? latitud;
+  String? nombre_usuario;
 
   int? id_gestor;
   //ESTO SOLO ES PARA MODIFICAR Y DEMAS
@@ -50,7 +51,7 @@ class RespuestaBACKUPterceravisita {
     this.p06Establecimiento, this.p06EstablecimientoESPECIFICAR, this.p07Atendio, this.p08Check, this.p08CheckEspecificar, this.p09Check, this.p09CheckEspecificar,
     this.p10Frecuencia, this.p11Vive, this.p12Familia, this.p12FamiliaB, this.p13Ayudas, this.p13AyudasB,
     this.p14Ingreso, this.p15Tipovivienda, this.p15TipoviviendaB, this.p16Riesgo, this.p16RiesgoB, this.p17Check, this.p17CheckEspecificar,
-    this.p18Emprendimiento
+    this.p18Emprendimiento, this.nombre_usuario
   });
 
   factory RespuestaBACKUPterceravisita.fromJson(dynamic json) {
@@ -90,6 +91,7 @@ class RespuestaBACKUPterceravisita {
       p17Check: json['p15TipoviviendaB'] as String?,
       p17CheckEspecificar: json['p15TipoviviendaB'] as String?,
       p18Emprendimiento: json['p15TipoviviendaB'] as int?,
+      nombre_usuario: json['nombre_usuario'] as String?,
 
     );
   }
@@ -139,6 +141,7 @@ class RespuestaBACKUPterceravisita {
       "p17Check":p17Check,
       "p17CheckEspecificar":p17CheckEspecificar,
       "p18Emprendimiento": p18Emprendimiento,
+      "nombre_usuario":nombre_usuario,
 
     };
   }

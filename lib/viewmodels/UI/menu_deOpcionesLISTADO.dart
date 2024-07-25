@@ -332,16 +332,20 @@ late final _appDatabase;
     //Respuesta obj = BackupMapper.instance.backuptoResp(objBackup);
     Widget primeraVisitaBACKUP = MenudeOpcionesVisitaUno(obj),
     segundaVisitaBACKUP  = MenudeOpcionesVisitaDos(objdos),
-    terceraVisitaBACKUP  = MenudeOpcionesVisitaTres(objtres);
+    terceraVisitaBACKUP  = MenudeOpcionesVisitaTres(objtres),
+    percepcionesBACKUP  = MenudeOpcionesPercepcion(objPERCEP);
+
 
     bool visibiliadad1 = widget.backup;
     bool visibiliadad2 = widget.backupdos;
     bool visibiliadad3 = widget.backuptres;
+    bool visibiliadad4 = widget.backupPERCEP;
 
     //BOTONES
     Widget primeraVisita = MenudeOpcionesVisitaUno(RespuestaPrimeraVisita()),
         segundaVisita = MenudeOpcionesVisitaDos(RespuestaPrimeraVisita()),
-        terceraVisita = MenudeOpcionesVisitaTres(RespuestaPrimeraVisita());
+        terceraVisita = MenudeOpcionesVisitaTres(RespuestaPrimeraVisita()),
+        percepcionesVisita = MenudeOpcionesPercepcion(RespuestaPrimeraVisita());
 
     var ProductosLIST = [
       [
@@ -369,14 +373,12 @@ late final _appDatabase;
       ],
 
       //PERCEPCIONES
-      /*
         [Resources.siContigo_icono_generico,
         Resources.titulo_percepciones,
-        terceraVisita,
-        terceraVisitaBACKUP,
-        visibiliadad3
+        percepcionesVisita,
+        percepcionesBACKUP,
+        visibiliadad4
       ],
-       */
 
     ];
 
@@ -1589,6 +1591,7 @@ late final _appDatabase;
                   ],
                 ),
                 //ENCUESTAS PERCEPCIONES EN DURO
+                /*
                 Row(
                   children: [
                     Expanded(
@@ -1667,6 +1670,7 @@ late final _appDatabase;
                     ),
                   ],
                 ),
+                */
                 //CARGAR PADRON USUARIOS
                 Row(
                   children: [

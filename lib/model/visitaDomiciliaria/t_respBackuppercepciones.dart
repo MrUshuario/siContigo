@@ -13,6 +13,7 @@ class RespuestaBACKUPpercepcion {
   String? latitud;
   int? id_gestor;
   int? tipoencuesta;
+  String? nombre_usuario;
 
   //PERCEPCION
   String? p01percepcion;
@@ -25,20 +26,37 @@ class RespuestaBACKUPpercepcion {
   String? p08percepcion;
   int? p09percepcion;
   int? p10percepcion;
-  int? p11percepcion;
-  String? p12percepcion;
+  String? p11percepcion;
+  int? p12percepcion;
   int? p13percepcion;
   int? p14percepcion;
   int? p15percepcion;
-  int? p16percepcion;
-  String? p16percepcionEspecificar;
-  int? p17percepcion;
-  int? p18percepcion;
-  String? p19percepcion;
+
+  int? p16percepcion1;
+  int? p16percepcion2;
+  int? p16percepcion3;
+
+
+  String? p16percepcionEspecificar1;
+  String? p16percepcionEspecificar2;
+  String? p16percepcionEspecificar3;
+
+  int? p17percepcion1;
+  int? p17percepcion2;
+  int? p17percepcion3;
+
+  int? p18percepcion1;
+  int? p18percepcion2;
+  int? p18percepcion3;
+
+  String? p19percepcion1;
+  String? p19percepcion2;
+  String? p19percepcion3;
+
   int? p20percepcion;
   int? p21percepcion;
   int? p22percepcion;
-  String? p22percepcionEspecificar;
+  String? p21percepcionEspecificar;
   int? p23percepcion;
   String? p23percepcionEspecificar;
   int? p24percepcion;
@@ -92,7 +110,13 @@ class RespuestaBACKUPpercepcion {
     this.p01percepcion,this.p02percepcion,this.p03percepcion,this.p04percepcion,this.p05percepcion,
     this.p06percepcion,this.p07percepcion,this.p08percepcion,this.p09percepcion,this.p10percepcion,
     this.p11percepcion,this.p12percepcion,this.p13percepcion,this.p14percepcion,this.p15percepcion,
-    this.p16percepcion,this.p17percepcion,this.p18percepcion,this.p19percepcion,this.p20percepcion,
+    this.p16percepcion1,this.p16percepcion2,this.p16percepcion3,
+
+    this.p17percepcion1, this.p17percepcion2, this.p17percepcion3,
+    this.p18percepcion1, this.p18percepcion2, this.p18percepcion3,
+    this.p19percepcion1, this.p19percepcion2, this.p19percepcion3,
+
+    this.p20percepcion,
     this.p21percepcion,this.p22percepcion,this.p23percepcion,this.p24percepcion,this.p25percepcion,
     this.p26percepcion,this.p27percepcion,this.p28percepcion,this.p29percepcion,this.p30percepcion,
     this.p31percepcion,this.p32percepcion,this.p33percepcion,this.p34percepcion,this.p35percepcion,
@@ -100,11 +124,11 @@ class RespuestaBACKUPpercepcion {
     this.p41percepcion,this.p42percepcion,this.p43percepcion,this.p44percepcion,this.p45percepcion,
     this.p46percepcion,this.p47percepcion,this.p48percepcion,this.p49percepcion,this.p50percepcion,
     this.p51percepcion,this.p52percepcion,this.p53percepcion,this.p54percepcion,this.p55percepcion,
-    this.p56percepcion,this.p57percepcion, this.p16percepcionEspecificar,
-    this.p22percepcionEspecificar, this.p23percepcionEspecificar, this.p44percepcionEspecificar,
+    this.p56percepcion,this.p57percepcion, this.p16percepcionEspecificar1, this.p16percepcionEspecificar2, this.p16percepcionEspecificar3,
+    this.p21percepcionEspecificar, this.p23percepcionEspecificar, this.p44percepcionEspecificar,
     this.p45percepcionEspecificar, this.p46percepcionEspecificar, this.p49percepcionEspecificar,
     this.p52percepcionEspecificar, this.p57percepcionEspecificar, this.p42percepcionEspecificar,
-    this.p54percepcionEspecificar
+    this.p54percepcionEspecificar, this.nombre_usuario
   });
 
   factory RespuestaBACKUPpercepcion.fromJson(dynamic json) {
@@ -119,6 +143,7 @@ class RespuestaBACKUPpercepcion {
       latitud: json['latitud'] as String?,
       id_gestor: json['id_gestor'] as int?,
       tipoencuesta: json['tipoencuesta'] as int?,
+      nombre_usuario: json['nombre_usuario'] as String?,
 
         p01percepcion: json['p01percepcion'] as String?,
         p02percepcion: json['p02percepcion'] as String?,
@@ -130,15 +155,27 @@ class RespuestaBACKUPpercepcion {
         p08percepcion: json['p08percepcion'] as String?,
         p09percepcion: json['p09percepcion'] as int?,
         p10percepcion: json['p10percepcion'] as int?,
-        p11percepcion: json['p11percepcion'] as int?,
-        p12percepcion: json['p12percepcion'] as String?,
+        p11percepcion: json['p11percepcion'] as String?,
+        p12percepcion: json['p12percepcion'] as int?,
         p13percepcion: json['p13percepcion'] as int?,
         p14percepcion: json['p14percepcion'] as int?,
         p15percepcion: json['p15percepcion'] as int?,
-        p16percepcion: json['p16percepcion'] as int?,
-        p17percepcion: json['p17percepcion'] as int?,
-        p18percepcion: json['p18percepcion'] as int?,
-        p19percepcion: json['p19percepcion'] as String?,
+        p16percepcion1: json['p16percepcion1'] as int?,
+        p16percepcion2: json['p16percepcion2'] as int?,
+        p16percepcion3: json['p16percepcion3'] as int?,
+
+        p17percepcion1: json['p17percepcion1'] as int?,
+        p17percepcion2: json['p17percepcion2'] as int?,
+        p17percepcion3: json['p17percepcion3'] as int?,
+
+        p18percepcion1: json['p18percepcion1'] as int?,
+        p18percepcion2: json['p18percepcion2'] as int?,
+        p18percepcion3: json['p18percepcion3'] as int?,
+
+        p19percepcion1: json['p19percepcion1'] as String?,
+        p19percepcion2: json['p19percepcion2'] as String?,
+        p19percepcion3: json['p19percepcion3'] as String?,
+
         p20percepcion: json['p20percepcion'] as int?,
         p21percepcion: json['p21percepcion'] as int?,
         p22percepcion: json['p22percepcion'] as int?,
@@ -177,8 +214,11 @@ class RespuestaBACKUPpercepcion {
         p55percepcion: json['p55percepcion'] as int?,
         p56percepcion: json['p56percepcion'] as int?,
         p57percepcion: json['p57percepcion'] as int?,
-        p16percepcionEspecificar: json['p16percepcionEspecificar'] as String?,
-        p22percepcionEspecificar: json['p22percepcionEspecificar'] as String?,
+        p16percepcionEspecificar1: json['p16percepcionEspecificar1'] as String?,
+        p16percepcionEspecificar2: json['p16percepcionEspecificar2'] as String?,
+        p16percepcionEspecificar3: json['p16percepcionEspecificar3'] as String?,
+
+        p21percepcionEspecificar: json['p21percepcionEspecificar'] as String?,
         p23percepcionEspecificar: json['p23percepcionEspecificar'] as String?,
         p44percepcionEspecificar: json['p44percepcionEspecificar'] as String?,
         p45percepcionEspecificar: json['p45percepcionEspecificar'] as String?,
@@ -228,10 +268,20 @@ class RespuestaBACKUPpercepcion {
       "p13percepcion":p13percepcion,
       "p14percepcion":p14percepcion,
       "p15percepcion":p15percepcion,
-      "p16percepcion":p16percepcion,
-      "p17percepcion":p17percepcion,
-      "p18percepcion":p18percepcion,
-      "p19percepcion":p19percepcion,
+      "p16percepcion1":p16percepcion1,
+      "p16percepcion2":p16percepcion2,
+      "p16percepcion3":p16percepcion3,
+      "p17percepcion1":p17percepcion1,
+      "p17percepcion2":p17percepcion2,
+      "p17percepcion3":p17percepcion3,
+      "p18percepcion1":p18percepcion1,
+      "p18percepcion2":p18percepcion2,
+      "p18percepcion3":p18percepcion3,
+
+      "p19percepcion1":p19percepcion1,
+      "p19percepcion2":p19percepcion2,
+      "p19percepcion3":p19percepcion3,
+
       "p20percepcion":p20percepcion,
       "p21percepcion":p21percepcion,
       "p22percepcion":p22percepcion,
@@ -270,8 +320,10 @@ class RespuestaBACKUPpercepcion {
       "p55percepcion":p55percepcion,
       "p56percepcion":p56percepcion,
       "p57percepcion":p57percepcion,
-      "p16percepcionEspecificar":p16percepcionEspecificar,
-      "p22percepcionEspecificar": p22percepcionEspecificar,
+      "p16percepcionEspecificar1":p16percepcionEspecificar1,
+      "p16percepcionEspecificar2":p16percepcionEspecificar2,
+      "p16percepcionEspecificar3":p16percepcionEspecificar3,
+      "p21percepcionEspecificar": p21percepcionEspecificar,
       "p23percepcionEspecificar": p23percepcionEspecificar,
       "p44percepcionEspecificar": p44percepcionEspecificar,
       "p45percepcionEspecificar": p45percepcionEspecificar,
@@ -281,6 +333,7 @@ class RespuestaBACKUPpercepcion {
       "p57percepcionEspecificar": p57percepcionEspecificar,
       "p42percepcionEspecificar": p42percepcionEspecificar,
       "p54percepcionEspecificar": p54percepcionEspecificar,
+      "nombre_usuario":nombre_usuario,
     };
   }
 
