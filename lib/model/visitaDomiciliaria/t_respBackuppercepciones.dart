@@ -64,10 +64,10 @@ class RespuestaBACKUPpercepcion {
   int? p27percepcion;
   int? p28percepcion;
   int? p29percepcion;
-  String? p30percepcion;
+  int? p30percepcion;
   int? p31percepcion;
   int? p32percepcion;
-  int? p33percepcion;
+  String? p33percepcion;
   int? p34percepcion;
   int? p35percepcion;
   int? p36percepcion;
@@ -98,7 +98,7 @@ class RespuestaBACKUPpercepcion {
   int? p56percepcion;
   int? p57percepcion;
   String? p57percepcionEspecificar;
-  String? p42percepcionEspecificar;
+  String? p33percepcionEspecificar;
   String? p54percepcionEspecificar;
 
 
@@ -126,7 +126,7 @@ class RespuestaBACKUPpercepcion {
     this.p56percepcion,this.p57percepcion, this.p16percepcionEspecificar1, this.p16percepcionEspecificar2, this.p16percepcionEspecificar3,
     this.p21percepcionEspecificar, this.p44percepcionEspecificar,
     this.p45percepcionEspecificar, this.p46percepcionEspecificar, this.p49percepcionEspecificar,
-    this.p52percepcionEspecificar, this.p57percepcionEspecificar, this.p42percepcionEspecificar,
+    this.p52percepcionEspecificar, this.p57percepcionEspecificar, this.p33percepcionEspecificar,
     this.p54percepcionEspecificar, this.nombre_usuario
   });
 
@@ -185,10 +185,10 @@ class RespuestaBACKUPpercepcion {
         p27percepcion: json['p27percepcion'] as int?,
         p28percepcion: json['p28percepcion'] as int?,
         p29percepcion: json['p29percepcion'] as int?,
-        p30percepcion: json['p30percepcion'] as String?,
+        p30percepcion: json['p30percepcion'] as int?,
         p31percepcion: json['p31percepcion'] as int?,
         p32percepcion: json['p32percepcion'] as int?,
-        p33percepcion: json['p33percepcion'] as int?,
+        p33percepcion: json['p33percepcion'] as String?,
         p34percepcion: json['p34percepcion'] as int?,
         p35percepcion: json['p35percepcion'] as int?,
         p36percepcion: json['p36percepcion'] as int?,
@@ -224,7 +224,7 @@ class RespuestaBACKUPpercepcion {
         p49percepcionEspecificar: json['p49percepcionEspecificar'] as String?,
         p52percepcionEspecificar: json['p52percepcionEspecificar'] as String?,
         p57percepcionEspecificar: json['p57percepcionEspecificar'] as String?,
-        p42percepcionEspecificar: json['p42percepcionEspecificar'] as String?,
+        p33percepcionEspecificar: json['p33percepcionEspecificar'] as String?,
         p54percepcionEspecificar: json['p54percepcionEspecificar'] as String?
 
     );
@@ -328,7 +328,7 @@ class RespuestaBACKUPpercepcion {
       "p49percepcionEspecificar": p49percepcionEspecificar,
       "p52percepcionEspecificar": p52percepcionEspecificar,
       "p57percepcionEspecificar": p57percepcionEspecificar,
-      "p42percepcionEspecificar": p42percepcionEspecificar,
+      "p33percepcionEspecificar": p33percepcionEspecificar,
       "p54percepcionEspecificar": p54percepcionEspecificar,
       "nombre_usuario":nombre_usuario,
     };

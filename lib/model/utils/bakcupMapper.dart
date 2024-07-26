@@ -174,7 +174,7 @@ class BackupMapper {
     rptabck.p49percepcionEspecificar = rpta.p49percepcionEspecificar;
     rptabck.p52percepcionEspecificar = rpta.p52percepcionEspecificar;
     rptabck.p57percepcionEspecificar = rpta.p57percepcionEspecificar;
-    rptabck.p42percepcionEspecificar = rpta.p42percepcionEspecificar;
+    rptabck.p33percepcionEspecificar = rpta.p33percepcionEspecificar;
     rptabck.p54percepcionEspecificar = rpta.p54percepcionEspecificar;
 
     rptabck.id_usuario = rpta.id_usuario;
