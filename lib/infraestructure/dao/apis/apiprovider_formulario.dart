@@ -1,9 +1,10 @@
-import 'package:sicontigo/model/responseinciofinactividad.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/responseinciofinactividad.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
-import 'package:sicontigo/model/t_formulario.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_formulario.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/model/t_respuestaBACKUP.dart';
 import 'dart:convert';
-import 'package:sicontigo/utils/resources_apis.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/utils/resources_apis.dart';
 
 import '../../../model/t_insertarEncuestaRSPTA.dart';
 import '../../../model/t_respuesta.dart';
@@ -44,10 +45,12 @@ class apiprovider_formulario {
   }
 */
 
+  //AUTOGENERADO YA NO SE USA
   Future<List<Formulario>> post_FormularioLista(String token) async {
-    final Map<String, dynamic> bodyData = {'idFormato': 5};
+    final Map<String, dynamic> bodyData = {'idFormato': apisResources.api_idFormato};
     try {
       print("iniciando api_get_LoginForm...");
+      print(bodyData);
       String url_login = api_get_FormList;
       Uri uri = Uri.parse(url_login);
       final response = await client.post(
@@ -58,7 +61,7 @@ class apiprovider_formulario {
         },
         body: jsonEncode(bodyData),
       );
-      print("response api_get_LoginForm...${response.body}");
+      print("response api_get_LoginForm FINAL...${response.body}");
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);
         return Formulario.listFromJson(data['formulario']);
@@ -72,9 +75,11 @@ class apiprovider_formulario {
     }
   }
 
-  Future<insertarEncuestaRSPTA> post_EnviarRspt(Respuesta resp, String token) async {
+  //ENVIAR RPTA
+  Future<insertarEncuestaRSPTA> post_EnviarRspt(RespuestaENVIO resp, String token) async {
     try {
       print("iniciando api_get_FormAnswerd...");
+      print(resp.toString());
       String url_login = api_get_FormAnswerd;
       Uri uri = Uri.parse(url_login);
       String body = json.encode(resp.toMap());

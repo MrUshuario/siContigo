@@ -2,20 +2,20 @@
 import 'dart:io';
 //import 'package:camera/camera.dart';
 import 'package:camera/camera.dart';
-import 'package:sicontigo/infraestructure/repository/devicesinfoplusrepository.dart';
-import 'package:sicontigo/infraestructure/repository/locationrepository.dart';
-import 'package:sicontigo/viewmodels/UI/cubitprueba.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/repository/devicesinfoplusrepository.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/repository/locationrepository.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/viewmodels/UI/cubitprueba.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 //import 'package:contigo/infraestructure/dao/apis/apiprovider_menuOpciones.dart';
-import 'package:sicontigo/infraestructure/repository/devicesinfoplusrepository.dart';
-import 'package:sicontigo/infraestructure/repository/devicesinfoplusrepositoryimpl.dart';
-import 'package:sicontigo/infraestructure/repository/locationrepository.dart';
-import 'package:sicontigo/infraestructure/repository/locationrepositoryimpl.dart';
-import 'package:sicontigo/splash.dart';
-import 'package:sicontigo/utils/conexionComprobacion.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/repository/devicesinfoplusrepository.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/repository/devicesinfoplusrepositoryimpl.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/repository/locationrepository.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/infraestructure/repository/locationrepositoryimpl.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/splash.dart';
+import 'package:Sicontigo_Visita_Domiciliaria/utils/conexionComprobacion.dart';
 import 'package:sqflite/sqflite.dart';
 import 'infraestructure/dao/database/database.dart';
 
@@ -28,7 +28,7 @@ Future<void> main() async {
 
   //InternetChecker.init();
 
-  //PUSO MIGUEL
+  //PUSO  
   try {
     WidgetsFlutterBinding.ensureInitialized();
     cameras = await availableCameras();
